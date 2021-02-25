@@ -1,0 +1,267 @@
+Enriched classes among exchanged metabolites for families observed in Schlaeppi dataset (Root OTU models)
+
+The third neighborhood of metabolite terms was removed from the universal set.
+The second neighborhood of the root was removed from the universal set.
+
+For each metabolite ontology term, a one-sided Fisher test for the upper tail was performed.
+
+All p-values were corrected using the Benjamini-Hochberg procedure (initial alpha = 0.05).
+
+Alcaligenaceae (2)
+
+Exported (2):
+
+adenyl deoxyribonucleotide
+cyclic ketone
+
+Imported(1):
+
+disaccharide
+
+Bacillaceae (3)
+
+Exported (2):
+
+aldohexose 6-phosphate
+ester
+
+Imported(1):
+
+nucleobase-containing molecular entity
+
+Bradyrhizobiaceae (2)
+
+Exported (2):
+
+amino monosaccharide
+monocyclic compound
+
+Imported(1):
+
+glycerophospholipid
+
+Caulobacteraceae (6)
+
+Exported (1):
+
+pentose
+
+Imported(1):
+
+D-hexose phosphate
+
+Cellulomonadaceae (1)
+
+Exported (1):
+
+monosaccharide derivative
+
+Imported(3):
+
+ketohexose monophosphate
+oligosaccharide
+oligosaccharide derivative
+
+Comamonadaceae (10)
+
+Exported (3):
+
+monocyclic heteroarene
+oligosaccharide
+N-acyl-hexosamine
+
+Imported(3):
+
+liposaccharide
+organic cyclic compound
+ketone
+
+Flavobacteriaceae (4)
+
+Exported (1):
+
+carbon group molecular entity
+
+Imported(3):
+
+nucleotide-sugar
+benzenes
+cyclic ketone
+
+Hyphomicrobiaceae (4)
+
+Exported (3):
+
+calixaromatic
+amino acid derivative
+homocyclic compound
+
+Imported(2):
+
+halohydrocarbon
+calix(hetero)arene
+
+Intrasporangiaceae (3)
+
+Exported (1):
+
+fatty acid
+
+Imported(1):
+
+organooxygen compound
+
+Methylobacteriaceae (3)
+
+Exported (1):
+
+N-acyl-hexosamine
+
+Imported(2):
+
+phosphoamino acid
+oligosaccharide derivative
+
+Microbacteriaceae (8)
+
+Exported (0):
+
+
+Imported(5):
+
+halohydrocarbon
+imidazopyrimidine
+organic heterotricyclic compound
+organonitrogen compound
+organooxygen compound
+
+Moraxellaceae (1)
+
+Exported (0):
+
+
+Imported(1):
+
+conjugated protein
+
+Mycobacteriaceae (2)
+
+Exported (0):
+
+
+Imported(3):
+
+aldonic acid phosphate
+carboxamide
+amino acid derivative
+
+Nocardioidaceae (5)
+
+Exported (2):
+
+aldopentose derivative
+pentose derivative
+
+Imported(1):
+
+homopolysaccharide
+
+Oxalobacteraceae (7)
+
+Exported (2):
+
+nucleoside phosphate
+bicyclic compound
+
+Imported(1):
+
+alditol derivative
+
+Paenibacillaceae (2)
+
+Exported (1):
+
+glucosamines
+
+Imported(0):
+
+
+Phyllobacteriaceae (3)
+
+Exported (0):
+
+
+Imported(2):
+
+glutamic acid derivative
+unsaturated fatty acyl-CoA
+
+Promicromonosporaceae (1)
+
+Exported (0):
+
+
+Imported(2):
+
+purine nucleoside bisphosphate
+carbon oxoacid
+
+Pseudomonadaceae (4)
+
+Exported (2):
+
+nucleotide conjugate
+tetrahydrofuranol
+
+Imported(2):
+
+benzenes
+amino acid derivative
+
+Rhizobiaceae (9)
+
+Exported (1):
+
+benzenes
+
+Imported(4):
+
+oxo carboxylic acid anion
+purine nucleotide
+nucleotide-carbohydrate
+isoprenoid
+
+Sphingomonadaceae (6)
+
+Exported (2):
+
+isoprenoid
+ketose derivative
+
+Imported(2):
+
+carboxylic acid dianion
+oligosaccharide derivative
+
+Streptomycetaceae (6)
+
+Exported (1):
+
+organochlorine compound
+
+Imported(2):
+
+N-glycosyl compound
+thiocarboxylic ester
+
+Xanthomonadaceae (5)
+
+Exported (0):
+
+
+Imported(3):
+
+purine nucleotide
+carbon group molecular entity
+carbohydrate
+

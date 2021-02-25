@@ -1,0 +1,312 @@
+MATLAB is selecting SOFTWARE OPENGL rendering.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2017 The MathWorks, Inc.
+                   R2017b (9.3.0.713579) 64-bit (glnxa64)
+                             September 14, 2017
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+----------------------------------------------------------------------
+Iterative gap filling
+----------------------------------------------------------------------
+Starting parallel pool (parpool) using the 'local' profile ...
+connected to 6 workers.
+Loading required data...
+-----------------------------------
+Merged Root models without CarveMe models for OTU composition in Schlaeppi_noCarveMe dataset
+
+
+Reading sequence similarity file...
+----------------------------------------------------------------------
+START
+----------------------------------------------------------------------
+Testing 100 random successions for 97 models
+Iteration #12
+Time:	373.47 min
+Total number of added reactions:		1588
+Total number of exchanged metabolites:		5519
+Sum of optimal biomass fluxes:			13844.35
+
+Iteration #1
+Time:	376.28 min
+Total number of added reactions:		1630
+Total number of exchanged metabolites:		5476
+Sum of optimal biomass fluxes:			14924.09
+
+Iteration #20
+Time:	376.56 min
+Total number of added reactions:		1571
+Total number of exchanged metabolites:		5396
+Sum of optimal biomass fluxes:			14380.35
+
+Iteration #2
+Time:	376.92 min
+Total number of added reactions:		1538
+Total number of exchanged metabolites:		5384
+Sum of optimal biomass fluxes:			14587.29
+
+Iteration #7
+Time:	377.33 min
+Total number of added reactions:		1587
+Total number of exchanged metabolites:		5424
+Sum of optimal biomass fluxes:			14685.59
+
+Iteration #4
+Time:	380.52 min
+Total number of added reactions:		1552
+Total number of exchanged metabolites:		5397
+Sum of optimal biomass fluxes:			14080.71
+
+Iteration #29
+Time:	1087.05 min
+Total number of added reactions:		1589
+Total number of exchanged metabolites:		5480
+Sum of optimal biomass fluxes:			14483.43
+
+Iteration #11
+Time:	1089.87 min
+Total number of added reactions:		1533
+Total number of exchanged metabolites:		5364
+Sum of optimal biomass fluxes:			14777.74
+
+Iteration #19
+Time:	1089.09 min
+Total number of added reactions:		1636
+Total number of exchanged metabolites:		5475
+Sum of optimal biomass fluxes:			15015.59
+
+Iteration #38
+Time:	1089.02 min
+Total number of added reactions:		1573
+Total number of exchanged metabolites:		5467
+Sum of optimal biomass fluxes:			14258.98
+
+Iteration #6
+Time:	1091.03 min
+Total number of added reactions:		1545
+Total number of exchanged metabolites:		5393
+Sum of optimal biomass fluxes:			14600.64
+
+Iteration #3
+Time:	1092.48 min
+Total number of added reactions:		1561
+Total number of exchanged metabolites:		5372
+Sum of optimal biomass fluxes:			14468.42
+
+Iteration #10
+Time:	371.16 min
+Total number of added reactions:		1606
+Total number of exchanged metabolites:		5498
+Sum of optimal biomass fluxes:			14763.74
+
+Iteration #28
+Time:	371.53 min
+Total number of added reactions:		1577
+Total number of exchanged metabolites:		5441
+Sum of optimal biomass fluxes:			14934.23
+
+Iteration #18
+Time:	371.58 min
+Total number of added reactions:		1570
+Total number of exchanged metabolites:		5427
+Sum of optimal biomass fluxes:			13935.92
+
+Iteration #37
+Time:	371.48 min
+Total number of added reactions:		1563
+Total number of exchanged metabolites:		5437
+Sum of optimal biomass fluxes:			14299.52
+
+Iteration #5
+Time:	373.02 min
+Total number of added reactions:		1524
+Total number of exchanged metabolites:		5409
+Sum of optimal biomass fluxes:			13991.87
+
+Iteration #47
+Time:	374.50 min
+Total number of added reactions:		1590
+Total number of exchanged metabolites:		5511
+Sum of optimal biomass fluxes:			13706.96
+
+Iteration #27
+Time:	369.08 min
+Total number of added reactions:		1545
+Total number of exchanged metabolites:		5426
+Sum of optimal biomass fluxes:			14351.99
+
+Iteration #36
+Time:	369.54 min
+Total number of added reactions:		1564
+Total number of exchanged metabolites:		5435
+Sum of optimal biomass fluxes:			14697.79
+
+Iteration #9
+Time:	372.90 min
+Total number of added reactions:		1568
+Total number of exchanged metabolites:		5450
+Sum of optimal biomass fluxes:			14124.65
+
+Iteration #17
+Time:	373.39 min
+Total number of added reactions:		1534
+Total number of exchanged metabolites:		5339
+Sum of optimal biomass fluxes:			14616.13
+
+Iteration #56
+Time:	370.94 min
+Total number of added reactions:		1529
+Total number of exchanged metabolites:		5375
+Sum of optimal biomass fluxes:			14635.43
+
+Iteration #46
+Time:	373.65 min
+Total number of added reactions:		1578
+Total number of exchanged metabolites:		5474
+Sum of optimal biomass fluxes:			13662.79
+
+Iteration #26
+Time:	370.63 min
+Total number of added reactions:		1531
+Total number of exchanged metabolites:		5381
+Sum of optimal biomass fluxes:			14247.91
+
+Iteration #35
+Time:	369.80 min
+Total number of added reactions:		1572
+Total number of exchanged metabolites:		5432
+Sum of optimal biomass fluxes:			14992.42
+
+Iteration #8
+Time:	371.81 min
+Total number of added reactions:		1544
+Total number of exchanged metabolites:		5433
+Sum of optimal biomass fluxes:			14662.07
+
+Iteration #16
+Time:	372.09 min
+Total number of added reactions:		1525
+Total number of exchanged metabolites:		5389
+Sum of optimal biomass fluxes:			14501.20
+
+Iteration #55
+Time:	372.47 min
+Total number of added reactions:		1545
+Total number of exchanged metabolites:		5368
+Sum of optimal biomass fluxes:			14231.87
+
+Iteration #45
+Time:	373.59 min
+Total number of added reactions:		1556
+Total number of exchanged metabolites:		5411
+Sum of optimal biomass fluxes:			14369.99
+
+Iteration #34
+Time:	969.25 min
+Total number of added reactions:		1586
+Total number of exchanged metabolites:		5406
+Sum of optimal biomass fluxes:			14707.02
+
+Iteration #25
+Time:	972.96 min
+Total number of added reactions:		1655
+Total number of exchanged metabolites:		5559
+Sum of optimal biomass fluxes:			14179.06
+
+Iteration #15
+Time:	1093.47 min
+Total number of added reactions:		1466
+Total number of exchanged metabolites:		5353
+Sum of optimal biomass fluxes:			14450.42
+
+Iteration #64
+Time:	1098.08 min
+Total number of added reactions:		1583
+Total number of exchanged metabolites:		5453
+Sum of optimal biomass fluxes:			14762.21
+
+Iteration #54
+Time:	1094.15 min
+Total number of added reactions:		1578
+Total number of exchanged metabolites:		5443
+Sum of optimal biomass fluxes:			14157.02
+
+Iteration #44
+Time:	1098.36 min
+Total number of added reactions:		1540
+Total number of exchanged metabolites:		5366
+Sum of optimal biomass fluxes:			14517.87
+
+Iteration #24
+Time:	369.86 min
+Total number of added reactions:		1544
+Total number of exchanged metabolites:		5388
+Sum of optimal biomass fluxes:			14641.29
+
+Iteration #33
+Time:	373.17 min
+Total number of added reactions:		1547
+Total number of exchanged metabolites:		5357
+Sum of optimal biomass fluxes:			15232.91
+
+Iteration #63
+Time:	371.25 min
+Total number of added reactions:		1534
+Total number of exchanged metabolites:		5404
+Sum of optimal biomass fluxes:			14284.91
+
+Iteration #53
+Time:	370.72 min
+Total number of added reactions:		1522
+Total number of exchanged metabolites:		5400
+Sum of optimal biomass fluxes:			14892.48
+
+Iteration #14
+Time:	375.07 min
+Total number of added reactions:		1504
+Total number of exchanged metabolites:		5376
+Sum of optimal biomass fluxes:			13741.70
+
+Iteration #43
+Time:	375.45 min
+Total number of added reactions:		1560
+Total number of exchanged metabolites:		5397
+Sum of optimal biomass fluxes:			14680.94
+
+Iteration #23
+Time:	371.14 min
+Total number of added reactions:		1606
+Total number of exchanged metabolites:		5471
+Sum of optimal biomass fluxes:			14793.05
+
+Iteration #32
+Time:	373.11 min
+Total number of added reactions:		1561
+Total number of exchanged metabolites:		5480
+Sum of optimal biomass fluxes:			13907.98
+
+Iteration #62
+Time:	372.09 min
+Total number of added reactions:		1550
+Total number of exchanged metabolites:		5423
+Sum of optimal biomass fluxes:			14425.90
+
+Iteration #52
+Time:	375.71 min
+Total number of added reactions:		1591
+Total number of exchanged metabolites:		5450
+Sum of optimal biomass fluxes:			14548.26
+
+Iteration #13
+Time:	374.49 min
+Total number of added reactions:		1574
+Total number of exchanged metabolites:		5427
+Sum of optimal biomass fluxes:			15051.35
+
+  message with properties:
+
+    Identifier: 'MATLAB:connector:connector:ConnectorNotRunning'
+     Arguments: {}
