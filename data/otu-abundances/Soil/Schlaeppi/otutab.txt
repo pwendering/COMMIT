@@ -1,0 +1,25 @@
+#OTU ID	GHrep1AtCol2	GHrep1AtCol1	GHrep2AtSha2	GHrep1AtLer1	GHrep2AtCol2	GHrep1Soil1	GHrep1AtLer2	GHrep1AtSha1	GHrep2Soil1	GHrep1AtCol3	GHrep2AtCol1	GHrep1Soil2	GHrep1Soil3	GHrep2AtLer3	GHrep2AtLer2	GHrep2AtCol3	GHrep2Soil3	GHrep2Soil2	GHrep1AtLer3
+Soil531	1067	0	120	0	0	8	0	0	0	0	2	1	1	0	0	0	0	0	0
+Soil810	0	812	1	9	0	0	0	0	0	0	0	0	1	0	0	0	0	1	0
+Soil745	0	647	0	84	0	14	0	0	0	0	0	2	0	0	0	0	0	0	0
+Soil774	3	634	0	8	0	0	0	0	0	0	0	1	0	1	1	1	0	0	0
+Soil768D1	0	425	0	0	0	62	0	0	0	0	0	0	0	0	0	0	0	0	0
+Soil802	0	191	0	0	0	0	1	0	0	0	0	0	2	0	0	0	0	0	0
+Soil809	0	86	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Soil522	26	1	0	0	72	21	2	4	2	7	6	0	2	0	0	0	0	0	0
+Soil538	0	0	1	58	0	0	12	0	0	7	0	0	0	0	0	1	0	0	0
+Soil796	11	56	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	1
+Soil777	0	36	0	5	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Soil736	0	34	0	0	0	0	0	11	0	0	0	0	0	0	0	0	0	0	0
+Soil787	0	0	0	0	0	26	0	0	0	0	0	0	4	0	0	0	0	0	0
+Soil772	25	1	0	0	0	2	8	0	0	0	0	0	3	0	0	0	1	0	0
+Soil764	0	0	0	16	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Soil748	0	0	0	12	0	0	0	0	0	0	4	0	0	0	0	0	0	0	0
+Soil724D2	0	0	0	0	0	12	0	0	0	0	0	0	0	0	0	0	1	0	0
+Soil535	0	0	0	2	0	9	0	0	0	0	0	0	0	0	0	0	0	0	0
+Soil761	0	0	0	0	0	0	0	0	10	0	0	0	0	0	0	0	0	0	0
+Soil750	0	0	0	0	0	0	0	0	0	0	0	4	0	0	0	0	0	0	0
+Soil773	0	0	0	0	0	4	0	0	0	0	0	0	0	0	0	0	0	0	0
+Soil782	0	0	0	0	0	0	0	0	0	0	0	3	0	0	0	0	0	0	0
+Soil763	0	0	0	0	0	0	0	0	0	0	0	2	0	0	0	0	0	0	0
+Soil762	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
