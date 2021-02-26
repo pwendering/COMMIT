@@ -1,10 +1,12 @@
-%% Convert models to a common format that can be used for evaluation
+% load options
+options
 
 % set up parallel computing
 c = parcluster;
-c.NumWorkers = 8;
+c.NumWorkers = ncpu;
 saveProfile(c);
 
+%% Convert models to a common format that can be used for evaluation
 
 % % Convert and translate the draft models to MNXref namespace
 % modelConversion_RAVEN
@@ -114,5 +116,5 @@ evaluate_gap_fillings
 
 
 
-
+cleat topDir
 

@@ -93,3 +93,4 @@ for i=1:numel(experiments)
     end
     
 end
+clear topDir

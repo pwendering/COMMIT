@@ -1,18 +1,16 @@
 % compare to Methylobacterium extorquens metabolic model as reference
-warning 'off'
-wd = '/stud/wendering/Masterthesis/DATA/reference-models';
+options
+clearvars -except topDir
 
-tablesDir = '/stud/wendering/Masterthesis/DATA/tables';
+figOutDir = fullfile(topDir, 'figures/Comparison-to-reference-models');
+modelDir = fullfile(topDir, 'data/reference-models', 'models_Peyraud_BMC_2011');
+phyloFile = fullfile(topDir, 'data/genomes/M_extorquens/16S-seqs.nw.dist.txt');
+ecTranslationTable = readtable(fullfile(topDir,...
+    'data', 'tables', 'corrected-EC-numbers.csv'), 'ReadVariableNames', false);
 
-plotDir = '/stud/wendering/Masterthesis/FIGURES/Reference-models';
-modelDir = fullfile(wd, 'models_Peyraud_BMC_2011');
-phyloFile = '/stud/wendering/Masterthesis/DATA/genomes/M_extorquens/16S-seqs.nw.dist.txt';
-ecTransFile = fullfile(tablesDir, 'corrected-EC-numbers.csv');
-ecTranslationTable = readtable(ecTransFile, 'ReadVariableNames', false);
 %% Methylobacterium extorquens
-
 % Reference: Peyraud et al., 2011, BMC Syst. Biol.
-
+% read reference model from SBML file
 reference = readCbModel(fullfile(modelDir, 'Methylobacterium-extorquens-iRP911.xml'));
 reference = removeRxns(reference, reference.rxns(~(cellfun('isempty', regexp(reference.rxns, 'EX_')))));
 reference.description = 'M_extorquens-ref';
@@ -22,6 +20,7 @@ mets_ref = table2cell(readtable(fullfile(modelDir, 'iRP911_mets_KEGG_MCyc.csv'),
     'ReadVariableNames', false));
 mets_ref = translateIDs(mets_ref, 'met', [], 'KEGG', 'MNXref');
 mets_ref = translateIDs(mets_ref, 'met', [], 'MetaCyc', 'MNXref');
+
 % proportion of metabolites that can be compared
 adj_met = numel(mets_ref) / numel(unique(strtok(reference.mets, '[')));
 
@@ -57,8 +56,10 @@ FP = zeros(n_models, 1); % contained in the model but not in the reference
 FN = zeros(n_models, 1); % contained in the reference but not in the model
 c = 0;
 model_ids = {};
+
 % same species
 species_ids = {'Leaf90', 'Leaf92', 'Leaf119', 'Leaf121', 'Leaf122'};
+
 % same genus
 genus_ids = {'Leaf85', 'Leaf86', 'Leaf87', 'Leaf88', 'Leaf89', 'Leaf91',...
     'Leaf93', 'Leaf94', 'Leaf99', 'Leaf100', 'Leaf102', 'Leaf104', 'Leaf106',...
@@ -74,25 +75,26 @@ p_genus_genes = zeros(size(genus_ids));
 for habitat = {'Leaf', 'Root', 'Soil'}
     
     % consensus
-   spec = ''; 
-    load(['/stud/wendering/Masterthesis/DATA/Consensus_models/',...
-        char(habitat), '_consensus_models.mat'])
-    % KBase draft
-    %spec = 'KBase_';
-    %load(fullfile('/stud/wendering/Masterthesis/DATA/models_KBase',...
+    spec = '';
+    load(fullfile(topDir, 'data/models/consensus',...
+        [char(habitat), '_consensus_models.mat']))
+    % % KBase draft
+    % spec = 'KBase_';
+    % load(fullfile(topDir, 'data/models/kbase',...
     %    char(habitat), [char(habitat), '_models_genes_translated.mat']))
-    % RAVEN 2.0 draft
-    %spec = 'RAVEN_';
-    %load(fullfile('/stud/wendering/Masterthesis/DATA/models_RAVEN/HMMer10E-50/',...
+    % % RAVEN 2.0 draft
+    % spec = 'RAVEN_';
+    % load(fullfile(topDir, 'data/models/raven/HMMer10E-50/',...
     %   [char(habitat), '_models_no_medium_no_biomass']))
-    % CarveMe draft
-    %spec = 'CarveMe_';
-    %load(fullfile('/stud/wendering/Masterthesis/DATA/models_CarveMe',...
+    % % CarveMe draft
+    % spec = 'CarveMe_';
+    % load(fullfile(topDir, 'data/models/carveme',...
     %    char(habitat), [char(habitat), '_models_no_medium_no_biomass']))
-    % AuReMe draft
-    %spec = 'AuReMe_';
-    %load(fullfile('/stud/wendering/Masterthesis/DATA/models_AuReMe',...
+    % % AuReMe draft
+    % spec = 'AuReMe_';
+    % load(fullfile(topDir, 'data/models/aureme',...
     %    char(habitat), [char(habitat), '_models_genes_translated']))
+    
     if ~exist('merged_models', 'var')
          merged_models = models;
     end
@@ -114,12 +116,15 @@ for habitat = {'Leaf', 'Root', 'Soil'}
          I_met = intersect(mets_draft, mets_ref);
          I_ec = intersect(ec_draft, ec_ref);
          
+         % true positives
          TP(c) = numel(I_rxn) + ...
              numel(I_met) + ...
              numel(I_ec);
+         % false negatives
          FN(c) = numel(setdiff(rxns_ref, rxns_draft)) + ...
              numel(setdiff(mets_ref, mets_draft)) + ...
              numel(setdiff(ec_ref, ec_draft));
+         % false positives
          FP(c) = numel(setdiff(rxns_draft, rxns_ref)) + ...
              numel(setdiff(mets_draft, mets_ref)) + ...
              numel(setdiff(ec_draft, ec_ref));
@@ -134,7 +139,7 @@ for habitat = {'Leaf', 'Root', 'Soil'}
      
      % same species
      for j = find(contains(species_ids, habitat))
-         filename = strcat('/stud/wendering/Masterthesis/DATA/genomes/M_extorquens/M-extorquens-AM1-',...
+         filename = strcat(topDir, '/data/genomes/M_extorquens/M-extorquens-AM1-',...
              species_ids{j}, '.mapping');
          model = translateGeneIDs(reference, filename);
          
@@ -145,7 +150,7 @@ for habitat = {'Leaf', 'Root', 'Soil'}
      
      % same genus
      for j = find(contains(genus_ids, habitat))
-         filename = strcat('/stud/wendering/Masterthesis/DATA/genomes/M_extorquens/M-extorquens-AM1-',...
+         filename = strcat(topDir, 'data/genomes/M_extorquens/M-extorquens-AM1-',...
              genus_ids{j}, '.mapping');
          model = translateGeneIDs(reference, filename);
          
@@ -170,16 +175,16 @@ p_species_met = p_met(idx_species);
 p_species_ec = p_ec(idx_species);
 
 % Quality measures
-prec = TP ./ (TP + FP);
-sens = TP ./ (TP + FN);
+precision = TP ./ (TP + FP);
+sensitivity = TP ./ (TP + FN);
 F1 = 2*TP ./ (2*TP + FN + FP);
 
-prec_species = prec(idx_species);
-sens_species = sens(idx_species);
+prec_species = precision(idx_species);
+sens_species = sensitivity(idx_species);
 F1_species = F1(idx_species);
 
-prec_genus = prec(idx_genus);
-sens_genus = sens(idx_genus);
+prec_genus = precision(idx_genus);
+sens_genus = sensitivity(idx_genus);
 F1_genus = F1(idx_genus);
 
 % Phylogenetic distance:
@@ -196,95 +201,11 @@ relation = 1 - phylo_dist(re_order); clear re_order row_names phylo_dist
 relation_species = relation(idx_species);
 relation_genus = relation(idx_genus);
 
-%% Plots
-
-% Boxplot
-% boxplt([p_rxn, p_met, p_ec, prec, sens, F1],...
-%     {'reactions', 'metabolites', 'E.C. numbers', 'precision', 'sensitivity', 'F1-score'},...
-%     'Symbol', 'ko', 'Colors', 'k')
-% title('Distribution of reference model features contained in the consensus models')
-% hold on
-% % scatter(ones(size(p_rxn)).*(1+(rand(size(p_rxn))-0.5)/5), p_rxn, 'r', 'filled')
-% scatter(ones(size(p_genus_rxn)), p_genus_rxn, 'b', 'filled')
-% scatter(ones(size(p_species_rxn)), p_species_rxn, 'r', 'filled')
-% 
-% scatter(repmat(2, size(p_genus_met)), p_genus_met, 'b', 'filled')
-% scatter(repmat(2, size(p_species_met)), p_species_met, 'r', 'filled')
-% 
-% scatter(repmat(3, size(p_genus_ec)), p_genus_ec, 'b', 'filled')
-% scatter(repmat(3, size(p_species_ec)), p_species_ec, 'r', 'filled')
-% 
-% scatter(repmat(4, size(prec_genus)), prec_genus, 'b', 'filled')
-% scatter(repmat(4, size(prec_species)), prec_species, 'r', 'filled')
-% 
-% scatter(repmat(5, size(sens_genus)), sens_genus, 'b', 'filled')
-% scatter(repmat(5, size(sens_species)), sens_species, 'r', 'filled')
-% 
-% scatter(repmat(6, size(F1_genus)), F1_genus, 'b', 'filled')
-% scatter(repmat(6, size(F1_species)), F1_species, 'r', 'filled')
-
-
-% identity vs. relatedness
-%subplot(2,2,1)
-%scatter(relation, p_ec)
-%hold on
-%scatter(relation_genus, p_genus_ec, 'b', 'filled')
-%scatter(relation_species, p_species_ec, 'r', 'filled')
-%title('Proportion of E.C. numbers of reference model contained in draft vs. sequence similarity')
-%xlabel('1 - phylogenetic distance')
-%ylabel('Proportion of contained E.C. number')
-
-%subplot(2,2,2)
-%scatter(relation, sens)
-%hold on
-%scatter(relation_genus, sens_genus, 'b', 'filled')
-%scatter(relation_species, sens_species, 'r', 'filled')
-%title('Sensitivity vs. sequence similarity')
-%xlabel('1 - phylogenetic distance')
-%ylabel('sensitivity')
-
-%subplot(2,2,3)
-%scatter(relation, prec)
-%hold on
-%scatter(relation_genus, prec_genus, 'b', 'filled')
-%scatter(relation_species, prec_species, 'r', 'filled')
-%title('Precision vs. sequence similarity')
-%xlabel('1 - phylogenetic distance')
-%ylabel('precision')
-
-%subplot(2,2,4)
-%scatter(relation, F1)
-%hold on
-%scatter(relation_genus, F1_genus, 'b', 'filled')
-%scatter(relation_species, F1_species, 'r', 'filled')
-%title('F1-score vs. sequence similarity')
-%xlabel('1 - phylogenetic distance')
-%ylabel('F1-score')
-
-%saveas(gcf, fullfile(plotDir, 'M_extorquens_dist_vs_phylo.png'))
-
-%hold off
-%scatter(relation_genus, p_genus_genes)
-%hold on
-%scatter(relation_species, p_species_genes, 'r', 'filled')
-%title('Percentage reference model genes the are contained in the merged models')
-%xlabel('1 - phylogenetic distance')
-%ylabel('Percenage of genes contained')
-
-%saveas(gcf, fullfile(plotDir, 'M_extorquens_genes_vs_phylo.png'))
-
-
-% save(fullfile(modelDir, 'model_comparison_M_extorquens'),...
-%     'sens', 'prec', 'p_ec', 'p_rxn', 'F1', 'relation', 'TP',...
-%     'FP', 'FN', 'p_species_genes', 'p_genus_genes')
-
-%load(fullfile(modelDir, 'model_comparison_M_extorquens'))
-
-
-writetable(array2table([p_ec, sens, prec, relation, idx_genus, idx_species],...
+%% write results to file
+writetable(array2table([p_ec, sensitivity, precision, relation, idx_genus, idx_species],...
     'VariableNames', {'p_EC', 'sensitivity', 'precision', 'relation', 'genus', 'species'},...
     'RowNames', model_ids),...
-    ['/stud/wendering/Masterthesis/FIGURES/Comparison-to-reference-models/', spec, 'M_extorquens.txt'],...
+    [figOutDir, filesep, spec, 'M_extorquens.txt'],...
     'WriteVariableNames', true, 'WriteRowNames', true,...
     'Delimiter', '\t')
 

@@ -1,23 +1,17 @@
 % compare the added reactions between gap fillings
+options
 
-habitat = 'Soil';
+iterativeGfDir = fullfile(topDir, 'data/gap-filling/iterative', habitat);
 
-experiments = {'Schlaeppi', 'Bulgarelli'};
-
-sub_dir = 'all';
-iterativeGfDir = fullfile('/stud/wendering/Masterthesis/DATA/Gap-filling/iterative',...
-    habitat);
-
-singleGfFile = '/stud/wendering/Masterthesis/DATA/models_KBase/Soil/Soil_models_biomass_gf.mat';
-% singleGfFile = fullfile(consensusDir, [habitat, '_consensus_models_biomass_gf']);
-% singleGfFile = fullfile(consensusDir, [habitat, '_consensus_models_noCarveMe_biomass_gf']);
+singleGfFile = fullfile(topDir, 'data/models/kbase', habitat, [habitat, '_models_biomass_gf.mat']);
+% singleGfFile = fullfile(topDir, 'data/models/consensus', [habitat, '_consensus_models_biomass_gf']);
+% singleGfFile = fullfile(topdir, 'data/models/consensus', [habitat, '_consensus_models_noCarveMe_biomass_gf']);
 
 % medium that has been used for gap filling
-mediumFile = '/stud/wendering/Masterthesis/DATA/media/minimal-medium.mat';
 load(mediumFile)
 
 % directory to save the table for figure
-figrDir = '/stud/wendering/Masterthesis/FIGURES/added_reactions';
+figOutDir = fullfile(topDir, 'figures');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Compare the IDs of added reactions and exchanged metabolites between studies
@@ -121,22 +115,26 @@ end; clear R_current R_rest E_current E_rest I_current I_rest
 
 % save results
 
+tmpOutDir = fullfile(figOutDir, 'added_reactions');
+
 % Reactions
 writetable(array2table(shared_rxn, 'VariableNames', model_ids,...
     'RowNames', [experiments, {'Intersection'}]),...
-    fullfile(figrDir, [sub_dir,'_', habitat, '_comp_gf_exp.txt']),...
+    fullfile(tmpOutDir, [sub_dir,'_', habitat, '_comp_gf_exp.txt']),...
     'WriteVariableNames', true, 'WriteRowNames', true, 'Delimiter', '\t');
 
-figrDir = '/stud/wendering/Masterthesis/FIGURES/exchanged_metabolites';
+tmpOutDir = fullfile(figOutDir, 'exchanged_metabolites');
 
 % Exported metabolites
 writetable(array2table(shared_exp, 'VariableNames', model_ids,...
     'RowNames', [experiments, {'Intersection'}]),...
-    fullfile(figrDir, [sub_dir,'_',habitat, '_exported.txt']),...
+    fullfile(tmpOutDir, [sub_dir,'_',habitat, '_exported.txt']),...
     'WriteVariableNames', true, 'WriteRowNames', true, 'Delimiter', '\t');
 
 % Imported metabolites
 writetable(array2table(shared_imp, 'VariableNames', model_ids,...
     'RowNames', [experiments, {'Intersection'}]),...
-    fullfile(figrDir, [sub_dir,'_',habitat, '_imported.txt']),...
+    fullfile(tmpOutDir, [sub_dir,'_',habitat, '_imported.txt']),...
     'WriteVariableNames', true, 'WriteRowNames', true, 'Delimiter', '\t');
+
+clear topDir

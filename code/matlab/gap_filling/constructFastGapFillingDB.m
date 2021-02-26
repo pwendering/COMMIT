@@ -1,6 +1,9 @@
-%%%%%% runFastGapFilling
+% parse the MNXref universal reaction database and add metabolite
+% permeability information to construct a gap-filling database
 
 %% Preparation
+% load options
+options
 
 compartments = {'c', 'e'};
 
@@ -9,27 +12,16 @@ blackList = {'BIOMASS',...
     'MNXM639',... % peptide
     };
 
-% whole ModelSEED database
-% databaseFile = '/net/calc1/srv/wendering/ModelSEED/reaction.lst';
-% databaseFile = '/net/calc1/srv/wendering/mnxref/reaction_MNXref.lst';
-databaseFile = '/net/calc1/srv/wendering/mnxref/reaction_MNXref_balanced.lst';
-% databaseFile = '/net/calc1/srv/wendering/ModelSEED/reaction_KBase.lst';
-% KBase gap filling database (ModelSEED extract)
+% MNXref universal database filtered for balanced reactions
+databaseFile = fullfile(topDir, 'data/gap-filling/database/reaction_MNXref_balanced.lst');
 
-% dbModel = prepareFastGapFilling(databaseFile, compartments, blackList);
-% dbModel_KBase = prepareFastGapFilling(databaseFile, compartments, blackList);
-% dbModel_MNXref = prepareFastGapFilling(databaseFile, compartments, blackList);
-
-
+% parse database file
 dbModel_MNXref_balanced = prepareFastGapFilling(databaseFile, compartments, blackList);
-save('/stud/wendering/Masterthesis/DATA/Gap-filling/database/Universal-model-MNXref-balanced.mat', 'dbModel_MNXref_balanced')
-add_names_and_permeability_to_db;
 
-% check 'MNXR124010'
+% save the output as a matlab workspace
+save(topDir, 'data/gap-filling/database/Universal-model-MNXref-balanced.mat', 'dbModel_MNXref_balanced')
+add_names_and_permeability_to_db
 
-% save('/stud/wendering/Masterthesis/DATA/Gap-filling/database/Universal-model-MNXref.mat', 'dbModel_MNXref')
-% save('/stud/wendering/Masterthesis/DATA/Gap-filling/database/Universal-model-ModelSEED.mat', 'dbModel')
-% save('/stud/wendering/Masterthesis/DATA/Gap-filling/database/Universal-model-ModelSEED.mat', 'dbModel_KBase', '-append')
 
 
 

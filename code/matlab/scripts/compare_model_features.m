@@ -1,11 +1,16 @@
 % compare numbers of reactions, metabolites and genes in the merged models
 % compared to the single draft models
 
+% load options to get top directory
+options
+clearvars -except topDir
+
 habitats = {'Soil', 'Leaf', 'Root'};
 methods = {'CarveMe', 'KBase', 'AuReMe', 'RAVEN', 'consensus'};
 features = {'rxns', 'mets', 'genes'};
-dataDir = '/stud/wendering/Masterthesis/DATA';
-outDir = '/stud/wendering/Masterthesis/FIGURES/model-features';
+
+dataDir = fullfile(topDir, 'data');
+figOutDir = fullfile(topDir, 'figures/model-features');
 
 for i=1:numel(habitats)
     clear sums*
@@ -53,7 +58,7 @@ for i=1:numel(habitats)
     % write results
     disp('==> writing results to file')
     for j=1:numel(features)
-        filename = fullfile(outDir, [features{j}, '-', habitats{i}, '.txt']);
+        filename = fullfile(figOutDir, [features{j}, '-', habitats{i}, '.txt']);
         eval(['outArray = [', strjoin(strcat([methods, {'sums'}],'_', features{j}),', '), '];']);
         writetable(array2table(outArray,...
             'VariableNames', strcat([methods, {'sums'}],'_', features{j})),...
@@ -62,3 +67,4 @@ for i=1:numel(habitats)
     end
     disp('')
 end
+clear topDir

@@ -59,11 +59,12 @@ modelFile = fullfile(modelDir, [habitat, '_consensus_models_biomass']);
 % modelFile = fullfile(modelDir, habitat, [habitat, '_models_biomass']);
 
 tmp_spec = '_all';
+sub_dir = strtok(tmp_spec,'_');
 
 % output directory for the gap-filled models
-% outDir = fullfile(topDir, 'data/gap-filling/iterative', habitat, '_KBase');
-% outDir = fullfile(topDir, 'data/gap-filling/iterative', habitat, '_no_CarveMe');
-outDir = fullfile(topDir, 'data/gap-filling/iterative', habitat, 'all');
+% outDir = fullfile(topDir, 'data/gap-filling/iterative', habitat, sub_dir);
+% outDir = fullfile(topDir, 'data/gap-filling/iterative', habitat, sub_dir);
+outDir = fullfile(topDir, 'data/gap-filling/iterative', habitat, sub_dir);
 
 
 %~~~~~~~~~~~~~ Gap-filling resources ~~~~~~~~~~~~~%
@@ -96,3 +97,13 @@ weights.sink = 0;
 % weights for reactions already contained in the model
 weights.model = 0;
 
+%~~~~~~~~~~~~~ metabolite classification resources ~~~~~~~~~~~~~%
+
+% ChEBI ontology DAG workspace
+chebiOntologyWS = fullfile(topDir, 'data/metabolite-classification/ontologyGraph.mat');
+
+% tab-separated ontology file
+ontologyFile = fullfile(topDir, 'data/metabolite-classification/chebi_ontology.csv');
+
+% brite Hierarchy file
+briteFile = fullfile(topDir, 'data/metabolite-classification/briteHierarchy_ext.csv');

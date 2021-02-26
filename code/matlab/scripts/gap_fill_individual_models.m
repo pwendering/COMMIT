@@ -132,3 +132,4 @@ save([modelFile, '_gf'], 'GF', 'exc', 'bio', 'gf')
 
 disp('-----------------------------------')
 fprintf('Finished, time: %.2f min.\n', toc)
+clear topDir

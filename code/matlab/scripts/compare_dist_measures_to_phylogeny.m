@@ -1,10 +1,11 @@
 % compare distance measures of merged models to sequence similarity
+options
 
-tablesDir = '/stud/wendering/Masterthesis/DATA/tables';
-outDir = '/stud/wendering/Masterthesis/FIGURES/Comparison-of-methods';
+tablesDir = fullfile(topDir, 'data/tables');
+figOutDir = fullfile(topDir, 'figures/Comparison-of-methods');
 
 % Load distance matrix from newick tree
-phyloFile = '/stud/wendering/Masterthesis/DATA/genomes/Phylogeny/nw_distance_AtSPHERE.txt';
+phyloFile = fullfile(topDir, 'data/genomes/Phylogeny/nw_distance_AtSPHERE.txt');
 phylo_dist = readtable(phyloFile,...
     'ReadVariableNames', true,...
     'ReadRowNames', true);
@@ -19,15 +20,15 @@ coFactors = coFactorsTab.Var5; % MNXref
 habitats = {'Soil', 'Root', 'Leaf'};
 labels = {'SVD', 'JD_r', 'JD_m', 'n_DE', 'JD_DE', 'JD_EC', 'c_EC', 'c_CF'};
 
-parpool(6);
+parpool(ncpus);
 for i=1:numel(habitats)
     %% Load workspaces
     disp(habitats{i})
     % Consensus models including CarveMe reconstructions
-    models = load(fullfile('/stud/wendering/Masterthesis/DATA/Consensus_models',...
+    models = load(fullfile(topDir, 'data/models/consensus/',...
         [habitats{i}, '_consensus_models.mat']), 'merged_models');
     models = models.merged_models;
-    %     merged_noCarveMe = load(fullfile('/stud/wendering/Masterthesis/DATA/Consensus_models',...
+    %     merged_noCarveMe = load(fullfile(topDir, 'data/models/consensus/',...
     %         [habitats{i}, '_consensus_models_noCarveMe.mat']), 'merged_models');
     %     merged_noCarveMe = merged_noCarveMe.merged_models;
     
@@ -107,14 +108,14 @@ for i=1:numel(habitats)
             'VariableNames', model_ids,...
             'RowNames', tax_names);
         
-        writetable(D, fullfile(outDir, [labels{j},'-', habitats{i}, '.txt']),...
+        writetable(D, fullfile(figOutDir, [labels{j},'-', habitats{i}, '.txt']),...
             'WriteVariableNames', true, 'WriteRowNames', true, 'Delimiter', '\t')
     end
     
     
     writetable(cell2table([labels', num2cell(mantel_corr_dist_phyl'), num2cell(p_emp')],...
         'VariableNames', {'Measure', 'Mantel_r', 'p_value'}),...
-        fullfile(outDir, ['dist-phylo-', habitats{i}, '.txt']),...
+        fullfile(figOutDir, ['dist-phylo-', habitats{i}, '.txt']),...
         'WriteVariableNames', true,...
         'Delimiter', '\t')
     

@@ -7,18 +7,15 @@
 % - individual gap fillings without CarveMe models
 % - individual gap fillings with only KBase models
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+options
 
-habitat = 'Soil';
-
-experiments = {'Schlaeppi'};
-
-iterativeGfDir = fullfile('/stud/wendering/Masterthesis/DATA/Gap-filling/iterative',...
-    habitat);
-consensusDir = '/stud/wendering/Masterthesis/DATA/Consensus_models';
+iterativeGfDir = fullfile(topDir, 'data/gap-filling/iterative', habitat);
+consensusDir = fullfile(topDir, 'data/models/consensus');
 
 % directory to save the table for figure
-figrDir = '/stud/wendering/Masterthesis/FIGURES/added_reactions';
+figOutDir = fullfile(topDir, 'figures/added_reactions');
 
+% specify the number of comparisons
 n_comp = 6;
 
 for i=1:numel(experiments)
@@ -88,7 +85,7 @@ for i=1:numel(experiments)
     row = 4;
     % find added reactions in individually-gap-filled models with only
     % KBase draft models
-    load(fullfile('/stud/wendering/Masterthesis/DATA/models_KBase',habitat,...
+    load(fullfile(topDir, 'data/models/kbase', habitat,...
         strcat(habitat, '_models_biomass_gf')), 'GF')
     n = numel(GF);
     for j=1:n
@@ -145,12 +142,12 @@ for i=1:numel(experiments)
     % save results
     writetable(array2table(n_added,...
         'VariableNames', otu_ids, 'RowNames', row_names),...
-        fullfile(figrDir, [habitat, '_', experiments{i}, '_gf_sol_size.txt']),...
+        fullfile(figOutDir, [habitat, '_', experiments{i}, '_gf_sol_size.txt']),...
         'WriteVariableNames', true, 'WriteRowNames', true, 'Delimiter', '\t');
     
     writetable(array2table(n_added_no_exc,...
         'VariableNames', otu_ids, 'RowNames', row_names),...
-        fullfile(figrDir, [habitat, '_', experiments{i}, '_gf_sol_size_no_exc.txt']),...
+        fullfile(figOutDir, [habitat, '_', experiments{i}, '_gf_sol_size_no_exc.txt']),...
         'WriteVariableNames', true, 'WriteRowNames', true, 'Delimiter', '\t');
     
     % calculate the Jaccard index between each pair of gap-filling
@@ -158,6 +155,7 @@ for i=1:numel(experiments)
     
     dist_mat_array = cell(size(added_reactions, 2), 1);
     dist_mat_array_no_exc = cell(size(added_reactions, 2), 1);
+    
     % loop over models
     for j=1:size(added_reactions, 2)
         tmp = double(size(added_reactions, 1));
@@ -190,11 +188,12 @@ for i=1:numel(experiments)
     % save results
     writetable(array2table(dist_added_reactions,...
         'VariableNames', row_names, 'RowNames', row_names),...
-        fullfile(figrDir, [habitat, '_', experiments{i}, '_dist_methods.txt']),...
+        fullfile(figOutDir, [habitat, '_', experiments{i}, '_dist_methods.txt']),...
         'WriteVariableNames', true, 'WriteRowNames', true, 'Delimiter', '\t');
     
     writetable(array2table(dist_added_reactions_no_exc,...
         'VariableNames', row_names, 'RowNames', row_names),...
-        fullfile(figrDir, [habitat, '_', experiments{i}, '_dist_methods_no_exc_rxns.txt']),...
+        fullfile(figOutDir, [habitat, '_', experiments{i}, '_dist_methods_no_exc_rxns.txt']),...
         'WriteVariableNames', true, 'WriteRowNames', true, 'Delimiter', '\t');
 end
+clear topDir

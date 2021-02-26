@@ -35,10 +35,10 @@ elseif ~istable(transTab)
     error('Please check the given transTab argument.')
 end
 
-% [test_hmmer, ~] = unix('hmmsearch');
-% if test_hmmer == 127
-%     error('Please make sure, the hmmsearch function is on your search path.')
-% end
+[test_hmmer, ~] = unix('hmmsearch');
+if test_hmmer == 127
+    error('Please make sure, the hmmsearch function is on your search path.')
+end
 
 n = numel(rxnList);
 % initialize the scores vector

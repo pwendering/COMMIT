@@ -1,6 +1,14 @@
 % Compare the reconstruction approaches with each other and with the
 % consensus models (with and wihtout CarveMe)
-tablesDir = '/stud/wendering/Masterthesis/DATA/tables';
+
+% load options to get top directory
+options
+clearvars -except topDir
+
+tablesDir = fullfile(topDir, 'data/tables');
+
+% specify workspace file name where figure data will be saved
+figDataDir = fullfile(topDir, 'figures/Comparison-of-methods');
 
 ecTranslationTable = readtable(fullfile(tablesDir, 'corrected-EC-numbers.csv'),...
     'ReadVariableNames', false);
@@ -20,26 +28,26 @@ for i=1:numel(habitats)
     %% Load workspaces
     disp(habitats{i})
     % KBase models
-    KB_models = load(fullfile('/stud/wendering/Masterthesis/DATA/models_KBase',...
-        habitats{i},[habitats{i}, '_models_no_medium_no_biomass.mat']), 'models');
+    KB_models = load(fullfile(topDir, 'data/models/kbase', habitats{i},...
+        [habitats{i}, '_models_no_medium_no_biomass.mat']), 'models');
     KB_models = KB_models.models;
     % CarveMe models
-    CM_models = load(fullfile('/stud/wendering/Masterthesis/DATA/models_CarveMe',...
-        habitats{i},[habitats{i}, '_models_no_medium_no_biomass.mat']), 'models');
+    CM_models = load(fullfile(topDir,'data/models/carveme', habitats{i},...
+        [habitats{i}, '_models_no_medium_no_biomass.mat']), 'models');
     CM_models = CM_models.models;
     % RAVEN 2.0 models
-    RV_models = load(fullfile('/stud/wendering/Masterthesis/DATA/models_RAVEN','HMMer10E-50',...
+    RV_models = load(fullfile(topDir, 'data/models/raven','HMMer10E-50',...
         [habitats{i}, '_models_no_medium_no_biomass.mat']), 'models');
     RV_models = RV_models.models;
     % AuReMe models
-    AU_models = load(fullfile('/stud/wendering/Masterthesis/DATA/models_AuReMe',...
+    AU_models = load(fullfile(topDir, 'data/models/aureme',...
         habitats{i},[habitats{i}, '_models_no_medium_no_biomass.mat']), 'models');
     AU_models = AU_models.models;
     % Consensus models including CarveMe reconstructions
-    merged = load(fullfile('/stud/wendering/Masterthesis/DATA/Consensus_models',...
+    merged = load(fullfile(topDir, 'data/models/consensus',...
         [habitats{i}, '_consensus_models.mat']), 'merged_models');
     merged = merged.merged_models;
-    %     merged_noCarveMe = load(fullfile('/stud/wendering/Masterthesis/DATA/Consensus_models',...
+    %     merged_noCarveMe = load(fullfile(topDir, 'data/models/consensus',...
     %         [habitats{i}, '_consensus_models_noCarveMe.mat']), 'merged_models');
     %     merged_noCarveMe = merged_noCarveMe.merged_models;
     for j=1:numel(KB_models)
@@ -50,29 +58,29 @@ for i=1:numel(habitats)
             merged{i}};
         
         %% calculate distances
-%         % 1. SVD distance
-%         SVD_matrix = svdDistance(models);
-%         % 2. Reaction Jaccard distance
-%         rxnJaccard_matrix = rxnJaccardDist(models);
-%         % 3. metabolite Jaccard distance
-%         metJaccard_matrix = metJaccardDist(models);
-%         % 4. number of dead-ends distance
-%         deadEndsNumber_matrix = deadEndsNumberDist(models);
-%         % 5. dead-end metabolite Jaccard distance
-%         deadEndJaccard_matrix = deadEndsJaccardDist(models);
-%         % 6. E.C. number Jaccard distance (all four levels)
-%         ecLevel = 4;
-%         ecJaccard_matrix = ecJaccardDist(models, ecLevel);
-%         % 7. abundance of E.C. numbers distance
-%         ecAbundanceDist_matrix = ecAbundanceDist(models, ecTranslationTable.Var2);
-%         % 8. co-factor usage distance
-%         coFactorDistance_matrix = coFactorDist(models, coFactors);
-%         
-%         M = {SVD_matrix, rxnJaccard_matrix, metJaccard_matrix, deadEndsNumber_matrix,...
-%             deadEndJaccard_matrix, ecJaccard_matrix, ecAbundanceDist_matrix,...
-%             coFactorDistance_matrix};
-%         
-%         OTU_dist_matrices{c} = STATIS(M);
+        % 1. SVD distance
+        SVD_matrix = svdDistance(models);
+        % 2. Reaction Jaccard distance
+        rxnJaccard_matrix = rxnJaccardDist(models);
+        % 3. metabolite Jaccard distance
+        metJaccard_matrix = metJaccardDist(models);
+        % 4. number of dead-ends distance
+        deadEndsNumber_matrix = deadEndsNumberDist(models);
+        % 5. dead-end metabolite Jaccard distance
+        deadEndJaccard_matrix = deadEndsJaccardDist(models);
+        % 6. E.C. number Jaccard distance (all four levels)
+        ecLevel = 4;
+        ecJaccard_matrix = ecJaccardDist(models, ecLevel);
+        % 7. abundance of E.C. numbers distance
+        ecAbundanceDist_matrix = ecAbundanceDist(models, ecTranslationTable.Var2);
+        % 8. co-factor usage distance
+        coFactorDistance_matrix = coFactorDist(models, coFactors);
+        
+        M = {SVD_matrix, rxnJaccard_matrix, metJaccard_matrix, deadEndsNumber_matrix,...
+            deadEndJaccard_matrix, ecJaccard_matrix, ecAbundanceDist_matrix,...
+            coFactorDistance_matrix};
+        
+        OTU_dist_matrices{c} = STATIS(M);
         
         geneJD_mt = zeros(numel(models));
         
@@ -96,10 +104,9 @@ end; clear *models merged ecTranslationTable coFactor* *matrix
 method_dist_mat = STATIS(OTU_dist_matrices);
 gene_dist_mat = STATIS(geneJaccard_matrices);
 labels = {'KBase', 'CarveMe', 'RAVEN', 'AuReMe', 'Consensus'};
-save('/stud/wendering/Masterthesis/FIGURES/Comparison-of-methods/fig-data',...
-    'gene_dist_mat', 'method_dist_mat')
+save(fullfile(figDataDir, 'fig-data'), 'gene_dist_mat', 'method_dist_mat')
 
-load('/stud/wendering/Masterthesis/FIGURES/Comparison-of-methods/fig-data')
+load(fullfile(figDataDir, 'fig-data'))
 dist_mt = method_dist_mat;
 for i=2:size(dist_mt,2)
     for j=1:i-1
@@ -109,7 +116,7 @@ end
 
 writetable(array2table(dist_mt,...
     'VariableNames', labels, 'RowNames', labels),...
-    '/stud/wendering/Masterthesis/FIGURES/Comparison-of-methods/dist_mt.txt')
+    fullfile(figDataDir, 'dist_mt.txt'))
 
 
 

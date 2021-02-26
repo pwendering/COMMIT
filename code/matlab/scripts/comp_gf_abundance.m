@@ -1,21 +1,10 @@
 %% correlate gap-filling orders and biomasses to abundances in experiments
-warning('off')
+options
 
-habitat = 'Soil';
+modelDir = outDir;
 
-experiments = {'Schlaeppi', 'Bulgarelli'};
-
-subFolder = 'all';
-
-otuDir = '/stud/wendering/Masterthesis/DATA/Abundances';
-
-modelDir = fullfile('/stud/wendering/Masterthesis/DATA/Gap-filling/iterative',...
-    habitat, subFolder);
-
-% medium that has been used for gap filling
-mediumFile = '/stud/wendering/Masterthesis/DATA/media/minimal-medium.mat';
+% load medium that has been used for gap filling
 load(mediumFile)
-
 
 for i=1:numel(experiments)
     disp(experiments{i})
@@ -38,7 +27,7 @@ for i=1:numel(experiments)
     
     [rho, pval] = corr(ia, gf_order', 'type', 'Spearman');
     
-    fprintf('Spearman rank correlation abundance,order: %.2f (p=%.2f)\n', rho, pval)
+    fprintf('Spearman rank correlation abundance, order: %.2f (p=%.2f)\n', rho, pval)
     
     % ~~~ number of added reactions vs abundance ~~~ %
     
@@ -50,7 +39,7 @@ for i=1:numel(experiments)
     
     [rho, pval] = corr(ia, cell2mat(added), 'type', 'Spearman');
     
-    fprintf('Spearman rank correlation abundance,#added: %.2f (p=%.2f)\n', rho, pval)
+    fprintf('Spearman rank correlation abundance, #added: %.2f (p=%.2f)\n', rho, pval)
     
     % ~~~ number of exported metabolites vs abundance ~~~ %
     
@@ -65,7 +54,7 @@ for i=1:numel(experiments)
     
     [rho, pval] = corr(ia, cell2mat(exported), 'type', 'Spearman');
     
-    fprintf('Spearman rank correlation abundance,#exported: %.2f (p=%.2f)\n', rho, pval)
+    fprintf('Spearman rank correlation abundance, #exported: %.2f (p=%.2f)\n', rho, pval)
     
     % ~~~ number of exported metabolites vs abundance ~~~ %
     
@@ -80,22 +69,6 @@ for i=1:numel(experiments)
     
     [rho, pval] = corr(ia, cell2mat(imported), 'type', 'Spearman');
     
-    fprintf('Spearman rank correlation abundance,#imported: %.2f (p=%.2f)\n', rho, pval)
+    fprintf('Spearman rank correlation abundance, #imported: %.2f (p=%.2f)\n', rho, pval)
     
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
