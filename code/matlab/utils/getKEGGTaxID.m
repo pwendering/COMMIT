@@ -1,5 +1,5 @@
 function [sampleID, taxonomy, keggID] = getKEGGTaxID(wgsTaxonomyFile)
-
+%% [sampleID, taxonomy, keggID] = getKEGGTaxID(wgsTaxonomyFile)
 % Extracts the taxonomy of the csv file at the genus level,
 % extracts the according organism ids using the KEGG REST API and selects a
 % species arbitrarily. If the resolution onyl reaches to family level, the
@@ -12,7 +12,7 @@ function [sampleID, taxonomy, keggID] = getKEGGTaxID(wgsTaxonomyFile)
 %                                   must be given as an absolute path
 %
 % Output:
-%           cell sampleID:            cell array of sample ids
+%           cell sampleID:          cell array of sample ids
 %           cell taxonomy:          cell array of the most precise taxonomy
 %                                   units
 %           cell keggID:            cell array of the selected kegg
@@ -78,7 +78,7 @@ while ischar(line)
     fprintf(fid_out,'%s,%s,%s\n', sampleID{end}, taxonomy{end}, keggID{end});
     line = fgetl(fid);
 end
-fclose(fid)
+fclose(fid);
 fclose(fid_out);
 end
 
