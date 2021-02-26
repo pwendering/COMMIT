@@ -1,27 +1,35 @@
 % merge draft metabolic models from different approaches
+options
+clearvars -except topDir dbFile ncpus
+
+% set up parallel pool
 c = parcluster;
-c.NumWorkers = 4;
+c.NumWorkers = ncpus;
 delete(gcp('nocreate'))
 P = parpool(c);
+
 habitats = {'Soil', 'Leaf', 'Root'};
-methods = {'CarveMe', 'KBase', 'AuReMe', 'RAVEN'};
-dataDir = '/stud/wendering/Masterthesis/DATA';
+methods = {'carveme', 'kbase', 'aureme', 'raven'};
+modelTopDir = fullfile(topDir, 'data', 'models');
+
 disp('-------------------------------------------------------------------')
 disp('START')
 disp('-------------------------------------------------------------------')
+
 disp('loading the universal database')
-load('/stud/wendering/Masterthesis/DATA/Gap-filling/database/Universal-model-MNXref-balanced.mat')
+load(dbFile)
+
 disp('-------------------------------------------------------------------')
 for i=1:numel(habitats)
     disp(habitats{i})
     disp('------------------------------')
     disp('Loading and collecting models from the different approaches...')
     for j=1:numel(methods)
-        if isequal(methods{j}, 'RAVEN')
-            workspace = fullfile(dataDir, strcat('models_', methods{j}),...
+        if isequal(methods{j}, 'raven')
+            workspace = fullfile(modelTopDir, methods{j},...
                 'HMMer10E-50', strcat(habitats{i}, '_models_COBRA_GPR'));
         else
-            workspace = fullfile(dataDir, strcat('models_', methods{j}),...
+            workspace = fullfile(modelTopDir, methods{j},...
                 habitats{i}, strcat(habitats{i}, '_models_metFormulas'));
         end
         load(workspace);
@@ -47,7 +55,7 @@ for i=1:numel(habitats)
         disp('------------------------------')
     end
     
-    workspace = fullfile(dataDir, 'Consensus_models',...
+    workspace = fullfile(modelTopDir, 'consensus',...
         strcat(habitats{i}, '_consensus_models'));
     models = models_to_merge;
     disp('saving workspace')
@@ -55,5 +63,3 @@ for i=1:numel(habitats)
     clear models
     disp('-------------------------------------------------------------------') 
 end
-        
-     
