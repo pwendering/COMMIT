@@ -1,6 +1,5 @@
 % Run all evaluation functions on the AuReMe reconstructions for all three
 % habitats
-
 fprintf('################# Starting Evaluation of AuReMe reconstructions #################\n')
 habitats = {'Soil', 'Root', 'Leaf'};
 
@@ -8,7 +7,7 @@ for i=1:numel(habitats)
     fprintf('\n################# %s\n', habitats{i})
     %% Load the workspace that contains all models for a given habitat
     % and threshold
-    AuReMeModelDir = fullfile('/stud/wendering/Masterthesis/DATA/models_AuReMe',...
+    AuReMeModelDir = fullfile(topDir, 'data/models/aureme',...
         habitats{i});
     modelWorkspace = fullfile(AuReMeModelDir, strcat(habitats{i}, '_models.mat'));
     
@@ -20,7 +19,7 @@ for i=1:numel(habitats)
     end
     
     %% Evaluation
-    plotDir = '/stud/wendering/Masterthesis/FIGURES/AuReMe_draft';
+    plotDir = fullfile(topDir, 'figures/AuReMe_draft');
     recMethod = strcat(habitats{i}, '-AuReMe');
     evaluationWorkspace = fullfile(AuReMeModelDir,...
         strcat(habitats{i}, '_evaluation.mat'));

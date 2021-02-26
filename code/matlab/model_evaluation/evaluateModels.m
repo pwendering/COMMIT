@@ -1,4 +1,5 @@
-function evaluateModels(models, recMethod, plotDir, resWorkspace, blackList)
+function evaluateModels(models, recMethod, plotDir, resWorkspace)
+%% evaluateModels(models, recMethod, plotDir, resWorkspace)
 % Evaluation of models by calling the distance method functions and save
 % the resulting matrices and figures
 % Input:
@@ -9,11 +10,13 @@ function evaluateModels(models, recMethod, plotDir, resWorkspace, blackList)
 %                               should be saved
 %       char res_Workspace:     name of the .mat workspace where the
 %                               resulting matrices should be stored
-%       cell blackList:         array containing highly-abundant
-%                               metabolites
+% Output:
+%       saves matrices in workspace and saves figures for each distance
+%       measure
 
+options; clearvars -except topDir
 % load tables required for some functions
-tablesDir = '/stud/wendering/Masterthesis/DATA/tables';
+tablesDir = fullfile(topDir, 'data', 'tables');
 
 ecTranslationTable = readtable(fullfile(tablesDir, 'corrected-EC-numbers.csv'),...
     'ReadVariableNames', false);
@@ -113,20 +116,6 @@ ecAbundanceDist_matrix = ecAbundanceDist(models, ecTranslationTable.Var2);
 filename = fullfile(plotDir,strcat('heatmap-models-', recMethod, '-ecAbundance.png'));
 plotDistance(ecAbundanceDist_matrix, tax_names, saveFigures, filename, 'abundance-of-EC-numbers')
 fprintf(' done. (%.0fs)\n', toc-tmp_toc); tmp_toc = toc;
-
-% Distance based on the number of neighbors that each two reactions
-% share (resulting distance matrices are compared)
-if any(contains(models{1}.rxns, 'BIOMASS_Reaction'))
-    biomass = 'BIOMASS_Reaction';
-else
-    biomass = 'none';
-end
-
-% fprintf('\t> reaction first neighborhood Jaccard distance...')
-% N1Dist_matrix = N1RvDist(models, blackList, biomass, 'rxns');
-% filename = fullfile(plotDir, strcat('heatmap-models-', recMethod,'-N1Rv.png'));
-% plotDistance(N1Dist_matrix, tax_names, saveFigures, filename, 'R_v-N1-distance')
-% fprintf(' done. (%.0fs)\n', toc-tmp_toc); tmp_toc = toc;
 
 % Distance based on usage of cofactors
 fprintf('\t> co-factor usage...')
