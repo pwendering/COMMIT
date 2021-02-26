@@ -1,0 +1,29 @@
+C00002	cpd00002	atp	ATP	MNXM3
+C00003	cpd00003	nad	NAD	MNXM8
+C00006	cpd00006	nadp	NADP	MNXM5
+C00010	cpd00010	coa	Coenzyme A	MNXM12
+C00016	cpd00015	fad	FAD	MNXM33
+C00018	cpd00016	pydx5p	Pyridoxal 5'-phosphate	MNXM161
+C00019	cpd00017	amet	S-Adenosyl-L-methionine	MNXM16
+C00029	cpd00026	udpg	UDPglucose	MNXM52
+C00032	cpd00028		Heme B	MNXM526203
+C00051	cpd00042	gthrd	Reduced glutathione	MNXM57
+C00053	cpd00044	paps	3'-Phosphoadenylyl sulfate	MNXM49
+C00061	cpd00050	fmn	FMN	MNXM119
+C00063	cpd00052	ctp	CTP	MNXM63
+C00068	cpd00056	thmpp	Thiamine diphosphate	MNXM256
+C00101	cpd00087	thf	5,6,7,8-Tetrahydrofolate	MNXM89609
+C00113	cpd00097	pqq	Pyrroloquinoline-quinone	MNXM601
+C00120	cpd00104	btn	Biotin	MNXM304
+C00194	cpd00166	adocbl	Adenosylcobalamin	MNXM489
+C00272	cpd00233	thbpt	Tetrahydrobiopterin	MNXM722714
+C00725	cpd00541	lipoate	Lipoate	MNXM722769
+C00862	cpd00643		Methanofuran	MNXM1050
+C01217	cpd00895	h4mpt	5,6,7,8-tetrahydromethanopterin	MNXM668
+C03576	cpd02246	com	Coenzyme m	MNXM399
+C04628	cpd02817	cob	Coenzyme b	MNXM921
+C05777	cpd03425		Coenzyme F430	MNXM47489
+C11378	cpd08232	q10	Ubiquinone-10	MNXM8440
+C15670	cpd11312	hemeA	Heme A	MNXM53309
+C15672	cpd11313	hemeO	Heme O	MNXM1278
+C18237	cpd19503		Molybdenum cofactor	MNXM2838
