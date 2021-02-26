@@ -1,7 +1,8 @@
 function parents = getAllParents(G,V, exclude)
-%% getParents get all parent nodes in a graph for a given set of nodes
-%  The graph is traversed by DFS, returns the indices of the traversed
-%  nodes
+%% parents = getAllParents(G,V, exclude)
+% Find all parent nodes in a graph for a given set of nodes.
+% The graph is traversed by DFS, returns the indices of the traversed
+% nodes.
 %  Input:
 %           double G:           adjacennnncy matrix of the graph
 %           double V:           array containing the vertex indices

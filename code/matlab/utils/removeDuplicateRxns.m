@@ -1,6 +1,7 @@
 function changed_model = removeDuplicateRxns(model, database, verbose)
+%% changed_model = removeDuplicateRxns(model, database, verbose)
 % Check for identity of reactions that share the same identifier and remove
-% the identical reactions from the model
+% the identical reactions from the model.
 % Input:
 %           struct model:           metabolic model
 %           struct database:        database model to be checked against
@@ -9,7 +10,9 @@ function changed_model = removeDuplicateRxns(model, database, verbose)
 %                                   and warnings on stdout
 % Output:
 %           struct changed_model:   updated model
+
 warning('off','all')
+
 %% Check user input
 if nargin == 0
     error('USAGE: removeDuplicateRxns(model, database, verbose(optional)')

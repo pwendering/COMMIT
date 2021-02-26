@@ -1,4 +1,5 @@
 function [substrates, products, direction] = parseFormula(formula)
+%% [substrates, products, direction] = parseFormula(formula)
 % Parse a formula of the form:
 % 
 % 'Reaction: M1[.] + M2[.] <=> M3[.] + M4[.]'

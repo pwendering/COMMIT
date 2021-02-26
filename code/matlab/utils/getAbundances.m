@@ -1,7 +1,8 @@
 function abundances = getAbundances(G, metList, idList, exclude)
-%% getAbundances quantify the abundance of every ontology term in a list
+%% abundances = getAbundances(G, metList, idList, exclude)
+% Quantify the abundance of every ontology term in a list.
 % First, all parents of each term are determined, the abundances of every
-% of the resulting terms is quantified
+% of the resulting terms is quantified.
 % Input:
 %       double G:           adjacency matrix of the ontology DAG (edges point
 %                           to the root)

@@ -1,5 +1,6 @@
-function models = getMultipleModels(genomePath, habitat, dataDir, outDir, taxPath, gapFillDir, getModelFromID, writeToFile, modelDir)
-
+function models = getMultipleModels(genomePath, habitat, dataDir, outDir,...
+    taxPath, gapFillDir, getModelFromID, writeToFile, modelDir)
+%% models = getMultipleModels(genomePath, habitat, dataDir, outDir, taxPath, gapFillDir, getModelFromID, writeToFile, modelDir)
 % Iterates through all files for the habitat (subfolder of the directory where the
 % genomes are located), generates and merges KEGG and MetaCyc-based
 % reconstructions.

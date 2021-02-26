@@ -1,5 +1,6 @@
 function new_gpr = mergeGPR(gpr_1, gpr_2)
-%% Combine GPR rules for two reactions in COBRA format
+%% new_gpr = mergeGPR(gpr_1, gpr_2)
+% Combines GPR rules for two reactions in COBRA format.
 % example :
 %               GPR = 'x(1) | ( x(2) & x(3) )'
 % Input:
@@ -52,7 +53,7 @@ else
         genes_comp_2 = regexp(components_2{i}, 'x\(\d+\)', 'match');
         
         if any(contains(components_1, components_2(i)))
-            % element is exact match ot part of another element
+            % element is exact match or part of another element
             continue
             %         elseif numel(genes_comp_2) == 1
             %             % single genes and not contained as single in the other

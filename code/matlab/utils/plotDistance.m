@@ -1,4 +1,5 @@
 function plotDistance(matrix, labels, save, filename, plot_title)
+%% plotDistance(matrix, labels, save, filename, plot_title)
 % Plot the distance matrix as a heatmap
 % Input:
 %           double matrix:          distance matrix
@@ -7,6 +8,8 @@ function plotDistance(matrix, labels, save, filename, plot_title)
 %                                   filename path with the given file extension (default false)
 %           char filename:          path to save to file
 %           char plot_title:        title for the plot
+% Output:
+%           saved figure at location 'filename'
 
 if nargin < 5 || isempty(filename) || ~ischar(filename) || ~islogical(save) || ~ischar(plot_title)
     

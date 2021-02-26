@@ -1,5 +1,7 @@
 function changed_model = removeDuplicateMets(model)
-% Combines rows of metabolites that share the same ideitifier
+%% changed_model = removeDuplicateMets(model)
+% Combines rows of metabolites in the stoichiometric matrix, which share 
+% the same identifier
 % Input:
 %           struct model:           metabolic model
 % Output:   
@@ -7,9 +9,11 @@ function changed_model = removeDuplicateMets(model)
 
 % first occurrences of metabolites
 [~, ia, ~] = unique(model.mets, 'stable');
+
 % indices of duplicate metabolites
 to_delete = model.mets(setdiff(1:numel(model.mets), ia));
 remove = {};
+
 for i=1:numel(to_delete)
     % indices of the repeated occurrences of the same metabolite
     idx = find(contains(model.mets, to_delete(i)));

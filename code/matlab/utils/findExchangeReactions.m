@@ -1,7 +1,6 @@
-function ex = findExchangeReactions(model)
+function exchangeIdx = findExchangeReactions(model)
 % Find exchange reactions in a metabolic model
-%
-sink_rxns = (sum(model.S==-1,1)==1) & (sum(model.S~=0) == 1);
-uptake_rxns = (sum(model.S==1,1)==1) & (sum(model.S~=0) == 1);
-ex = sink_rxns + uptake_rxns;
+sinkRxnIdx= (sum(model.S==-1,1)==1) & (sum(model.S~=0) == 1);
+uptakeRxnIdx = (sum(model.S==1,1)==1) & (sum(model.S~=0) == 1);
+exchangeIdx = sinkRxnIdx + uptakeRxnIdx;
 end

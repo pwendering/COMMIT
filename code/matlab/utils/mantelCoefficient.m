@@ -1,6 +1,6 @@
 function r_M = mantelCoefficient(A,B)
-% mantelCoefficient(A,B) calculates the Mantel coefficient for two n x n
-% distance matrices A and B
+%% r_M = mantelCoefficient(A,B)
+% Calculates the Mantel coefficient for two n x n distance matrices A and B
 
 if nargin == 2
     if ~isequal(size(A), size(B)) || ~isequal(size(A,1), size(A,2))

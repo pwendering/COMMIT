@@ -1,5 +1,6 @@
-function models = getMultipleModels_par(genomePath, habitat, dataDir, outDir, taxPath, gapFillDir, getModelFromID, writeToFile, modelDir)
-
+function models = getMultipleModels_par(genomePath, habitat, dataDir, outDir,...
+    taxPath, gapFillDir, getModelFromID, writeToFile, modelDir)
+%% models = getMultipleModels_par(genomePath, habitat, dataDir, outDir, taxPath, gapFillDir, getModelFromID, writeToFile, modelDir)
 % Iterates through all files for the habitat (subfolder of the directory where the
 % genomes are located), generates and merges KEGG and MetaCyc-based
 % reconstructions.
@@ -61,11 +62,6 @@ allFastaFiles = {allFastaFiles.name};
 
 % Declare cell array that will be returned
 models = cell(numel(allFastaFiles),1);
-
-cores = 8;
-
-
-
 
 parfor i=1:numel(allFastaFiles)
     % The .out files have to be written into separate directories:

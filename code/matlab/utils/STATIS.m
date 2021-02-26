@@ -1,6 +1,7 @@
 function [S, q] = STATIS(M)
-% matrixConsensusSTATIC Computes a matrix consensus using the STATIC method
-% (Lavit et al. 1994, Computational Statistics & Data Analysis)
+%% [S, q] = STATIS(M)
+% Computes a matrix consensus using the STATIC method (Lavit et al. 1994, 
+% Computational Statistics & Data Analysis)
 % Input:
 %       cell M:         array containing the matrices to be merged
 % Output:

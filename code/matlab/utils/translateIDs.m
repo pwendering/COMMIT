@@ -1,14 +1,15 @@
 function trList = translateIDs(idList, type, dbTable, source, target, verbose)
+%% trList = translateIDs(idList, type, dbTable, source, target, verbose)
 % Translate metabolite IDs from one namespace to another (ModelSEED, KEGG,
-% MetaCyc, BiGG)
+% MetaCyc, BiGG).
 % Input:
-%       cell MetList:               array containing the ids to be translated
+%       cell idList:               array containing the ids to be translated
 %       char type:                  either 'rxn' or 'met'
 %       table dbTable:              table that contains the translation
 %                                   of identifiers for the given type
 %       char source:                source namespace ('ModelSEED',
 %                                   'KEGG', 'MetaCyc', 'BiGG', 'MNXref',
-%                                   (for rxns: 'EC', 'Rhea')
+%                                   (for rxns: 'Rhea', 'EC')
 %                                   (for mets: 'ChEBI', 'NAMES')
 %       char target:                target namespace
 %       logical verbose (optional): if true, print warnings and
@@ -20,7 +21,9 @@ if nargin < 6 || ~islogical(verbose)
     verbose = true;
 end
 
-dbDir = '/stud/wendering/Masterthesis/DATA/tables/MNXref';
+options
+clearvars -except topDir
+dbDir = fullfile(topDir, 'data/tables/MNXref');
 
 if ~iscellstr(idList)
     if ischar(idList)
@@ -36,13 +39,11 @@ if ~ischar(source) || ~ischar(target) || any(~ismember(type, ['rxn' 'met']))
     error('The source and/or target namespace or type definition is incorrect')
 end
 
-modelseed_translation_file = '/stud/wendering/Masterthesis/MATLAB/translation.mat';
-
 % Available namespaces
 rxnSources = {'MNXref', 'KEGG', 'BiGG', 'MetaCyc', 'ModelSEED', 'Rhea', 'EC'};
 metSources = {'MNXref', 'KEGG', 'BiGG', 'MetaCyc', 'ModelSEED', 'ChEBI', 'NAMES'};
 
-%% First find values using the MNXref database
+%% Find matched using the MNXref database
 
 % get the respective column that contains the desired names spaces
 if type == 'met'
@@ -119,55 +120,6 @@ else
     
     % Process the terminal output (last line will be always empty
     trList = regexp(output(1:end-1), '\n', 'split');
-end
-
-
-% get the indices of the IDs that could not be matched
-idx_nm = find(cellfun('isempty', trList));
-
-
-%% Second find values using the ModelSEED database
-if sum(idx_nm)==0
-    if verbose
-        fprintf('\nAll IDs could be matched using the MNXref database translation file\n')
-    end
-elseif ~contains([target, source], 'MNXref') && exist(modelseed_translation_file, 'file')
-    if verbose
-        warning(['Not all IDs could be matched using the MNXref database translation file. ',...
-            'Attemptimg to translate with ModelSEED translation file.'])
-    end
-    load(modelseed_translation_file)
-    
-    if isequal(type, 'rxn')
-        tab = reaction_translation_table;
-    else
-        tab = metabolite_translation_table;
-    end
-    
-    source_idx = find(string(tab.Properties.VariableNames)==source);
-    target_idx = find(string(tab.Properties.VariableNames)==target);
-    if ~isempty(source_idx) && ~isempty(target_idx)
-        for i=1:numel(idx_nm)
-            idx = strcmp(tab.(source_idx), idList{idx_nm(i)});
-            res = tab.(target_idx)(idx);
-            res = unique(res(~cellfun('isempty', res)));
-            if isempty(res)
-                trList(idx_nm(i)) = {''};
-            elseif numel(res) > 1
-                if verbose
-                    warning('%s: Multiple %s %ss assigned to %s %s',...
-                        idList{idx_nm(i)}, target, type, source, type)
-                end
-                trList(idx_nm(i)) = {strjoin(res, '|')};
-            else
-                trList(idx_nm(i)) = res;
-            end
-        end
-    else
-        if verbose
-            warning('Either source of target namespace is not contained in the ModelSEED DB')
-        end
-    end
 end
 
 if verbose

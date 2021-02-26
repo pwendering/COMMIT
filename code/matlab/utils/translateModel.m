@@ -1,4 +1,5 @@
 function translatedModel = translateModel(model, source, target, translationDB, complete, verbose)
+%% translatedModel = translateModel(model, source, target, translationDB, complete, verbose)
 % Translates a model into a different name space. The underlying table for
 % translation is either found in the working directory or in a directory on
 % the MATLAB path.

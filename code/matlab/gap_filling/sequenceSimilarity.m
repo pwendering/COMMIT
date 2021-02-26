@@ -1,5 +1,6 @@
 function [scores, genes] = sequenceSimilarity(hmmDir, fastaFile, rxnList, transTab, verbose)
-% Performs hmmsearch using hmmer-3.2.1 for all Hidden Markow models (HMMs)
+%% [scores, genes] = sequenceSimilarity(hmmDir, fastaFile, rxnList, transTab, verbose)
+% Performs hmmsearch using the hmmer software for all Hidden Markow models (HMMs)
 % that are available for a list of reactions. The KEGG orthologies (KO) are linked to
 % MNXref reactions so the E-values can be directly assgined to the
 % reactions. The scores can be directly used as weights in a LP.

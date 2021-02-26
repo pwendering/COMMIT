@@ -1,4 +1,5 @@
 function brite = map2KEGGBrite(metList, briteFile)
+%% brite = map2KEGGBrite(metList, briteFile)
 % First translates MNXref identifiers to KEGG identifiers and maps these to
 % KEGG br08001 (with manual extension using KEGG, PubChem and ChEBI).
 % Input:
@@ -28,6 +29,7 @@ metList_KEGG = translateIDs(strtok(metList, '['), 'met', [], 'MNXref', 'KEGG', f
 % manual extension of brite)
 idx_empty = cellfun(@isempty, metList_KEGG);
 metList_KEGG(idx_empty) = metList(idx_empty); clear metList
+
 %% ~~~~~ find brite ~~~~~ %%
 % read the file as a table
 bTable = readtable(briteFile, 'ReadVariableNames', false, 'Delimiter', '\t');
