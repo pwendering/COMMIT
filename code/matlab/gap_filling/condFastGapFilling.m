@@ -351,7 +351,7 @@ while abs(alpha - beta) > 1
    solution = cplexlp(f, [], [], dbModel_irr.S, beq, lb, ub);
 %    options = optimoptions('linprog', 'Display', 'none');
 %    solution = linprog(f, [], [], dbModel_irr.S, beq, lb, ub, options);
-%    
+
    if solution(biomass) >= epsilon
        % consider the reactions that have not been in the model before
        nz = solution >= precision;
