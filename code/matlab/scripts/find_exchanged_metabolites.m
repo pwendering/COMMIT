@@ -9,6 +9,9 @@ load(mediumFile)
 % gap-filling database which contains permeability information
 load(dbFile)
 
+% output directory for figures
+figOutDir = fullfile(topDir, 'figures', 'exchanged_metabolites');
+
 % taxonomic classification of At-SPHERE OTUs
 % taxonomyFile = fullfile(topDir, 'data/genomes/At-SPHERE-phyla.txt');
 taxonomyFile = fullfile(topDir, 'data/genomes/At-SPHERE-classes.txt');
@@ -97,29 +100,7 @@ taxonomyTab = readtable(taxonomyFile, 'readVariableNames', true, 'Delimiter', '\
 tax_experiment = taxonomyTab(ismember(taxonomyTab.isolate_ID,model_ids),:);
 tax_classes = unique(tax_experiment.(2));
 
-% % Export, pathway
-% pathways_exported = cell(numel(exported_per_model), 1);
-% for i=1:numel(exported_per_model)
-%     pathways = map2KEGGPathway(exported_per_model{i}, pathwayFile);
-%     pathways_exported{i} = vertcat(pathways{:});
-% end
-% 
-% % shrink the matrix to taxonomic groups
-% pathways_exported_group = cell(size(tax_classes));
-% for i=1:numel(tax_classes)
-%     idx_tax = ismember(tax_experiment.(2), tax_classes{i});
-%     pathways_exported_group{i} = vertcat(pathways_exported{idx_tax});
-% end
-% pathways_exported = pathways_exported_group; clear pathways_exported_group
-% 
-% % quantify the occurrence of every pathway per model
-% all_pathways_exp = unique(vertcat(pathways_exported{:}));
-% n_pways_exp = zeros(numel(pathways_exported), numel(all_pathways_exp));
-% for i=1:numel(all_pathways_exp)
-%     n_pways_exp(:,i) = cellfun(@(x)sum(ismember(x, all_pathways_exp{i})), pathways_exported);
-% end
-
-% Export, brite
+% Export
 brite_exported = cell(numel(exported_per_model), 1);
 for i=1:numel(exported_per_model)
     brite = map2KEGGBrite(exported_per_model{i}, briteFile);
@@ -144,28 +125,7 @@ for i=1:numel(all_brite_exp)
     n_brite_exp(:,i) = cellfun(@(x)sum(ismember(x, all_brite_exp{i})), brite_exported);
 end
 
-% % Import, pathway
-% pathways_imported = cell(numel(imported_per_model), 1);
-% for i=1:numel(exported_per_model)
-%     pathways = map2KEGGPathway(imported_per_model{i}, pathwayFile);
-%     pathways_imported{i} = vertcat(pathways{:});
-% end; clear pathways
-% 
-% % shrink the matrix to taxonomic groups
-% pathways_imported_group = cell(size(tax_classes));
-% for i=1:numel(tax_classes)
-%     idx_tax = ismember(tax_experiment.(2), tax_classes{i});
-%     pathways_imported_group{i} = vertcat(pathways_imported{idx_tax});
-% end
-% pathways_imported = pathways_imported_group; clear pathways_imported_group
-% 
-% all_pathways_imp = unique(vertcat(pathways_imported{:}));
-% n_pways_imp = zeros(numel(pathways_imported), numel(all_pathways_imp));
-% for i=1:numel(all_pathways_imp)
-%     n_pways_imp(:,i) = cellfun(@(x)sum(ismember(x, all_pathways_exp{i})), pathways_imported);
-% end
-
-% Import, brite
+% Import
 brite_imported = cell(numel(imported_per_model), 1);
 for i=1:numel(imported_per_model)
     if isempty(imported_per_model{i})
@@ -203,10 +163,6 @@ brite_exchange = cell(n_groups);
 all_exp = unique(vertcat(exported_per_model{:}));
 all_imp = unique(vertcat(imported_per_model{:}));
 
-% get associated KEGG pathways
-% all_exp_pways = map2KEGGPathway(all_exp, pathwayFile);
-% all_imp_pways = map2KEGGPathway(all_imp, pathwayFile);
-
 % get associated brite classification
 all_exp_brite = map2KEGGBrite(all_exp, briteFile);
 all_imp_brite = map2KEGGBrite(all_imp, briteFile);
@@ -215,6 +171,7 @@ matrix_exchange_IDs = cell(size(n_brite_imp, 1));
 
 for i=1:numel(brite_exported)
     for j=1:numel(brite_exported)
+        
         % find models belonging to family
         idx_tax_i = ismember(tax_experiment.(2), tax_classes{i});
         idx_tax_j = ismember(tax_experiment.(2), tax_classes{j});
@@ -223,23 +180,8 @@ for i=1:numel(brite_exported)
         exchange =  intersect(...
             vertcat(exported_per_model{idx_tax_i}), vertcat(imported_per_model{idx_tax_j}));
         
-%         disp(translateIDs(strtok(exchange, '['), 'met', [], 'MNXref', 'NAMES'))
-        if ~isempty(exchange) %&& i~=j
-            if exist('all_exp_pways', 'var')
-                % associated pathways
-                tmp_pways = cellfun(@(x)all_exp_pways(strcmp(all_exp, x)),...
-                    exchange);
-                tmp_pways = cell(vertcat(tmp_pways{:}));
-                
-                if ~isempty(tmp_pways)
-                    
-                    % index associated with the most-abundant pathway
-                    [~, tmp_idx] = max(cellfun(@(x)sum(ismember(tmp_pways,x)), tmp_pways));
-                    pathways_exchange(i,j) = tmp_pways(tmp_idx);
-                else
-                    pathways_exchange(i,j) = {''};
-                end
-            end
+        if ~isempty(exchange)
+                        
             % associated brite
             tmp_brite = cellfun(@(x)all_exp_brite(strcmp(all_exp, x)),...
                 exchange);
@@ -248,7 +190,8 @@ for i=1:numel(brite_exported)
 
             if ~isempty(tmp_brite)
                 matrix_exchange_IDs{i,j} = tmp_brite;
-                % index associated with the most-abundant pathway/brite
+                
+                % index associated with the most-abundant brite class
                 [~, tmp_idx] = max(cellfun(@(x)sum(ismember(tmp_brite,x)),...
                 setdiff(tmp_brite, {'Other'})));
                 if ~isempty(tmp_idx)
@@ -260,105 +203,17 @@ for i=1:numel(brite_exported)
                 brite_exchange(i,j) = {''};
             end
         else
-            pathways_exchange(i,j) = {''};
             brite_exchange(i,j) = {'Other'};
         end
     end
 end
-clear exchange tmp_pways tmp_brite tmp_idx
-
-
-% write to file
-% writetable(cell2table(pathways_exchange,...
-%     'RowNames', tax_classes, 'VariableNames', tax_classes),...
-%     ['/stud/wendering/Masterthesis/FIGURES/exchanged_metabolites/graph/',...
-%     subFolder, '_pathways_exchanged_',experiment, '.txt'],...
-%     'WriteVariableNames', true, 'WriteRowNames', true,...
-%     'Delimiter', '\t')
+clear exchange tmp_brite tmp_idx
 
 writetable(cell2table(brite_exchange,...
     'RowNames', tax_classes, 'VariableNames', tax_classes),...
-    ['/stud/wendering/Masterthesis/FIGURES/exchanged_metabolites/graph/',...
-    sub_dir, '_brite_exchanged_',experiment, '.txt'],...
+    [figOutDir, '/graph/',sub_dir, '_brite_exchanged_',experiment, '.txt'],...
     'WriteVariableNames', true, 'WriteRowNames', true,...
     'Delimiter', '\t')
-
-% %% pathway enrichment per model
-% alpha = 0.05;
-% 
-% % scale the occurrences to the number of models per family
-% % scale_tax = cellfun(@(x)sum(ismember(tax_experiment.(2), x)), tax_classes);
-% % n_pways_exp = bsxfun(@rdivide, n_pways_exp, scale_tax);
-% % n_pways_imp = bsxfun(@rdivide, n_pways_imp, scale_tax);
-% 
-% p_upper_import = zeros(size(n_pways_imp, 1), size(n_pways_imp,2));
-% 
-% M = sum(sum(n_pways_imp,1));
-% 
-% for group=1:size(n_pways_imp, 1)
-%     for pathway=1:size(n_pways_imp,2)
-%         
-%         x = n_pways_imp(group, pathway);
-%         
-%         if x==0
-%             p_upper_import(group, pathway) = 1;
-%         else
-%             K = sum(n_pways_imp(:,pathway));
-%             N = sum(n_pways_imp(group, :));
-%             
-%             p_upper_import(group,pathway) = hygecdf(x,M,K,N, 'upper');
-% %             [~, p_upper_import(group,pathway)] = fishertest(...
-% %                 [x N-x; K-x M-K-N-x],...
-% %                 'Tail', 'right');
-%         end
-%     end
-% end
-% 
-% % multiple testing correction
-% [~, p_adj] = mafdr(reshape(p_upper_import, numel(p_upper_import), 1));
-% h_upper_import = p_adj < alpha;
-% h_upper_import = reshape(h_upper_import, size(n_pways_imp,1), size(n_pways_imp,2));
-% 
-% p_upper_export = zeros(size(n_pways_exp, 1), size(n_pways_exp,2));
-% 
-% M = sum(sum(n_pways_exp,1));
-% 
-% for group=1:size(n_pways_exp, 1)
-%     for pathway=1:size(n_pways_exp,2)
-%         
-%         x = n_pways_exp(group, pathway);
-%         
-%         if x==0
-%             p_upper_export(group,pathway) = 1;
-%         else
-%             K = sum(n_pways_exp(:,pathway));
-%             N = sum(n_pways_exp(group, :));
-%             p_upper_export(group,pathway) = hygecdf(x,M,K,N, 'upper');
-% %         [~, p_upper_export(group,pathway)] = fishertest(...
-% %             [x N-x; K-x M-K-N+x],...
-% %             'Tail', 'right');
-%         end
-%         
-% 
-%     end
-% end
-% 
-% % multiple testing correction
-% [~, p_adj] = mafdr(reshape(p_upper_export, numel(p_upper_export), 1));
-% h_upper_export =  p_adj < alpha;
-% h_upper_export = reshape(h_upper_export, size(n_pways_exp,1), size(n_pways_exp,2));
-% clear p_fdr
-% 
-% % find enriched pathways
-% enriched_exp = cell(size(h_upper_export,1),1);
-% for i=1:size(h_upper_export,1)
-%     enriched_exp{i} = all_pathways_exp(h_upper_export(i,:));
-% end
-% 
-% enriched_imp = cell(size(h_upper_import,1),1);
-% for i=1:size(h_upper_import,1)
-%     enriched_imp{i} = all_pathways_imp(h_upper_import(i,:));
-% end
 
 %% pairwise intersection between exported and imported metabolites of each
 % two models (i.e. exchanged metabolites)
@@ -382,38 +237,15 @@ for i=1:n-1
 end
 
 %% write abundances and exchanged per model to file
-% 
-% imported_per_group = cell(size(tax_classes));
-% exported_per_group = cell(size(tax_classes));
-% abundance_per_class = zeros(size(tax_classes));
-% for i=1:numel(tax_classes)
-%     idx_tax = ismember(tax_experiment.(2), tax_classes{i});
-%     imported_per_group{i} = vertcat(imported_per_model{idx_tax});
-%     exported_per_group{i} = vertcat(exported_per_model{idx_tax});
-%     v(i) = var(cellfun(@numel,exported_per_model(idx_tax)));
-%     abundance_per_class(i) = sum(idx_tax);
-% end
-% 
-% writetable(array2table([cellfun(@numel,exported_per_group)./abundance_per_class,...
-%     cellfun(@numel,imported_per_group)./abundance_per_class],...
-%     'RowNames', tax_classes, 'VariableNames', {'export', 'import'}),...
-%     ['/stud/wendering/Masterthesis/FIGURES/exchanged_metabolites/',...
-%     subFolder, '_exported_vs_abundance_',experiment, '.txt'],...
-%     'WriteVariableNames', true, 'WriteRowNames', true,...
-%     'Delimiter', '\t')
-
-
 writetable(array2table([otutab.abundances, cellfun(@numel,exported_per_model)],...
     'RowNames', otutab.Row, 'VariableNames', {'abundance', 'exported'}),...
-    ['/stud/wendering/Masterthesis/FIGURES/exchanged_metabolites/',...
-    sub_dir, '_exported_vs_abundance_',experiment, '.txt'],...
+    [figOutDir, filesep, sub_dir, '_exported_vs_abundance_',experiment, '.txt'],...
     'WriteVariableNames', true, 'WriteRowNames', true,...
     'Delimiter', '\t')
 
 writetable(array2table([otutab.abundances, cellfun(@numel,imported_per_model)],...
     'RowNames', otutab.Row, 'VariableNames', {'abundance', 'imported'}),...
-    ['/stud/wendering/Masterthesis/FIGURES/exchanged_metabolites/',...
-    sub_dir, '_imported_vs_abundance_',experiment, '.txt'],...
+    [figOutDir, filesep, sub_dir, '_imported_vs_abundance_',experiment, '.txt'],...
     'WriteVariableNames', true, 'WriteRowNames', true,...
     'Delimiter', '\t')
 
@@ -422,7 +254,7 @@ writetable(array2table([otutab.abundances, cellfun(@numel,imported_per_model)],.
 model_ids = cellfun(@(x)strtok(x.id, '_'), GF,...
     'UniformOutput', false);
 
-taxonomyTab = readtable(taxonomyFile, 'readVariableNames', true, 'Delimiter', '\t');
+taxonomyTab = readtable(taxonomyFile, 'ReadVariableNames', true, 'Delimiter', '\t');
 tax_experiment = taxonomyTab(ismember(taxonomyTab.isolate_ID,model_ids),:);
 tax_classes = unique(tax_experiment.(2));
 n_per_class = cellfun(@(x)sum(contains(tax_experiment.(2), x)), tax_classes);
@@ -433,6 +265,7 @@ for i=1:numel(tax_classes)
     % find models that belong to the taxonomic class
     idx_tax = ismember(tax_experiment.(2), tax_classes{i});
     tax_experiment(idx_tax, :) = [];
+    
     % calculate row and column sums for the models belonging to the current
     % class
     row = sum(exchange_mt(idx_tax, :), 1);
@@ -476,8 +309,8 @@ abundance_per_class = abundance_per_class ./ n_per_class;
 
 %% write the distance matrix to file
 writetable(array2table(exchange_mt, 'VariableNames', tax_classes),...
-    ['/stud/wendering/Masterthesis/FIGURES/exchanged_metabolites/graph/',...
-    [habitat, '_', sub_dir], '_exchanged_metabolites_',experiment, '.txt'],...
+    [figOutDir, filesep, 'graph', filesep, [habitat, '_', sub_dir],...
+    '_exchanged_metabolites_',experiment, '.txt'],...
     'WriteVariableNames', true,...
     'Delimiter', '\t')
 

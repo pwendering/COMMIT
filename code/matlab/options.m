@@ -17,7 +17,6 @@ habitat = 'Leaf';
 experiments = {'leaf_natural_sites', 'IPL'};
 
 % path to ComGapFil top directory
-global topDir
 topDir = '/stud/wendering/ComGapFill';
 
 % medium file

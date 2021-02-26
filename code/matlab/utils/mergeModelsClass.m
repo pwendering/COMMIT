@@ -310,6 +310,7 @@ classdef mergeModelsClass
             opposite = similarity < 0;
         end
     end
+    
     methods (Static)
         function similarity = cosineSimilarity(A, B)
             % Calculate the cosine similarity
@@ -348,10 +349,6 @@ classdef mergeModelsClass
                 end
             end
         end
-        
-
-        
-
     end
 end
 

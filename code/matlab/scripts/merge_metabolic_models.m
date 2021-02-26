@@ -1,10 +1,10 @@
 % merge draft metabolic models from different approaches
 options
-clearvars -except topDir dbFile ncpus
+clearvars -except topDir dbFile ncpu
 
 % set up parallel pool
 c = parcluster;
-c.NumWorkers = ncpus;
+c.NumWorkers = ncpu;
 delete(gcp('nocreate'))
 P = parpool(c);
 
@@ -41,6 +41,7 @@ for i=1:numel(habitats)
         id = strtok(models{j}.id, '_');
         fprintf('Model #%d (%s)\n', j, id)
         fprintf('Collecting %d models...\n', numel(methods))
+        
         % create models variable for every OTU in each habitat
         models_to_merge = {};
         for k=1:numel(methods)
@@ -48,6 +49,8 @@ for i=1:numel(habitats)
                 strcat(habitats{i}, '_', methods{k}), '{j});'])
         end
         disp('------------------------------')
+        
+        % run merging function
         merged_models{j} = mergeModels(models_to_merge, dbModel_MNXref_balanced);
         wo_del = sum(cellfun(@(x)numel(x.rxns), models_to_merge));
         w_del = numel(merged_models{j}.rxns);
@@ -63,3 +66,4 @@ for i=1:numel(habitats)
     clear models
     disp('-------------------------------------------------------------------') 
 end
+clear topDir

@@ -1,12 +1,13 @@
 function identical = compareGPR(model_1, rxn_1, model_2, rxn_2)
 %% Compares the GPR rules of two reactions
-% (multiplied by Jaccard(operators)
-% Input: 
+% (Jaccard index of genes multiplied with Jaccard of logical operators
+% Input:
 %       struct model_1, model_2:            metabolic models
 %       cell/char/double rxn_1, rxn_2:      reactions given as ID or index
 % Output:
 %       double identical:                   degree of identity
-% 
+%
+
 %% Check input
 if nargin < 4
     error('You did not give enough input arguments')
@@ -45,13 +46,14 @@ rule_2 = model_2.rules{rxn_2};
 
 operators_1 = regexp(rule_1, '&|\|', 'match');
 operators_2 = regexp(rule_2, '&|\|', 'match');
-union_operators = numel(union(operators_1, operators_2));
+
 if numel(operators_1)<1|| numel(operators_2)<1
     operators_factor = 1;
 else
-% Jaccard index of operators
-operators_factor = numel(intersect(operators_1, operators_2)) / numel(union(operators_1, operators_2));
+    % Jaccard index of operators
+    operators_factor = numel(intersect(operators_1, operators_2)) / numel(union(operators_1, operators_2));
 end
+
 % Jaccard index of genes muliplied with Jaccard index of operators
 identical = numel(intersect(genes_1, genes_2)) / numel(union(genes_1, genes_2)) * operators_factor;
 

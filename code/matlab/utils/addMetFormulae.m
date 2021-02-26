@@ -6,7 +6,9 @@ function changed_model = addMetFormulae(model, formulaeTab)
 %                                   formulae (first column IDs, second
 %                                   formuale)
 % Output:
-%           struct changed_model:   additional field 'metFormulas'y
+%           struct changed_model:   metabolic model with 
+%                                   additional field 'metFormulas'
+
 dbIDs = formulaeTab.(1);
 dbForm = formulaeTab.(2);
 clear formulaeTab

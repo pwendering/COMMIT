@@ -36,7 +36,7 @@ if isfield(model, 'c')
 end
 
 try
-    if isfield(model, 'EC')  
+    if isfield(model, 'EC')
         model.EC = vertcat(model.EC, model.EC(rev));
     end
 catch

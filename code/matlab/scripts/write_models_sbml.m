@@ -1,26 +1,24 @@
 % save the COBRA models as smbl
-initCobraToolbox(false);
-
-% input Workspace
-% habitat = 'Root';
-habitat = 'Soil';
+options
+clearvars -except topDir
 
 experiment = 'Schlaeppi';
-% experiment = 'Schlaeppi';
 
-modelFile = fullfile('/stud/wendering/Masterthesis/DATA/Gap-filling/iterative',...
+modelFile = fullfile(topDir, 'data/gap-filling/iterative',...
     habitat, 'all', [experiment, '.mat']);
 
 load(modelFile, 'GF')
 
 % output directory
-outDir = fullfile('/stud/wendering/Masterthesis/DATA/Gap-filling/iterative',...
+outDir = fullfile(topDir, 'data/gap-filling/iterative',...
     habitat, 'all', experiment);
+
 % create directory if it does not exist
 if ~exist(outDir, 'dir')
     mkdir(outDir);
 end
 
+% processs model files
 m_files = dir(outDir);
 m_files = regexp({m_files.name}, '.*\.xml\.gz$', 'match');
 m_files = [m_files{:}]';

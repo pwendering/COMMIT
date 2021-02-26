@@ -1,9 +1,11 @@
 % Translate gene IDs 
+options
+clearvars -except topDir
 habitats = {'Soil', 'Leaf', 'Root'};
 
 %% AuReMe
-modelDir = '/stud/wendering/Masterthesis/DATA/models_AuReMe';
-blast_res_dir = '/stud/wendering/Masterthesis/DATA/genomes/DFast-annotations-blast-results-evalue-10';
+modelDir = fullfile(topDir, 'data/models/aureme');
+blast_res_dir = fullfile(topDir, 'data/genomes/DFast-annotations-blast-results-evalue-10');
 
 for i=1:numel(habitats)
     workspace = fullfile(modelDir, habitats{i}, strcat(habitats{i}, '_models.mat'));
@@ -21,8 +23,8 @@ for i=1:numel(habitats)
 end
 
 %% KBase
-modelDir = '/stud/wendering/Masterthesis/DATA/models_KBase';
-blast_res_dir = '/stud/wendering/Masterthesis/DATA/genomes/KBase-annotations-blast-results';
+modelDir = fullfile(topDir, 'data/models/kbase');
+blast_res_dir = fullfile(topDir, 'data/genomes/KBase-annotations-blast-results');
 
 for i=1:numel(habitats)
     workspace = fullfile(modelDir, habitats{i}, strcat(habitats{i}, '_models.mat'));

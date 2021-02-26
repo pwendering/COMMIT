@@ -111,7 +111,7 @@ for i=2:numel(models)
     
     %% remove duplicate reactions
     
-    consensusModel = removeDuplicateRxnsReactionPairs(consensusModel, database, 0);
+    consensusModel = removeDuplicateRxns(consensusModel, database, 0);
     fprintf('(%.2fs)\n', toc)
 end
 

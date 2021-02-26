@@ -1,27 +1,35 @@
 % merge draft metabolic models from different approaches
+options
+clearvars -except topDir dbFile ncpu
+
+% set up parallel pool
 c = parcluster;
-c.NumWorkers = 2; %4
+c.NumWorkers = ncpu;
 delete(gcp('nocreate'))
 P = parpool(c);
+
 habitats = {'Soil', 'Leaf', 'Root'};
-methods = {'KBase', 'AuReMe', 'RAVEN'};
-dataDir = '/stud/wendering/Masterthesis/DATA';
+methods = {'kbase', 'aureme', 'raven'};
+modelTopDir = fullfile(topDir, 'data', 'models');
+
 disp('-------------------------------------------------------------------')
 disp('START')
 disp('-------------------------------------------------------------------')
+
 disp('loading the universal database')
-load('/stud/wendering/Masterthesis/DATA/Gap-filling/database/Universal-model-MNXref-balanced.mat')
+load(dbFile)
+
 disp('-------------------------------------------------------------------')
 for i=1:numel(habitats)
     disp(habitats{i})
     disp('------------------------------')
     disp('Loading and collecting models from the different approaches...')
     for j=1:numel(methods)
-        if isequal(methods{j}, 'RAVEN')
-            workspace = fullfile(dataDir, strcat('models_', methods{j}),...
+        if isequal(methods{j}, 'raven')
+            workspace = fullfile(modelTopDir, methods{j},...
                 'HMMer10E-50', strcat(habitats{i}, '_models_COBRA_GPR'));
         else
-            workspace = fullfile(dataDir, strcat('models_', methods{j}),...
+            workspace = fullfile(modelTopDir, methods{j},...
                 habitats{i}, strcat(habitats{i}, '_models_metFormulas'));
         end
         load(workspace);
@@ -35,14 +43,16 @@ for i=1:numel(habitats)
         id = strtok(models{j}.id, '_');
         fprintf('Model #%d (%s)\n', j, id)
         fprintf('Collecting %d models...\n', numel(methods))
+        
         % create models variable for every OTU in each habitat
         models_to_merge = {};
         for k=1:numel(methods)
             eval(['models_to_merge = vertcat(models_to_merge,',...
                 strcat(habitats{i}, '_', methods{k}), '{j});'])
         end
-        
         disp('------------------------------')
+        
+        % run merging function
         merged_models{j} = mergeModels(models_to_merge, dbModel_MNXref_balanced);
         wo_del = sum(cellfun(@(x)numel(x.rxns), models_to_merge));
         w_del = numel(merged_models{j}.rxns);
@@ -51,7 +61,7 @@ for i=1:numel(habitats)
         
     end
     
-    workspace = fullfile(dataDir, 'Consensus_models',...
+    workspace = fullfile(modelTopDir, 'consensus',...
         strcat(habitats{i}, '_consensus_models_noCarveMe'));
     models = models_to_merge;
     disp('saving workspace')
@@ -59,5 +69,5 @@ for i=1:numel(habitats)
     clear models
     disp('-------------------------------------------------------------------') 
 end
-        
+clear topDir
      

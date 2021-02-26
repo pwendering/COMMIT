@@ -1,7 +1,8 @@
 % get sequence similarity weights from KEGG orthologies
-load('/stud/wendering/Masterthesis/DATA/Gap-filling/translation-KO-MNXref.mat')
+options
+clearvars -except topDir
 
-fid = fopen('/stud/wendering/Masterthesis/DATA/RAVEN_dataDir/selfmade/prok90_kegg90/keggdb/ko', 'r');
+fid = fopen(fullfile(topDir, 'data/RAVEN_dataDir/selfmade/prok90_kegg90/keggdb/ko', 'r'));
 line = fgetl(fid);
 ENTRY = cell(22767, 1);
 DBLINKS = cell(22767, 1);
@@ -34,7 +35,9 @@ while ischar(line)
     line = fgetl(fid);
 end
 fclose(fid);
+
 koTable = cell2table([ENTRY, DBLINKS], 'VariableNames', {'ENTRY', 'RXNS'});
+
 % Translate KEGG IDs to MNXref IDs
 for i=1:size(koTable, 1)
     if ~isempty(koTable.RXNS{i})
@@ -47,9 +50,6 @@ for i=1:size(koTable, 1)
     end
 end
 
-% remove entries from table that do not have a translation to MNXref
-% namespace
+save(fullfile(topDir, 'data/gap-filling/sequence-similarity/translation-KO-MNXref.mat'), 'koTable')
 
-% koTable.RXNS = arrayfun(@(x)regexprep(x, '\|\|\|*', '|'), koTable.RXNS);
-% koTable = koTable(~strcmp(koTable.RXNS, '|'), :);
-
+clear topDir
