@@ -1,6 +1,4 @@
-% Options for gap filling
-
-%% Gap filling
+% Options for ComGapFill
 
 %~~~~~~~~~~~~~ General settings ~~~~~~~~~~~~~%
 
