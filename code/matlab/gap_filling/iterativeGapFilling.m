@@ -132,6 +132,8 @@ end
 
 parfor i=1:iterations
     warning('off', 'all') % show no warnings
+    changeCobraSolver('matlab','LP');
+
     format shortg % for time format
     t_1 = clock;
     
