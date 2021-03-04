@@ -5,9 +5,9 @@ options
 load(mediumFile)
 
 % taxonomic classification of At-SPHERE OTUs
-% taxonomyFile = fullfile(topDir, 'data/genomes/At-SPHERE-phyla.txt');
-% taxonomyFile = fullfile(topDir, 'data/genomes/At-SPHERE-classes.txt');
-taxonomyFile = fullfile(topDir, 'data/genomes/At-SPHERE-families.txt');
+% taxonomyFile = 'data/genomes/At-SPHERE-phyla.txt';
+% taxonomyFile = 'data/genomes/At-SPHERE-classes.txt';
+taxonomyFile = 'data/genomes/At-SPHERE-families.txt';
 
 % load model workspace
 subFolders = cellstr(sub_dir);
@@ -19,7 +19,7 @@ for E = experiments
         
         F = char(F);
         
-        fileBaseName = [topDir, '/figures/exchanged_metabolites/reduction_biomass/',...
+        fileBaseName = ['/figures/exchanged_metabolites/reduction_biomass/',...
                 habitat, '_', E, '_', F, '_biomass_'];
             
         fprintf('\n%s %s...\n', E, F)
@@ -27,7 +27,7 @@ for E = experiments
         if ~exist([fileBaseName, 'export.txt'], 'file')
             
             modelWorkspace = ...
-                fullfile(topDir,'data/gap-filling/iterative',...
+                fullfile('data/gap-filling/iterative',...
                     habitat, F, E);
             
             load(modelWorkspace, 'GF')
@@ -168,4 +168,3 @@ for E = experiments
         
     end
 end
-clear topDir

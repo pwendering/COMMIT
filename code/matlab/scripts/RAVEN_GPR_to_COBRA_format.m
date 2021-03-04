@@ -1,6 +1,5 @@
 % convert RAVEN GPR rules to COBRA standard
-options
-clearvars -except topDir
+options; clear
 
 habitats = {'Soil', 'Leaf', 'Root'};
 
@@ -8,7 +7,7 @@ disp('-------------------------------------------------------------------')
 disp('START')
 disp('-------------------------------------------------------------------')
 
-modelDir = fullfile(topDir, 'data', 'models', 'raven', 'HMMer10E-50');
+modelDir = 'data/models/raven/HMMer10E-50';
 
 for i=1:numel(habitats)
     disp(habitats{i})

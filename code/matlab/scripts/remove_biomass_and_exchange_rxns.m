@@ -1,8 +1,8 @@
 % remove exchange reactions and biomass reactions
-options
-clearvars -except topDir
+options; clear
+
 habitats = {'Soil', 'Leaf', 'Root'};
-modelTopDir = fullfile(topDir, 'data', 'models');
+modelTopDir = 'data/models';
 
 % KBase models
 disp('KBase')
@@ -122,4 +122,3 @@ for i=1:numel(habitats)
     save(workspace, 'models')
     clear models
 end
-clear topDir

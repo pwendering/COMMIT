@@ -7,9 +7,9 @@ load(mediumFile)
 load(dbFile)
 
 % taxonomic classification of At-SPHERE OTUs
-% taxonomyFile = fullfile(topDir, 'data/genomes/At-SPHERE-phyla.txt');
-% taxonomyFile = fullfile(topDir, 'data/genomes/At-SPHERE-classes.txt');
-taxonomyFile = fullfile(topDir, 'data/genomes/At-SPHERE-families.txt');
+% taxonomyFile = 'data/genomes/At-SPHERE-phyla.txt';
+% taxonomyFile = 'data/genomes/At-SPHERE-classes.txt';
+taxonomyFile = 'data/genomes/At-SPHERE-families.txt';
 
 % directories for metabolic models to compare
 iterativeGfDir = outDir;
@@ -260,7 +260,7 @@ for i=1:numel(experiments)
     %% write results to file
     fprintf('\t> writing results...\n')
     
-    fid = fopen(fullfile('/stud/wendering/Masterthesis/DATA/Gap-filling/iterative/',...
+    fid = fopen(fullfile('data/gap-filling/iterative/',...
         habitat, subFolder, [experiments{i}, '-evaluation.txt']), 'w');
     
     fprintf(fid,...
@@ -291,4 +291,3 @@ for i=1:numel(experiments)
     
     
 end
-clear topDir

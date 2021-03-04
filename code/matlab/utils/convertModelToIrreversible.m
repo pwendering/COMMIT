@@ -1,6 +1,12 @@
 function model_irrev = convertModelToIrreversible(model)
+%% model_irrev = convertModelToIrreversible(model)
 % Splits all reversible reactions in a metabolic model into two
-% irreversible reaction and updates all dependent fields
+% irreversible reaction and updates all associated fields
+% Input:
+%       struct model:           metabolic model
+% Output:
+%       struct model_irrev:     all-irreversible model
+
 
 % get indices of all reversible reactions (both lb and ub != 0)
 rev = intersect(find(model.lb), find(model.ub));

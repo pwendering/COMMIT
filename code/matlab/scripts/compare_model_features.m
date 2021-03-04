@@ -3,14 +3,13 @@
 
 % load options to get top directory
 options
-clearvars -except topDir
 
 habitats = {'Soil', 'Leaf', 'Root'};
 methods = {'CarveMe', 'KBase', 'AuReMe', 'RAVEN', 'consensus'};
 features = {'rxns', 'mets', 'genes'};
 
-dataDir = fullfile(topDir, 'data');
-figOutDir = fullfile(topDir, 'figures/model-features');
+dataDir = 'data';
+figOutDir = 'figures/model-features';
 
 for i=1:numel(habitats)
     clear sums*
@@ -67,4 +66,3 @@ for i=1:numel(habitats)
     end
     disp('')
 end
-clear topDir

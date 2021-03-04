@@ -1,5 +1,5 @@
 % Run all evaluations
-options; clearvars -except topDir
+options; clear
 
 fprintf('##################################################################################\n')
 fprintf('############### Starting Evaluation of genome-scale reconstructions ##############\n')

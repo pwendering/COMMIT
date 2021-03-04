@@ -8,7 +8,7 @@ for i=1:numel(habitats)
     fprintf('\n################# %s\n', habitats{i})
      
    %% Load the models from workspace
-    modelWorkspace = fullfile(topDir, 'data/models/kbase',...
+    modelWorkspace = fullfile('data/models/kbase',...
         habitats{i},strcat(habitats{i},'_models.mat'));
     if exist(modelWorkspace,'file')
         fprintf('\nWorkspace exists for %s, loading...\n', habitats{i})
@@ -18,9 +18,9 @@ for i=1:numel(habitats)
     end
     
     %% Evaluation:
-    plotDir = fullfile(topDir, 'figures/KBase_draft');
+    plotDir = 'figures/KBase_draft';
     recMethod = strcat(habitats{i}, '-Kbase');
-    evaluationWorkspace = fullfile(topDir, 'data/models/kbase',...
+    evaluationWorkspace = fullfile('data/models/kbase',...
         habitats{i}, strcat(habitats{i},'_evaluation.mat'));
     evaluateModels(models, recMethod, plotDir, evaluationWorkspace, blackList)
     

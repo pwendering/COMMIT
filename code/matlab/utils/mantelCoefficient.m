@@ -1,7 +1,10 @@
 function r_M = mantelCoefficient(A,B)
 %% r_M = mantelCoefficient(A,B)
 % Calculates the Mantel coefficient for two n x n distance matrices A and B
-
+% Input:
+%       double A,B:         distance matrices of identical dimensions
+% Output:
+%       double r_M:         Mantel coefficient
 if nargin == 2
     if ~isequal(size(A), size(B)) || ~isequal(size(A,1), size(A,2))
         error('The matrices A and B must have the same dimensions')

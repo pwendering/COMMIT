@@ -30,7 +30,7 @@ if nargin < 6
 end
 
 % Threshold for identity
-epsilon = 10E-6;
+epsilon = 1E-6;
 t = 1 - epsilon;
 
 %% find the coefficients for the first reaction:

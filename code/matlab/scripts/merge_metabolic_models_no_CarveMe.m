@@ -1,6 +1,6 @@
 % merge draft metabolic models from different approaches
 options
-clearvars -except topDir dbFile ncpu
+clearvars -except dbFile ncpu
 
 % set up parallel pool
 c = parcluster;
@@ -10,7 +10,7 @@ P = parpool(c);
 
 habitats = {'Soil', 'Leaf', 'Root'};
 methods = {'kbase', 'aureme', 'raven'};
-modelTopDir = fullfile(topDir, 'data', 'models');
+modelTopDir =  'data/models';
 
 disp('-------------------------------------------------------------------')
 disp('START')
@@ -69,5 +69,4 @@ for i=1:numel(habitats)
     clear models
     disp('-------------------------------------------------------------------') 
 end
-clear topDir
      

@@ -16,16 +16,20 @@ experiments = {'leaf_natural_sites', 'IPL'};
 
 % path to ComGapFil top directory
 topDir = '/stud/wendering/ComGapFill';
+cd(topDir)
+
+% add all matlab scripts to path
+addpath(genpath('code/matlab'))
 
 % medium file
-mediumFile = fullfile(topDir, 'data/media/minimal-medium.mat');
+mediumFile = 'data/media/minimal-medium.mat';
 
 % directory for auxotrophy media (files must be of form 'model id'.tsv)
-mediaDir = fullfile(topDir, 'data/media', habitat, 'auxo-media');
+mediaDir = fullfile('data/media', habitat, 'auxo-media');
 
 % top directory for OTU abundance (subdirectories must be habitat >
 % experiment > otutab.txt
-otuDir = fullfile(topDir, 'data/otu_abundances/');
+otuDir = 'data/otu_abundances/';
 
 % threshold for the biomass reaction
 epsilon = 1E-4;
@@ -49,28 +53,28 @@ changeCobraSolver('ibm_cplex','LP',0);
 %~~~~~~~~~~~~~ Model workspace and output directory ~~~~~~~~~~~~~%
 
 % location where draft models are stored
-modelDir = fullfile(topDir, 'data/models/consensus/');
+modelDir = 'data/models/consensus/';
 % modelFile = fullfile(modelDir, [habitat, '_consensus_models_noCarveMe_biomass']);
 modelFile = fullfile(modelDir, [habitat, '_consensus_models_biomass']);
-% modelDir = fullfile(topDir, 'data/models/kbase');
+% modelDir = 'data/models/kbase';
 % modelFile = fullfile(modelDir, habitat, [habitat, '_models_biomass']);
 
 tmp_spec = '_all';
 sub_dir = strtok(tmp_spec,'_');
 
 % output directory for the gap-filled models
-% outDir = fullfile(topDir, 'data/gap-filling/iterative', habitat, sub_dir);
-% outDir = fullfile(topDir, 'data/gap-filling/iterative', habitat, sub_dir);
-outDir = fullfile(topDir, 'data/gap-filling/iterative', habitat, sub_dir);
+% outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir);
+% outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir);
+outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir);
 
 
 %~~~~~~~~~~~~~ Gap-filling resources ~~~~~~~~~~~~~%
 
 % file for the database
-dbFile = fullfile(topDir, 'data/gap-filling/database/Universal-model-MNXref-balanced.mat');
+dbFile = 'data/gap-filling/database/Universal-model-MNXref-balanced.mat';
 
 % path to sequence similarity workspace
-seq_sim_workspace = fullfile(topDir, 'data/gap-filling/sequence-similarity/sequence_similarity.mat');
+seq_sim_workspace = 'data/gap-filling/sequence-similarity/sequence_similarity.mat';
 
 
 %~~~~~~~~~~~~~ Reaction-type-specific weights ~~~~~~~~~~~~~%
@@ -97,10 +101,10 @@ weights.model = 0;
 %~~~~~~~~~~~~~ metabolite classification resources ~~~~~~~~~~~~~%
 
 % ChEBI ontology DAG workspace
-chebiOntologyWS = fullfile(topDir, 'data/metabolite-classification/ontologyGraph.mat');
+chebiOntologyWS = 'data/metabolite-classification/ontologyGraph.mat';
 
 % tab-separated ontology file
-ontologyFile = fullfile(topDir, 'data/metabolite-classification/chebi_ontology.csv');
+ontologyFile = 'data/metabolite-classification/chebi_ontology.csv';
 
 % brite Hierarchy file
-briteFile = fullfile(topDir, 'data/metabolite-classification/briteHierarchy_ext.csv');
+briteFile = 'data/metabolite-classification/briteHierarchy_ext.csv';

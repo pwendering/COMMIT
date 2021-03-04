@@ -333,7 +333,7 @@ beta = 10000;
 % lower and upper bounds
 lb = dbModel_irr.lb;
 ub = dbModel_irr.ub;
-ub(biomass) = 6;
+ub(biomass) = 2.81;
 % Start binary search
 precision = 10E-6;
 if verbose

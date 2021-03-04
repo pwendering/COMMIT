@@ -10,12 +10,12 @@ load(mediumFile)
 load(dbFile)
 
 % output directory for figures
-figOutDir = fullfile(topDir, 'figures', 'exchanged_metabolites');
+figOutDir = 'figures/exchanged_metabolites';
 
 % taxonomic classification of At-SPHERE OTUs
-% taxonomyFile = fullfile(topDir, 'data/genomes/At-SPHERE-phyla.txt');
-taxonomyFile = fullfile(topDir, 'data/genomes/At-SPHERE-classes.txt');
-% taxonomyFile = fullfile(topDir, 'data/genomes/At-SPHERE-families.txt');
+% taxonomyFile = 'data/genomes/At-SPHERE-phyla.txt';
+taxonomyFile = 'data/genomes/At-SPHERE-classes.txt';
+% taxonomyFile = 'data/genomes/At-SPHERE-families.txt';
 
 % load model workspace
 modelWorkspace = fullfile(outDir, experiment);

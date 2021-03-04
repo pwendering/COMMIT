@@ -1,12 +1,12 @@
 % compare to Methylobacterium extorquens metabolic model as reference
 options
-clearvars -except topDir
 
-figOutDir = fullfile(topDir, 'figures/Comparison-to-reference-models');
-modelDir = fullfile(topDir, 'data/reference-models', 'models_Peyraud_BMC_2011');
-phyloFile = fullfile(topDir, 'data/genomes/M_extorquens/16S-seqs.nw.dist.txt');
-ecTranslationTable = readtable(fullfile(topDir,...
-    'data', 'tables', 'corrected-EC-numbers.csv'), 'ReadVariableNames', false);
+
+figOutDir = 'figures/Comparison-to-reference-models';
+modelDir = 'data/reference-models/models_Peyraud_BMC_2011';
+phyloFile = 'data/genomes/M_extorquens/16S-seqs.nw.dist.txt';
+ecTranslationTable = readtable('data/tables/corrected-EC-numbers.csv',...
+    'ReadVariableNames', false);
 
 %% Methylobacterium extorquens
 % Reference: Peyraud et al., 2011, BMC Syst. Biol.
@@ -76,23 +76,23 @@ for habitat = {'Leaf', 'Root', 'Soil'}
     
     % consensus
     spec = '';
-    load(fullfile(topDir, 'data/models/consensus',...
-        [char(habitat), '_consensus_models.mat']))
+    load(fullfile('data/models/consensus', [char(habitat),...
+        '_consensus_models.mat']))
     % % KBase draft
     % spec = 'KBase_';
-    % load(fullfile(topDir, 'data/models/kbase',...
-    %    char(habitat), [char(habitat), '_models_genes_translated.mat']))
+    % load(fullfile('data/models/kbase', char(habitat),...
+    %   [char(habitat), '_models_genes_translated.mat']))
     % % RAVEN 2.0 draft
     % spec = 'RAVEN_';
-    % load(fullfile(topDir, 'data/models/raven/HMMer10E-50/',...
+    % load(fullfile('data/models/raven/HMMer10E-50/',...
     %   [char(habitat), '_models_no_medium_no_biomass']))
     % % CarveMe draft
     % spec = 'CarveMe_';
-    % load(fullfile(topDir, 'data/models/carveme',...
+    % load(fullfile('data/models/carveme',...
     %    char(habitat), [char(habitat), '_models_no_medium_no_biomass']))
     % % AuReMe draft
     % spec = 'AuReMe_';
-    % load(fullfile(topDir, 'data/models/aureme',...
+    % load(fullfile('data/models/aureme',...
     %    char(habitat), [char(habitat), '_models_genes_translated']))
     
     if ~exist('merged_models', 'var')
@@ -139,7 +139,7 @@ for habitat = {'Leaf', 'Root', 'Soil'}
      
      % same species
      for j = find(contains(species_ids, habitat))
-         filename = strcat(topDir, '/data/genomes/M_extorquens/M-extorquens-AM1-',...
+         filename = strcat('/data/genomes/M_extorquens/M-extorquens-AM1-',...
              species_ids{j}, '.mapping');
          model = translateGeneIDs(reference, filename);
          
@@ -150,7 +150,7 @@ for habitat = {'Leaf', 'Root', 'Soil'}
      
      % same genus
      for j = find(contains(genus_ids, habitat))
-         filename = strcat(topDir, 'data/genomes/M_extorquens/M-extorquens-AM1-',...
+         filename = strcat('data/genomes/M_extorquens/M-extorquens-AM1-',...
              genus_ids{j}, '.mapping');
          model = translateGeneIDs(reference, filename);
          

@@ -107,14 +107,12 @@ add_universal_biomass
 
 
 %% Iterative gap filling
-diary '/stud/wendering/Masterthesis/DATA/Gap-filling/output_200116.txt'
+d = datestr(floor(now));
+diary(['data/gap-filling/output-' d '.txt']);
+
 gap_fill_individual_models
 run_iterative_gap_filling
 
 
 evaluate_gap_fillings
-
-
-
-cleat topDir
 

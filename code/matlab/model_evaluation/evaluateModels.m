@@ -14,9 +14,9 @@ function evaluateModels(models, recMethod, plotDir, resWorkspace)
 %       saves matrices in workspace and saves figures for each distance
 %       measure
 
-options; clearvars -except topDir
+options; clear
 % load tables required for some functions
-tablesDir = fullfile(topDir, 'data', 'tables');
+tablesDir = 'data/tables';
 
 ecTranslationTable = readtable(fullfile(tablesDir, 'corrected-EC-numbers.csv'),...
     'ReadVariableNames', false);

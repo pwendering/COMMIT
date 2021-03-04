@@ -9,7 +9,7 @@ for i=1:numel(habitats)
 
     
     %% Load the models from workspace
-    modelWorkspace = fullfile(topDir, 'data/models/carveme',...
+    modelWorkspace = fullfile('data/models/carveme',...
         habitats{i}, strcat(habitats{i}, '_models.mat'));
     if exist(modelWorkspace,'file')
         fprintf('\nWorkspace exists for %s, loading...\n', habitats{i})
@@ -19,9 +19,9 @@ for i=1:numel(habitats)
     end
     
     %% Evaluation:
-    plotDir = fullfile(topDir, 'figures/CarveMe_draft');
+    plotDir = fullfile('figures/CarveMe_draft');
     recMethod = strcat(habitats{i}, '-CarveMe');
-    evaluationWorkspace = fullfile(topDir, 'data/models/carveme',...
+    evaluationWorkspace = fullfile('data/models/carveme',...
         habitats{i}, strcat(habitats{i},'_evaluation.mat'));
     evaluateModels(models, recMethod, plotDir, evaluationWorkspace, blackList)
     

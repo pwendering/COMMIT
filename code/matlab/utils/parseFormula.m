@@ -96,23 +96,7 @@ if (contains(formula, 'rxn') || ~any(regexp(formula, '[mnq]', 'once'))) && conta
             end
         end
     end
-    clear prod prod_uniq prod_mult idx j
-    
-    %{
-    if sum(substrates.tr)~=0
-        tr_p = products.tr;
-        tr_p(ismember(products.id, substrates.id(logical(substrates.tr)))) = 1;
-    end
-    
-    if sum(products.tr)~=0
-        substrates.tr(ismember(substrates.id, products.id(logical(products.tr)))) = 1;
-    end
-    
-    if exist('tr_p', 'var')
-        products.tr = tr_p;
-    end
-    %}
-    
+    clear prod prod_uniq prod_mult idx j   
     
 else
     substrates.id = {};

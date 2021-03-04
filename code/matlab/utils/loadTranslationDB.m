@@ -1,7 +1,11 @@
 function translationDB = loadTranslationDB
-options; clearvars -except topDir
-% load translation tables
-tablesDir = fullfile(topDir, 'data', 'tables');
+%% translationDB = loadTranslationDB
+% load translation tables for metabolites and reactions
+% Output:
+%   struct translationDB:           structure with fields 'metTab' and
+%                                   'rxnTab'
+
+tablesDir = fullfile('data', 'tables');
 metTransFile = fullfile(tablesDir, 'MNXref', 'MNXref-met-translation-table.csv');
 rxnTransFile = fullfile(tablesDir, 'MNXref', 'MNXref-rxn-translation-table.csv');
 metTransTab = readtable(metTransFile, 'ReadVariableNames', true);

@@ -1,8 +1,7 @@
 % get sequence similarity weights from KEGG orthologies
-options
-clearvars -except topDir
+options; clear
 
-fid = fopen(fullfile(topDir, 'data/RAVEN_dataDir/selfmade/prok90_kegg90/keggdb/ko', 'r'));
+fid = fopen('data/RAVEN_dataDir/selfmade/prok90_kegg90/keggdb/ko', 'r');
 line = fgetl(fid);
 ENTRY = cell(22767, 1);
 DBLINKS = cell(22767, 1);
@@ -50,6 +49,4 @@ for i=1:size(koTable, 1)
     end
 end
 
-save(fullfile(topDir, 'data/gap-filling/sequence-similarity/translation-KO-MNXref.mat'), 'koTable')
-
-clear topDir
+save('data/gap-filling/sequence-similarity/translation-KO-MNXref.mat', 'koTable')

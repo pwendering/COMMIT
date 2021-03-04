@@ -1,17 +1,15 @@
 % save the COBRA models as smbl
 options
-clearvars -except topDir
 
 experiment = 'Schlaeppi';
 
-modelFile = fullfile(topDir, 'data/gap-filling/iterative',...
-    habitat, 'all', [experiment, '.mat']);
+modelFile = fullfile('data/gap-filling/iterative', habitat, 'all',...
+    [experiment, '.mat']);
 
 load(modelFile, 'GF')
 
 % output directory
-outDir = fullfile(topDir, 'data/gap-filling/iterative',...
-    habitat, 'all', experiment);
+outDir = fullfile('data/gap-filling/iterative', habitat, 'all', experiment);
 
 % create directory if it does not exist
 if ~exist(outDir, 'dir')

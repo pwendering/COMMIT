@@ -1,6 +1,7 @@
 %% Read Input
+options; clear
 % table with decriptors
-property_table = readtable('/stud/wendering/Masterthesis/DATA/Gap-filling/molecular-properties/METS-PROPERTIES.csv',...
+property_table = readtable('data/gap-filling/molecular-properties/METS-PROPERTIES.csv',...
     'ReadVariableNames', true);
 property_table = property_table(:,[1 5 2:4 6:end]);
 
@@ -38,8 +39,7 @@ labels = training_set.Properties.VariableNames;
 M = table2array(training_set);
 % Correlation between the descriptors
 correlationPlot(M, labels);
-saveas(gcf, fullfile('/stud/wendering/Masterthesis/FIGURES/xlogP_prediction',...
-    'correlation_features.jpg'));
+saveas(gcf, 'figures/xlogP_prediction/correlation_features.jpg');
 
 % Histograms showing the desitibutions of each descriptor together with
 % XlogP
@@ -66,8 +66,7 @@ for i=1:numel(labels)
 end
 % suptitle('Histograms showing the distribution of the descriptors')
 % save figure
-saveas(gcf, fullfile('/stud/wendering/Masterthesis/FIGURES/xlogP_prediction',...
-    'histograms_features.jpg'));
+saveas(gcf, 'figures/xlogP_prediction/histograms_features.jpg');
 
 
 
@@ -116,8 +115,7 @@ text(.5*ax.XLim(2), .5*ax.YLim(2), strcat('R^2_{adj}=',...
     num2str(Rsq_adj,2)), 'FontSize', 16)
 % title('Squared errors of the linear model')
 ax.TickLength = [.005 .2];
-saveas(gcf,  fullfile('/stud/wendering/Masterthesis/FIGURES/xlogP_prediction',...
-    'squared_errors_lm.jpg'));
+saveas(gcf, 'figures/xlogP_prediction/squared_errors_lm.jpg');
 
 
 
@@ -201,8 +199,7 @@ ax.TickLength = [.005 .2];
 rectangle('Position', [0.5 0 1 ax.YLim(2)], 'FaceColor', [.7 .7 .7 0.3],...
     'LineStyle', 'none', 'Curvature', 0.2);
 
-saveas(gcf,  fullfile('/stud/wendering/Masterthesis/FIGURES/xlogP_prediction',...
-    'RMSE_Rsq_kNN.jpg'));
+saveas(gcf,  'figures/xlogP_prediction/RMSE_Rsq_kNN.jpg');
 
 %% Compare linear regression with kNN (N=1)
 
@@ -243,8 +240,7 @@ ylabel('count')
 title('Squared errors to the true response in the testing set',...
     'FontSize', 18)
 
-saveas(gcf,  fullfile('/stud/wendering/Masterthesis/FIGURES/xlogP_prediction',...
-    'squared-errors-lm-knn.jpg'));
+saveas(gcf,  'figures/xlogP_prediction/squared-errors-lm-knn.jpg');
 
 
 %% 10-fold cross-validation

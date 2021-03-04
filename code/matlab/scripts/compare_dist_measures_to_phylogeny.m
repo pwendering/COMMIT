@@ -1,11 +1,11 @@
 % compare distance measures of merged models to sequence similarity
 options
 
-tablesDir = fullfile(topDir, 'data/tables');
-figOutDir = fullfile(topDir, 'figures/Comparison-of-methods');
+tablesDir = fullfile('data','tables');
+figOutDir = 'figures/Comparison-of-methods';
 
 % Load distance matrix from newick tree
-phyloFile = fullfile(topDir, 'data/genomes/Phylogeny/nw_distance_AtSPHERE.txt');
+phyloFile = 'data/genomes/Phylogeny/nw_distance_AtSPHERE.txt';
 phylo_dist = readtable(phyloFile,...
     'ReadVariableNames', true,...
     'ReadRowNames', true);
@@ -25,10 +25,10 @@ for i=1:numel(habitats)
     %% Load workspaces
     disp(habitats{i})
     % Consensus models including CarveMe reconstructions
-    models = load(fullfile(topDir, 'data/models/consensus/',...
-        [habitats{i}, '_consensus_models.mat']), 'merged_models');
+    models = load(fullfile('data/models/consensus/',[habitats{i},...
+        '_consensus_models.mat']), 'merged_models');
     models = models.merged_models;
-    %     merged_noCarveMe = load(fullfile(topDir, 'data/models/consensus/',...
+    %     merged_noCarveMe = load(fullfile('data/models/consensus/',...
     %         [habitats{i}, '_consensus_models_noCarveMe.mat']), 'merged_models');
     %     merged_noCarveMe = merged_noCarveMe.merged_models;
     

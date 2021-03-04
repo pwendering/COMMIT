@@ -7,8 +7,7 @@ for i=1:numel(habitats)
     fprintf('\n################# %s\n', habitats{i})
     %% Load the workspace that contains all models for a given habitat
     % and threshold
-    AuReMeModelDir = fullfile(topDir, 'data/models/aureme',...
-        habitats{i});
+    AuReMeModelDir = fullfile('data/models/aureme', habitats{i});
     modelWorkspace = fullfile(AuReMeModelDir, strcat(habitats{i}, '_models.mat'));
     
     if exist(modelWorkspace,'file')
@@ -19,7 +18,7 @@ for i=1:numel(habitats)
     end
     
     %% Evaluation
-    plotDir = fullfile(topDir, 'figures/AuReMe_draft');
+    plotDir = 'figures/AuReMe_draft';
     recMethod = strcat(habitats{i}, '-AuReMe');
     evaluationWorkspace = fullfile(AuReMeModelDir,...
         strcat(habitats{i}, '_evaluation.mat'));

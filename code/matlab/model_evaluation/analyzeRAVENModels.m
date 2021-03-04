@@ -8,7 +8,7 @@ for i=1:numel(habitats)
     fprintf('\n################# %s\n', habitats{i})
     
     %% Load the workspace that contains all models for a given habitat
-    RAVENModelDir = fullfile(topDir, 'data/models/raven/HMMer10E-50');
+    RAVENModelDir = 'data/models/raven/HMMer10E-50';
     modelWorkspace = fullfile(RAVENModelDir,...
         strcat(habitats{i}, '_converted.mat'));
     
@@ -20,7 +20,7 @@ for i=1:numel(habitats)
     end
     
     %% Evaluation
-    plotDir = fullfile(topDir, 'figures/RAVEN_draft');
+    plotDir = 'figures/RAVEN_draft';
     recMethod = strcat(habitats{i},'-HMMer10E-50-RAVEN');
     evaluationWorkspace = fullfile(RAVENModelDir,...
         strcat(habitats{i}, '_evaluation.mat'));

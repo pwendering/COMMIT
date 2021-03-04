@@ -1,4 +1,5 @@
 function similarity = cosineSimilarity(A, B)
+%% similarity = cosineSimilarity(A, B)
 % Calculate the cosine similarity by 
 % similarity = ( A .* B ) / ( ||A|| * ||B|| )
 % Input:

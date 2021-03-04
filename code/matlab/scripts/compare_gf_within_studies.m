@@ -9,11 +9,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 options
 
-iterativeGfDir = fullfile(topDir, 'data/gap-filling/iterative', habitat);
-consensusDir = fullfile(topDir, 'data/models/consensus');
+iterativeGfDir = fullfile('data/gap-filling/iterative', habitat);
+consensusDir = 'data/models/consensus';
 
 % directory to save the table for figure
-figOutDir = fullfile(topDir, 'figures/added_reactions');
+figOutDir = 'figures/added_reactions';
 
 % specify the number of comparisons
 n_comp = 6;
@@ -85,7 +85,7 @@ for i=1:numel(experiments)
     row = 4;
     % find added reactions in individually-gap-filled models with only
     % KBase draft models
-    load(fullfile(topDir, 'data/models/kbase', habitat,...
+    load(fullfile('data/models/kbase', habitat,...
         strcat(habitat, '_models_biomass_gf')), 'GF')
     n = numel(GF);
     for j=1:n
@@ -196,4 +196,3 @@ for i=1:numel(experiments)
         fullfile(figOutDir, [habitat, '_', experiments{i}, '_dist_methods_no_exc_rxns.txt']),...
         'WriteVariableNames', true, 'WriteRowNames', true, 'Delimiter', '\t');
 end
-clear topDir

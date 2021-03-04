@@ -1,4 +1,5 @@
 function changed_model = translateGeneIDs(model, mapping_file)
+%% changed_model = translateGeneIDs(model, mapping_file)
 % Maps the gene IDs from the model to the gene IDs in
 % the second column in the mapping file
 % Input:

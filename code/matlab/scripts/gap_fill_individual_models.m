@@ -1,8 +1,6 @@
 % Run conditional gap filling on individual models
 tic
 
-initCobraToolbox(false)
-
 disp('----------------------------------------------------------------------')
 disp('START')
 disp('----------------------------------------------------------------------')
@@ -132,4 +130,3 @@ save([modelFile, '_gf'], 'GF', 'exc', 'bio', 'gf')
 
 disp('-----------------------------------')
 fprintf('Finished, time: %.2f min.\n', toc)
-clear topDir

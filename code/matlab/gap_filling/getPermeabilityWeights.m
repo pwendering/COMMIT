@@ -6,10 +6,8 @@ function p = getPermeabilityWeights(mets)
 % Output:
 %           double p:           1 if diffusion is likely, 0 otherwise
 
-options; clearvars -except topDir
-
 % load the table containing the properties
-load(fullfile(topDir, 'data/gap-filling/molecular-properties/properties_MNXref_mets.mat'));
+load('data/gap-filling/molecular-properties/properties_MNXref_mets.mat')
 
 % remove the compartment identifier
 mets = strtok(mets, '[');

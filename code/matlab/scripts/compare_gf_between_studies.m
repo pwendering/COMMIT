@@ -1,17 +1,17 @@
 % compare the added reactions between gap fillings
 options
 
-iterativeGfDir = fullfile(topDir, 'data/gap-filling/iterative', habitat);
+iterativeGfDir = fullfile('data/gap-filling/iterative', habitat);
 
-singleGfFile = fullfile(topDir, 'data/models/kbase', habitat, [habitat, '_models_biomass_gf.mat']);
-% singleGfFile = fullfile(topDir, 'data/models/consensus', [habitat, '_consensus_models_biomass_gf']);
-% singleGfFile = fullfile(topdir, 'data/models/consensus', [habitat, '_consensus_models_noCarveMe_biomass_gf']);
+singleGfFile = fullfile('data/models/kbase', habitat, [habitat, '_models_biomass_gf.mat']);
+% singleGfFile = fullfile('data/models/consensus', [habitat, '_consensus_models_biomass_gf']);
+% singleGfFile = fullfile('data/models/consensus', [habitat, '_consensus_models_noCarveMe_biomass_gf']);
 
 % medium that has been used for gap filling
 load(mediumFile)
 
 % directory to save the table for figure
-figOutDir = fullfile(topDir, 'figures');
+figOutDir = 'figures';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Compare the IDs of added reactions and exchanged metabolites between studies
@@ -136,5 +136,3 @@ writetable(array2table(shared_imp, 'VariableNames', model_ids,...
     'RowNames', [experiments, {'Intersection'}]),...
     fullfile(tmpOutDir, [sub_dir,'_',habitat, '_imported.txt']),...
     'WriteVariableNames', true, 'WriteRowNames', true, 'Delimiter', '\t');
-
-clear topDir
