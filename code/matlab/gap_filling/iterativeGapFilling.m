@@ -234,8 +234,8 @@ for i = gf_order
     clear model
     
 %     v = cplexlp(-gfModel.c, [], [], gfModel.S, gfModel.b, gfModel.lb, gfModel.ub);
-    options = optimoptions('linprog', 'Display', 'none');
-    v = linprog(-gfModel.c, [], [], gfModel.S, gfModel.b, gfModel.lb, gfModel.ub, options);
+    v = optimizeCbModel(gfModel);
+    v = v.x;
     
     if include_sink
         % sink reactions were already included in the gap filling

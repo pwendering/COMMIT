@@ -340,18 +340,27 @@ if verbose
     fprintf('\nStarting the binary search for the gap filling LP...\n')
 end
 
+% rewrite as COBRA LP
+lp.A = dbModel_irr.S;
+lp.b = beq;
+lp.lb = lb;
+lp.ub = ub;
+lp.c = -f;
+lp.osense = 'max';
+lb.csense = repmat('E',1,size(lp.A,1));
+
 while abs(alpha - beta) > 1
     % Weighting factor for biomass reaction
    delta = floor(mean([alpha, beta]));
    
    % re-define the objective for the biomass
-   f(biomass) = -delta;
-   
+%    f(biomass) = -delta;
+   lp.c(biomass) = delta;
    % Solve the LP
-   solution = cplexlp(f, [], [], dbModel_irr.S, beq, lb, ub);
-%    options = optimoptions('linprog', 'Display', 'none');
-%    solution = linprog(f, [], [], dbModel_irr.S, beq, lb, ub, options);
-
+%    solution = cplexlp(f, [], [], dbModel_irr.S, beq, lb, ub);
+    solution = solveCobraLP(lp);
+    solution = solution.full;
+    
    if solution(biomass) >= epsilon
        % consider the reactions that have not been in the model before
        nz = solution >= precision;
@@ -375,6 +384,7 @@ while abs(alpha - beta) > 1
    end
 
 end
+clear lp
 
 if verbose
     fprintf('\n\t> finished binary search (%.0fs)\n', toc-tmp_toc)

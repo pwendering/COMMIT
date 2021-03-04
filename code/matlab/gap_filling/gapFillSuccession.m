@@ -59,9 +59,9 @@ for i = S
     clear model
     
     % add the optimal biomass value of the current gap filled model
-    v = cplexlp(-gfModel.c, [], [], gfModel.S, gfModel.b, gfModel.lb, gfModel.ub);
-%     options = optimoptions('linprog', 'Display', 'none');
-%     v = linprog(-gfModel.c, [], [], gfModel.S, gfModel.b, gfModel.lb, gfModel.ub, options);
+%     v = cplexlp(-gfModel.c, [], [], gfModel.S, gfModel.b, gfModel.lb, gfModel.ub);
+    v = optimizeCbModel(gfModel);
+    v = v.x;
     bio(i) = v(logical(gfModel.c));
     
     if include_sink
