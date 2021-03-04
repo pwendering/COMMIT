@@ -51,8 +51,7 @@ include_sink = false;
 
 % set COBRA solver for linear optimization problems
 % changeCobraSolver('ibm_cplex','LP',0);
-initCobraToolbox(false)
-changeCobraSolver('gurobi','LP',0);
+% changeCobraSolver('gurobi','LP');
 
 %~~~~~~~~~~~~~ Model workspace and output directory ~~~~~~~~~~~~~%
 
