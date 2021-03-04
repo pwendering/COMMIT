@@ -348,7 +348,8 @@ lp.ub = ub;
 lp.c = -f;
 lp.osense = 'max';
 lp.csense = repmat('E',1,size(lp.A,1));
-changeCobraSolver('matlab','LP');
+disp([size(lp.A) size(lp.c)])
+
 while abs(alpha - beta) > 1
     % Weighting factor for biomass reaction
    delta = floor(mean([alpha, beta]));
@@ -359,6 +360,7 @@ while abs(alpha - beta) > 1
    % Solve the LP
 %    solution = cplexlp(f, [], [], dbModel_irr.S, beq, lb, ub);
     solution = solveCobraLP(lp);
+    disp('solved conFastGF')
     solution = solution.full;
     
    if solution(biomass) >= epsilon

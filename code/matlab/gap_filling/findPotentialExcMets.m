@@ -83,6 +83,7 @@ lp.c = -f;
 lp.osense = 'max';
 lp.csense = repmat('E',1,size(lp.A,1));
 solution = solveCobraLP(lp);
+disp('solved findPE')
 solution = solution.full;
 % solution = cplexlp(f, [], [], Aeq, beq, lb, ub);
 
