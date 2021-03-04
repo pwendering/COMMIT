@@ -347,7 +347,7 @@ lp.lb = lb;
 lp.ub = ub;
 lp.c = -f;
 lp.osense = 'max';
-lb.csense = repmat('E',1,size(lp.A,1));
+lp.csense = repmat('E',1,size(lp.A,1));
 
 while abs(alpha - beta) > 1
     % Weighting factor for biomass reaction
