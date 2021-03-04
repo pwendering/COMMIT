@@ -129,12 +129,13 @@ disp('----------------------------------------------------------------------')
 if iterations > 1
     fprintf('Testing %d random successions for %d models\n\n', iterations, n)
 end
-
+environment = getEnvironment;
 parfor i=1:iterations
     warning('off', 'all') % show no warnings
-    changeCobraSolver('matlab','LP');
-
     format shortg % for time format
+    
+    restoreEnvironment(environment,0);
+    
     t_1 = clock;
     
     % create random successsion and add it to candidate set
