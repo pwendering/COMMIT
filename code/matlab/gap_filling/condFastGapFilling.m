@@ -348,7 +348,7 @@ lp.ub = ub;
 lp.c = -f;
 lp.osense = 'max';
 lp.csense = repmat('E',1,size(lp.A,1));
-
+changeCobraSolver('matlab','LP');
 while abs(alpha - beta) > 1
     % Weighting factor for biomass reaction
    delta = floor(mean([alpha, beta]));
