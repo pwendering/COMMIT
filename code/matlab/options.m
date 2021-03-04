@@ -9,13 +9,15 @@ warning('off', 'all')
 ncpu = 8;
 
 % habitat
-habitat = 'Leaf';
+habitat = 'Soil';
 
 % experiments to be analyzed
-experiments = {'leaf_natural_sites', 'IPL'};
+experiments = {'Schlaeppi'};
 
 % path to ComGapFil top directory
-topDir = '/stud/wendering/ComGapFill';
+% topDir = '/stud/wendering/ComGapFill';
+topDir = '/import/store9/data-nikoloski/wendering/comgapfill';
+
 cd(topDir)
 
 % add all matlab scripts to path
@@ -48,7 +50,8 @@ order = [];
 include_sink = false;
 
 % set COBRA solver for linear optimization problems
-changeCobraSolver('ibm_cplex','LP',0);
+% changeCobraSolver('ibm_cplex','LP',0);
+changeCobraSolver('gurobi','LP',0);
 
 %~~~~~~~~~~~~~ Model workspace and output directory ~~~~~~~~~~~~~%
 
