@@ -21,9 +21,7 @@ if nargin < 6 || ~islogical(verbose)
     verbose = true;
 end
 
-options
-clearvars -except topDir
-dbDir = fullfile(topDir, 'data/tables/MNXref');
+dbDir = 'data/tables/MNXref';
 
 if ~iscellstr(idList)
     if ischar(idList)
