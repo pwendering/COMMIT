@@ -80,10 +80,9 @@ lp.b = beq;
 lp.lb = lb;
 lp.ub = ub;
 lp.c = -f;
-lp.osense = 'max';
+lp.osense = -1;
 lp.csense = repmat('E',1,size(lp.A,1));
 solution = solveCobraLP(lp);
-disp('solved findPE')
 solution = solution.full;
 % solution = cplexlp(f, [], [], Aeq, beq, lb, ub);
 

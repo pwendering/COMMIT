@@ -4,7 +4,7 @@ disp('----------------------------------------------------------------------')
 
 % load options script 
 disp('Loading required data...')
-options;
+options
 
 % medium
 load(mediumFile)
