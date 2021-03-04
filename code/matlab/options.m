@@ -15,8 +15,8 @@ habitat = 'Soil';
 experiments = {'Schlaeppi'};
 
 % path to ComGapFil top directory
-topDir = '/stud/wendering/ComGapFill';
-% topDir = '/import/store9/data-nikoloski/wendering/comgapfill';
+% topDir = '/stud/wendering/ComGapFill';
+topDir = '/import/store9/data-nikoloski/wendering/comgapfill';
 
 cd(topDir)
 
