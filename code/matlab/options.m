@@ -52,7 +52,9 @@ include_sink = false;
 % set COBRA solver for linear optimization problems
 % changeCobraSolver('ibm_cplex','LP',0);
 % changeCobraSolver('gurobi','LP');
+
 initCobraToolbox(false)
+changeCobraSolver('matlab','LP');
 %~~~~~~~~~~~~~ Model workspace and output directory ~~~~~~~~~~~~~%
 
 % location where draft models are stored
