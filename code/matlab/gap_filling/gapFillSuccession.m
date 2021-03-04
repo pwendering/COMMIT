@@ -43,7 +43,7 @@ for i = S
     
     % add medium components to the model as exchange reactions if
     % not already present
-    model = addExchangeRxn(model, M);
+    model = addExchangeRxn(model, unique(M));
     
     if ~isempty(seq_sim)
         % add respective sequence similarity values and genes
