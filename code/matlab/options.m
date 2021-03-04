@@ -31,7 +31,7 @@ mediaDir = fullfile('data/media', habitat, 'auxo-media');
 
 % top directory for OTU abundance (subdirectories must be habitat >
 % experiment > otutab.txt
-otuDir = 'data/otu_abundances/';
+otuDir = 'data/otu-abundances/';
 
 % threshold for the biomass reaction
 epsilon = 1E-4;
