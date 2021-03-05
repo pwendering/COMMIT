@@ -44,9 +44,9 @@ tmp_mets = model.mets(tmp_met_idx);
 
 %% Find the optimal biomass value
 model = convertModelToIrreversible(model);
-solution = optimizeCbModel(model);
-solution = solution.x;
-% solution = cplexlp(-model.c, [], [], model.S, model.b, model.lb, model.ub);
+% solution = optimizeCbModel(model);
+% solution = solution.x;
+solution = cplexlp(-model.c, [], [], model.S, model.b, model.lb, model.ub);
 opt = solution(logical(model.c));
 
 %% Sink reactions
@@ -74,6 +74,8 @@ f(size(model.S,2)+1:end) = -1;
 lb = [model.lb; zeros(size(S_sink,2),1)];
 lb(find(model.c)) = alpha*opt;
 ub = [model.ub; repmat(1000, size(S_sink,2),1)];
+
+%{
 % solve the LP
 lp.A = Aeq;
 lp.b = beq;
@@ -84,7 +86,9 @@ lp.osense = -1;
 lp.csense = repmat('E',1,size(lp.A,1));
 solution = solveCobraLP(lp);
 solution = solution.full;
-% solution = cplexlp(f, [], [], Aeq, beq, lb, ub);
+%}
+
+solution = cplexlp(f, [], [], Aeq, beq, lb, ub);
 
 %% Find transportable metabolites
 % active sink reaction above epsilon

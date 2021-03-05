@@ -237,9 +237,9 @@ for i = gf_order
         condFastGapFilling(model, DB, EX, weights, epsilon, include_sink, false);
     clear model
     
-%     v = cplexlp(-gfModel.c, [], [], gfModel.S, gfModel.b, gfModel.lb, gfModel.ub);
-    v = optimizeCbModel(gfModel);
-    v = v.x;
+    v = cplexlp(-gfModel.c, [], [], gfModel.S, gfModel.b, gfModel.lb, gfModel.ub);
+%     v = optimizeCbModel(gfModel);
+%     v = v.x;
     
     if include_sink
         % sink reactions were already included in the gap filling

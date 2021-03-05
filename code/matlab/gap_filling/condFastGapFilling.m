@@ -335,6 +335,7 @@ lb = dbModel_irr.lb;
 ub = dbModel_irr.ub;
 ub(biomass) = 2.81;
 
+%{
 % rewrite as COBRA LP
 lp.A = dbModel_irr.S;
 lp.b = beq;
@@ -343,6 +344,7 @@ lp.ub = ub;
 lp.c = -f;
 lp.osense = -1;
 lp.csense = repmat('E',1,size(beq));
+%}
 
 % Start binary search
 precision = 10E-6;
@@ -355,13 +357,13 @@ while abs(alpha - beta) > 1
     delta = floor(mean([alpha, beta]));
     
     % re-define the objective for the biomass
-    %    f(biomass) = -delta;
-    lp.c(biomass) = delta;
+       f(biomass) = -delta;
+%     lp.c(biomass) = delta;
     % Solve the LP
-    %    solution = cplexlp(f, [], [], dbModel_irr.S, beq, lb, ub);
-    solution = solveCobraLP(lp);
-    
-    solution = solution.full;
+       solution = cplexlp(f, [], [], dbModel_irr.S, beq, lb, ub);
+%     % for COBRA LP version
+%     solution = solveCobraLP(lp);
+%     solution = solution.full;
     
     if solution(biomass) >= epsilon
         % consider the reactions that have not been in the model before
