@@ -1,5 +1,5 @@
 disp('----------------------------------------------------------------------')
-disp('Iterative gap filling')
+disp('                       Iterative gap filling                          ')
 disp('----------------------------------------------------------------------')
 
 % load options script 
@@ -13,6 +13,7 @@ load(mediumFile)
 load(dbFile)
 
 % start parallel pool
+delete(gcp('nocreate'))
 parpool(ncpu);
 
 if ~exist(outDir, 'dir')
@@ -22,7 +23,7 @@ end
 for i=1:numel(experiments)
     
     disp('----------------------------------------------------------------------')
-    fprintf('%s models for OTU composition in %s dataset\n\n', habitat, experiments{i})
+    fprintf('%s models for OTU composition in %s dataset\n', habitat, experiments{i})
     
     % load model cell array
 %     model_workspace = fullfile(modelDir, [habitat, '_consensus_models', exp_spec{i}, '_biomass.mat']);
