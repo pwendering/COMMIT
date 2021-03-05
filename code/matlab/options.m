@@ -51,10 +51,10 @@ order = [];
 include_sink = false;
 
 % set COBRA solver for linear optimization problems
-% initCobraToolbox(false)
+initCobraToolbox(false)
 % changeCobraSolver('ibm_cplex','LP',0);
 % changeCobraSolver('gurobi','LP',0);
-changeCobraSolver('matlab','LP',0);
+% changeCobraSolver('matlab','LP',0);
 
 %~~~~~~~~~~~~~ Model workspace and output directory ~~~~~~~~~~~~~%
 

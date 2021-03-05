@@ -386,7 +386,7 @@ while abs(alpha - beta) > 1
     
 end
 clear lp
-disp(solution(biomass))
+
 if verbose
     fprintf('\n\t> finished binary search (%.0fs)\n', toc-tmp_toc)
 end
