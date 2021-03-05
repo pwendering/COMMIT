@@ -52,7 +52,7 @@ include_sink = false;
 
 % set COBRA solver for linear optimization problems
 % initCobraToolbox(false)
-changeCobraSolver('ibm_cplex','LP',0);
+% changeCobraSolver('ibm_cplex','LP',0);
 % changeCobraSolver('gurobi','LP',0);
 % changeCobraSolver('matlab','LP',0);
 
