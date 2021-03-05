@@ -130,7 +130,7 @@ if iterations > 1
     fprintf('Testing %d random successions for %d models\n\n', iterations, n)
 end
 environment = getEnvironment;
-parfor i=1:iterations
+for i=1:iterations % parfor
     warning('off', 'all') % show no warnings
     format shortg % for time format
     
