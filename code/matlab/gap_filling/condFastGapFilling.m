@@ -329,16 +329,11 @@ solutions = {};
 % initial values for binary search
 alpha = 0;
 beta = 2*m;
-beta = 10000;
+
 % lower and upper bounds
 lb = dbModel_irr.lb;
 ub = dbModel_irr.ub;
 ub(biomass) = 2.81;
-% Start binary search
-precision = 10E-6;
-if verbose
-    fprintf('\nStarting the binary search for the gap filling LP...\n')
-end
 
 % rewrite as COBRA LP
 lp.A = dbModel_irr.S;
@@ -348,6 +343,12 @@ lp.ub = ub;
 lp.c = -f;
 lp.osense = -1;
 lp.csense = repmat('E',1,size(beq));
+
+% Start binary search
+precision = 10E-6;
+if verbose
+    fprintf('\nStarting the binary search for the gap filling LP...\n')
+end
 
 while abs(alpha - beta) > 1
     % Weighting factor for biomass reaction
