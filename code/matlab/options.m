@@ -6,7 +6,7 @@
 warning('off', 'all')
 
 % number of parallel workers
-ncpu = 2;
+ncpu = 8;
 
 % habitat
 habitat = 'Soil';
@@ -15,8 +15,8 @@ habitat = 'Soil';
 experiments = {'Schlaeppi'};
 
 % path to ComGapFil top directory
-topDir = '/stud/wendering/ComGapFill';
-% topDir = '/import/store9/data-nikoloski/wendering/comgapfill';
+% topDir = '/stud/wendering/ComGapFill';
+topDir = '/import/store9/data-nikoloski/wendering/comgapfill';
 
 % change to working directory
 cd(topDir)
@@ -51,8 +51,8 @@ order = [];
 include_sink = false;
 
 % set COBRA solver for linear optimization problems
-% initCobraToolbox(false)
-changeCobraSolver('ibm_cplex','LP',0);
+initCobraToolbox(false)
+% changeCobraSolver('ibm_cplex','LP',0);
 % changeCobraSolver('gurobi','LP',0);
 % changeCobraSolver('matlab','LP',0);
 
