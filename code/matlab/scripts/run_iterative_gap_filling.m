@@ -21,7 +21,7 @@ end
 
 for i=1:numel(experiments)
     
-    disp('-----------------------------------')
+    disp('----------------------------------------------------------------------')
     fprintf('%s models for OTU composition in %s dataset\n\n', habitat, experiments{i})
     
     % load model cell array
