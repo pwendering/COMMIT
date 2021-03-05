@@ -30,7 +30,8 @@ binData <- function(X, nbins, xlim) {
   return(res)
 }
 
-plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend, y_axis, x_axis) {
+plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend,
+                                 y_axis, x_axis, writeToFile = F) {
   exc <- read.table(paste(wd, study, "-exc.txt", sep = ""), header = T)
   exc = apply(exc, 1, sum)
   gf <- read.table(paste(wd, study, "-gf.txt", sep = ""), header = T)
@@ -44,13 +45,15 @@ plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend, y_
   data = rbind(gf, bio, exc)
   data = apply(data,1,function(x, opt) {x=x-x[opt]; x=x/max(abs(x))}, opt=opt_idx)
   
-  png(paste(outFileBase, habitat, "-", study, "-", as.character(nrow(data)), ".png", sep = ""),
-      units = "cm", height = 20, width = 20, res = 300)
-
+  if (writeToFile) {
+    png(paste(outFileBase, habitat, "-", study, "-", as.character(nrow(data)), ".png", sep = ""),
+        units = "cm", height = 20, width = 20, res = 300)
+  }
+  
   # Plotting and graphical parameters
   cex_axis = 2
   col_axis = "gray30"
-  par(family = "Arial", mar = c(5, 5, 4, 2) + 0.1, mgp = c(3.5,1,0))
+  par(family = "Arial", mar = c(5, 5, 4, 2) + 0.1, mgp = c(3.5,1,0), xpd = T)
   cbp1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73",
             "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
   col <- cbp1[c(4,6,8)]
@@ -66,8 +69,6 @@ plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend, y_
     print(p$p.value)
     y_max[i]=max(h[[2]])
   }
-  
-  
   
   y_max = max(y_max)/10
   y_max = ceiling(y_max)*10
@@ -93,30 +94,38 @@ plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend, y_
     title(ylab = "Frequency", cex.lab = cex_axis)
   }
   if (add_legend){
-    legend(x = -1, y = 70, legend = c("added reactions", "biomass fluxes", "exchanged metabolites"),
-           col = alpha(col, 0.5), lwd = 6, box.lwd = 0, cex = 2.2, bg = NA)
+    legend(x = -1, y = 95, legend = c("added reactions", "biomass fluxes", "exchanged metabolites"),
+           col = alpha(col, 0.5), lwd = 6, box.lwd = 0, cex = 1.2, bg = NA)
   }
-  dev.off()
+  
+  if (writeToFile) dev.off()
 }
 
+writeToFile = T
 habitat = "Soil"
+topDir = "~/ComGapFill"
 
-wd = paste("/stud/wendering/Masterthesis/DATA/Gap-filling/iterative/", habitat, "/all/", sep = "")
-outFileBase <- "/stud/wendering/Masterthesis/FIGURES/gap-filling/all/"
+wd = paste(topDir, "/data/gap-filling/iterative/", habitat, "/all/", sep = "")
+outFileBase <- paste(topDir, "/figures/gap-filling/all/", sep = "")
 
-plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = F, y_axis = T, x_axis = F)
+if (writeToFile) {
+  png(filename = paste0(outFileBase, "test_plot.png"))
+}
+par(mfrow=c(3,2))
+plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = F, y_axis = T, x_axis = F, writeToFile = F)
+plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F, writeToFile = F)
 
-plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F)
+wd = paste(topDir, "/data/gap-filling/iterative/", habitat, "/no_CarveMe/", sep = "")
+outFileBase <- paste(topDir, "figures/gap-filling/no_CarveMe/", sep = "")
 
-wd = paste("/stud/wendering/Masterthesis/DATA/Gap-filling/iterative/", habitat, "/no_CarveMe/", sep = "")
-outFileBase <- "/stud/wendering/Masterthesis/FIGURES/gap-filling/no_CarveMe/no_CarveMe"
+plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = T, y_axis = T, x_axis = F, writeToFile = F)
+plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F, writeToFile = F)
 
-plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = T, y_axis = T, x_axis = F)
+wd = paste(topDir, "/data/gap-filling/iterative/Soil/KBase/", sep = "")
+outFileBase <- paste(topDir, "figures/gap-filling/iterative/KBase/kbase-", sep = "")
 
-plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F)
+plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = F, y_axis = T, x_axis = F, writeToFile = F)
+plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F, writeToFile = F)
 
-wd = "/stud/wendering/Masterthesis/DATA/Gap-filling/iterative/Soil/KBase/"
-outFileBase <- "/stud/wendering/Masterthesis/FIGURES/gap-filling/KBase/kbase-"
-
-plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = F, y_axis = T, x_axis = T)
-plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = T)
+mtext("scaled difference to optimal solution", side = 1, outer = T)
+if (writeToFile) dev.off()

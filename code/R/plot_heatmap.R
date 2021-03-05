@@ -1,6 +1,5 @@
 #!/usr/bin/Rscript
-
-# Heatmap plots for distance matrices (square)
+# Heatmap plots for distance matrices
 
 library(pheatmap)
 library(wesanderson)
