@@ -4,7 +4,7 @@ function [reaction_sets, solutions, consistModel, addedRxns] = ...
 % universal database generated using prepareFastGapFilling. The original
 % model and the database model are converted to irreversible by splitting
 % all reversible reactions into two irreversible reactions. The reactions
-% that are shared between the model and the database are removed from the 
+% that are shared between the model and the database are removed from the
 % database model by ID. The reactions from the Non-recongized
 % reactions are added via their metabolites keeping the reacion labels of
 % the original model. The gap filling algorithm itself is an LP that
@@ -12,7 +12,7 @@ function [reaction_sets, solutions, consistModel, addedRxns] = ...
 % of additional reactions. This LP is solved in a binary search with
 % decreasing weight on the biomass reaction. The consistent matrix is then
 % extracted and forms the new stoichiometric matrix of the metabolic model.
-% 
+%
 % Input:
 %           struct model:               metabolic model to be gap-filled
 %           struct dbModel:             stoichiometric model of universal
@@ -20,7 +20,7 @@ function [reaction_sets, solutions, consistModel, addedRxns] = ...
 %           cell excMets:               array containing metabolites whose
 %                                       exchange is allowed to be added,
 %                                       i.e. special weights can be
-%                                       assigned in the weights struct 
+%                                       assigned in the weights struct
 %           struct weights:             contains weights for the different
 %                                       types of reactions that can be added
 %                                       from the database: 'transport',
@@ -43,7 +43,7 @@ function [reaction_sets, solutions, consistModel, addedRxns] = ...
 %           cell solutions:             all solution vectors with f_biomass > epsilon
 %                                       (as double)
 %           struct consistModel:        model with updated stoichiometric
-%                                       matrix including the smallest (or last) 
+%                                       matrix including the smallest (or last)
 %                                       gap filling reaction set (all
 %                                       reacitons irreversible)
 %           cellstr addedRxns:          array that contains all reactions
@@ -53,13 +53,13 @@ if ~exist('verbose', 'var')
 end
 
 tic
-%% Prepare the datbase matrix 
+%% Prepare the datbase matrix
 % convert to database model to irreversible
 dbModel_irr = convertModelToIrreversible(dbModel);
 % genes field
 rev = intersect(find(dbModel.lb), find(dbModel.ub));
 if isfield(dbModel, 'genes')
-     dbModel_irr.genes = vertcat(dbModel_irr.genes, dbModel_irr.genes(rev));
+    dbModel_irr.genes = vertcat(dbModel_irr.genes, dbModel_irr.genes(rev));
 end
 clear dbModel
 
@@ -71,7 +71,7 @@ biomass_idx = find(logical(model.c));
 biomass_sink_id = {'sink_BIOMASS[c]'};
 biomass_sink_idx = find(strcmp(model.rxns, biomass_sink_id));
 
-% Get the ids of all irreversible reactions, they can be assigned different 
+% Get the ids of all irreversible reactions, they can be assigned different
 % weights to because they can be reversed (indices will be the same as in
 % the original model because reverse reactions are just appended)
 irrev = union(find(model.lb==0), find(model.ub==0));
@@ -116,7 +116,7 @@ dbModel_irr.S = [dbModel_irr.S; zeros(numel(mets_not_in_db),...
 % permeability vector
 if isfield(dbModel_irr, 'metPermeability')
     dbModel_irr.metPermeability = vertcat(dbModel_irr.metPermeability,...
-    zeros(numel(mets_not_in_db), 1));
+        zeros(numel(mets_not_in_db), 1));
 end
 clear mets_not_in_db
 
@@ -142,7 +142,7 @@ for i=1:numel(rxns_model_irr)
     S_add(met_idx_db, i) = coeff;
 end
 
-% add reactions with opposite directions to originally irreversible reactions in the model 
+% add reactions with opposite directions to originally irreversible reactions in the model
 S_rev_cand = zeros(size(dbModel_irr.S, 1), numel(rev_cand));
 for i=1:numel(rev_cand_idx)
     rxn_idx = rev_cand_idx(i);
@@ -226,7 +226,7 @@ if ~isempty(excMets) && isfield(weights, 'uptake')
     
     
 elseif ~isempty(excMets) && ~isfield(weights, 'uptake')
-        warning('No weight for ''uptake'' found in the provided weights')
+    warning('No weight for ''uptake'' found in the provided weights')
 else
     S_ex = [];
 end
@@ -351,42 +351,42 @@ lp.csense = repmat('E',1,size(beq));
 
 while abs(alpha - beta) > 1
     % Weighting factor for biomass reaction
-   delta = floor(mean([alpha, beta]));
-   
-   % re-define the objective for the biomass
-%    f(biomass) = -delta;
-   lp.c(biomass) = delta;
-   % Solve the LP
-%    solution = cplexlp(f, [], [], dbModel_irr.S, beq, lb, ub);
+    delta = floor(mean([alpha, beta]));
+    
+    % re-define the objective for the biomass
+    %    f(biomass) = -delta;
+    lp.c(biomass) = delta;
+    % Solve the LP
+    %    solution = cplexlp(f, [], [], dbModel_irr.S, beq, lb, ub);
     solution = solveCobraLP(lp);
-
+    
     solution = solution.full;
     
-   if solution(biomass) >= epsilon
-       % consider the reactions that have not been in the model before
-       nz = solution >= precision;
-       % v vector of reaction fluxes
-       solutions{end+1} = solution(union(find(nz),rxns_model));
-       nz(rxns_model) = 0;
-       % reaction that would be added by this solution
-       reaction_sets{end+1} = dbModel_irr.rxns(nz);
-       
-       
-       if numel(reaction_sets)==1 || numel(reaction_sets{end}) <= numel(reaction_sets{end-1})
-           beta = delta;
-       else
-           alpha = delta;
-       end
-       
-       % will be used as the final solution
-       S = solution;
-   else
-       alpha = delta;
-   end
-
+    if solution(biomass) >= epsilon
+        % consider the reactions that have not been in the model before
+        nz = solution >= precision;
+        % v vector of reaction fluxes
+        solutions{end+1} = solution(union(find(nz),rxns_model));
+        nz(rxns_model) = 0;
+        % reaction that would be added by this solution
+        reaction_sets{end+1} = dbModel_irr.rxns(nz);
+        
+        
+        if numel(reaction_sets)==1 || numel(reaction_sets{end}) <= numel(reaction_sets{end-1})
+            beta = delta;
+        else
+            alpha = delta;
+        end
+        
+        % will be used as the final solution
+        S = solution;
+    else
+        alpha = delta;
+    end
+    
 end
 clear lp
-
+disp(solution(biomass))
 if verbose
     fprintf('\n\t> finished binary search (%.0fs)\n', toc-tmp_toc)
 end
@@ -485,19 +485,19 @@ if ~isempty(reaction_sets)
     consistModel.subSystems = cellfun(@(x)model_irr.subSystems(strcmp(x, rxns_model_irr)),...
         consistModel.rxns, 'UniformOutput', false);
     consistModel.subSystems(idx_new_rxns) = {''};
- 
+    
     % E.C. numbers
     if isfield(model_irr, 'EC')
         consistModel.EC = cellfun(@(x)model_irr.EC(strcmp(x, rxns_model_irr)),...
             consistModel.rxns, 'UniformOutput', false);
         consistModel.EC(idx_new_rxns) = {''};
     end
-
+    
     % add new genes and according rules to the model
     if isfield(dbModel_irr, 'genes')
         nz(rxns_model) = 0;
         new_genes = dbModel_irr.genes(nz); % same order as reactions
-
+        
         
         for i=1:numel(new_genes)
             
@@ -530,7 +530,7 @@ if ~isempty(reaction_sets)
     
     % get the metabolites associated with these reactions
     consistModel.mets = dbModel_irr.mets(met_idx_add);
-
+    
     % update all metabolite-related fields:
     addedMets = setdiff(consistModel.mets, model_irr.mets);
     idx_new_mets = cell2mat(cellfun(@(x)find(strcmp(x, consistModel.mets)), addedMets,...
@@ -597,6 +597,6 @@ else
     addedRxns = {};
 end
 if verbose
-    fprintf('\nTotal time: %.0fs\n', toc); 
+    fprintf('\nTotal time: %.0fs\n', toc);
 end
 end

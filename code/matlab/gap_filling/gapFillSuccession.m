@@ -60,11 +60,7 @@ for i = S
     
     % add the optimal biomass value of the current gap filled model
 %     v = cplexlp(-gfModel.c, [], [], gfModel.S, gfModel.b, gfModel.lb, gfModel.ub);
-    try 
-        v = optimizeCbModel(gfModel);
-    catch
-        disp(gfModel)
-    end
+    v = optimizeCbModel(gfModel);
     v = v.x;
     bio(i) = v(logical(gfModel.c));
     
