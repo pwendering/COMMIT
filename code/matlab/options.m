@@ -6,7 +6,7 @@
 warning('off', 'all')
 
 % number of parallel workers
-ncpu = 8;
+ncpu = 2;
 
 % habitat
 habitat = 'Soil';
