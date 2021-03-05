@@ -142,7 +142,8 @@ parfor i=1:iterations
     % create random successsion and add it to candidate set
     solutions(i,:) = randperm(n);
     
-    [gf(i,:), exc(i,:), bio(i,:), dep(i)] = gapFillSuccession(models, solutions(i,:), DB, medium, auxo_media, seq_sim,...
+    [gf(i,:), exc(i,:), bio(i,:), dep(i)] = gapFillSuccession(models,...
+        solutions(i,:), DB, medium, auxo_media, seq_sim,...
         weights, epsilon, include_sink, false);
     
     t_2 = clock;
