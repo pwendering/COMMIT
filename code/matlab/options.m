@@ -15,8 +15,8 @@ habitat = 'Soil';
 experiments = {'Schlaeppi'};
 
 % path to ComGapFil top directory
-% topDir = '/stud/wendering/ComGapFill';
-topDir = '/import/store9/data-nikoloski/wendering/comgapfill';
+topDir = '/stud/wendering/ComGapFill';
+% topDir = '/import/store9/data-nikoloski/wendering/comgapfill';
 
 % change to working directory
 cd(topDir)
@@ -51,8 +51,8 @@ order = [];
 include_sink = false;
 
 % set COBRA solver for linear optimization problems
-initCobraToolbox(false)
-% changeCobraSolver('ibm_cplex','LP',0);
+% initCobraToolbox(false)
+changeCobraSolver('ibm_cplex','LP',0);
 % changeCobraSolver('gurobi','LP',0);
 % changeCobraSolver('matlab','LP',0);
 
@@ -65,7 +65,7 @@ modelFile = fullfile(modelDir, [habitat, '_consensus_models_biomass']);
 % modelDir = 'data/models/kbase';
 % modelFile = fullfile(modelDir, habitat, [habitat, '_models_biomass']);
 
-tmp_spec = '_all';
+tmp_spec = '_all_test';
 sub_dir = strtok(tmp_spec,'_');
 
 % output directory for the gap-filled models

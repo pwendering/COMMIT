@@ -385,14 +385,12 @@ while abs(alpha - beta) > 1
     end
     
 end
-clear lp
+clear lp solution Aeq nz
 
 if verbose
     fprintf('\n\t> finished binary search (%.0fs)\n', toc-tmp_toc)
 end
 tmp_toc = toc;
-
-clear Aeq nz
 
 %% Update the input model
 if ~isempty(reaction_sets)
