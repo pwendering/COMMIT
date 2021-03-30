@@ -12,7 +12,7 @@ ncpu = 8;
 habitat = 'Soil';
 
 % experiments to be analyzed
-experiments = {'Schlaeppi'};
+experiments = {'Bulgarelli', 'Schlaeppi'};
 
 % path to ComGapFil top directory
 topDir = '/stud/wendering/ComGapFill';
@@ -60,17 +60,17 @@ include_sink = false;
 
 % location where draft models are stored
 modelDir = 'data/models/consensus/';
-% modelFile = fullfile(modelDir, [habitat, '_consensus_models_noCarveMe_biomass']);
 modelFile = fullfile(modelDir, [habitat, '_consensus_models_biomass']);
+% modelFile = fullfile(modelDir, [habitat, '_consensus_models_noCarveMe_biomass']);
 % modelDir = 'data/models/kbase';
 % modelFile = fullfile(modelDir, habitat, [habitat, '_models_biomass']);
 
-tmp_spec = '_all_test';
-sub_dir = strtok(tmp_spec,'_');
+tmp_spec = '_all';
+% tmp_spec = '_noCarveMe';
+% tmp_spec = '_KBase';
+sub_dir = regexprep(tmp_spec, '^_', '');
 
 % output directory for the gap-filled models
-% outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir);
-% outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir);
 outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir);
 
 
