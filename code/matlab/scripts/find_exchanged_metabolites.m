@@ -1,7 +1,7 @@
 % find exchanged metabolites between the OTUs
-options
+% options
 
-experiment = 'Bulgarelli';
+experiment = 'Schlaeppi';
 
 % medium that has been used for gap filling
 load(mediumFile)
@@ -14,8 +14,8 @@ figOutDir = 'figures/exchanged_metabolites';
 
 % taxonomic classification of At-SPHERE OTUs
 % taxonomyFile = 'data/genomes/At-SPHERE-phyla.txt';
-taxonomyFile = 'data/genomes/At-SPHERE-classes.txt';
-% taxonomyFile = 'data/genomes/At-SPHERE-families.txt';
+% taxonomyFile = 'data/genomes/At-SPHERE-classes.txt';
+taxonomyFile = 'data/genomes/At-SPHERE-families.txt';
 
 % load model workspace
 modelWorkspace = fullfile(outDir, experiment);
@@ -154,7 +154,7 @@ for i=1:numel(all_brite_imp)
     n_brite_imp(:,i) = cellfun(@(x)sum(ismember(x, all_brite_imp{i})), brite_imported);
 end
 
-%% most abundant pathways/brite per unspecific interaction
+%% most abundant brite per unspecific interaction
 % pathways_exchange = cell(numel(pathways_exported));
 n_groups = numel(tax_classes);
 brite_exchange = cell(n_groups);
@@ -179,6 +179,8 @@ for i=1:numel(brite_exported)
         % intersection of export of i and import of j
         exchange =  intersect(...
             vertcat(exported_per_model{idx_tax_i}), vertcat(imported_per_model{idx_tax_j}));
+        % exclude protons
+        exchange = setdiff(exchange, 'MNXM1[e]');
         
         if ~isempty(exchange)
                         
@@ -192,18 +194,14 @@ for i=1:numel(brite_exported)
                 matrix_exchange_IDs{i,j} = tmp_brite;
                 
                 % index associated with the most-abundant brite class
-                [~, tmp_idx] = max(cellfun(@(x)sum(ismember(tmp_brite,x)),...
-                setdiff(tmp_brite, {'Other'})));
-                if ~isempty(tmp_idx)
-                    brite_exchange(i,j) = tmp_brite(tmp_idx);
-                else
-                    brite_exchange(i,j) = {''};
-                end
+                [~, tmp_idx] = max(cellfun(@(x)sum(ismember(tmp_brite,x)),tmp_brite));
+                brite_exchange(i,j) = tmp_brite(tmp_idx);
+
             else
                 brite_exchange(i,j) = {''};
             end
         else
-            brite_exchange(i,j) = {'Other'};
+            brite_exchange(i,j) = {''};
         end
     end
 end
@@ -314,5 +312,12 @@ writetable(array2table(exchange_mt, 'VariableNames', tax_classes),...
     'WriteVariableNames', true,...
     'Delimiter', '\t')
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% galactose
+model_ids(cellfun(@(x)ismember({'MNXM112[e]'},x),exported_per_model))
+model_ids(cellfun(@(x)ismember({'MNXM112[e]'},x),imported_per_model))
 
+% fructose
+model_ids(cellfun(@(x)ismember({'MNXM1542[e]'},x),exported_per_model))
+model_ids(cellfun(@(x)ismember({'MNXM1542[e]'},x),imported_per_model))
