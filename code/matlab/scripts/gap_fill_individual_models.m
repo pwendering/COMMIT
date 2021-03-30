@@ -69,12 +69,12 @@ for i=1:n
     % add medium to the model
     model = addExchangeRxn(model, medium);
     % test if model is already functional
-    opt = optimizeCbModel(model);
-    opt = opt.f;
+    v = cplexlp(-model.c, [], [], model.S, model.b, model.lb, model.ub);
+    opt = v(model.c==1);
     
     if opt>=10E-6
         disp('Model already functional')
-    end
+    end; clear v opt
     
     idx_model = strcmp(model_ids(i), col_labels);
     dbModel_MNXref_balanced.scores = seq_sim_mat(:,idx_model);
@@ -88,8 +88,7 @@ for i=1:n
     % make the stoichiometric matrix sparse
     GF{i}.S = sparse(GF{i}.S);
     options = optimoptions('linprog', 'Display', 'none');
-    v = linprog(-GF{i}.c, [], [], GF{i}.S, GF{i}.b, GF{i}.lb, GF{i}.ub, options);
-%     v = cplexlp(-GF{i}.c, [], [], GF{i}.S, GF{i}.b, GF{i}.lb, GF{i}.ub);
+    v = cplexlp(-GF{i}.c, [], [], GF{i}.S, GF{i}.b, GF{i}.lb, GF{i}.ub);
     
     bio(i) = v(logical(GF{i}.c)); clear v
     gf(i) = numel(addedRxns)-sum(contains(addedRxns, 'sink_'));
