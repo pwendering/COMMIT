@@ -1,6 +1,9 @@
 % Impact of exchanged metabolites on biomass flux
 options
 
+% set COBRA solver to CPLEX
+changeCobraSolver('ibm_cplex','all',0);
+
 % medium that has been used for gap filling
 load(mediumFile)
 
@@ -10,8 +13,7 @@ load(mediumFile)
 taxonomyFile = 'data/genomes/At-SPHERE-families.txt';
 
 % load model workspace
-subFolders = cellstr(sub_dir);
-% subFolders = {'KBase', 'no_CarveMe', 'all'};
+subFolders = {'KBase', 'no_CarveMe', 'all'};
 
 for E = experiments
     E = char(E);
@@ -19,7 +21,7 @@ for E = experiments
         
         F = char(F);
         
-        fileBaseName = ['/figures/exchanged_metabolites/reduction_biomass/',...
+        fileBaseName = ['figures/exchanged_metabolites/reduction_biomass/',...
                 habitat, '_', E, '_', F, '_biomass_'];
             
         fprintf('\n%s %s...\n', E, F)
@@ -119,8 +121,6 @@ for E = experiments
             model_ids = cellfun(@(x)strtok(x.id, '_'), GF, 'un', 0);
             
             %% write table to file
-            
-            
             writetable(array2table(ratio_sink, 'VariableNames', strtok(exported, '['),...
                 'RowNames', model_ids),...
                 [fileBaseName, 'export.txt'], 'Delimiter', '\t',...
@@ -143,17 +143,22 @@ for E = experiments
         
         brite_uptake = map2KEGGBrite(imported, briteFile);
         for i=1:numel(brite_uptake)
-            if numel(brite_uptake{i}) > 1
+            if ~isempty([brite_uptake{i}{:}]) 
                 brite_uptake(i) = brite_uptake{i}(1);
+            else
+                brite_uptake(i) = {'Other'};
             end
         end
         
         brite_export = map2KEGGBrite(exported, briteFile);
         for i=1:numel(brite_export)
-            if numel(brite_export{i}) > 1
+            if ~isempty([brite_export{i}{:}])
                 brite_export(i) = brite_export{i}(1);
+            else
+                brite_export(i) = {'Other'};
             end
         end
+        brite_export(cellfun(@isempty,brite_export)) = {'Other'};
         
         writetable(cell2table([strtok(exported, '['), brite_export],...
             'VariableNames', {'ID', 'brite'}),...
