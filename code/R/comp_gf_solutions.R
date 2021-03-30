@@ -9,10 +9,12 @@ par(family = "Arial")
 # intersection of gap-filling solutions
 ##########################################################
 
+topDir <- "~/ComGapFill"
+writeToFile <- F
 habitat <- "Soil"
 experiments <- c("Schlaeppi", "Bulgarelli")
 spec <- c("", "_no_exc_rxns")
-
+ 
 palettelength <- 100
 col1 <- "beige"
 col2 <- "firebrick4"
@@ -21,22 +23,23 @@ mybreaks = c(seq(from = 0,to = 1, length.out =  palettelength))
 
 for (E in experiments) {
   for (S in spec){
-    data <- read.table(paste("/stud/wendering/Masterthesis/FIGURES/added_reactions/", habitat, "_",
+    data <- read.table(paste(topDir, "/figures/added_reactions/", habitat, "_",
                              E, "_dist_methods", S, ".txt", sep = ""),
                        header = T, na.strings = "NaN")
     row.names(data) <- data[,1]
     data = data[,-1]
     data[is.na(data)] = 0
     data <- 1 - data
-    png(paste("/stud/wendering/Masterthesis/FIGURES/added_reactions/jaccard_index_solutions_",
+    if (writeToFile) { 
+      png(paste(topDir, "/figures/added_reactions/jaccard_index_solutions_",
               habitat, '_', E, S, '.png', sep = ""))#, height = 200, width = 200)
+    }
     labels <- c("KBase draft models cond.", "consensus - C cond.", "consensus cond.",
                 "KBase draft models ind.", "consensus - C ind.", "consensus ind.")
      c <- pheatmap(as.matrix(data),
              cluster_cols = T,
              cluster_rows = F,
              labels_col = labels,
-             # labels_row = labels,
              kmeans_k = 3,
              main = "",
              breaks = mybreaks,
@@ -52,8 +55,9 @@ for (E in experiments) {
              width = 20,
              height = 10)
     
-    dev.off()
-  
+     if (writeToFile) dev.off()
+  print(paste(topDir, "/figures/added_reactions/", habitat, "_",
+             E, "_dist_methods", S, ".txt", sep = ""))
   }
 }
 

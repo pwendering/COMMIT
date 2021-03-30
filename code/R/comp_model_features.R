@@ -4,30 +4,31 @@ library(scales)
 
 rm(list = ls())
 habitats = c("Soil", "Leaf", "Root")
-wd = "/stud/wendering/Masterthesis/FIGURES/model-features/"
+topDir = "~/ComGapFill/figures/model-features/"
+writeToFile = T
 
 for (i in 1:length(habitats)) {
   if (!exists("rxns")) {
-    rxns <- read.table(paste(wd, "rxns-", habitats[i], ".txt", sep = ""),
+    rxns <- read.table(paste(topDir, "rxns-", habitats[i], ".txt", sep = ""),
                      header = T)
   } else {
-    rxns <- rbind(rxns, read.table(paste(wd, "rxns-", habitats[i], ".txt", sep = ""),
+    rxns <- rbind(rxns, read.table(paste(topDir, "rxns-", habitats[i], ".txt", sep = ""),
                                        header = T))
   }
   
   if (!exists("mets")) {
-    mets <- read.table(paste(wd, "mets-", habitats[i], ".txt", sep = ""),
+    mets <- read.table(paste(topDir, "mets-", habitats[i], ".txt", sep = ""),
                        header = T)
   } else {
-    mets <- rbind(mets, read.table(paste(wd, "mets-", habitats[i], ".txt", sep = ""),
+    mets <- rbind(mets, read.table(paste(topDir, "mets-", habitats[i], ".txt", sep = ""),
                                    header = T))
   }
   
   if (!exists("genes")) {
-    genes <- read.table(paste(wd, "genes-", habitats[i], ".txt", sep = ""),
+    genes <- read.table(paste(topDir, "genes-", habitats[i], ".txt", sep = ""),
                        header = T)
   } else {
-    genes <- rbind(genes, read.table(paste(wd, "genes-", habitats[i], ".txt", sep = ""),
+    genes <- rbind(genes, read.table(paste(topDir, "genes-", habitats[i], ".txt", sep = ""),
                                    header = T))
   }
 }
@@ -44,7 +45,9 @@ for (i in 1:length(habitats)) {
   y_max <- 1.1*max(box_data)
   cex <- 1.2
   
-  png(paste(wd, "Comp_features.png", sep = ""), height = 20, width = 20, units = "cm", res = 300)
+  if (writeToFile) {
+    png(paste(topDir, "Comp_features.png", sep = ""), height = 20, width = 20, units = "cm", res = 300)
+  }
   par(bty = "n", family = "Arial", mai = rep(1,4))
   boxplot(box_data, at = x_pos, ylim = c(0,y_max),
           col = rep(c(cbp1[c(1,2)]),3),
@@ -100,7 +103,5 @@ for (i in 1:length(habitats)) {
        font = 2, cex.axis = cex)
   legend("topright", legend = c("Sum", "Consensus", "CarveMe", "KBase", "RAVEN 2.0", "AuReMe"),
          fill = cbp1[c(2,1,3,4,5,6)], bty = "n", cex = cex)
-  # points(x = c(2.9, 2.9), y = c(0,y_max), type = "l",col = "gray80", lty = 5)
-  # points(x = c(5.9, 5.9), y = c(0,y_max), type = "l",col = "gray80", lty = 5)
-  
-  dev.off()
+
+  if (writeToFile) dev.off()

@@ -5,7 +5,7 @@ library(plotrix)
 
 setwd("~/ComGapFill")
 
-writeToFile = F;
+writeToFile = T;
 
 habitat <- "Soil"
 experiment <- "Schlaeppi"

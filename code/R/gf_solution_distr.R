@@ -1,3 +1,4 @@
+# plot characteristics of gap-filling solutions across all explored iterations
 library(scales)
 
 myDensityPlot <- function (X, col, nbins, xlim) {
@@ -104,7 +105,8 @@ plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend,
 writeToFile = T
 habitat = "Soil"
 topDir = "~/ComGapFill"
-
+# store default graphical parameters
+originalPar = par();
 wd = paste(topDir, "/data/gap-filling/iterative/", habitat, "/all/", sep = "")
 outFileBase <- paste(topDir, "/figures/gap-filling/all/", sep = "")
 
@@ -129,3 +131,6 @@ plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_a
 
 mtext("scaled difference to optimal solution", side = 1, outer = T)
 if (writeToFile) dev.off()
+
+# reset parameters
+par(originalPar)

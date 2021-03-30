@@ -17,15 +17,15 @@ plotExchangeGraph <- function(fileBaseName, classFile, experiment, outPath, writ
   classification <- classification[,-1]
   classes <- unique(as.vector(as.matrix(classification)))
   
-
-  e_colors <- c()
+  # define edge colors
+  edgeColors <- c()
   for (i in 1:length(classes)) {
     if (is.na(classes[i])) {
       idx <- which(is.na(classification))
     } else {
     idx <- which(as.vector(as.matrix(classification))==classes[i])
     }
-    e_colors[idx] <- cbp1[i]
+    edgeColors[idx] <- cbp1[i]
   }
   
   # graph
@@ -37,8 +37,7 @@ plotExchangeGraph <- function(fileBaseName, classFile, experiment, outPath, writ
   fontsize <- 1.2
   
   E(G)$width <- 2*E(G)$weight
-  palette <- colorRampPalette(c("lightblue", "firebrick"))
-  E(G)$color <- alpha(as.vector(t(matrix(e_colors, nrow = nrow(classification), ncol = ncol(classification))))[which(t(adj_mat)>0)],0.8)
+  E(G)$color <- alpha(as.vector(t(matrix(edgeColors, nrow = nrow(classification), ncol = ncol(classification))))[which(t(adj_mat)>0)],0.8)
   E(G)$arrow.width = 0.2*E(G)$weight
   E(G)$arrow.size = 1.5
   
@@ -67,27 +66,15 @@ plotExchangeGraph <- function(fileBaseName, classFile, experiment, outPath, writ
   if (writeToFile) dev.off()
 }
 
-writeToFile = T
+writeToFile = F
 topDir = "~/ComGapFill/figures"
 
-### Consensus
-# Soil
-# modelType <- "all"
-# fileBaseName <- paste(topDir, "/exchanged_metabolites/graph/", modelType, "_exchanged_metabolites_", sep = "")
-# outPath <- paste(topDir, "/exchanged_metabolites/graph/", modelType, "_", sep = "")
-# classFile <- paste(topDir, "/exchanged_metabolites/graph/", modelType,
-#                    "_brite_exchanged_", sep = "")
-# 
-# plotExchangeGraph(fileBaseName = fileBaseName, classFile = classFile, experiment = "Schlaeppi", outPath = outPath, writeToFile = writeToFile)
-# plotExchangeGraph(fileBaseName = fileBaseName, classFile = classFile, experiment = "Bulgarelli", outPath = outPath, writeToFile = writeToFile)
-
-# Root
+habitat = "Soil"
 modelType <- "all"
-fileBaseName <- paste(topDir, "/exchanged_metabolites/graph/Root_", modelType, "_exchanged_metabolites_", sep = "")
-outPath <- paste(topDir, "/exchanged_metabolites/graph/Root_", modelType, "_", sep = "")
-classFile <- paste(topDir, "/exchanged_metabolites/graph/Root_", modelType,
+fileBaseName <- paste(topDir, "/exchanged_metabolites/graph/", habitat, "_", modelType, "_exchanged_metabolites_", sep = "")
+outPath <- paste(topDir, "/exchanged_metabolites/graph/", modelType, "_", sep = "")
+classFile <- paste(topDir, "/exchanged_metabolites/graph/", modelType,
                    "_brite_exchanged_", sep = "")
 
 plotExchangeGraph(fileBaseName = fileBaseName, classFile = classFile, experiment = "Schlaeppi", outPath = outPath, writeToFile = writeToFile)
-plotExchangeGraph(fileBaseName = fileBaseName, classFile = classFile, experiment = "Bulgarelli", outPath = outPath, writeToFile = writeToFile)
-
+# plotExchangeGraph(fileBaseName = fileBaseName, classFile = classFile, experiment = "Bulgarelli", outPath = outPath, writeToFile = writeToFile)

@@ -2,21 +2,22 @@
 library(pheatmap)
 library(wesanderson)
 
-translateIDs2Name <- function(fname, translationDir) {
+translateIDs2Name <- function(fname, topDir) {
   return(
     system(
-    command = paste("echo \"", translationDir, "mapIDs.sh ",
+    command = paste0("echo \"", topDir, "code/bash/mapIDs.sh ",
                     fname,
-                    " 7 ", translationDir, "MNXref-met-translation-table.csv\" | bash", sep = ""),
+                    " 7 ", topDir, "data/tables/MNXref/", "MNXref-met-translation-table.csv\" | bash"),
     intern = T
     )
   )
 }
 
-habitat <- "Root"
+topDir <- "~/ComGapFill/"
+habitat <- "Soil"
 experiment <- "Schlaeppi"
 modelType <- "all"
-t_ratio <- 1-10E-3
+t_ratio <- 1-1E-3
 
 
 # ~~~~~~~~~~~ General settings ~~~~~~~~~~~ #
@@ -29,25 +30,21 @@ pal <- colorRampPalette(c(col1, col2, col3), bias = 0.1)(palettelength)
 # pal <- wes_palette("Chevalier1", palettelength, type = "continuous")
 mybreaks <- c(seq(from = 0,to = 1, length.out =  palettelength))
 
-fileBaseName <- paste("/stud/wendering/Masterthesis/FIGURES/exchanged_metabolites/reduction_biomass/", habitat, "_",
+fileBaseName <- paste(topDir, "figures/exchanged_metabolites/reduction_biomass/", habitat, "_",
                      experiment, "_", modelType, "_biomass_", sep = "")
-translationDir <- "/stud/wendering/Masterthesis/DATA/tables/MNXref/"
+translationDir <- paste0(topDir, "data/tables/MNXref")
 tmpFile <- paste(translationDir, "tmp", sep = "")
 
 # ~~~~~~~~~~~ medium ~~~~~~~~~~~ #
-
-medium <- translateIDs2Name(fname = "<(cut -f 1 /stud/wendering/Masterthesis/DATA/media/minimal-medium.csv)", translationDir = translationDir)
+medium <- translateIDs2Name(fname = paste0("<(cut -f 1 ", topDir, "data/media/minimal-medium.csv)"), topDir = topDir)
 
 # ~~~~~~~~~~~ Import ~~~~~~~~~~~ #
 
-import <- read.table(paste(fileBaseName, "import.txt", sep = ""), header = T)
-row.names(import) <- import[,1]
-import = import[,-1]
+import <- read.table(paste(fileBaseName, "import.txt", sep = ""), header = T, sep = "\t", row.names = 1)
 cnames <- colnames(import)
-ids_import <- cnames
-write.table(x = cnames, file = tmpFile, row.names = F,
+write.table(x = ids_import, file = tmpFile, row.names = F,
             col.names = F, quote = F)
-cnames <- translateIDs2Name(tmpFile, translationDir = translationDir)
+cnames <- translateIDs2Name(tmpFile, topDir = topDir)
 #cnames <- c("Fe(2+)", "beta-D-galactose", "PPi", "L-histidine", "keto-D-fructose",
 #            "propanoyl P", "glutathione disulfide", "acetoacetate", "3'-AMP",
 #            "alpha,alpha-trehalose", "H(+)", "3,4-dihydroxybenzoate", "3'-GMP", "3'-UMP",
@@ -66,16 +63,14 @@ import <- apply(X = import, MARGIN = 2, FUN = function(x) {x[x>=t_ratio]=1; retu
 ids_import = ids_import[which(colSums(import)<nrow(import))]
 import = import[,which(colSums(import)<nrow(import))]
 # colnames(import) <- cnames
-# ~~~~~~~~~~~ Export ~~~~~~~~~~~ #
 
-export <- read.table(paste(fileBaseName, "export.txt", sep = ""), header = T)
-row.names(export) <- export[,1]
-export = export[,-1]
-cnames <- colnames(export)
-ids_export <- cnames
-write.table(x = cnames, file = tmpFile, row.names = F,
+
+# ~~~~~~~~~~~ Export ~~~~~~~~~~~ #
+export <- read.table(paste(fileBaseName, "export.txt", sep = ""), header = T, sep = "\t", row.names = 1)
+ids_export <- colnames(export)
+write.table(x = ids_export, file = tmpFile, row.names = F,
             col.names = F, quote = F)
-cnames <- translateIDs2Name(tmpFile, translationDir = translationDir)
+cnames <- translateIDs2Name(tmpFile, topDir = topDir)
 
 # Schlaeppi
 #cnames <- c("CO",
@@ -150,7 +145,6 @@ cnames <- translateIDs2Name(tmpFile, translationDir = translationDir)
 #    "Thiamine thiazole",
 #    "Pi")
 
-
 colnames(export) <- cnames
 
 # apply a threshold of 10E-6 to the ratio
@@ -162,12 +156,10 @@ export = export[,which(colSums(export)<nrow(export))]
 # ~~~~~~~~~~~ Annotation ~~~~~~~~~~~ #
 
 # Rows
-families <- read.csv("/stud/wendering/Masterthesis/DATA/genomes/At-SPHERE-families.txt", header = T,
+families <- read.csv(paste0(topDir, "data/genomes/At-SPHERE-families.txt"), header = T,
                        sep = "\t")
-classes <- read.csv("/stud/wendering/Masterthesis/DATA/genomes/At-SPHERE-classes.txt", header = T,
+classes <- read.csv(paste0(topDir, "data/genomes/At-SPHERE-classes.txt"), header = T,
                        sep = "\t")
-# tax_groups <- read.csv("/stud/wendering/Masterthesis/DATA/genomes/At-SPHERE-orders.txt", header = T,
-#                        sep = "\t")
 
 families = families[families[,1] %in% row.names(import),]
 classes = classes[classes[,1] %in% row.names(import),]
@@ -181,17 +173,17 @@ p_length_classes = length(unique_classes)
 p_families = wes_palette("Moonrise2", p_length_families, type = "continuous")
 p_classes = wes_palette("Cavalcanti1", p_length_classes, type = "continuous")
 
-# ann_colors <- list(Class = c(Bacilli = "navyblue",
-#                              Actinobacteria = "darkolivegreen",
-#                              Gammaproteobacteria = "firebrick4"),
-#                    Family = c(Paenibacillaceae = p_families[1],
-#                              Bacillaceae = p_families[2],
-#                              Microbacteriaceae = p_families[3],
-#                              Mycobacteriaceae = p_families[4],
-#                              Micrococcaceae = p_families[5],
-#                              Intrasporangiaceae = p_families[6],
-#                              Xanthomonadaceae = p_families[7],
-#                              Nocardioidaceae = p_families[8]))
+ann_colors <- list(Class = c(Bacilli = "navyblue",
+                             Actinobacteria = "darkolivegreen",
+                             Gammaproteobacteria = "firebrick4"),
+                   Family = c(Paenibacillaceae = p_families[1],
+                             Bacillaceae = p_families[2],
+                             Microbacteriaceae = p_families[3],
+                             Mycobacteriaceae = p_families[4],
+                             Micrococcaceae = p_families[5],
+                             Intrasporangiaceae = p_families[6],
+                             Xanthomonadaceae = p_families[7],
+                             Nocardioidaceae = p_families[8]))
 
 ann_colors$Family <- p_families
 names(ann_colors$Family) <- unique_families
@@ -205,12 +197,6 @@ annotation_r <- data.frame(Class = factor(classes[,2]),
 
 # Columns
 
-# in_medium <- colnames(import) %in% medium
-# in_medium[which(in_medium)] = "included"
-# in_medium[which(in_medium=="FALSE")] = "not included"
-# annotation_c_import <- data.frame(Medium = factor(in_medium),
-#                                   row.names = colnames(import))
-
 # mapping of MNXref identifiers to KEGG br08001
 brite_import <- read.csv(paste(fileBaseName, "import_brite.txt", sep = ""),
                            header = T, sep = "\t", na.strings = "NA",
@@ -222,15 +208,6 @@ brite_import[which(brite_import[,2]==""),2] <- "Other"
 annotation_c_import <- data.frame(BRITE = factor(brite_import[,2]),
                                   row.names = colnames(import))
 
-# pathway_import <- read.csv(paste(fileBaseName, "import_pathway.txt", sep = ""),
-#                            header = T, sep = "\t", na.strings = "NA",
-#                            colClasses = c("character", "character"))
-
-# in_medium <- colnames(export) %in% medium
-# in_medium[which(in_medium)] = "included"
-# in_medium[which(in_medium=="FALSE")] = "not included"
-# annotation_c_export <- data.frame(Medium = factor(in_medium),
-#                                   row.names = colnames(export))
 brite_export <- read.csv(paste(fileBaseName, "export_brite.txt", sep = ""),
                          header = T, sep = "\t", na.strings = "NA",
                          colClasses = c("character", "character"))
@@ -240,10 +217,6 @@ brite_export <- brite_export[which(brite_export[,1] %in% ids_export), ]
 brite_export[which(brite_export[,2]==""),2] <- "Other"
 annotation_c_export <- data.frame(BRITE = factor(brite_export[,2]),
                                   row.names = colnames(export))
-# pathway_export <- read.csv(paste(fileBaseName, "export_pathway.txt", sep = ""),
-#                            header = T, sep = "\t", na.strings = "NA",
-#                            colClasses = c("character", "character"))
-# ann_colors$Medium <- c("not included" = "white", "included" =  "gray30")
 
 # re-arrange the dataframes clustered by annotation
 
@@ -386,6 +359,3 @@ c_export <- pheatmap(t(export_re),
                      fontsize = font_size,
                      angle_col = 315
 )
-# cutree(c_export$tree_row, k = 8)
-
-
