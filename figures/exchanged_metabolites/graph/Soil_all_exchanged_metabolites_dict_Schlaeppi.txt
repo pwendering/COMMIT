@@ -1,0 +1,18 @@
+MNXM111[e]	Minerals
+MNXM112[e]	Carbohydrates
+MNXM132[e]	
+MNXM140[e]	Peptides
+MNXM1542[e]	
+MNXM196[e]	Minerals
+MNXM1984[e]	Organic acids
+MNXM199[e]	Peptides
+MNXM1[e]	
+MNXM22[e]	
+MNXM231[e]	Peptides
+MNXM339[e]	
+MNXM3414[e]	
+MNXM4[e]	
+MNXM58[e]	
+MNXM70[e]	Peptides
+MNXM89661[e]	Organic acids
+MNXM9[e]	Minerals
