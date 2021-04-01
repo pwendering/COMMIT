@@ -24,16 +24,21 @@ end
 
 %% ~~~~~ translate IDs to KEGG ~~~~~ %%
 % if compartment identifiers are present, they are removed
-metList_KEGG = translateIDs(strtok(metList, '['), 'met', [], 'MNXref', 'KEGG', false);
+metList = strtok(metList, '[');
+metList_KEGG = translateIDs(metList, 'met', [], 'MNXref', 'KEGG', false);
 % untranslated IDs are re-filled with MNXref IDs (contained in the
 % manual extension of brite)
 idx_empty = cellfun(@isempty, metList_KEGG);
-metList_KEGG(idx_empty) = metList(idx_empty); clear metList
+metList_KEGG(idx_empty) = metList(idx_empty);
 
 %% ~~~~~ find brite ~~~~~ %%
 % read the file as a table
 bTable = readtable(briteFile, 'ReadVariableNames', false, 'Delimiter', '\t');
 % find the matching indices for every metabolite and associated pathway IDs
-brite = cellfun(@(x)bTable.(3)(contains(bTable.(1), strsplit(x, '|'))), metList_KEGG, 'un', 0);
-brite = cellfun(@(x)strtok(x, ';'), brite, 'un', 0);
+brite_from_kegg = cellfun(@(x)bTable.(3)(contains(bTable.(1), strsplit(x, '|'))), metList_KEGG, 'un', 0);
+brite_from_mnxref = cellfun(@(x)bTable.(3)(ismember(bTable.(1), strsplit(x, '|'))), metList, 'un', 0);
+brite = brite_from_mnxref;
+idx_empty = cellfun(@isempty, brite);
+brite(idx_empty) = brite_from_kegg(idx_empty);
+brite = cellfun(@(x)strtok(x{:}, ';'), brite, 'un', 0);
 end
