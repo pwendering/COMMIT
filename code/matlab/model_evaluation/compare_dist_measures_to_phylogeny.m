@@ -20,18 +20,17 @@ coFactors = coFactorsTab.Var5; % MNXref
 habitats = {'Soil', 'Root', 'Leaf'};
 labels = {'SVD', 'JD_r', 'JD_m', 'n_DE', 'JD_DE', 'JD_EC', 'c_EC', 'c_CF'};
 
-parpool(ncpus);
+parpool(ncpu);
+
 for i=1:numel(habitats)
+    
     %% Load workspaces
     disp(habitats{i})
+    
     % Consensus models including CarveMe reconstructions
     models = load(fullfile('data/models/consensus/',[habitats{i},...
         '_consensus_models.mat']), 'merged_models');
-    models = models.merged_models;
-    %     merged_noCarveMe = load(fullfile('data/models/consensus/',...
-    %         [habitats{i}, '_consensus_models_noCarveMe.mat']), 'merged_models');
-    %     merged_noCarveMe = merged_noCarveMe.merged_models;
-    
+    models = models.merged_models;    
     
     %% calculate distances
     % 1. SVD distance

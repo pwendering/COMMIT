@@ -96,10 +96,27 @@ plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend,
   }
   if (add_legend){
     legend(x = -1, y = 95, legend = c("added reactions", "biomass fluxes", "exchanged metabolites"),
-           col = alpha(col, 0.5), lwd = 6, box.lwd = 0, cex = 1.2, bg = NA)
+           col = alpha(col, 0.5), lwd = 6, box.lwd = 0, cex = 1.5, bg = NA)
   }
   
   if (writeToFile) dev.off()
+}
+
+add_letter <- function(letter = "X", case = "upper") {
+  if (is.numeric(letter)) {
+    if (case == "upper") {
+      letter = LETTERS[letter]
+    }
+    else
+      letter = letters[letter]
+  }
+  
+  tmp_usr = par("usr")
+  par(usr = c(0,1,0,1), family = "Arial")
+  
+  text(x = -0.1, y = 1.1, labels = letter, pos = 1, cex = 2.5, font = 2)
+  
+  par(usr = tmp_usr)
 }
 
 writeToFile = T
@@ -107,29 +124,42 @@ habitat = "Soil"
 topDir = "~/ComGapFill"
 # store default graphical parameters
 originalPar = par();
-wd = paste(topDir, "/data/gap-filling/iterative/", habitat, "/all/", sep = "")
-outFileBase <- paste(topDir, "/figures/gap-filling/all/", sep = "")
+
+
 
 if (writeToFile) {
-  png(filename = paste0(outFileBase, "test_plot.png"))
+  png(filename = paste0(topDir, "/figures/gap-filling/Figure_3_gap_filling_iterations.png"), width = 20, height = 25, units = "cm",
+      res = 600)
 }
 par(mfrow=c(3,2))
-plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = F, y_axis = T, x_axis = F, writeToFile = F)
-plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F, writeToFile = F)
 
+# Full consensus models
+wd = paste(topDir, "/data/gap-filling/iterative/", habitat, "/all/", sep = "")
+outFileBase <- paste(topDir, "/figures/gap-filling/all/", sep = "")
+plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = F, y_axis = T, x_axis = F, writeToFile = F)
+add_letter(1)
+plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F, writeToFile = F)
+add_letter(2)
+
+# Consensus models without CarveMe models
 wd = paste(topDir, "/data/gap-filling/iterative/", habitat, "/no_CarveMe/", sep = "")
 outFileBase <- paste(topDir, "figures/gap-filling/no_CarveMe/", sep = "")
-
 plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = T, y_axis = T, x_axis = F, writeToFile = F)
+add_letter(3)
 plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F, writeToFile = F)
+add_letter(4)
 
+# Adapted KBase models
 wd = paste(topDir, "/data/gap-filling/iterative/Soil/KBase/", sep = "")
 outFileBase <- paste(topDir, "figures/gap-filling/iterative/KBase/kbase-", sep = "")
-
 plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = F, y_axis = T, x_axis = F, writeToFile = F)
+add_letter(5)
 plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F, writeToFile = F)
+add_letter(6)
 
-mtext("scaled difference to optimal solution", side = 1, outer = T)
+# Add common x-axis
+mtext("scaled difference to optimal solution", side = 1, outer = T, line = -1.5, cex = 1.2)
+
 if (writeToFile) dev.off()
 
 # reset parameters

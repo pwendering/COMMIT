@@ -16,7 +16,6 @@ experiments = {'Bulgarelli', 'Schlaeppi'};
 
 % path to ComGapFil top directory
 topDir = '/stud/wendering/ComGapFill';
-% topDir = '/import/store9/data-nikoloski/wendering/comgapfill';
 
 % change to working directory
 cd(topDir)

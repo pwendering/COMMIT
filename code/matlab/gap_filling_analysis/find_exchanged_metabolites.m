@@ -1,5 +1,5 @@
 % find exchanged metabolites between the OTUs
-% options
+options
 
 experiment = 'Schlaeppi';
 
@@ -189,7 +189,7 @@ for i=1:numel(brite_exported)
                 exchange);
             tmp_brite = cell(vertcat(tmp_brite{:}));
             tmp_brite(cellfun(@isempty, tmp_brite)) = {'Other'};
-
+            
             if ~isempty(tmp_brite)
                 matrix_exchange_IDs{i,j} = tmp_brite;
                 
@@ -321,3 +321,19 @@ model_ids(cellfun(@(x)ismember({'MNXM112[e]'},x),imported_per_model))
 % fructose
 model_ids(cellfun(@(x)ismember({'MNXM1542[e]'},x),exported_per_model))
 model_ids(cellfun(@(x)ismember({'MNXM1542[e]'},x),imported_per_model))
+
+import_brite = cellfun(@(x)map2KEGGBrite(x,briteFile),imported_per_model,'un',0);
+import_brite = cellfun(@(x)strjoin([x{:}],','),import_brite,'un',0);
+export_brite = cellfun(@(x)map2KEGGBrite(x,briteFile),exported_per_model,'un',0);
+export_brite = cellfun(@(x)strjoin(vertcat(x{:}),','),export_brite, 'un',0);
+imported_per_model = cellfun(@(x)strjoin(x,','),imported_per_model,'un',0);
+exported_per_model = cellfun(@(x)strjoin(x,','),exported_per_model,'un',0);
+fam_names = cellfun(@(x)taxonomyTab.(2)(ismember(taxonomyTab.(1),x)),model_ids);
+writetable(cell2table([fam_names, imported_per_model,import_brite,exported_per_model,export_brite],...
+    'RowNames', model_ids, 'VariableNames', {'family', 'import_ID', 'import_brite',...
+    'export_ID', 'export_brite'}),...
+    [figOutDir, filesep, 'graph', filesep, [habitat, '_', sub_dir],...
+    '_exchanged_metabolites_IDs_',experiment, '.txt'],...
+    'WriteRowNames', true, 'WriteVariableNames', true, 'Delimiter', '\t')
+
+

@@ -10,7 +10,7 @@ par(family = "Arial")
 ##########################################################
 
 topDir <- "~/ComGapFill"
-writeToFile <- F
+writeToFile <- T
 habitat <- "Soil"
 experiments <- c("Schlaeppi", "Bulgarelli")
 spec <- c("", "_no_exc_rxns")
@@ -30,9 +30,9 @@ for (E in experiments) {
     data = data[,-1]
     data[is.na(data)] = 0
     data <- 1 - data
-    if (writeToFile) { 
-      png(paste(topDir, "/figures/added_reactions/jaccard_index_solutions_",
-              habitat, '_', E, S, '.png', sep = ""))#, height = 200, width = 200)
+    if (writeToFile) {
+      png(paste0(topDir, "/figures/added_reactions/jaccard_index_solutions_",
+              habitat, '_', E, S, '.png'), height = 20, width = 20, units = "cm", res = 600)
     }
     labels <- c("KBase draft models cond.", "consensus - C cond.", "consensus cond.",
                 "KBase draft models ind.", "consensus - C ind.", "consensus ind.")
@@ -52,8 +52,9 @@ for (E in experiments) {
              gaps_row = c(1,2),
              clustering_method = "average",
              show_rownames = F,
-             width = 20,
-             height = 10)
+             width = 12,
+             height = 8
+             )
     
      if (writeToFile) dev.off()
   print(paste(topDir, "/figures/added_reactions/", habitat, "_",

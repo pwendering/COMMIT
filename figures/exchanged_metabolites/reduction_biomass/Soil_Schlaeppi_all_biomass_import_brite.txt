@@ -1,0 +1,64 @@
+ID	brite
+MNXM1026	Other
+MNXM111	Minerals
+MNXM112	Carbohydrates
+MNXM11	Other
+MNXM128	Other
+MNXM132	Other
+MNXM140	Peptides
+MNXM147	Peptides
+MNXM149	Other
+MNXM152150	Other
+MNXM153069	Other
+MNXM1542	Other
+MNXM156	Peptides
+MNXM157678	Other
+MNXM15	Other
+MNXM160410	Other
+MNXM160414	Other
+MNXM160440	Other
+MNXM161119	Other
+MNXM161163	Other
+MNXM161213	Other
+MNXM16	Vitamins and Cofactors
+MNXM19009	Other
+MNXM196	Minerals
+MNXM1984	Organic acids
+MNXM199	Peptides
+MNXM1	Other
+MNXM2255	Other
+MNXM22	Other
+MNXM231	Peptides
+MNXM27	Other
+MNXM2	Other
+MNXM304	Vitamins and Cofactors
+MNXM338	Nucleic acids
+MNXM339	Other
+MNXM3414	Other
+MNXM3673	Other
+MNXM41	Carbohydrates
+MNXM43229	Other
+MNXM43	Other
+MNXM4505	Other
+MNXM4	Other
+MNXM531993	Other
+MNXM55	Peptides
+MNXM58	Other
+MNXM599	Organic acids
+MNXM61032	Carbohydrates
+MNXM61038	Carbohydrates
+MNXM615	Carbohydrates
+MNXM61	Peptides
+MNXM632	Other
+MNXM653	Other
+MNXM70	Peptides
+MNXM78	Peptides
+MNXM82680	Other
+MNXM88705	Other
+MNXM89661	Organic acids
+MNXM89	Minerals
+MNXM90852	Other
+MNXM90960	Other
+MNXM95120	Other
+MNXM95	Other
+MNXM9	Minerals

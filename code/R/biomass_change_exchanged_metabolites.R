@@ -12,7 +12,7 @@ translateIDs2Name <- function(fname, topDir) {
     )
   )
 }
-
+cm2inches <- function(cm) return(cm*0.393701)
 topDir <- "~/ComGapFill/"
 habitat <- "Soil"
 experiment <- "Schlaeppi"
@@ -41,29 +41,17 @@ medium <- translateIDs2Name(fname = paste0("<(cut -f 1 ", topDir, "data/media/mi
 # ~~~~~~~~~~~ Import ~~~~~~~~~~~ #
 
 import <- read.table(paste(fileBaseName, "import.txt", sep = ""), header = T, sep = "\t", row.names = 1)
-cnames <- colnames(import)
+ids_import <- colnames(import)
 write.table(x = ids_import, file = tmpFile, row.names = F,
             col.names = F, quote = F)
 cnames <- translateIDs2Name(tmpFile, topDir = topDir)
-#cnames <- c("Fe(2+)", "beta-D-galactose", "PPi", "L-histidine", "keto-D-fructose",
-#            "propanoyl P", "glutathione disulfide", "acetoacetate", "3'-AMP",
-#            "alpha,alpha-trehalose", "H(+)", "3,4-dihydroxybenzoate", "3'-GMP", "3'-UMP",
-#            "2-hydroxy-3-oxobutyl P", "indole-3-acetaldehyde", "shikimate","hydrogencarbonate",
-#            "maltopentaose", "maltotriose", "allantoin", "D-mannitol", "folate", "sulfur", "Pi")
-# 
-#  cnames <- c("sulfite", "Fe(2+)", "PPi", "L-asparagine", "propanoyl P", "glutathione disulfite",
-#              "3'-AMP", "L-valine", "3'-CMP", "indole-3-acetaldehyde", "sulfate", "keto-L-sorbose",
-#              "D-xylulose", "iminosuccinate", "shikimate", "hydrogencarbonate", "maltohexaose",
-#              "maltopentaose", "maltotriose", "allantoin", "D-glucopyranose 1-P(2-)", "L-ornithine",
-#              "sulfur", "Pi")
+
 colnames(import) <- cnames
 # apply a threshold of 10E-6 to the ratio
 import <- apply(X = import, MARGIN = 2, FUN = function(x) {x[x>=t_ratio]=1; return(x)})
 # select only columns with an observed difference
 ids_import = ids_import[which(colSums(import)<nrow(import))]
 import = import[,which(colSums(import)<nrow(import))]
-# colnames(import) <- cnames
-
 
 # ~~~~~~~~~~~ Export ~~~~~~~~~~~ #
 export <- read.table(paste(fileBaseName, "export.txt", sep = ""), header = T, sep = "\t", row.names = 1)
@@ -71,80 +59,6 @@ ids_export <- colnames(export)
 write.table(x = ids_export, file = tmpFile, row.names = F,
             col.names = F, quote = F)
 cnames <- translateIDs2Name(tmpFile, topDir = topDir)
-
-# Schlaeppi
-#cnames <- c("CO",
-#    "L-proline",
-#    "diphosphate",
-#    "N-formyl-L-Glu",
-#    "thiamine tri-P",
-#    "keto-D-Fructose",
-#    "CO2",
-#    "melibiose",
-#    "propanoyl P",
-#    "acetoacetate",
-#    "uracil",
-#    "thiamine(1+) chloride",
-#    "propionate (n-C3:0)",
-#    "methyl-D-erythritol P",
-#    "sucrose",
-#    "L-proline amide",
-#    "adenine",
-#    "phosphoethanolamine",
-#    "mannosylfructose 6-P",
-#    "alpha,alpha-trehalose",
-#    "D-ribose",
-#    "(S)-4,5-dihydroxypentane-2,3-dione",
-#    "2-deoxy-D-ribose",
-#    "heme b",
-#    "thiamine diphosphate",
-#    "succinate",
-#    "acetate",
-#    "acetyl phosphate",
-#    "oxalate",
-#    "glycine",
-#    "triphosphate",
-#    "alpha-D-galactose 1-P",
-#    "D-glucono-1,5-lactone",
-#    "propanoate",
-#    "L-aspartate 4-semialdehyde",
-#    "D-pantetheine 4'-phosphate",
-#    "alpha-D-galactose",
-#    "formate",
-#    "autoinducer-2",
-#    "L-aspartate",
-#    "5-deoxy-D-ribose",
-#    "butanoate",
-#    "dihydroxyacetone",
-#    "malonate",
-#    "(S)-2,3,4,5-tetrahydrodipicolinate",
-#    "alpha-maltose 1-P",
-#   "sulfate",
-#    "L-erythrulose",
-#    "L-threitol",
-#    "D-xylulose",
-#    "iminosuccinate",
-#    "hydrogencarbonate",
-#    "D-mannitol",
-#    "O-phosphorylhomoserine",
-#    "beta-D-glucose 1-P",
-#    "amylotriose",
-#    "carbamate",
-#    "cis-aconitate",
-#    "O-succinyl-L-homoserine",
-#    "gly-asn",
-#    "3-hydroxypropanoate",
-#    "hydroxymethylpyrimidine",
-#    "alpha-D-ribose 1,5-bisphosphate",
-#    "H2S",
-#    "D-glucopyranose 1-P(2-)",
-#    "isocitrate",
-#    "beta-maltose",
-#    "(S)-methylmalonate semialdehyde",
-#    "fumarate",
-#    "Thiamine thiazole",
-#    "Pi")
-
 colnames(export) <- cnames
 
 # apply a threshold of 10E-6 to the ratio
@@ -152,7 +66,7 @@ export <- apply(X = export, MARGIN = 2, FUN = function(x) {x[x>=t_ratio]=1; retu
 # select only columns with an observed difference
 ids_export = ids_export[which(colSums(export)<nrow(export))]
 export = export[,which(colSums(export)<nrow(export))]
-# colnames(export) <- cnames
+
 # ~~~~~~~~~~~ Annotation ~~~~~~~~~~~ #
 
 # Rows
@@ -212,7 +126,8 @@ brite_export <- read.csv(paste(fileBaseName, "export_brite.txt", sep = ""),
                          header = T, sep = "\t", na.strings = "NA",
                          colClasses = c("character", "character"))
 # remove rows that are not in exported
-brite_export <- brite_export[which(brite_export[,1] %in% ids_export), ]
+brite_export <- brite_export[which(brite_export[,1] %in% ids_export),]
+
 # empty/ non-classified compounds are grouped as "Other"
 brite_export[which(brite_export[,2]==""),2] <- "Other"
 annotation_c_export <- data.frame(BRITE = factor(brite_export[,2]),
@@ -262,81 +177,37 @@ colnames(export) <- strtrim(colnames(export), 30)
 # metabolite class colors
 p_length_metclass <- max(c(length(unique(annotation_c_import[,1])),
                            length(unique(annotation_c_export[,1]))))
-# palette_col <- wes_palette("GrandBudapest1", p_length_metclass, type = "continuous")
-# palette_col <- colorRampPalette(c("cornsilk2", "dodgerblue4"))(p_length_metclass)
+
 palette_col <- c("deeppink4", "darkgreen", "indianred", "darkseagreen4", "darkslateblue", "cornflowerblue", "firebrick")
 ann_colors$BRITE <- c(palette_col[1:length(brite_classes)-1], "white")
 names(ann_colors$BRITE) <- c(brite_classes)
-# ann_colors$BRITE <- c("Carbohydrates" = palette_col[1],
-#                                "Minerals" = palette_col[2],
-#                                "Nucleic acids" = palette_col[3],
-#                                "Organic acids" = palette_col[4],
-#                                "Peptides" = palette_col [5],
-#                                "Vitamins and Cofactors" = palette_col[6],
-#                                "Lipids" = palette_col[7],
-#                                "Other" = "white")
 
 # Import
-font_size <- 14
+font_size <- 8
 c_import<- pheatmap(t(import_re),
-                     cluster_cols = T,
-                     cluster_rows = F,
-                     clustering_method = "average",
-                     clustering_distance_cols = "euclidean",
-                     breaks = mybreaks,
-                     color = pal,
-                     annotation_row = annotation_c_import,
-                     fontsize_row = font_size,
-                     fontsize_col = font_size,
-                     annotation_col = annotation_r,
-                     annotation_colors = ann_colors,
-                     border_color = "gray40",
-                     filename = paste(fileBaseName, "import.png", sep = ""),
-                     # height = 14,
-                     # width = 14,
-                     cellwidth = 20,
-                    cellheight = 12,
-                     fontsize = font_size,
-                     angle_col = 315
+                    cluster_cols = T,
+                    cluster_rows = F,
+                    clustering_method = "average",
+                    clustering_distance_cols = "euclidean",
+                    breaks = mybreaks,
+                    color = pal,
+                    annotation_row = annotation_c_import,
+                    fontsize_row = font_size,
+                    fontsize_col = font_size,
+                    annotation_col = annotation_r,
+                    annotation_colors = ann_colors,
+                    border_color = "gray40",
+                    filename = paste(fileBaseName, "import.png", sep = ""),
+                    cellwidth = 10,
+                    cellheight = 8,
+                    height = cm2inches(10),
+                    width = cm2inches(18),
+                    fontsize = font_size,
+                    angle_col = 315
 )
-# c_import <- pheatmap(import_re,
-#                      cluster_cols = F,
-#                      cluster_rows = T,
-#                      clustering_method = "average",
-#                      breaks = mybreaks,
-#                      color = pal,
-#                      annotation_row = annotation_r,
-#                      fontsize_row = 12,
-#                      fontsize_col = 10,
-#                      annotation_col = annotation_c_import,
-#                      annotation_colors = ann_colors,
-#                      border_color = NA,
-#                      filename = paste(fileBaseName, "import.png", sep = ""),
-#                      height = 6,
-#                      width = 12,
-#                      angle_col = 315
-#                      )
-# cutree(c_import$tree_row, k = 8)
+
 
 # Export
-# c_export <- pheatmap(export_re,
-#                      cluster_cols = F,
-#                      cluster_rows = T,
-#                      clustering_method = "average",
-#                      breaks = mybreaks,
-#                      color = pal,
-#                      annotation_row = annotation_r,
-#                      fontsize_row = 12,
-#                      fontsize_col = 6,
-#                      annotation_col = annotation_c_export,
-#                      annotation_colors = ann_colors,
-#                      border_color = NA,
-#                      filename = paste(fileBaseName, "export.png", sep = ""),
-#                      height = 5,
-#                      width = 10,
-#                      fontsize = 8,
-#                      angle_col = 315
-#                      )
 c_export <- pheatmap(t(export_re),
                      cluster_cols = T,
                      cluster_rows = F,
@@ -352,8 +223,6 @@ c_export <- pheatmap(t(export_re),
                      annotation_colors = ann_colors,
                      border_color = "gray40",
                      filename = paste(fileBaseName, "export.png", sep = ""),
-                     # height = 14,
-                     # width = 14,
                      cellwidth = 20,
                      cellheight = 12,
                      fontsize = font_size,

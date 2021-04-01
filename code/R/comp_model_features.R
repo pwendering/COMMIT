@@ -5,7 +5,7 @@ library(scales)
 rm(list = ls())
 habitats = c("Soil", "Leaf", "Root")
 topDir = "~/ComGapFill/figures/model-features/"
-writeToFile = T
+writeToFile = F
 
 for (i in 1:length(habitats)) {
   if (!exists("rxns")) {

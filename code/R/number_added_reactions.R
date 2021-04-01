@@ -58,16 +58,14 @@ y_max <- ceiling(y_max) * 10 + 10
 y_limits <- c(0, y_max)
 
 if (writeToFile) {
-  png(filename = outFile, units = "cm", width = 25, height = 20, res = 300)
+  png(filename = outFile, units = "cm", width = 20, height = 15, res = 600)
 }
 
-
-# ~~~~~~~~~~~~~~ version 4 ~~~~~~~~~~~~~~ #
 par(family = "Arial", mgp = c(2.8,1,0), oma = c(0,0,0,0))
 cbp1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73",
           "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 violin_colors <- alpha(rep(cbp1[c(2,1)], 3), 0.8)
-cex = 1.6
+cex = 1.3
 x_pos = c(1,2,3.5,4.5,6,7)
 violin_plot(X = t(data)[,c(4,1,5,2,6,3)], at = x_pos, axes = F, main = "",
             col = violin_colors, ylim = y_limits)
@@ -92,13 +90,12 @@ for (i in 1:length(h)){
     points(x = x_pos[i], y = 3+max(data[idx_iter[i],]), pch = 8, cex = 0.6)
   } 
   else if (h[i]==2) {
-    points(x = c(x_pos[i]-0.05,x_pos[i]+0.05), y = rep(3+max(data[idx_iter[i],]),2), pch = 8, cex = 0.6)
+    points(x = c(x_pos[i]-0.08,x_pos[i]+0.08), y = rep(3+max(data[idx_iter[i],]),2), pch = 8, cex = 0.6)
   }
   else if (h[i]==3) {
-    points(x = c(x_pos[i]-0.05,x_pos[i],x_pos[i]+0.05), y = rep(3+max(data[idx_iter[i],]),3), pch = 8, cex = 0.6)
+    points(x = c(x_pos[i]-0.08,x_pos[i],x_pos[i]+0.08), y = rep(3+max(data[idx_iter[i],]),3), pch = 8, cex = 0.6)
   }
     
 }
-
 
 if (writeToFile) dev.off()
