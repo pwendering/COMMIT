@@ -69,6 +69,7 @@ plotExchangeGraph <- function(fileBaseName, classFile, experiment, outPath, writ
 writeToFile = F
 topDir = "~/ComGapFill/figures"
 
+
 habitat = "Soil"
 modelType <- "all"
 fileBaseName <- paste(topDir, "/exchanged_metabolites/graph/", habitat, "_", modelType, "_exchanged_metabolites_", sep = "")
