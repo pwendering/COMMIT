@@ -44,6 +44,7 @@ plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend,
   
   # scale all values to the optimum determined above
   data = rbind(gf, bio, exc)
+  
   data = apply(data,1,function(x, opt) {x=x-x[opt]; x=x/max(abs(x))}, opt=opt_idx)
   
   if (writeToFile) {
@@ -66,8 +67,6 @@ plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend,
   y_max <- c()
   for (i in 1:ncol(data)) {
     h = binData(data[,i], nbins = n, xlim = x_limits)
-    p <- t.test(data[,i], mu = 0, alternative = "two.sided")
-    print(p$p.value)
     y_max[i]=max(h[[2]])
   }
   
@@ -126,7 +125,7 @@ add_title <- function(title) {
   
   par(usr = tmp_usr)
 }
-writeToFile = T
+writeToFile = F
 habitat = "Soil"
 topDir = "~/ComGapFill"
 # store default graphical parameters

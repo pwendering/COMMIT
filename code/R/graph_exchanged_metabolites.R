@@ -12,9 +12,8 @@ plotExchangeGraph <- function(fileBaseName, classFile, experiment, outPath, writ
   
   # classification
   fileName <- paste(classFile, experiment, ".txt", sep = "")
-  classification <- read.table(fileName, header = T, sep = "\t", na.strings = "")
-  row.names(classification) = classification[,1]
-  classification <- classification[,-1]
+  classification <- as.matrix(read.table(fileName, header = T, sep = "\t", na.strings = "", row.names = 1))
+  classification[is.na(classification)] <- "Other"
   classes <- unique(as.vector(as.matrix(classification)))
   
   # define edge colors
@@ -33,7 +32,6 @@ plotExchangeGraph <- function(fileBaseName, classFile, experiment, outPath, writ
   adj_mat <- adj_mat / mean(adj_mat)
   G <- graph_from_adjacency_matrix(adj_mat, mode = "directed", weighted = T)
   classes <- unique(as.vector(classification[adj_mat>0]))
-  classes[is.na(classes)] <- "Other"
   fontsize <- 1.2
   
   E(G)$width <- 2*E(G)$weight
@@ -66,7 +64,7 @@ plotExchangeGraph <- function(fileBaseName, classFile, experiment, outPath, writ
   if (writeToFile) dev.off()
 }
 
-writeToFile = F
+writeToFile = T
 topDir = "~/ComGapFill/figures"
 
 

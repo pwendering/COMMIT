@@ -40,5 +40,5 @@ brite_from_mnxref = cellfun(@(x)bTable.(3)(ismember(bTable.(1), strsplit(x, '|')
 brite = brite_from_mnxref;
 idx_empty = cellfun(@isempty, brite);
 brite(idx_empty) = brite_from_kegg(idx_empty);
-brite = cellfun(@(x)strtok(x{:}, ';'), brite, 'un', 0);
+brite = cellfun(@(x)strtok(x, ';'), brite, 'un', 0);
 end

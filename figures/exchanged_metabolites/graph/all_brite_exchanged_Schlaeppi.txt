@@ -1,9 +1,9 @@
 Row	Bacillaceae	Intrasporangiaceae	Microbacteriaceae	Micrococcaceae	Mycobacteriaceae	Nocardioidaceae	Paenibacillaceae	Xanthomonadaceae
-Bacillaceae	Minerals		Peptides	Minerals		Minerals		
-Intrasporangiaceae	Minerals		Organic acids	Minerals		Minerals		
+Bacillaceae	Minerals	Peptides	Peptides	Minerals		Minerals		
+Intrasporangiaceae	Minerals	Peptides	Organic acids	Minerals		Minerals		
 Microbacteriaceae	Minerals	Carbohydrates	Carbohydrates	Minerals	Carbohydrates	Carbohydrates	Carbohydrates	Carbohydrates
 Micrococcaceae	Minerals	Carbohydrates	Carbohydrates	Minerals	Carbohydrates	Carbohydrates	Carbohydrates	Carbohydrates
 Mycobacteriaceae	Minerals			Minerals		Minerals		
-Nocardioidaceae	Minerals			Minerals		Minerals		
+Nocardioidaceae	Minerals	Peptides		Minerals		Minerals		
 Paenibacillaceae	Minerals		Peptides	Minerals		Minerals		
-Xanthomonadaceae	Minerals			Minerals		Minerals	Other	
+Xanthomonadaceae	Minerals	Carbohydrates		Minerals		Carbohydrates	Other	

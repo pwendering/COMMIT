@@ -104,7 +104,8 @@ tax_classes = unique(tax_experiment.(2));
 brite_exported = cell(numel(exported_per_model), 1);
 for i=1:numel(exported_per_model)
     brite = map2KEGGBrite(exported_per_model{i}, briteFile);
-    brite(cellfun(@isempty, brite)) = {'Other'};
+    brite(cellfun(@isempty, brite)) = {{'Other'}};
+    brite = cellfun(@(x)x(1),brite);
     brite_exported{i} = brite;
 end
 
@@ -116,7 +117,7 @@ for i=1:numel(tax_classes)
 end
 brite_exported = brite_exported_group; clear brite_exported_group
 
-% quantify the occurrence of every brite per model
+% quantify the occurrence of every brite per model/group
 all_brite_exp = unique(vertcat(brite_exported{:}));
 n_brite_exp = zeros(numel(brite_exported), numel(all_brite_exp));
 for i=1:numel(all_brite_exp)
@@ -130,7 +131,8 @@ for i=1:numel(imported_per_model)
         brite_imported{i} = cell.empty(0,1);
     else
         brite = map2KEGGBrite(imported_per_model{i}, briteFile);
-        brite(cellfun(@isempty, brite)) = {'Other'};
+        brite(cellfun(@isempty, brite)) = {{'Other'}};
+        brite = cellfun(@(x)x(1),brite);
         brite_imported{i} = brite;
     end
 end
@@ -144,7 +146,7 @@ end
 brite_imported = brite_imported_group; clear brite_imported_group
 
 % quantify the occurrence of every brite per model
-all_brite_imp = unique(vertcat(brite_imported{:}));
+all_brite_imp = unique(vertcat(brite_imported{:})); clear tmp
 n_brite_imp = zeros(numel(brite_imported), numel(all_brite_imp));
 for i=1:numel(all_brite_imp)
     n_brite_imp(:,i) = cellfun(@(x)sum(ismember(x, all_brite_imp{i})), brite_imported);
@@ -189,6 +191,7 @@ for i=1:numel(brite_exported)
                 matrix_exchange_IDs{i,j} = tmp_brite;
                 
                 % index associated with the most-abundant brite class
+                tmp_brite = [tmp_brite{:}];
                 [~, tmp_idx] = max(cellfun(@(x)sum(ismember(tmp_brite,x)),tmp_brite));
                 brite_exchange(i,j) = tmp_brite(tmp_idx);
 
@@ -309,30 +312,30 @@ writetable(array2table(exchange_mt, 'VariableNames', tax_classes),...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% galactose
-model_ids(cellfun(@(x)ismember({'MNXM112[e]'},x),exported_per_model))
-model_ids(cellfun(@(x)ismember({'MNXM112[e]'},x),imported_per_model))
-
-% fructose
-model_ids(cellfun(@(x)ismember({'MNXM1542[e]'},x),exported_per_model))
-model_ids(cellfun(@(x)ismember({'MNXM1542[e]'},x),imported_per_model))
-
-exchanged_IDs = intersect(vertcat(imported_per_model{:}),vertcat(exported_per_model{:}));
-exchanged_brite = map2KEGGBrite(exchanged_IDs,briteFile);
-exchanged_names = translateIDs(strtok(exchanged_IDs,'['),'met',[],'MNXref', 'NAME');
-imported_per_model = cellfun(@(x)strjoin(x,','),imported_per_model,'un',0);
-exported_per_model = cellfun(@(x)strjoin(x,','),exported_per_model,'un',0);
-fam_names = cellfun(@(x)taxonomyTab.(2)(ismember(taxonomyTab.(1),x)),model_ids);
-
-writetable(cell2table([fam_names, imported_per_model,exported_per_model],...
-    'RowNames', model_ids, 'VariableNames', {'family', 'import_ID',...
-    'export_ID'}),...
-    [figOutDir, filesep, 'graph', filesep, [habitat, '_', sub_dir],...
-    '_exchanged_metabolites_IDs_',experiment, '.txt'],...
-    'WriteRowNames', true, 'WriteVariableNames', true, 'Delimiter', '\t')
-
-writetable(cell2table([exchanged_IDs, exchanged_brite, exchanged_names]),...
-    [figOutDir, filesep, 'graph', filesep, [habitat, '_', sub_dir],...
-    '_exchanged_metabolites_dict_',experiment, '.txt'],...
-    'WriteRowNames', false, 'WriteVariableNames', false, 'Delimiter', '\t');
+% % galactose
+% model_ids(cellfun(@(x)ismember({'MNXM112[e]'},x),exported_per_model))
+% model_ids(cellfun(@(x)ismember({'MNXM112[e]'},x),imported_per_model))
+% 
+% % fructose
+% model_ids(cellfun(@(x)ismember({'MNXM1542[e]'},x),exported_per_model))
+% model_ids(cellfun(@(x)ismember({'MNXM1542[e]'},x),imported_per_model))
+% 
+% exchanged_IDs = intersect(vertcat(imported_per_model{:}),vertcat(exported_per_model{:}));
+% exchanged_brite = map2KEGGBrite(exchanged_IDs,briteFile);
+% exchanged_names = translateIDs(strtok(exchanged_IDs,'['),'met',[],'MNXref', 'NAME');
+% imported_per_model = cellfun(@(x)strjoin(x,','),imported_per_model,'un',0);
+% exported_per_model = cellfun(@(x)strjoin(x,','),exported_per_model,'un',0);
+% fam_names = cellfun(@(x)taxonomyTab.(2)(ismember(taxonomyTab.(1),x)),model_ids);
+% 
+% writetable(cell2table([fam_names, imported_per_model,exported_per_model],...
+%     'RowNames', model_ids, 'VariableNames', {'family', 'import_ID',...
+%     'export_ID'}),...
+%     [figOutDir, filesep, 'graph', filesep, [habitat, '_', sub_dir],...
+%     '_exchanged_metabolites_IDs_',experiment, '.txt'],...
+%     'WriteRowNames', true, 'WriteVariableNames', true, 'Delimiter', '\t')
+% 
+% writetable(cell2table([exchanged_IDs, exchanged_brite, exchanged_names]),...
+%     [figOutDir, filesep, 'graph', filesep, [habitat, '_', sub_dir],...
+%     '_exchanged_metabolites_dict_',experiment, '.txt'],...
+%     'WriteRowNames', false, 'WriteVariableNames', false, 'Delimiter', '\t');
 
