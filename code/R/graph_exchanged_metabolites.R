@@ -36,8 +36,8 @@ plotExchangeGraph <- function(fileBaseName, classFile, experiment, outPath, writ
   
   E(G)$width <- 2*E(G)$weight
   E(G)$color <- alpha(as.vector(t(matrix(edgeColors, nrow = nrow(classification), ncol = ncol(classification))))[which(t(adj_mat)>0)],0.8)
-  E(G)$arrow.width = 0.2*E(G)$weight
-  E(G)$arrow.size = 1.5
+  E(G)$arrow.width = E(G)$weight
+  E(G)$arrow.size = 2*E(G)$weight
   
   V(G)$color <- "white"
   V(G)$frame.color <- "white"
