@@ -6,10 +6,10 @@ topDir = "~/ComGapFill/figures/exchanged_metabolites/graph/"
 
 modelType <- "all"
 habitat = "Soil"
-experiment = "Schlaeppi"
+experiment = "Bulgarelli"
 
 matrixFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_", experiment, ".txt")
-outFile <- paste0(topDir, "graph_", experiment, ".png")
+outFile <- paste0(topDir, "exchange_", experiment, ".png")
 # classFile <- paste0(topDir, modelType,"_brite_exchanged_", experiment, ".txt")
 excFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_IDs_", experiment, ".txt")
 dictFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_dict_", experiment, ".txt")
@@ -21,7 +21,7 @@ ex_mt <- as.matrix(read.table(file = matrixFile, header = T, sep = "\t"))
 # classes <- unique(as.vector(as.matrix(ex_classes)))
 # classes = setdiff(classes, "")
 
-brite_dict <- read.table(dictFile, header = F, sep = "\t")
+brite_dict <- read.table(dictFile, header = F, sep = "\t", quote = "\"")
 brite_order = order(brite_dict[,2])
 brite_dict = brite_dict[brite_order,]
 exc_ids = gsub("\\[.\\]","",brite_dict[,1])
@@ -35,7 +35,9 @@ all_imported = unlist(strsplit(as.vector(exc_full$import_ID),","))
 family_count = unlist(lapply(colnames(ex_mt),
                        function(x)length(which(exc_full$family==x))))
 # all_exchanged = gsub("\\[.\\]","",intersect(all_exported, all_imported))
-
+if (writeToFile) {
+  png(filename = outFile, width = 15, height = 15,units = "cm",res = 600)
+}
 plot.new()
 
 cbp1 <- c("#CC79A7", "#0072B2", "#009E73", "#D55E00",
@@ -51,8 +53,8 @@ y_max = 0.88
 space = .2
 width = (1 - 2*space)/3
 
-cex = .6
-cex_legend = .6
+cex = .4
+cex_legend = .5
 x_pos = matrix(c(0, width,
                  width+space, 2*width+space,
                  2*width+2*space, 3*width+2*space
@@ -131,9 +133,7 @@ for (i in 1:ncol(ex_mt)) {
 legend("top", legend = unique(exc_brite), ncol = length(unique(exc_brite)),
        cex = cex_legend, fill = cbp1[1:length(unique(exc_brite))], bty = "n")
 
-
-
-
 par(usr = tmp_usr)
 
+if (writeToFile) dev.off()
 

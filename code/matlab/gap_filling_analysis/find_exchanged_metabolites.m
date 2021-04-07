@@ -322,6 +322,7 @@ writetable(array2table(exchange_mt, 'VariableNames', tax_classes),...
 % 
 exchanged_IDs = intersect(vertcat(imported_per_model{:}),vertcat(exported_per_model{:}));
 exchanged_brite = map2KEGGBrite(exchanged_IDs,briteFile);
+exchanged_brite(cellfun(@isempty,exchanged_brite)) = {{'Other'}};
 exchanged_brite = vertcat(exchanged_brite{:});
 exchanged_names = translateIDs(strtok(exchanged_IDs,'['),'met',[],'MNXref', 'NAME');
 imported_per_model = cellfun(@(x)strjoin(x,','),imported_per_model,'un',0);
