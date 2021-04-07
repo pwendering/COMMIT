@@ -96,7 +96,7 @@ plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend,
   }
   if (add_legend){
     legend(x = -1, y = 95, legend = c("added reactions", "biomass fluxes", "exchanged metabolites"),
-           col = alpha(col, 0.5), lwd = 6, box.lwd = 0, cex = 1.5, bg = NA)
+           col = alpha(col, 0.5), lwd = 6, bty = "n", cex = 1.5, bg = NA)
   }
   
   if (writeToFile) dev.off()
@@ -118,7 +118,14 @@ add_letter <- function(letter = "X", case = "upper") {
   
   par(usr = tmp_usr)
 }
-
+add_title <- function(title) {
+  tmp_usr = par("usr")
+  par(usr = c(0,1,0,1), family = "Arial")
+  
+  text(x = .5, y = 1.2, labels = title, cex = 2.5, font = 2)
+  
+  par(usr = tmp_usr)
+}
 writeToFile = T
 habitat = "Soil"
 topDir = "~/ComGapFill"
@@ -138,8 +145,10 @@ wd = paste(topDir, "/data/gap-filling/iterative/", habitat, "/all/", sep = "")
 outFileBase <- paste(topDir, "/figures/gap-filling/all/", sep = "")
 plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = F, y_axis = T, x_axis = F, writeToFile = F)
 add_letter(1)
+add_title("Schlaeppi")
 plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F, writeToFile = F)
 add_letter(2)
+add_title("Bulgarelli")
 
 # Consensus models without CarveMe models
 wd = paste(topDir, "/data/gap-filling/iterative/", habitat, "/no_CarveMe/", sep = "")
