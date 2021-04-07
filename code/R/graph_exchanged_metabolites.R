@@ -53,7 +53,7 @@ plotExchangeGraph <- function(fileBaseName, classFile, experiment, outPath, writ
   outFileName <- paste(outPath, "graph_", experiment, ".png", sep = "")
   if (writeToFile) {
     png(filename = outFileName,
-        units = "cm", width = 20, height = 20, res = 300)
+        units = "cm", width = 20, height = 20, res = 600)
   }
   par(family = "Arial", mar = c(0, 4, 1, 2) + 0.1)
   
