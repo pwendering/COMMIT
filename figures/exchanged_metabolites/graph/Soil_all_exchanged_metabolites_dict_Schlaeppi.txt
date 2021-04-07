@@ -2,17 +2,27 @@ MNXM111[e]	Minerals	Fe(2+)
 MNXM112[e]	Carbohydrates	beta-D-galactose
 MNXM132[e]	Other	dimethylallyl diphosphate
 MNXM140[e]	Peptides	L-leucine
+MNXM147[e]	Peptides	L-asparagine
 MNXM1542[e]	Carbohydrates	beta-D-fructofuranose
+MNXM156[e]	Peptides	D-alanine
+MNXM15[e]	Other	NH4(+)
 MNXM196[e]	Minerals	Fe(3+)
 MNXM1984[e]	Organic acids	2-iminoacetate
 MNXM199[e]	Peptides	L-valine
 MNXM1[e]	Other	H(+)
 MNXM22[e]	Other	H2O2
 MNXM231[e]	Peptides	L-isoleucine
+MNXM338[e]	Nucleic acids	cytidine
 MNXM339[e]	Organic acids	D-glucono-1,5-lactone
 MNXM3414[e]	Peptides	2-aminoprop-2-enoate
 MNXM4[e]	Other	O2
+MNXM55[e]	Peptides	L-cysteine
 MNXM58[e]	Minerals	sulfate
+MNXM599[e]	Organic acids	iminosuccinate
+MNXM61032[e]	Carbohydrates	maltopentaose
+MNXM61038[e]	Carbohydrates	maltotriose
+MNXM615[e]	Carbohydrates	D-mannitol
 MNXM70[e]	Peptides	L-arginine
+MNXM78[e]	Peptides	L-lysine
 MNXM89661[e]	Organic acids	isocitrate
 MNXM9[e]	Minerals	phosphate

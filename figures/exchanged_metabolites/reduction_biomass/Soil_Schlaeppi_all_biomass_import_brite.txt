@@ -10,7 +10,7 @@ MNXM147	Peptides
 MNXM149	Other
 MNXM152150	Other
 MNXM153069	Other
-MNXM1542	Other
+MNXM1542	Carbohydrates
 MNXM156	Peptides
 MNXM157678	Other
 MNXM15	Other
@@ -33,8 +33,8 @@ MNXM27	Other
 MNXM2	Other
 MNXM304	Vitamins and Cofactors
 MNXM338	Nucleic acids
-MNXM339	Other
-MNXM3414	Other
+MNXM339	Organic acids
+MNXM3414	Peptides
 MNXM3673	Other
 MNXM41	Carbohydrates
 MNXM43229	Other
@@ -43,7 +43,7 @@ MNXM4505	Other
 MNXM4	Other
 MNXM531993	Other
 MNXM55	Peptides
-MNXM58	Other
+MNXM58	Minerals
 MNXM599	Organic acids
 MNXM61032	Carbohydrates
 MNXM61038	Carbohydrates

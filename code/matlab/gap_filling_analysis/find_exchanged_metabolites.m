@@ -51,44 +51,44 @@ end
 t_unspecific = n;
 
 % imported
-all_imported = vertcat(imported_per_model{:});
-all_imported = unique(all_imported);
+% all_imported = vertcat(imported_per_model{:});
+% all_imported = unique(all_imported);
 
 % get permeability for all metabolites and determine the ones that are not
 % predicted to be permeable
-p_imported = ...
-    cellfun(@(x)dbModel_MNXref_balanced.metPermeability(strcmp(x,...
-    dbModel_MNXref_balanced.mets)), all_imported, 'un', 0);
-p_imported(cellfun('isempty', p_imported)) = {false};
-p_imported = cell2mat(p_imported);
-mets_not_p = all_imported(~p_imported);
-imported_per_model = cellfun(@(x)setdiff(x, mets_not_p), imported_per_model,...
-    'UniformOutput', 0);
+% p_imported = ...
+%     cellfun(@(x)dbModel_MNXref_balanced.metPermeability(strcmp(x,...
+%     dbModel_MNXref_balanced.mets)), all_imported, 'un', 0);
+% p_imported(cellfun('isempty', p_imported)) = {false};
+% p_imported = cell2mat(p_imported);
+% mets_not_p = all_imported(~p_imported);
+% imported_per_model = cellfun(@(x)setdiff(x, mets_not_p), imported_per_model,...
+%     'UniformOutput', 0);
 % exclude imported metabolites that occur in most or all models
-unspecific_imported = cellfun(@(x)sum(contains(all_imported, x)), unique(all_imported))==t_unspecific;
-unspecific_imported = all_imported(unspecific_imported);
-imported_per_model = cellfun(@(x)setdiff(x, unspecific_imported), imported_per_model,...
-    'UniformOutput', 0);
+% unspecific_imported = cellfun(@(x)sum(contains(all_imported, x)), unique(all_imported))==t_unspecific;
+% unspecific_imported = all_imported(unspecific_imported);
+% imported_per_model = cellfun(@(x)setdiff(x, unspecific_imported), imported_per_model,...
+%     'UniformOutput', 0);
 
 % exported
-all_exported = vertcat(exported_per_model{:});
-all_exported = unique(all_exported);
+% all_exported = vertcat(exported_per_model{:});
+% all_exported = unique(all_exported);
 % get permeability for all metabolites and determine the ones that are not
 % predicted to be permeable
-p_exported = ...
-    cellfun(@(x)dbModel_MNXref_balanced.metPermeability(strcmp(x,...
-    dbModel_MNXref_balanced.mets)), all_exported, 'un', 0);
-p_exported(cellfun('isempty', p_exported)) = {false};
-p_exported = cell2mat(p_exported);
-mets_not_p = all_exported(~p_exported);
-exported_per_model = cellfun(@(x)setdiff(x, mets_not_p), exported_per_model,...
-    'UniformOutput', 0);
+% p_exported = ...
+%     cellfun(@(x)dbModel_MNXref_balanced.metPermeability(strcmp(x,...
+%     dbModel_MNXref_balanced.mets)), all_exported, 'un', 0);
+% p_exported(cellfun('isempty', p_exported)) = {false};
+% p_exported = cell2mat(p_exported);
+% mets_not_p = all_exported(~p_exported);
+% exported_per_model = cellfun(@(x)setdiff(x, mets_not_p), exported_per_model,...
+%     'UniformOutput', 0);
 
 % exclude exported metabolites that occur in most or all models
-unspecific_exported = cellfun(@(x)sum(contains(all_exported, x)), unique(all_exported))==t_unspecific;
-unspecific_exported = all_exported(unspecific_exported);
-exported_per_model = cellfun(@(x)setdiff(x, unspecific_exported), exported_per_model,...
-    'UniformOutput', 0);
+% unspecific_exported = cellfun(@(x)sum(contains(all_exported, x)), unique(all_exported))==t_unspecific;
+% unspecific_exported = all_exported(unspecific_exported);
+% exported_per_model = cellfun(@(x)setdiff(x, unspecific_exported), exported_per_model,...
+%     'UniformOutput', 0);
 
 clear mets_not_p all_exported all_imported unspecific_exported unspecific_imported ...
     dbModel_MNXref_balanced
@@ -320,22 +320,23 @@ writetable(array2table(exchange_mt, 'VariableNames', tax_classes),...
 % model_ids(cellfun(@(x)ismember({'MNXM1542[e]'},x),exported_per_model))
 % model_ids(cellfun(@(x)ismember({'MNXM1542[e]'},x),imported_per_model))
 % 
-% exchanged_IDs = intersect(vertcat(imported_per_model{:}),vertcat(exported_per_model{:}));
-% exchanged_brite = map2KEGGBrite(exchanged_IDs,briteFile);
-% exchanged_names = translateIDs(strtok(exchanged_IDs,'['),'met',[],'MNXref', 'NAME');
-% imported_per_model = cellfun(@(x)strjoin(x,','),imported_per_model,'un',0);
-% exported_per_model = cellfun(@(x)strjoin(x,','),exported_per_model,'un',0);
-% fam_names = cellfun(@(x)taxonomyTab.(2)(ismember(taxonomyTab.(1),x)),model_ids);
-% 
-% writetable(cell2table([fam_names, imported_per_model,exported_per_model],...
-%     'RowNames', model_ids, 'VariableNames', {'family', 'import_ID',...
-%     'export_ID'}),...
-%     [figOutDir, filesep, 'graph', filesep, [habitat, '_', sub_dir],...
-%     '_exchanged_metabolites_IDs_',experiment, '.txt'],...
-%     'WriteRowNames', true, 'WriteVariableNames', true, 'Delimiter', '\t')
-% 
-% writetable(cell2table([exchanged_IDs, exchanged_brite, exchanged_names]),...
-%     [figOutDir, filesep, 'graph', filesep, [habitat, '_', sub_dir],...
-%     '_exchanged_metabolites_dict_',experiment, '.txt'],...
-%     'WriteRowNames', false, 'WriteVariableNames', false, 'Delimiter', '\t');
+exchanged_IDs = intersect(vertcat(imported_per_model{:}),vertcat(exported_per_model{:}));
+exchanged_brite = map2KEGGBrite(exchanged_IDs,briteFile);
+exchanged_brite = vertcat(exchanged_brite{:});
+exchanged_names = translateIDs(strtok(exchanged_IDs,'['),'met',[],'MNXref', 'NAME');
+imported_per_model = cellfun(@(x)strjoin(x,','),imported_per_model,'un',0);
+exported_per_model = cellfun(@(x)strjoin(x,','),exported_per_model,'un',0);
+fam_names = cellfun(@(x)taxonomyTab.(2)(ismember(taxonomyTab.(1),x)),model_ids);
+
+writetable(cell2table([fam_names, imported_per_model,exported_per_model],...
+    'RowNames', model_ids, 'VariableNames', {'family', 'import_ID',...
+    'export_ID'}),...
+    [figOutDir, filesep, 'graph', filesep, [habitat, '_', sub_dir],...
+    '_exchanged_metabolites_IDs_',experiment, '.txt'],...
+    'WriteRowNames', true, 'WriteVariableNames', true, 'Delimiter', '\t')
+
+writetable(cell2table([exchanged_IDs, exchanged_brite, exchanged_names]),...
+    [figOutDir, filesep, 'graph', filesep, [habitat, '_', sub_dir],...
+    '_exchanged_metabolites_dict_',experiment, '.txt'],...
+    'WriteRowNames', false, 'WriteVariableNames', false, 'Delimiter', '\t');
 

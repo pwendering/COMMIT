@@ -1,8 +1,8 @@
 library(scales)
 
-writeToFile = F
-# topDir = "~/ComGapFill/figures/exchanged_metabolites/graph/"
-topDir = "figures/exchanged_metabolites/graph/"
+writeToFile = T
+topDir = "~/ComGapFill/figures/exchanged_metabolites/graph/"
+# topDir = "figures/exchanged_metabolites/graph/"
 
 modelType <- "all"
 habitat = "Soil"
@@ -30,8 +30,8 @@ exc_brite[which(exc_brite=="")] = "Other"
 exc_names = brite_dict[,3]
 
 exc_full <- read.table(excFile, header = T, row.names = 1, sep= "\t")
-all_exported = unlist(strsplit(exc_full$export_ID,","))
-all_imported = unlist(strsplit(exc_full$import_ID,","))
+all_exported = unlist(strsplit(as.vector(exc_full$export_ID),","))
+all_imported = unlist(strsplit(as.vector(exc_full$import_ID),","))
 family_count = unlist(lapply(colnames(ex_mt),
                        function(x)length(which(exc_full$family==x))))
 # all_exchanged = gsub("\\[.\\]","",intersect(all_exported, all_imported))
@@ -51,7 +51,7 @@ y_max = 0.88
 space = .2
 width = (1 - 2*space)/3
 
-cex = .5
+cex = .6
 cex_legend = .6
 x_pos = matrix(c(0, width,
                  width+space, 2*width+space,
@@ -80,8 +80,7 @@ for (i in 1:ncol(ex_mt)) {
   current_familiy = colnames(ex_mt)[i]
   
   idx = which(exc_full$family==current_familiy)
-
-  exported_ids = gsub("\\[.\\]","",unlist(strsplit(exc_full$export_ID[idx], ",")))
+  exported_ids = gsub("\\[.\\]","",unlist(strsplit(as.vector(exc_full$export_ID[idx]), ",")))
   exported_ids = exported_ids[exported_ids %in% exc_ids]
   exported_ids_uniq = unique(exported_ids)
   exported_ids_count = unlist(lapply(exported_ids_uniq,function (x) {length(which(exported_ids==x))}))
@@ -103,7 +102,7 @@ for (i in 1:ncol(ex_mt)) {
     }
   }
   
-  imported_ids = gsub("\\[.\\]","",unlist(strsplit(exc_full$import_ID[idx], ",")))
+  imported_ids = gsub("\\[.\\]","",unlist(strsplit(as.vector(exc_full$import_ID[idx]), ",")))
   imported_ids = imported_ids[imported_ids %in% exc_ids]
   imported_ids_uniq = unique(imported_ids)
   imported_ids_count = unlist(lapply(imported_ids_uniq,function (x) {length(which(imported_ids==x))}))
@@ -130,7 +129,7 @@ for (i in 1:ncol(ex_mt)) {
 }
 
 legend("top", legend = unique(exc_brite), ncol = length(unique(exc_brite)),
-       cex = cex_legend, fill = brite_colors, bty = "n")
+       cex = cex_legend, fill = cbp1[1:length(unique(exc_brite))], bty = "n")
 
 
 

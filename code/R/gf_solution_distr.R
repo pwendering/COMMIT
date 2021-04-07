@@ -125,7 +125,7 @@ add_title <- function(title) {
   
   par(usr = tmp_usr)
 }
-writeToFile = F
+writeToFile = T
 habitat = "Soil"
 topDir = "~/ComGapFill"
 # store default graphical parameters
