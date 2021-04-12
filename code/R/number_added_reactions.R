@@ -77,7 +77,7 @@ axis(side = 1, at = x_pos, labels = c("KBase draft", "consensus - CarveMe", "con
 axis(side = 2, at = pretty(y_limits), cex.axis = cex, col = "gray30")
 title(ylab = "Number of added reactions", cex.lab = cex)
 # legend
-legend(x = x_pos[2]*1.3, y = y_max*0.7, legend = c("individual", "conditional"),  bty = "n",
+legend(x = x_pos[2]*1.3, y = y_max*0.7, legend = c("individual", "compFill"),  bty = "n",
        cex = 1.2*cex, col = violin_colors[1,3,5], fill = violin_colors[c(1,2)], text.col = "gray30")
 
 # box

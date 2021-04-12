@@ -2,9 +2,7 @@
 library(scales)
 
 myDensityPlot <- function (X, col, nbins, xlim) {
-  # h = hist(X, breaks = 10,...)
-  # x = h$mids
-  # y = h$counts
+
   coord = binData(X, nbins = nbins, xlim = xlim)
   x = coord[[1]]
   y = coord[[2]]
@@ -33,18 +31,21 @@ binData <- function(X, nbins, xlim) {
 
 plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend,
                                  y_axis, x_axis, writeToFile = F) {
+  # number of exchanged metabolites
   exc <- read.table(paste(wd, study, "-exc.txt", sep = ""), header = T)
   exc = apply(exc, 1, sum)
+  # number of added reactions
   gf <- read.table(paste(wd, study, "-gf.txt", sep = ""), header = T)
   gf = apply(gf, 1, sum)
+  # sum of optimal biomass fluxes over all community members
   bio <- read.table(paste(wd, study, "-bio.txt", sep = ""), header = T)
   bio = apply(bio, 1, sum)
+  # row index of the optimal ordering
   opt_idx <- read.table(paste(wd, study, "-opt.txt", sep = ""), header = T)
   opt_idx = opt_idx[1,1]
   
   # scale all values to the optimum determined above
   data = rbind(gf, bio, exc)
-  
   data = apply(data,1,function(x, opt) {x=x-x[opt]; x=x/max(abs(x))}, opt=opt_idx)
   
   if (writeToFile) {

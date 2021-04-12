@@ -76,4 +76,4 @@ classFile <- paste(topDir, "/exchanged_metabolites/graph/", modelType,
                    "_brite_exchanged_", sep = "")
 
 plotExchangeGraph(fileBaseName = fileBaseName, classFile = classFile, experiment = "Schlaeppi", outPath = outPath, writeToFile = writeToFile)
-# plotExchangeGraph(fileBaseName = fileBaseName, classFile = classFile, experiment = "Bulgarelli", outPath = outPath, writeToFile = writeToFile)
+plotExchangeGraph(fileBaseName = fileBaseName, classFile = classFile, experiment = "Bulgarelli", outPath = outPath, writeToFile = writeToFile)

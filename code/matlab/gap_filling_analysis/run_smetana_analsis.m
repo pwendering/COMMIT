@@ -44,18 +44,38 @@ for i=1:n
         tmpModel.metNames(j) = cellstr(tmpModel.metNames{j});
     end
     
+    tmpModel = convertModelToReversible(tmpModel);
+    
+    
+    % remove obsolete exchange reacions
+    removeIdx = ~cellfun(@isempty, regexp(tmpModel.rxns, '^EX_.*_r$'));
+    
     for j=1:numel(tmpModel.rxns)
         if contains(tmpModel.rxns(j), 'EX_')
-            tmpModel.rxns(j) = strcat('R_', regexprep(tmpModel.rxns(j),'\[.\]',''));
+            % modify compartment encoding
+            tmpModel.rxns(j) = strcat(regexprep(tmpModel.rxns(j),'\[.\]',''));
+            tmpModel.rxns{j} = [tmpModel.rxns{j} '_e'];
+            % make reversible, unidirectional reaction in opposite
+            % direction will be removed
+            tmpModel.lb(j) = -1000;           
         end
+        
     end
+    
+
+    
+    % remove export and sink reactions introduced during gap filling
+%     removeIdx = removeIdx | contains(tmpModel.rxns, 'export_M') | contains(tmpModel.rxns, 'sink_M');
+    
+    tmpModel = removeRxns(tmpModel, tmpModel.rxns(removeIdx));
     
     tmpModel.metMetaNetXID = strtok(tmpModel.mets, '[');
     
-%     blocked = findBlockedReaction(tmpModel);
-    
+    % remove blocked reactions
+    blocked = findBlockedReaction(tmpModel);
     tmpModel = removeRxns(tmpModel, blocked);
-       
+    
+    % write model in SBML format
     writeCbModel(tmpModel, 'format', 'sbml',...
         'fileName', fullfile(smetanaDir, 'models', tmpModel.id));
     

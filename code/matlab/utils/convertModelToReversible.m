@@ -13,7 +13,7 @@ function model = convertModelToReversible(model_irrev)
 field_names = fieldnames(model_irrev);
 rxn_fields = field_names(cellfun(@(x)numel(model_irrev.(x))==numel(model_irrev.rxns),field_names));
 
-remove = [];
+removeIdx = [];
 % loop over all reactions and find pairs
 for i=1:numel(model_irrev.rxns)
     
@@ -21,17 +21,11 @@ for i=1:numel(model_irrev.rxns)
     idx = ~cellfun('isempty', regexp(model_irrev.rxns, [model_irrev.rxns{i}, '_r$']));
     if any(idx)
         model_irrev.lb(i) = -1000;
-        remove(end+1) = find(idx);
+        removeIdx = [removeIdx; find(idx)];
     end
     
 end
 
 % remove the reverse reactions and associated field entries
-for i=remove'
-    for j=1:numel(rxn_fields)
-        model_irrev.(rxn_fields{j})(i) = [];
-    end
-    model_irrev.S(:,i) = [];
-end
-model = model_irrev;
+model = removeRxns(model_irrev, model_irrev.rxns(removeIdx));
 end
