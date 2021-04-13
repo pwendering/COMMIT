@@ -4,12 +4,12 @@ function brite = map2KEGGBrite(metList, briteFile)
 % KEGG br08001 (with manual extension using KEGG, PubChem and ChEBI).
 % Input:
 %       cellstr metList:        array containing the metabolite IDs
-%       char pathwayFile:       path to the parsed br08001.keg file obtained
+%       char briteFile:         path to the parsed br08001.keg file obtained
 %                               from KEGG 
 %                               (compound \t name \t descending hierarchy  
 %                               (| - separated))
 % Output:
-%       cell pathways:          highest brite level for every metabolite
+%       cell brite:             highest brite level for every metabolite
 
 %% ~~~~~ check input ~~~~~ %%
 if ~iscellstr(metList)
