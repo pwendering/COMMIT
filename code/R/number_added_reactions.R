@@ -3,9 +3,9 @@
 library(scales)
 library(plotrix)
 
-setwd("~/ComGapFill")
-
-writeToFile = T;
+# setwd("~/ComGapFill")
+setwd("C://Users/wende/MobaXterm/home/comgapfill")
+writeToFile = T
 
 habitat <- "Soil"
 experiment <- "Schlaeppi"
@@ -58,42 +58,45 @@ y_max <- ceiling(y_max) * 10 + 10
 y_limits <- c(0, y_max)
 
 if (writeToFile) {
-  png(filename = outFile, units = "cm", width = 20, height = 15, res = 600)
+  png(filename = outFile, units = "cm", width = 12, height = 12, res = 600)
 }
 
-par(family = "Arial", mgp = c(2.8,1,0), oma = c(0,0,0,0))
+par(family = "sans", mgp = c(2.8,1,0), oma = c(.6,0,0,0), xpd = T)
 cbp1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73",
           "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 violin_colors <- alpha(rep(cbp1[c(2,1)], 3), 0.8)
-cex = 1.3
+cex = 1.1
 x_pos = c(1,2,3.5,4.5,6,7)
 violin_plot(X = t(data)[,c(4,1,5,2,6,3)], at = x_pos, axes = F, main = "",
             col = violin_colors, ylim = y_limits)
 
 # plot axes
 x_pos <- c(1.5, 4, 6.5)
-axis(side = 1, at = x_pos, labels = c("KBase draft", "consensus - CarveMe", "consensus"),
-     lty = 0, font = 2, tick = T, cex.axis = cex)
+axis(side = 1, at = x_pos, labels = c("KBase", "-CarveMe", "consensus"),
+     lty = 0, font = 4, tick = T, cex.axis = 1.2)
 axis(side = 2, at = pretty(y_limits), cex.axis = cex, col = "gray30")
 title(ylab = "Number of added reactions", cex.lab = cex)
-# legend
-legend(x = x_pos[2]*1.3, y = y_max*0.7, legend = c("individual", "compFill"),  bty = "n",
-       cex = 1.2*cex, col = violin_colors[1,3,5], fill = violin_colors[c(1,2)], text.col = "gray30")
 
-# box
-# box(lwd = 2)
+# legend
+legend(x = x_pos[2]*1.2, y = y_max*0.8, legend = c("individual", "compFill"),  bty = "n",
+       cex = cex, col = violin_colors[1,3,5], fill = violin_colors[c(1,2)], text.col = "gray30")
+
+box(lwd=2)
 
 # draw significance stars
 x_pos <- c(2, 4.5, 7)
 for (i in 1:length(h)){
   if (h[i]==1) {
-    points(x = x_pos[i], y = 3+max(data[idx_iter[i],]), pch = 8, cex = 0.6)
+    points(x = x_pos[i], y = 3+max(data[idx_iter[i],]),
+           pch = 8, cex = 0.4)
   } 
   else if (h[i]==2) {
-    points(x = c(x_pos[i]-0.08,x_pos[i]+0.08), y = rep(3+max(data[idx_iter[i],]),2), pch = 8, cex = 0.6)
+    points(x = c(x_pos[i]-0.1,x_pos[i]+0.1), y = rep(3+max(data[idx_iter[i],]),2),
+           pch = 8, cex = 0.4)
   }
   else if (h[i]==3) {
-    points(x = c(x_pos[i]-0.08,x_pos[i],x_pos[i]+0.08), y = rep(3+max(data[idx_iter[i],]),3), pch = 8, cex = 0.6)
+    points(x = c(x_pos[i]-0.1,x_pos[i],x_pos[i]+0.1), y = rep(3+max(data[idx_iter[i],]),3),
+           pch = 8, cex = 0.4)
   }
     
 }
