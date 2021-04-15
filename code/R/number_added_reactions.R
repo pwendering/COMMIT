@@ -5,7 +5,7 @@ library(plotrix)
 
 # setwd("~/ComGapFill")
 setwd("C://Users/wende/MobaXterm/home/comgapfill")
-writeToFile = T
+writeToFile = F
 
 habitat <- "Soil"
 experiment <- "Schlaeppi"

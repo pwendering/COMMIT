@@ -1,12 +1,12 @@
 library(scales)
 
 writeToFile = T
-topDir = "~/ComGapFill/figures/exchanged_metabolites/graph/"
-# topDir = "figures/exchanged_metabolites/graph/"
+# topDir = "~/ComGapFill/figures/exchanged_metabolites/graph/"
+topDir = "C://Users/wende/MobaXterm/home/comgapfill/figures/exchanged_metabolites/graph/"
 
 modelType <- "all"
 habitat = "Soil"
-experiment = "Bulgarelli"
+experiment = "Schlaeppi"
 
 matrixFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_", experiment, ".txt")
 outFile <- paste0(topDir, "exchange_", experiment, ".png")
@@ -45,7 +45,7 @@ cbp1 <- c("#CC79A7", "#0072B2", "#009E73", "#D55E00",
 brite_colors = cbp1[unlist(lapply(exc_brite,
                                    function(x) which(unique(exc_brite)==x)))]
 tmp_usr = par("usr")
-par(usr = c(0,1,0,1))
+par(usr = c(0,1,0,1), family = "sans")
 
 y_min = 0.12
 y_max = 0.88
@@ -53,27 +53,25 @@ y_max = 0.88
 space = .2
 width = (1 - 2*space)/3
 
-cex = .4
+cex_families = .5
+cex_mets = .4
 cex_legend = .5
 x_pos = matrix(c(0, width,
                  width+space, 2*width+space,
                  2*width+2*space, 3*width+2*space
                  ),nrow = 3, byrow = T)
 
-# rect(x_pos[1,1],y_min-.05,x_pos[1,2],y_max+.05,col = "grey70")
 rect(x_pos[2,1],y_min-.05,x_pos[2,2],y_max+.05,col = "grey90",border = NA)
-# rect(x_pos[3,1],y_min-.05,x_pos[3,2],y_max+.05,col = "grey70")
 
 y_pos_families = seq(y_min,y_max,(y_max-y_min)/(ncol(ex_mt)-1))
 y_pos_mets = seq(y_min,y_max,(y_max-y_min)/(length(exc_ids)-1))
 
 text(x = rep(x_pos[1,1],ncol(ex_mt)), y = y_pos_families,
-     labels = colnames(ex_mt), pos = 4, cex = cex, font= 2)
-# text(x = rep(x_pos[2,1],length(exc_ids)), y = y_pos_mets, labels = exc_ids,adj = .5, cex = .5)
-text(x = rep(.5,length(exc_ids)), y = y_pos_mets, labels = exc_names,adj = .5, cex = cex,
+     labels = colnames(ex_mt), pos = 4, cex = cex_families, font= 2)
+text(x = rep(.5,length(exc_ids)), y = y_pos_mets, labels = exc_names,adj = .5, cex = cex_mets,
      col = brite_colors, font = 2)
 text(x = rep(x_pos[3,1],ncol(ex_mt)), y = y_pos_families,
-     labels = colnames(ex_mt), pos = 4, cex = cex, font = 2)
+     labels = colnames(ex_mt), pos = 4, cex = cex_families, font = 2)
 
 t = 0
 

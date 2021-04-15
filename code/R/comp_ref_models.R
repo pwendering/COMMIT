@@ -1,10 +1,10 @@
 # Comparison of merged models to reference models
 
 library(plotrix)
-library(ggplot2)
 
 writeToFile = T
-topDir = "~/ComGapFill/figures/Comparison-to-reference-models/"
+# topDir = "~/ComGapFill/figures/Comparison-to-reference-models/"
+topDir= "C://Users/wende/MobaXterm/home/comgapfill/figures/Comparison-to-reference-models/"
 #####################################################################
 #######  Data
 #####################################################################
@@ -39,8 +39,8 @@ if (writeToFile) {
 
 
 my_title = "Similarity of consensus models to reference models"
-yaxis_label_1 = "" #"Sensitivity x sequence similarity"
-yaxis_label_2 = "" #"Precision x sequence similarity"
+yaxis_label_1 = "Sensitivity x sequence similarity"
+yaxis_label_2 = "Precision x sequence similarity"
 cex = 2.3
 my_xaxis_labels = c("B. megaterium", "B. megaterium", "M. extorquens", "M. extorquens")
 col_genus = "black"
@@ -79,17 +79,12 @@ violin_plot(X =
             axes = F
 )
 
-legend("top", legend = c("sensitivity x sequence similarity",
-                         "precision x sequence similarity"),
-       fill = c("#666666","#E69F00"), ncol = 2, cex = 1.5,
-       bty = "n")
-
 # add left Y-axis
 par(yaxt = "s", tck = NA)
 axis(side=2, at = pretty(c(0,0.9)),
      col = "#666666", col.axis = "#666666", cex.axis = cex, cex.lab = cex)
 title(ylab = yaxis_label_1, cex.lab = cex, col.lab = "#666666",
-      family = "Arial", font.lab = 2)
+      family = "sans", font.lab = 2)
 
 # add points to the plot for species and genus values
 # same genus
