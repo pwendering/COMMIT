@@ -1,8 +1,8 @@
 library(scales)
 
 writeToFile = T
-# topDir = "~/ComGapFill/figures/exchanged_metabolites/graph/"
-topDir = "C://Users/wende/MobaXterm/home/comgapfill/figures/exchanged_metabolites/graph/"
+topDir = "~/ComGapFill/figures/exchanged_metabolites/graph/"
+# topDir = "C://Users/wende/MobaXterm/home/comgapfill/figures/exchanged_metabolites/graph/"
 
 modelType <- "all"
 habitat = "Soil"
@@ -36,7 +36,7 @@ family_count = unlist(lapply(colnames(ex_mt),
                        function(x)length(which(exc_full$family==x))))
 # all_exchanged = gsub("\\[.\\]","",intersect(all_exported, all_imported))
 if (writeToFile) {
-  png(filename = outFile, width = 15, height = 15,units = "cm",res = 600)
+  png(filename = outFile, width = 20, height = 15,units = "cm",res = 600)
 }
 plot.new()
 
@@ -44,18 +44,18 @@ cbp1 <- c("#CC79A7", "#0072B2", "#009E73", "#D55E00",
           "#E69F00", "#56B4E9", "#F0E442", "#999999")
 brite_colors = cbp1[unlist(lapply(exc_brite,
                                    function(x) which(unique(exc_brite)==x)))]
-tmp_usr = par("usr")
-par(usr = c(0,1,0,1), family = "sans")
+orignialPar = par()
+par(usr = c(0,1,0,1), family = "sans", xpd = T)
 
-y_min = 0.12
-y_max = 0.88
+y_min = -.1#0.12
+y_max = 1#0.88
 
 space = .2
 width = (1 - 2*space)/3
 
-cex_families = .5
-cex_mets = .4
-cex_legend = .5
+cex_families = .8
+cex_mets = .6
+cex_legend = .7
 x_pos = matrix(c(0, width,
                  width+space, 2*width+space,
                  2*width+2*space, 3*width+2*space
@@ -128,10 +128,10 @@ for (i in 1:ncol(ex_mt)) {
   
 }
 
-legend("top", legend = unique(exc_brite), ncol = length(unique(exc_brite)),
+legend(x=.5,y=y_max+.15,xjust = .5, legend = unique(exc_brite), ncol = length(unique(exc_brite)),
        cex = cex_legend, fill = cbp1[1:length(unique(exc_brite))], bty = "n")
 
-par(usr = tmp_usr)
+par(orignialPar)
 
 if (writeToFile) dev.off()
 
