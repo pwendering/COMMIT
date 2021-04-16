@@ -657,21 +657,21 @@ C06454	Fosfomycin	Antibiotics; Others; Aliphatic compounds
 C06681	Mitomycin	Antibiotics; Others; Quinones
 C06695	2-Oxazolidinone	Antibiotics; Others; Cyclic lactones
 C14818	Fe(2+)	Minerals
-C00011	CO2	
+C00011	CO2	Other
 C05361	HYDRAZINE	Other; Inorganic hydrides; Nitrogen hydrides
 C00014	NH4(+)	Other; Inorganic hydrides; Nitrogen hydrides
 C05413	all-trans-Phytoene	Lipids; Prenol lipids; Isoprenoids; C40 isoprenoids
 C14819	Fe(3+)	Minerals
-C00080 	H(+)	
-C00027	H2O2
+C00080 	H(+)	Other
+C00027	H2O2	Other
 C00424	(S)-Lactaldehyde	Other; Carbonyl compounds; Aldehydes; Pyruvate metabolism
 C00227	Acetyl phosphate	Other; Organic phosphates; Phosphoric acid derivative; Taurine and hypotaurine metabolism; Pyruvate metabolism
 C00469	ethanol	Other; Alcohols
 C00179	Agmatine	Other; Phytochemical compounds; Amino acid related compounds; Others; Amines
 C01188	3-Hydroxyisobutyrate	Organic acids; Fatty acids; Short-chain fatty acid anion
 C05665	3-Aminopropanal	Other; Carbonyl compounds; Aldehydes; Amino aldehyde
-C00007	O2
-C00059	sulfate	
+C00007	O2	Other
+C00059	sulfate	Minerals
 C00288	hydrogencarbonate	Other; Inorganic Acids; Carbonates
 C05898	Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine	Lipids; Prenol Lipids; Polyprenols; Bactoprenol diphosphates
 C00084	Acetaldehyde	Other; Carbonyl compounds; Aldehydes
@@ -688,7 +688,7 @@ C15809	2-iminoacetate	Organic acids; Carboxylic acids; Imino acids; Thiamine met
 C00244	nitrate	Other; Inorganic Anions; Nitrogen oxoanion
 C00262	Hypoxanthine	Other; Heterocyclic compounds; Purines
 C00160	Glycolate	Organic acids; Carboxylic acids; Acetates
-C00001	H2O
+C00001	H2O	Other
 C04574	Undecaprenyl diphosphate	Lipids; Prenol lipids; Polyprenols; Bactoprenol diphosphates
 C00294	Inosine	Nucleic acids; Nucleosides; Purine nucleosides
 C00455	beta-nicotinamide D-ribonucleotide	Nucleic acids; Nucleotides; Ribonucleotides
@@ -757,7 +757,6 @@ MNXM132	dimethylallyl diphosphate	Other
 MNXM1	proton	Other
 MNXM22	H2O2	Other
 MNXM4	O2	Other
-MNXM58	sulfate	Minerals
-
-	
+MNXM58	sulfate	Minerals	
+MNXM195	NH4(+)	Other
 
