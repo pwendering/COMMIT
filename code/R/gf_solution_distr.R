@@ -12,7 +12,7 @@ myDensityPlot <- function (X, col, nbins, xlim) {
   polygon(x,y, col = alpha(col,0.1), border = NA)#alpha(col, 0.4), lwd = 6)
 }
 
-binData <- function(X, nbins, xlim) {
+binData <- function (X, nbins, xlim) {
   # range
   r = max(xlim) - min(xlim)
   # bin size
@@ -29,7 +29,7 @@ binData <- function(X, nbins, xlim) {
   return(res)
 }
 
-plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend,
+plot_gf_distribution <- function (wd, habitat, study, outFileBase, add_legend,
                                  y_axis, x_axis, writeToFile = F) {
   # number of exchanged metabolites
   exc <- read.table(paste(wd, study, "-exc.txt", sep = ""), header = T)
@@ -56,7 +56,7 @@ plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend,
   # Plotting and graphical parameters
   cex_axis = 2
   col_axis = "gray30"
-  par(family = "Arial", mar = c(5, 5, 4, 2) + 0.1, mgp = c(3.5,1,0), xpd = T)
+  par(family = "sans", mar = c(5, 7.8, 4, 2) + 0.1, mgp = c(3.5,1,0), xpd = T)
   cbp1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73",
             "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
   col <- cbp1[c(4,6,8)]
@@ -95,14 +95,14 @@ plot_gf_distribution <- function(wd, habitat, study, outFileBase, add_legend,
     title(ylab = "Frequency", cex.lab = cex_axis)
   }
   if (add_legend){
-    legend(x = -1, y = 95, legend = c("added reactions", "biomass fluxes", "exchanged metabolites"),
+    legend(x = -1, y = 95, legend = c("number of added reactions", "sum of biomass reaction fluxes", "number of exchanged metabolites"),
            col = alpha(col, 0.5), lwd = 6, bty = "n", cex = 1.5, bg = NA)
   }
   
   if (writeToFile) dev.off()
 }
 
-add_letter <- function(letter = "X", case = "upper") {
+add_letter <- function (letter = "X", case = "upper") {
   if (is.numeric(letter)) {
     if (case == "upper") {
       letter = LETTERS[letter]
@@ -112,13 +112,13 @@ add_letter <- function(letter = "X", case = "upper") {
   }
   
   tmp_usr = par("usr")
-  par(usr = c(0,1,0,1), family = "Arial")
+  par(usr = c(0,1,0,1), family = "sans")
   
   text(x = -0.1, y = 1.1, labels = letter, pos = 1, cex = 2.5, font = 2)
   
   par(usr = tmp_usr)
 }
-add_title <- function(title) {
+add_title <- function (title) {
   tmp_usr = par("usr")
   par(usr = c(0,1,0,1), family = "Arial")
   
@@ -126,9 +126,18 @@ add_title <- function(title) {
   
   par(usr = tmp_usr)
 }
+add_annotation <- function (annotation) {
+  tmp_usr = par("usr")
+  par(usr = c(0,1,0,1), family = "sans")
+  
+  mtext(text = bquote(~underline(~bolditalic(.(annotation)))), side = 2,
+        line = 6, cex = 1.5, adj = .5)
+  par(usr = tmp_usr)
+}
 writeToFile = T
 habitat = "Soil"
-topDir = "~/ComGapFill"
+# topDir = "~/ComGapFill"
+topDir = "C://Users/wende/MobaXterm/home/comgapfill/"
 # store default graphical parameters
 originalPar = par();
 
@@ -138,7 +147,7 @@ if (writeToFile) {
   png(filename = paste0(topDir, "/figures/gap-filling/Figure_3_gap_filling_iterations.png"), width = 20, height = 25, units = "cm",
       res = 600)
 }
-par(mfrow=c(3,2))
+par(mfrow=c(3,2),xpd =T)
 
 # Full consensus models
 wd = paste(topDir, "/data/gap-filling/iterative/", habitat, "/all/", sep = "")
@@ -146,15 +155,18 @@ outFileBase <- paste(topDir, "/figures/gap-filling/all/", sep = "")
 plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = F, y_axis = T, x_axis = F, writeToFile = F)
 add_letter(1)
 add_title("Schlaeppi")
+add_annotation("consensus")
 plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F, writeToFile = F)
 add_letter(2)
 add_title("Bulgarelli")
+
 
 # Consensus models without CarveMe models
 wd = paste(topDir, "/data/gap-filling/iterative/", habitat, "/no_CarveMe/", sep = "")
 outFileBase <- paste(topDir, "figures/gap-filling/no_CarveMe/", sep = "")
 plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = T, y_axis = T, x_axis = F, writeToFile = F)
 add_letter(3)
+add_annotation("-CarveMe")
 plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F, writeToFile = F)
 add_letter(4)
 
@@ -163,6 +175,7 @@ wd = paste(topDir, "/data/gap-filling/iterative/Soil/KBase/", sep = "")
 outFileBase <- paste(topDir, "figures/gap-filling/iterative/KBase/kbase-", sep = "")
 plot_gf_distribution(wd, habitat, "Schlaeppi", outFileBase, add_legend = F, y_axis = T, x_axis = F, writeToFile = F)
 add_letter(5)
+add_annotation("KBase")
 plot_gf_distribution(wd, habitat, "Bulgarelli", outFileBase, add_legend = F, y_axis = F, x_axis = F, writeToFile = F)
 add_letter(6)
 
