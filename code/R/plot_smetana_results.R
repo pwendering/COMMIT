@@ -1,6 +1,6 @@
 library(scales)
 
-writeToFile = T
+writeToFile = F
 topDir = "~/ComGapFill/"
 # topDir = "C://Users/wende/MobaXterm/home/comgapfill/smetana-analysis/results/"
 habitat = "Soil"
@@ -64,13 +64,13 @@ y_pos_families = seq(y_min,y_max,(y_max-y_min)/(nrow(smetanaDat)-1))
 y_pos_mets = seq(y_min,y_max,(y_max-y_min)/(length(metabolites)-1))
 
 text(x = rep(x_pos[1,1],nrow(smetanaDat)), y = y_pos_families,
-     paste0(rownames(smetanaDat), " (", taxClasses, ")"), pos = 4, cex = cex_otus, font= 2)
+     paste0(otus, " (", taxClasses, ")"), pos = 4, cex = cex_otus, font= 2)
 # text(x = rep(x_pos[1,1],nrow(smetanaDat)), y = y_pos_families,
 #      rownames(smetanaDat), pos = 4, cex = cex_otus, font= 2)
 text(x = rep(.5,length(metabolites)), y = y_pos_mets, labels = metabolites,
      adj = .5, cex = cex_mets, font = 2, col = col_brite)
 text(x = rep(x_pos[3,1],nrow(smetanaDat)), y = y_pos_families,
-     rownames(smetanaDat), pos = 4, cex = cex_otus, font = 2)
+     otus, pos = 4, cex = cex_otus, font = 2)
 
 t = 0
 
@@ -121,3 +121,4 @@ legend("top", legend = unique(briteDict$BRITE), ncol = length(unique(briteDict$B
 par(originalPar)
 
 if (writeToFile) dev.off()
+

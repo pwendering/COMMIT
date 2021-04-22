@@ -1,6 +1,6 @@
 library(scales)
 
-writeToFile = T
+writeToFile = F
 topDir = "~/ComGapFill/figures/exchanged_metabolites/graph/"
 # topDir = "C://Users/wende/MobaXterm/home/comgapfill/figures/exchanged_metabolites/graph/"
 
@@ -16,10 +16,6 @@ dictFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_dict
 # better as separate file
 
 ex_mt <- as.matrix(read.table(file = matrixFile, header = T, sep = "\t"))
-
-# ex_classes <- read.table(file = classFile, header = T, row.names = 1, sep = "\t")
-# classes <- unique(as.vector(as.matrix(ex_classes)))
-# classes = setdiff(classes, "")
 
 brite_dict <- read.table(dictFile, header = F, sep = "\t", quote = "\"")
 brite_order = order(brite_dict[,2])
@@ -134,4 +130,12 @@ legend(x=.5,y=y_max+.15,xjust = .5, legend = unique(exc_brite), ncol = length(un
 par(orignialPar)
 
 if (writeToFile) dev.off()
+
+export_abundances = sapply(exc_ids, function(x) {length(which(gsub("\\[.*$","",all_exported)==x))})
+names(export_abundances) = brite_dict[exc_ids %in% gsub("\\[.*$","",brite_dict[,1]),3]
+export_abundances = sort(export_abundances,decreasing = T)
+
+import_abundances = sapply(exc_ids, function(x) {length(which(gsub("\\[.*$","",all_imported)==x))})
+names(import_abundances) = brite_dict[exc_ids %in% gsub("\\[.*$","",brite_dict[,1]),3]
+import_abundances = sort(import_abundances, decreasing = T)
 
