@@ -1,14 +1,26 @@
 MNXM111[e]	Minerals	Fe(2+)
+MNXM114[e]	Peptides	L-proline
+MNXM131[e]	Organic acids	citrate
 MNXM140[e]	Peptides	L-leucine
 MNXM1499[e]	Other	propanoyl phosphate
 MNXM1542[e]	Carbohydrates	beta-D-fructofuranose
+MNXM15[e]	Other	NH4(+)
 MNXM196[e]	Minerals	Fe(3+)
 MNXM198[e]	Carbohydrates	alpha,alpha-trehalose
 MNXM1[e]	Other	H(+)
 MNXM21[e]	Other	acetyl-CoA
+MNXM2276[e]	Other	pseudouridine 5'-phosphate
 MNXM231[e]	Peptides	L-isoleucine
+MNXM32[e]	Peptides	L-alanine
 MNXM4[e]	Other	O2
+MNXM55[e]	Peptides	L-cysteine
 MNXM58[e]	Minerals	sulfate
 MNXM59041[e]	Carbohydrates	keto-L-sorbose
+MNXM599[e]	Organic acids	iminosuccinate
+MNXM60[e]	Other	hydrogencarbonate
+MNXM61025[e]	Other	maltoheptaose
+MNXM61028[e]	Carbohydrates	maltohexaose
+MNXM61032[e]	Carbohydrates	maltopentaose
+MNXM61038[e]	Carbohydrates	maltotriose
 MNXM70[e]	Peptides	L-arginine
 MNXM9[e]	Minerals	phosphate

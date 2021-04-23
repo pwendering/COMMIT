@@ -8,7 +8,7 @@ options
 % model workspace
 habitat = 'Soil';
 spec = 'all';
-experiment = 'Schlaeppi';
+experiment = 'Bulgarelli';
 modelFile = fullfile('data/gap-filling/iterative/',...
     habitat, spec, experiment);
 load(modelFile, 'GF', 'EX');
@@ -16,7 +16,7 @@ n = numel(GF);
 
 smetanaDir = 'smetana-analysis';
 % check whether model and result directories exist
-dirs = {'models', 'results'};
+dirs = {'models', 'results', ['models' filesep experiment]};
 for i=1:numel(dirs)
     if ~exist(fullfile(smetanaDir,dirs{i}),'dir')
         mkdir(fullfile(smetanaDir,dirs{i}))
