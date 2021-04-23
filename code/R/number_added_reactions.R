@@ -5,10 +5,10 @@ library(plotrix)
 
 # setwd("~/ComGapFill")
 setwd("C://Users/wende/MobaXterm/home/comgapfill")
-writeToFile = F
+writeToFile = T
 
 habitat <- "Soil"
-experiment <- "Schlaeppi"
+experiment <- "Bulgarelli"
 
 figureDir <- "figures/added_reactions/"
 
@@ -61,7 +61,7 @@ if (writeToFile) {
   png(filename = outFile, units = "cm", width = 12, height = 12, res = 600)
 }
 
-par(family = "sans", mgp = c(2.8,1,0), oma = c(.6,0,0,0), xpd = T)
+par(family = "sans", mgp = c(2.8,1,0), mar = c(4,4,4,2)+.1, xpd = T)
 cbp1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73",
           "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 violin_colors <- alpha(rep(cbp1[c(2,1)], 3), 0.8)

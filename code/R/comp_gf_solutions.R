@@ -67,7 +67,7 @@ library(igraph)
 originalPar = par()
 par(mar = c(3,5,3,0)+.1, family = "sans")
 
-experiment = "Schlaeppi"
+experiment = "Bulgarelli"
 habitat = "Soil"
 
 data <- read.table(paste0(topDir, habitat, "_",
