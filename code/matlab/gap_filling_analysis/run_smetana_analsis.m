@@ -4,6 +4,9 @@
 % (https://github.com/cdanielmachado/smetana)
 options
 
+% set COBRA solver to CPLEX
+changeCobraSolver('ibm_cplex','all',0);
+
 %% Input
 % model workspace
 habitat = 'Soil';
