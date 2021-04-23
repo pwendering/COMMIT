@@ -1,12 +1,12 @@
 library(scales)
 
-writeToFile = F
-topDir = "~/ComGapFill/figures/exchanged_metabolites/graph/"
-# topDir = "C://Users/wende/MobaXterm/home/comgapfill/figures/exchanged_metabolites/graph/"
+writeToFile = T
+# topDir = "~/ComGapFill/figures/exchanged_metabolites/graph/"
+topDir = "C://Users/wende/MobaXterm/home/comgapfill/figures/exchanged_metabolites/graph/"
 
 modelType <- "all"
 habitat = "Soil"
-experiment = "Schlaeppi"
+experiment = "Bulgarelli"
 
 matrixFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_", experiment, ".txt")
 outFile <- paste0(topDir, "exchange_", experiment, ".png")
