@@ -1,7 +1,7 @@
 % find exchanged metabolites between the OTUs
 options
 
-experiment = 'Schlaeppi';
+experiment = 'Bulgarelli';
 
 % medium that has been used for gap filling
 load(mediumFile)
@@ -51,19 +51,19 @@ end
 t_unspecific = n;
 
 % imported
-% all_imported = vertcat(imported_per_model{:});
-% all_imported = unique(all_imported);
+all_imported = vertcat(imported_per_model{:});
+all_imported = unique(all_imported);
 
 % get permeability for all metabolites and determine the ones that are not
 % predicted to be permeable
-% p_imported = ...
-%     cellfun(@(x)dbModel_MNXref_balanced.metPermeability(strcmp(x,...
-%     dbModel_MNXref_balanced.mets)), all_imported, 'un', 0);
-% p_imported(cellfun('isempty', p_imported)) = {false};
-% p_imported = cell2mat(p_imported);
-% mets_not_p = all_imported(~p_imported);
-% imported_per_model = cellfun(@(x)setdiff(x, mets_not_p), imported_per_model,...
-%     'UniformOutput', 0);
+p_imported = ...
+    cellfun(@(x)dbModel_MNXref_balanced.metPermeability(strcmp(x,...
+    dbModel_MNXref_balanced.mets)), all_imported, 'un', 0);
+p_imported(cellfun('isempty', p_imported)) = {false};
+p_imported = cell2mat(p_imported);
+mets_not_p = all_imported(~p_imported);
+imported_per_model = cellfun(@(x)setdiff(x, mets_not_p), imported_per_model,...
+    'UniformOutput', 0);
 % exclude imported metabolites that occur in most or all models
 % unspecific_imported = cellfun(@(x)sum(contains(all_imported, x)), unique(all_imported))==t_unspecific;
 % unspecific_imported = all_imported(unspecific_imported);
@@ -71,18 +71,18 @@ t_unspecific = n;
 %     'UniformOutput', 0);
 
 % exported
-% all_exported = vertcat(exported_per_model{:});
-% all_exported = unique(all_exported);
+all_exported = vertcat(exported_per_model{:});
+all_exported = unique(all_exported);
 % get permeability for all metabolites and determine the ones that are not
 % predicted to be permeable
-% p_exported = ...
-%     cellfun(@(x)dbModel_MNXref_balanced.metPermeability(strcmp(x,...
-%     dbModel_MNXref_balanced.mets)), all_exported, 'un', 0);
-% p_exported(cellfun('isempty', p_exported)) = {false};
-% p_exported = cell2mat(p_exported);
-% mets_not_p = all_exported(~p_exported);
-% exported_per_model = cellfun(@(x)setdiff(x, mets_not_p), exported_per_model,...
-%     'UniformOutput', 0);
+p_exported = ...
+    cellfun(@(x)dbModel_MNXref_balanced.metPermeability(strcmp(x,...
+    dbModel_MNXref_balanced.mets)), all_exported, 'un', 0);
+p_exported(cellfun('isempty', p_exported)) = {false};
+p_exported = cell2mat(p_exported);
+mets_not_p = all_exported(~p_exported);
+exported_per_model = cellfun(@(x)setdiff(x, mets_not_p), exported_per_model,...
+    'UniformOutput', 0);
 
 % exclude exported metabolites that occur in most or all models
 % unspecific_exported = cellfun(@(x)sum(contains(all_exported, x)), unique(all_exported))==t_unspecific;
@@ -91,7 +91,7 @@ t_unspecific = n;
 %     'UniformOutput', 0);
 
 clear mets_not_p all_exported all_imported unspecific_exported unspecific_imported ...
-    dbModel_MNXref_balanced
+    dbModel_MNXref_balanced p_exported p_imported
 
 %% classify metabolites by KEGG pathway and brite definitions per model
 model_ids = cellfun(@(x)strtok(x.id, '_'), GF,...
