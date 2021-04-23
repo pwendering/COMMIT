@@ -1,6 +1,9 @@
 % save the COBRA models as smbl
 options
 
+% set COBRA solver to CPLEX
+changeCobraSolver('ibm_cplex','all',0);
+
 experiment = 'Schlaeppi';
 
 modelFile = fullfile('data/gap-filling/iterative', habitat, 'all',...
