@@ -15,7 +15,8 @@ habitat = 'Soil';
 experiments = {'Bulgarelli', 'Schlaeppi'};
 
 % path to ComGapFil top directory
-topDir = '/stud/wendering/ComGapFill';
+% topDir = '/stud/wendering/ComGapFill';
+topDir = 'C://Users/wende/MobaXterm/home/comgapfill';
 
 % change to working directory
 cd(topDir)

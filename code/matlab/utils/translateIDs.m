@@ -108,12 +108,16 @@ else
     
     % Write the list to file so the IDs can be translated by a bash function
     writetable(table(idList), fullfile(dbDir, 'tmp.csv'), 'WriteVariableNames', false)
-    [s, output] = unix(['code/bash/mapIDs.sh', ' ',...
+    
+    % system call
+    command = ['code/bash/mapIDs.sh', ' ',...
         fullfile(dbDir, 'tmp.csv'),' ',...
         num2str(targetID), ' ',...
-        dbFile]);
+        dbFile];
+    [s, output] = unix(command);
+    
     if s
-        error('The mapping did not work, most likely the translating file does not exist or is in wrong format')
+        error('The mapping did not work, most likely the translation file does not exist or is in wrong format')
     end
     
     % Process the terminal output (last line will be always empty
