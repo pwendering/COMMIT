@@ -33,7 +33,7 @@ Me = Me[,which(colnames(Me)==c("precision", "sensitivity"))]
 #######  Plotting
 #####################################################################
 if (writeToFile) {
-  png(paste0(topDir, spec, "Sens-Prec-Violin-plot.png"),
+  png(paste0(topDir, spec, "comparison_reference_models.png"),
       height = 800, width = 800*1.1)
 }
 
