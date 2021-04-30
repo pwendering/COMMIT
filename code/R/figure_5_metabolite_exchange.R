@@ -7,7 +7,7 @@ topDir = "figures/exchanged_metabolites/graph/"
 
 modelType <- "all"
 habitat = "Soil"
-experiment = "Schlaeppi"
+experiment = "Bulgarelli"
 
 matrixFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_", experiment, ".txt")
 outFile <- paste0(topDir, "exchange_", experiment, ".png")
