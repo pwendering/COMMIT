@@ -11,10 +11,8 @@ experiment = "Schlaeppi"
 
 matrixFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_", experiment, ".txt")
 outFile <- paste0(topDir, "exchange_", experiment, ".png")
-# classFile <- paste0(topDir, modelType,"_brite_exchanged_", experiment, ".txt")
 excFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_IDs_", experiment, ".txt")
 dictFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_dict_", experiment, ".txt")
-# better as separate file
 
 ex_mt <- as.matrix(read.table(file = matrixFile, header = T, sep = "\t"))
 

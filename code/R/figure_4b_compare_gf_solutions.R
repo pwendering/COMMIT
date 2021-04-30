@@ -61,7 +61,7 @@ V(G)$label.family <- "sans"
 # appearance of edges
 bins = cut(E(G)$weight,3, include.lowest = T)
 
-lty_levels = c(3,5,1) #c(3,4,2,5,1)
+lty_levels = c(3,5,1)
 edge_lty = as.numeric(paste(cut(E(G)$weight,3, include.lowest = T, labels = lty_levels)))
 
 E(G)$lty <- edge_lty
