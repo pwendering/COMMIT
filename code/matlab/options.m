@@ -1,4 +1,4 @@
-% Options for ComGapFill
+% Options for COMMIT
 
 %~~~~~~~~~~~~~ General settings ~~~~~~~~~~~~~%
 
