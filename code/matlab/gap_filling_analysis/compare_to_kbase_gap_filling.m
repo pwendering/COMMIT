@@ -1,4 +1,4 @@
-% compare gap-filling solutions of ComGapFill with the results from the
+% compare gap-filling solutions of COMMIT with the results from the
 % KBase gap-filling App (using auxtropic media)
 experiment = 'Bulgarelli';
 tableOutFile = ['data/gap-filling/iterative/Soil/KBase/', experiment,...
@@ -38,8 +38,8 @@ end
 
 clearvars -except gfRxnsMNX gfRxns excMets modelIDs experiment
 
-% find added reactions of gap-filled KBase models using ComGapFill
-disp('Find added reactions in ComGapFilled KBase models')
+% find added reactions of gap-filled KBase models using COMMIT
+disp('Find added reactions in COMMITed KBase models')
 modelFile = ['data/gap-filling/iterative/Soil/KBase/' experiment '.mat'];
 load(modelFile,'GF')
 
