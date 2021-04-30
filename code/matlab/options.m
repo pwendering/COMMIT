@@ -15,8 +15,8 @@ habitat = 'Soil';
 experiments = {'Bulgarelli', 'Schlaeppi'};
 
 % path to ComGapFil top directory
-% topDir = '/stud/wendering/ComGapFill';
-topDir = 'C://Users/wende/MobaXterm/home/comgapfill';
+topDir = '~/COMMIT';
+
 
 % change to working directory
 cd(topDir)
@@ -68,6 +68,7 @@ modelFile = fullfile(modelDir, [habitat, '_consensus_models_biomass']);
 tmp_spec = '_all';
 % tmp_spec = '_noCarveMe';
 % tmp_spec = '_KBase';
+
 sub_dir = regexprep(tmp_spec, '^_', '');
 
 % output directory for the gap-filled models
