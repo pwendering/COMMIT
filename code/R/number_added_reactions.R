@@ -3,12 +3,10 @@
 library(scales)
 library(plotrix)
 
-# setwd("~/ComGapFill")
-setwd("C://Users/wende/MobaXterm/home/comgapfill")
 writeToFile = T
 
 habitat <- "Soil"
-experiment <- "Bulgarelli"
+experiment <- "Schlaeppi"
 
 figureDir <- "figures/added_reactions/"
 
@@ -40,7 +38,6 @@ for (i in 1:length(idx_iter)){
   n_2 <- shapiro.test(d_2)
   if (n_1$p.value >= alpha & n_2$p.value >= alpha) {
     t <- t.test(d_1,d_2,alternative = "two.sided", paired = T, var.equal = F)
-    # print(var.test(d_1, d_2)$p.value)
   } else {
     t <- wilcox.test(d_1,d_2,paired = T, alternative = "two.sided")
   }
@@ -78,7 +75,7 @@ axis(side = 2, at = pretty(y_limits), cex.axis = cex, col = "gray30")
 title(ylab = "Number of added reactions", cex.lab = cex)
 
 # legend
-legend(x = x_pos[2]*1.2, y = y_max*0.8, legend = c("individual", "compFill"),  bty = "n",
+legend(x = x_pos[2]*1.2, y = y_max*0.8, legend = c("individual", "COMMIT"),  bty = "n",
        cex = cex, col = violin_colors[1,3,5], fill = violin_colors[c(1,2)], text.col = "gray30")
 
 box(lwd=2)

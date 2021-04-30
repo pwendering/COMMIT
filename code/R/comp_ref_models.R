@@ -3,8 +3,8 @@
 library(plotrix)
 
 writeToFile = T
-# topDir = "~/ComGapFill/figures/Comparison-to-reference-models/"
-topDir= "C://Users/wende/MobaXterm/home/comgapfill/figures/Comparison-to-reference-models/"
+topDir = "figures/Comparison-to-reference-models/"
+
 #####################################################################
 #######  Data
 #####################################################################

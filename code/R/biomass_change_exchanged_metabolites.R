@@ -27,7 +27,6 @@ col1 <- "darkorange4"
 col2 <- "goldenrod"
 col3 <- "gray50"
 pal <- colorRampPalette(c(col1, col2, col3), bias = 0.1)(palettelength)
-# pal <- wes_palette("Chevalier1", palettelength, type = "continuous")
 mybreaks <- c(seq(from = 0,to = 1, length.out =  palettelength))
 
 fileBaseName <- paste(topDir, "figures/exchanged_metabolites/reduction_biomass/", habitat, "_",

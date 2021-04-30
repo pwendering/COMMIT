@@ -1,8 +1,9 @@
+# plot exchanged metabolites obtained by SMETANA (Zelezniak et al. 2015,
+# Daniel Machado (GitHub https://github.com/cdanielmachado/smetana))
 library(scales)
 
 writeToFile = F
 topDir = "~/ComGapFill/"
-# topDir = "C://Users/wende/MobaXterm/home/comgapfill/smetana-analysis/results/"
 habitat = "Soil"
 experiment = "Schlaeppi"
 
@@ -25,7 +26,6 @@ col_brite = cbp1[unlist(lapply(briteDict$BRITE,
                                   function(x) which(unique(briteDict$BRITE)==x)))]
 
 # read taxonomy file
-# taxFile = paste0(topDir, "data/genomes/At-SPHERE-genera.txt")
 taxFile = paste0(topDir, "data/genomes/At-SPHERE-families.txt")
 taxTable = read.table(taxFile,header = T, sep = "\t")
 taxClasses = taxTable[taxTable$isolate_ID %in% otus,2]
@@ -65,8 +65,6 @@ y_pos_mets = seq(y_min,y_max,(y_max-y_min)/(length(metabolites)-1))
 
 text(x = rep(x_pos[1,1],nrow(smetanaDat)), y = y_pos_families,
      paste0(otus, " (", taxClasses, ")"), pos = 4, cex = cex_otus, font= 2)
-# text(x = rep(x_pos[1,1],nrow(smetanaDat)), y = y_pos_families,
-#      rownames(smetanaDat), pos = 4, cex = cex_otus, font= 2)
 text(x = rep(.5,length(metabolites)), y = y_pos_mets, labels = metabolites,
      adj = .5, cex = cex_mets, font = 2, col = col_brite)
 text(x = rep(x_pos[3,1],nrow(smetanaDat)), y = y_pos_families,
@@ -112,7 +110,6 @@ for (i in 1:nrow(smetanaDat)) {
         lwd = 3)
     }
   }
-  
 }
 
 legend("top", legend = unique(briteDict$BRITE), ncol = length(unique(briteDict$BRITE)),

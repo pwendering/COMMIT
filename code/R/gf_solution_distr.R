@@ -1,4 +1,5 @@
 # plot characteristics of gap-filling solutions across all explored iterations
+
 library(scales)
 
 myDensityPlot <- function (X, col, nbins, xlim) {
@@ -136,12 +137,10 @@ add_annotation <- function (annotation) {
 }
 writeToFile = T
 habitat = "Soil"
-# topDir = "~/ComGapFill"
-topDir = "C://Users/wende/MobaXterm/home/comgapfill/"
+topDir = "ComGapFill"
+
 # store default graphical parameters
 originalPar = par();
-
-
 
 if (writeToFile) {
   png(filename = paste0(topDir, "/figures/gap-filling/Figure_3_gap_filling_iterations.png"), width = 20, height = 25, units = "cm",

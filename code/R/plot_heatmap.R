@@ -18,12 +18,7 @@ cbp1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73",
           "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 palettelength = 20
-# mytitle = "Structural differences of the applied reconstruction methods"
-# col1 = "#999999"#"gray92"
-# col2 = "#E69F00"#"cornflowerblue"
-# col3 = "#56B4E9"#"gold"
-# col4 = "firebrick4"
-# mycol = colorRampPalette(c(col1, col2, col3, col4))(palettelength)
+
 pal <- wes_palette("Zissou1", palettelength, type = "continuous")
 mybreaks = c(seq(from = 0,to = 1, length.out =  palettelength))
 

@@ -1,5 +1,4 @@
-#!/usr/bin/Rscript
-
+# Comparison of structural distances to 16S rRNA sequence similarity
 library(igraph, warn.conflicts = F, quietly = T)
 library(plotrix, warn.conflicts = F, quietly = T)
 library(ape, warn.conflicts = F, quietly = T)
@@ -20,7 +19,7 @@ colorFunction <- function(x) {
 }
 
 # Compare distance measures applied to consensus models to sequence similarity
-topDir = "~/ComGapFill/"
+topDir = "ComGapFill/"
 writeToFile = F
 setwd(paste0(topDir, "figures/Comparison-of-methods/"))
 

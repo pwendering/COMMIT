@@ -1,12 +1,13 @@
+# plot import to and export from the common pool of exchanged metabolites per bacterial family
+
 library(scales)
 
 writeToFile = T
-# topDir = "~/ComGapFill/figures/exchanged_metabolites/graph/"
-topDir = "C://Users/wende/MobaXterm/home/comgapfill/figures/exchanged_metabolites/graph/"
+topDir = "figures/exchanged_metabolites/graph/"
 
 modelType <- "all"
 habitat = "Soil"
-experiment = "Bulgarelli"
+experiment = "Schlaeppi"
 
 matrixFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_", experiment, ".txt")
 outFile <- paste0(topDir, "exchange_", experiment, ".png")
@@ -30,10 +31,11 @@ all_exported = unlist(strsplit(as.vector(exc_full$export_ID),","))
 all_imported = unlist(strsplit(as.vector(exc_full$import_ID),","))
 family_count = unlist(lapply(colnames(ex_mt),
                        function(x)length(which(exc_full$family==x))))
-# all_exchanged = gsub("\\[.\\]","",intersect(all_exported, all_imported))
+
 if (writeToFile) {
   png(filename = outFile, width = 20, height = 15,units = "cm",res = 600)
 }
+
 plot.new()
 
 cbp1 <- c("#CC79A7", "#0072B2", "#009E73", "#D55E00",
@@ -43,8 +45,8 @@ brite_colors = cbp1[unlist(lapply(exc_brite,
 orignialPar = par()
 par(usr = c(0,1,0,1), family = "sans", xpd = T)
 
-y_min = -.1#0.12
-y_max = 1#0.88
+y_min = -.1
+y_max = 1
 
 space = .2
 width = (1 - 2*space)/3
