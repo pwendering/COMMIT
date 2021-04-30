@@ -1,4 +1,4 @@
-# generate plots for the comparison of different gap filling solutions
+# Compare sets of reactions added during gap filling
 library(scales)
 library(pheatmap)
 library(wesanderson)
@@ -18,7 +18,7 @@ library(igraph)
 originalPar = par()
 par(mar = c(3,5,3,0)+.1, family = "sans")
 
-experiment = "Schlaeppi"
+experiment = "Bulgarelli"
 habitat = "Soil"
 
 data <- read.table(paste0(topDir, habitat, "_",
