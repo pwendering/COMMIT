@@ -1,7 +1,0 @@
-Row	Soil522	Soil531	Soil535	Soil538	Soil724D2	Soil728	Soil736	Soil745	Soil748	Soil750	Soil768D1	Soil772	Soil773	Soil774	Soil777	Soil787	Soil796	Soil802	Soil809	Soil810
-KBase_iterative	21	19	29	19	22	36	18	15	27	39	21	39	31	29	32	21	32	31	31	34
-no_CarveMe_iterative	5	3	10	8	6	8	8	4	4	5	4	10	12	5	6	6	6	6	8	6
-all_iterative	0	1	1	0	3	6	1	0	0	1	2	0	0	0	0	0	0	1	1	1
-KBase_individual	42	42	67	47	46	64	57	38	54	55	37	67	66	48	46	47	70	60	70	57
-noCarveMe_individual	9	9	17	8	11	12	16	10	12	10	11	16	19	13	12	11	13	11	18	13
-all_individual	6	6	7	6	6	6	6	6	8	8	9	6	9	6	6	8	9	9	6	6

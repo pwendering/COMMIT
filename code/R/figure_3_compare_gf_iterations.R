@@ -10,7 +10,7 @@ myDensityPlot <- function (X, col, nbins, xlim) {
   lines(x = x, y = y, col = alpha(col, 0.5), lwd = 6)
   y = c(0,y,0)
   x = c(x[1],x,x[length(x)])
-  polygon(x,y, col = alpha(col,0.1), border = NA)#alpha(col, 0.4), lwd = 6)
+  polygon(x,y, col = alpha(col,0.1), border = NA)
 }
 
 binData <- function (X, nbins, xlim) {

@@ -19,7 +19,7 @@ colorFunction <- function(x) {
 }
 
 # Compare distance measures applied to consensus models to sequence similarity
-topDir = "ComGapFill/"
+topDir = "COMMIT/"
 writeToFile = F
 setwd(paste0(topDir, "figures/Comparison-of-methods/"))
 
