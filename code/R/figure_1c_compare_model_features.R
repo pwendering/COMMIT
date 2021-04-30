@@ -1,4 +1,4 @@
-# compare model features
+# compare model features (reactions, metabolites, genes)
 library(plotrix, warn.conflicts = F, quietly = T)
 library(scales)
 
