@@ -13,7 +13,7 @@ translateIDs2Name <- function(fname, topDir) {
   )
 }
 cm2inches <- function(cm) return(cm*0.393701)
-topDir <- "~/ComGapFill/"
+topDir <- "~/COMMIT/"
 habitat <- "Soil"
 experiment <- "Schlaeppi"
 modelType <- "all"
