@@ -7,7 +7,7 @@ topDir = "figures/exchanged_metabolites/graph/"
 
 modelType <- "all"
 habitat = "Soil"
-experiment = "Bulgarelli"
+experiment = "Schlaeppi"
 
 matrixFile <- paste0(topDir, habitat, "_", modelType, "_exchanged_metabolites_", experiment, ".txt")
 outFile <- paste0(topDir, "exchange_", experiment, ".png")
@@ -31,7 +31,7 @@ family_count = unlist(lapply(colnames(ex_mt),
                        function(x)length(which(exc_full$family==x))))
 
 if (writeToFile) {
-  png(filename = outFile, width = 20, height = 15,units = "cm",res = 600)
+  png(filename = outFile, width = 20, height = 15,units = "cm",res = 1200)
 }
 
 plot.new()
