@@ -134,31 +134,31 @@ writetable(cell2table([exchange_brite, exchange_name],...
     'Delimiter', '\t');
 
 
-%% intersection of interactions with CompFill results
-exc_compFill = readtable(fullfile(topDir, 'figures', 'exchanged_metabolites',...
+%% intersection of interactions with COMMIT results
+exc_commit = readtable(fullfile(topDir, 'figures', 'exchanged_metabolites',...
     'graph', [habitat, '_', sub_dir,'_exchanged_metabolites_IDs_',experiment, '.txt']));
-compFill_dict = readtable(fullfile(topDir, 'figures', 'exchanged_metabolites',...
+commit_dict = readtable(fullfile(topDir, 'figures', 'exchanged_metabolites',...
     'graph', [habitat, '_', sub_dir,'_exchanged_metabolites_dict_',experiment, '.txt']),...
     'ReadVariableNames', false);
 % intersection of covered OTUs
-exc_compFill = exc_compFill(ismember(exc_compFill.Row,exc_smetana.Row),:);
-exc_compFill.export_ID = regexprep(exc_compFill.export_ID,'\[.\]','');
-exc_compFill.import_ID = regexprep(exc_compFill.import_ID,'\[.\]','');
-n_otu = size(exc_compFill,1);
-mat_compFill = zeros(n_otu);
+exc_commit = exc_commit(ismember(exc_commit.Row,exc_smetana.Row),:);
+exc_commit.export_ID = regexprep(exc_commit.export_ID,'\[.\]','');
+exc_commit.import_ID = regexprep(exc_commit.import_ID,'\[.\]','');
+n_otu = size(exc_commit,1);
+mat_commit = zeros(n_otu);
 mat_smetana = zeros(n_otu);
 
 mat_exc_inter = zeros(n_otu);
 
 for i=1:n_otu
     for j=i+1:n_otu-1
-        compFill_inter_1 = intersect(strsplit(exc_compFill.export_ID{i},','),...
-            strsplit(exc_compFill.import_ID{j},','));
-        mat_compFill(i,j) = numel(compFill_inter_1);
+        commit_inter_1 = intersect(strsplit(exc_commit.export_ID{i},','),...
+            strsplit(exc_commit.import_ID{j},','));
+        mat_commit(i,j) = numel(commit_inter_1);
         
-        compFill_inter_2 = intersect(strsplit(exc_compFill.export_ID{j},','),...
-            strsplit(exc_compFill.import_ID{i},','));
-        mat_compFill(j,i) = numel(compFill_inter_2);
+        commit_inter_2 = intersect(strsplit(exc_commit.export_ID{j},','),...
+            strsplit(exc_commit.import_ID{i},','));
+        mat_commit(j,i) = numel(commit_inter_2);
         
         smetana_inter_1 = intersect(strsplit(exc_smetana.export_ID{i},','),...
             strsplit(exc_smetana.import_ID{j},','));
@@ -168,18 +168,18 @@ for i=1:n_otu
             strsplit(exc_smetana.import_ID{j},','));
         mat_smetana(j,i) = numel(smetana_inter_2);
         
-        mat_exc_inter(i,j) = numel(intersect(compFill_inter_1, smetana_inter_1));
-        mat_exc_inter(j,i) = numel(intersect(compFill_inter_2, smetana_inter_2));
+        mat_exc_inter(i,j) = numel(intersect(commit_inter_1, smetana_inter_1));
+        mat_exc_inter(j,i) = numel(intersect(commit_inter_2, smetana_inter_2));
         
     end
 end
 
-% encoding: only compFill: 1, only smetana: 2, both: 3
+% encoding: only COMMIT: 1, only smetana: 2, both: 3
 mat_recov = zeros(n_otu);
 
-mat_recov(mat_compFill>0) = 1;
+mat_recov(mat_commit>0) = 1;
 mat_recov(mat_smetana>0) = 2;
-mat_recov(mat_compFill>0&mat_smetana>0) = 3;
+mat_recov(mat_commit>0&mat_smetana>0) = 3;
 
 perc_recovered = (sum(sum(mat_recov==3))) / (numel(mat_recov)-n_otu);
 perc_both_neg = (sum(sum(mat_recov==0))-n_otu) / (numel(mat_recov)-n_otu);
@@ -194,5 +194,5 @@ writetable(array2table(mat_recov, 'RowNames', exc_smetana.Row,...
 %% intersection of exchanged metabolites
 
 
-exc_met_inter = intersect(exchange_name, compFill_dict.Var3);
+exc_met_inter = intersect(exchange_name, commit_dict.Var3);
 

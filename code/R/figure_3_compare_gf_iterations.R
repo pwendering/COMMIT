@@ -137,7 +137,7 @@ add_annotation <- function (annotation) {
 }
 writeToFile = T
 habitat = "Soil"
-topDir = "ComGapFill"
+topDir = "COMMIT"
 
 # store default graphical parameters
 originalPar = par();
