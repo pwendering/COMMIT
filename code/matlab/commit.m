@@ -1,23 +1,23 @@
 % load options
 options
 
-% set up parallel computing
-c = parcluster;
-c.NumWorkers = ncpu;
-saveProfile(c);
+%% RAVEN draft model reconstruction
+model_generation_RAVEN
 
-%% Convert models to a common format that can be used for evaluation
+% KBase, CarveMe, and AuReMe/Pathway Tools draft models were created outside of
+% MATLAB and are available upon request
+
+%% Convert draft models to a common format that can be used for evaluation
 
 % % Convert and translate the draft models to MNXref namespace
-% modelConversion_RAVEN
-% modelConversion_KBase
-% modelConversion_CarveMe
-% modelConversion_AuReMe
+modelConversion_RAVEN
+modelConversion_KBase
+modelConversion_CarveMe
+modelConversion_AuReMe
 
-%% Evlaluate the draft models from all approaches
-translationDB = loadTranslationDB;
+%% Evaluate the draft models from all approaches
 
-% Which metabolites are highly abundant (connect reactions/EC numbers
+% Highly-abundant metabolites (connect reactions/EC numbers
 % on the basis of connecting metabolites in S)
 % E. coli: Highly connected enzymes tend to be highly abundant
 % (Aguilar-Rodríguez & Wagner, GBE, 2018)
@@ -40,8 +40,7 @@ blackList = {
     'cpd00013',... % NH3 --> not in Aguilar-Rodríguez & Wagner, GBE, 2018
     };
 
-blackList = translateIDs(blackList, 'met',...
-    translationDB.metTab, 'ModelSEED', 'MNXref');
+blackList = translateIDs(blackList, 'met',[], 'ModelSEED', 'MNXref');
 
 % Cofactors -> Coenzymes
 % (KEGG br08001: https://www.genome.jp/kegg-bin/get_htext#C42)
@@ -77,20 +76,19 @@ coFactorsKEGG = {
     'C00113';... %  PQQ (Pyrroloquinoline-quinone)
     };
 
-coFactors = translateIDs(coFactorsKEGG, 'met',...
-    translationDB.metTab, 'KEGG', 'MNXref');
+coFactors = translateIDs(coFactorsKEGG, 'met', [], 'KEGG', 'MNXref');
 
 % Evaluate the draft models
-analyzeRAVENModels;
+analyzeRAVENModels
 analyzeKBaseModels
 analyzeCarveMeModel
 analyzeAuReMeModels
 
 
-%% translate gene IDs for KBase and AuReMe models ==> done
-tic; translation_of_gene_IDs; toc
+%% translate gene IDs for KBase and AuReMe models
+translation_of_gene_IDs
 
-%% remove all exchange and biomass reactions from the models ==> done
+%% remove all exchange and biomass reactions from the models
 remove_biomass_and_exchange_rxns
 
 %% add metabolite formulae
@@ -105,14 +103,12 @@ merge_metabolic_models
 %% add a universal prokaryotic biomass to all models
 add_universal_biomass
 
-
 %% Iterative gap filling
 d = datestr(floor(now));
 diary(['data/gap-filling/output-' d '.txt']);
 
+% individual gap filling
 gap_fill_individual_models
+
+% conditional gap filling (COMMIT)
 run_iterative_gap_filling
-
-
-evaluate_gap_fillings
-
