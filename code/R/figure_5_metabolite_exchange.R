@@ -31,7 +31,7 @@ family_count = unlist(lapply(colnames(ex_mt),
                        function(x)length(which(exc_full$family==x))))
 
 if (writeToFile) {
-  png(filename = outFile, width = 20, height = 15,units = "cm",res = 1200)
+  png(filename = outFile, width = 20, height = 15,units = "cm",res = 1000)
 }
 
 plot.new()
