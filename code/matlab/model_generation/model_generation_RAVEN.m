@@ -3,7 +3,7 @@ options; clear
 
 % Check if installation is correct:
 
-% cd('/stud/wendering/bin/CentOS/RAVEN/software/')
+% cd('~/bin/RAVEN/software/')
 % checkInstallation
 
 % Parameters for model reconstruction
