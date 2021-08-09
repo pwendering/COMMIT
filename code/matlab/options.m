@@ -12,7 +12,7 @@ ncpu = 8;
 habitat = 'Soil';
 
 % experiments to be analyzed
-experiments = {'Bulgarelli', 'Schlaeppi'};
+experiments = {'Schlaeppi'};
 
 % path to ComGapFil top directory
 topDir = '~/COMMIT';
@@ -72,7 +72,7 @@ tmp_spec = '_all';
 sub_dir = regexprep(tmp_spec, '^_', '');
 
 % output directory for the gap-filled models
-outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir);
+outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir, 't_1_0');
 
 
 %~~~~~~~~~~~~~ Gap-filling resources ~~~~~~~~~~~~~%
