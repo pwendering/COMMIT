@@ -250,7 +250,7 @@ for i = gf_order
     else
         % LP to find sink reactions that do not decrease the
         % biomass production by a factor
-        exchanged_mets = findPotentialExcMets(gfModel, 1);
+        exchanged_mets = findPotentialExcMets(gfModel, 0.9);
     end
     
     % indices of metabolites unique to exchanged metabolites
