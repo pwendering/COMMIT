@@ -1,6 +1,7 @@
 # Comparison of merged models to reference models
 
 library(plotrix)
+library(scales)
 
 writeToFile = T
 topDir = "figures/Comparison-to-reference-models/"
@@ -138,5 +139,10 @@ mtext(yaxis_label_2, side = 4, col = "#E69F00", line = 4, cex = cex, font = 2)
 
 axis(side = 1, at = c(1.5,3.5), labels = c("B. megaterium", "M. extorquens"),
      col = "#999999", lwd = -1, font = 4, cex.axis = cex)
+
+# add legend
+legend("topright",c("same genus", "same species"),
+       pch = 19, col = c(col_genus, col_species),
+       bty = "n", cex = cex, pt.cex = 1.5)
 
 if (writeToFile) dev.off()
