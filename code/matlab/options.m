@@ -17,13 +17,6 @@ experiments = {'Schlaeppi'};
 % path to ComGapFil top directory
 topDir = '~/COMMIT';
 
-
-% change to working directory
-cd(topDir)
-
-% add all matlab scripts to path
-addpath(genpath('code/matlab'))
-
 % medium file
 mediumFile = 'data/media/minimal-medium.mat';
 
@@ -50,11 +43,11 @@ order = [];
 % objective
 include_sink = false;
 
-% set COBRA solver for linear optimization problems
-% initCobraToolbox(false)
-% changeCobraSolver('ibm_cplex','LP',0);
-% changeCobraSolver('gurobi','LP',0);
-% changeCobraSolver('matlab','LP',0);
+% change to working directory
+cd(topDir)
+
+% add all matlab scripts to path
+addpath(genpath('code/matlab'))
 
 %~~~~~~~~~~~~~ Model workspace and output directory ~~~~~~~~~~~~~%
 
