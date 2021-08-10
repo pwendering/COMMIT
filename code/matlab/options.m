@@ -14,7 +14,7 @@ habitat = 'Soil';
 % experiments to be analyzed
 experiments = {'Schlaeppi'};
 
-% path to ComGapFil top directory
+% path to COMMIT top directory
 topDir = '~/COMMIT';
 
 % medium file
