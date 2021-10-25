@@ -120,8 +120,8 @@ else
         error('The mapping did not work, most likely the translation file does not exist or is in wrong format')
     end
     
-    % Process the terminal output (last line will be always empty
-    trList = regexp(output(1:end-1), '\n', 'split');
+    % Process the terminal output
+    trList = strsplit(output(1:end-1));
 end
 
 if verbose
