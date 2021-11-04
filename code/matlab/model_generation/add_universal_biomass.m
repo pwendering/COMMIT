@@ -1,7 +1,16 @@
 % Add the universal prokaryotic biomass reaction from CarveMe models to all
-% models (Machado et al., 2018, Nucleic Acid Res.; Xavier et al., 2017, Metab. Eng.)
-load('data/gap-filling/universal-biomass-reaction.mat')
-biomass_name = 'universal_Biomass_reaction'; 
+% models, dependent on Gram stain information (Machado et al., 2018, Nucleic Acid Res.;
+% Xavier et al., 2017, Metab. Eng.)
+load('data/gap-filling/biomass-reaction/universal-biomass-reaction.mat')
+biomass_rxn_uni = biomass_rxn;
+load('data/gap-filling/biomass-reaction/gramneg-biomass-reaction.mat')
+biomass_rxn_neg = biomass_rxn;
+load('data/gap-filling/biomass-reaction/grampos-biomass-reaction.mat')
+biomass_rxn_pos = biomass_rxn;
+clear biomass_rxn
+biomass_name = 'universal_Biomass_reaction';
+gram_stain_info = readtable('data/gap-filling/biomass-reaction/gram-stain-wiki.tsv',...
+    'FileType','text','ReadVariableNames',false);
 habitats = {'Soil', 'Leaf', 'Root'};
 
 %% KBase models
@@ -11,6 +20,17 @@ for i=1:numel(habitats)
     load(workspace)
     for j=1:numel(models)
         model = models{j};
+        % choose appropriate biomass reaction dependent on gram stain
+        gr_stain = char(gram_stain_info.(3)(ismember(gram_stain_info.(1),strtok(model.id,'_'))));
+        switch gr_stain
+            case 'grampos'
+                biomass_rxn = biomass_rxn_pos;
+            case 'gramneg'
+                biomass_rxn = biomass_rxn_neg;
+            case ''
+                biomass_rxn = biomass_rxn_uni;
+        end
+        
         model = addReaction(model, 'BIOMASS_Reaction',...
             'reactionName', biomass_name,...
             'reactionFormula',  biomass_rxn{:},...
@@ -38,6 +58,17 @@ for i=1:numel(habitats)
     load(workspace)
     for j=1:numel(models)
         model = models{j};
+        % choose appropriate biomass reaction dependent on gram stain
+        gr_stain = char(gram_stain_info.(3)(ismember(gram_stain_info.(1),strtok(model.id,'_'))));
+        switch gr_stain
+            case 'grampos'
+                biomass_rxn = biomass_rxn_pos;
+            case 'gramneg'
+                biomass_rxn = biomass_rxn_neg;
+            case ''
+                biomass_rxn = biomass_rxn_uni;
+        end
+        
         model = addReaction(model, 'BIOMASS_Reaction',...
             'reactionName', biomass_name,...
             'reactionFormula',  biomass_rxn{:},...
@@ -69,15 +100,30 @@ for i=1:numel(habitats)
     load(workspace)
     for j=1:numel(models)
         model = models{j};
+        % choose appropriate biomass reaction dependent on gram stain
+        gr_stain = char(gram_stain_info.(3)(ismember(gram_stain_info.(1),strtok(model.id,'_'))));
+        switch gr_stain
+            case 'grampos'
+                biomass_rxn = biomass_rxn_pos;
+            case 'gramneg'
+                biomass_rxn = biomass_rxn_neg;
+            case ''
+                biomass_rxn = biomass_rxn_uni;
+        end
+        
         model = addReaction(model, 'BIOMASS_Reaction',...
-                'reactionName', biomass_name,...
-                'reactionFormula',  biomass_rxn{:},...
-                'reversible', false,...
-                'lowerBound', 0,...
-                'upperBound', 1000, ...
-                'objectiveCoef', 1,...
-                'printLevel', 0);
-        % add BIOMASS to the biomass reaction
+            'reactionName', biomass_name,...
+            'reactionFormula',  biomass_rxn{:},...
+            'reversible', false,...
+            'lowerBound', 0,...
+            'upperBound', 1000, ...
+            'objectiveCoef', 1,...
+            'printLevel', 0);
+        % add BIOMASS to the biomass reaction, add metabolite of not
+        % present in the model
+        if ~ismember('BIOMASS[c]',model.mets)
+            model = addMetabolite(model,'BIOMASS[c]');
+        end
         model = changeRxnMets(model, 'BIOMASS[c]', 'BIOMASS[c]',...
             'BIOMASS_Reaction', 1);
         % add an exchange reaction for BIOMASS
@@ -87,7 +133,7 @@ for i=1:numel(habitats)
     workspace = fullfile(modelDir, habitats{i}, strcat(habitats{i}, '_models_biomass.mat'));
     save(workspace, 'models')
     clear models
-
+    
 end
 
 %% AuReMe
@@ -97,6 +143,17 @@ for i=1:numel(habitats)
     load(workspace)
     for j=1:numel(models)
         model = models{j};
+        % choose appropriate biomass reaction dependent on gram stain
+        gr_stain = char(gram_stain_info.(3)(ismember(gram_stain_info.(1),strtok(model.id,'_'))));
+        switch gr_stain
+            case 'grampos'
+                biomass_rxn = biomass_rxn_pos;
+            case 'gramneg'
+                biomass_rxn = biomass_rxn_neg;
+            case ''
+                biomass_rxn = biomass_rxn_uni;
+        end
+        
         model = addReaction(model, 'BIOMASS_Reaction',...
             'reactionName', biomass_name',...
             'reactionFormula',  biomass_rxn{:},...
@@ -127,6 +184,17 @@ for i=1:numel(habitats)
     load(workspace)
     for j=1:numel(merged_models)
         model = merged_models{j};
+        % choose appropriate biomass reaction dependent on gram stain
+        gr_stain = char(gram_stain_info.(3)(ismember(gram_stain_info.(1),strtok(model.id,'_'))));
+        switch gr_stain
+            case 'grampos'
+                biomass_rxn = biomass_rxn_pos;
+            case 'gramneg'
+                biomass_rxn = biomass_rxn_neg;
+            case ''
+                biomass_rxn = biomass_rxn_uni;
+        end
+        
         model = addReaction(model, 'BIOMASS_Reaction',...
             'reactionName', biomass_name',...
             'reactionFormula',  biomass_rxn{:},...
@@ -158,6 +226,17 @@ for i=1:numel(habitats)
     load(workspace)
     for j=1:numel(merged_models)
         model = merged_models{j};
+        % choose appropriate biomass reaction dependent on gram stain
+        gr_stain = char(gram_stain_info.(3)(ismember(gram_stain_info.(1),strtok(model.id,'_'))));
+        switch gr_stain
+            case 'grampos'
+                biomass_rxn = biomass_rxn_pos;
+            case 'gramneg'
+                biomass_rxn = biomass_rxn_neg;
+            case ''
+                biomass_rxn = biomass_rxn_uni;
+        end
+        
         model = addReaction(model, 'BIOMASS_Reaction',...
             'reactionName', biomass_name',...
             'reactionFormula',  biomass_rxn{:},...
