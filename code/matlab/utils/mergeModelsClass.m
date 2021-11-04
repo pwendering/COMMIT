@@ -16,7 +16,7 @@ classdef mergeModelsClass
     end
     
     properties (Constant)
-        epsilon = 10E-6;
+        epsilon = 1E-5;
         t_identity = 1;
         t_identity_lower = 0.9;
     end
