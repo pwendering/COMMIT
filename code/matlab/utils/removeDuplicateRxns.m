@@ -22,7 +22,7 @@ elseif nargin == 2
     verbose = 0;
 end
 
-fid1 = fopen('/stud/wendering/duplicate_reactions.txt', 'w');
+fid1 = fopen(fullfile('data','models','consensus','duplicate_reactions.txt'), 'w');
 fprintf(fid1, 'ID\tEquation\n');
 
 %% Initialize class
