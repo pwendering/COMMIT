@@ -8,7 +8,7 @@ function transportable = findPotentialExcMets(model, alpha)
 %       cell transportable:     metabolites for which transport and
 %                               exchange reactions likely
 %% Parameters
-epsilon = 10E-6;
+epsilon = 1E-5;
 if nargin < 2
     alpha = 0.9;
 end
