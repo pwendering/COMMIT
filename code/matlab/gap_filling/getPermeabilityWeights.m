@@ -12,17 +12,17 @@ load(fullfile('data','gap-filling','molecular-properties','properties_MNXref_met
 % remove the compartment identifier
 mets = strtok(mets, '[');
 % subsect the table
-ID = property_table.ID;
-property_table = property_table(ismember(ID, mets), 2:end);
+property_table = property_table(ismember(property_table.ID, mets),:);
+uniq_mets = unique(mets, 'stable');
+
 % predict the permeability
 p = zeros(numel(mets),1);
-permeability = predictPermeability(property_table);
-c=0;
-uniq_mets = unique(mets, 'stable');
+permeability = predictPermeability(property_table(:,2:end));
+
 for i=1:numel(uniq_mets)
-    if ismember(uniq_mets(i),ID)
-        c=c+1;
-        p(strcmp(mets(i), mets)) = permeability(c);
+    met_idx = ismember(property_table.ID,uniq_mets(i));
+    if sum(met_idx)>0
+        p(strcmp(uniq_mets(i), mets)) = permeability(met_idx);
     end
 end
 end
