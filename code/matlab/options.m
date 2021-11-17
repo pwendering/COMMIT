@@ -6,7 +6,7 @@
 warning('off', 'all')
 
 % number of parallel workers
-ncpu = 8;
+ncpu = 20;
 
 % habitat
 habitat = 'Soil';
@@ -65,7 +65,7 @@ tmp_spec = '_all';
 sub_dir = regexprep(tmp_spec, '^_', '');
 
 % output directory for the gap-filled models
-outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir);
+outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir, 'lb_bio_1e-3');
 
 
 %~~~~~~~~~~~~~ Gap-filling resources ~~~~~~~~~~~~~%
