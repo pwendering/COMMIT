@@ -6,7 +6,7 @@
 warning('off', 'all')
 
 % number of parallel workers
-ncpu = 20;
+ncpu = 4;
 
 % habitat
 habitat = 'Soil';
@@ -28,7 +28,7 @@ mediaDir = fullfile('data/media', habitat, 'auxo-media');
 otuDir = 'data/otu-abundances/';
 
 % threshold for the biomass reaction
-epsilon = 1E-4;
+epsilon = 1E-3;
 
 % number of iterations for the iterative approach
 iterations = 100;
