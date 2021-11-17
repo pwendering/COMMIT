@@ -292,13 +292,18 @@ dbModel.ub = vertcat(dbModel.ub, ub_tr);
 dbModel.rxns = vertcat(dbRxns, rxns_tr);
 dbModel.mets = columnVector(dbMets);
 
-% delete all zero-columns from S and change the other fields accordingly
+% delete all-zero columns from S and change the other fields accordingly
 non_zero_idx = any(dbModel.S, 1);
 dbModel.S = dbModel.S(:,non_zero_idx);
 dbModel.lb = dbModel.lb(non_zero_idx);
 dbModel.ub = dbModel.ub(non_zero_idx);
 dbModel.rxns = dbModel.rxns(non_zero_idx);
 dbModel.transport = logical(dbModel.transport(non_zero_idx));
+
+% delete all-zero rows from S and change the other fields accordingly
+non_zero_idx = any(dbModel.S, 2);
+dbModel.S = dbModel.S(non_zero_idx,:);
+dbModel.mets = dbModel.mets(non_zero_idx);
 
 % Since all default biomass reactions have been removed from the universal
 % database, the metabolite 'BIOMASS' has to be added to be able to add the
