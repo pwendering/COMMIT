@@ -52,12 +52,12 @@ for i = S
         DB.genes = seq_sim.genes{tmp_idx};
         clear tmp_idx
     end
-    
+    disp(model)
     % run conditional FastGapFilling
     [~, ~, gfModel, addedRxns] = ...
         condFastGapFilling(model, DB, EX, weights, epsilon, include_sink, verbose);
     clear model
-    
+    disp(gfModel)
     % add the optimal biomass value of the current gap filled model
     v = cplexlp(-gfModel.c, [], [], gfModel.S, gfModel.b, gfModel.lb, gfModel.ub);
 %     v = optimizeCbModel(gfModel);
