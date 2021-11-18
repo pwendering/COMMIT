@@ -33,8 +33,7 @@ ec_ref = regexp(ec_ref, '|', 'split');
 ec_ref = [ec_ref{:}];
 ec_ref = ec_ref(~cellfun('isempty', ec_ref));
 
-rxns_ref = translateIDs(ec_ref, 'rxn', [], 'EC', 'MNXref');
-adj_rxn = numel(rxns_ref) / numel(reference.rxns);
+adj_ec = numel(ec_ref) / numel(reference.rxns);
 
 reference.genes = table2cell(readtable(fullfile(modelDir, 'iRP911_genes_uniq.csv'),...
     'ReadVariableNames', false, 'Delimiter', '\t'));
@@ -43,7 +42,7 @@ reference.genes = table2cell(readtable(fullfile(modelDir, 'iRP911_genes_uniq.csv
 % same species:
 % Leaf90, Leaf92, Leaf119, Leaf121, Leaf122
 
-% same genus: 
+% same genus:
 % Leaf85, Leaf86, Leaf87, Leaf88, Leaf89, Leaf91, Leaf93, Leaf94, Leaf99,
 % Leaf100, Leaf102, Leaf104, Leaf106, Leaf108, Leaf111, Leaf113, Leaf117,
 % Leaf123, Leaf125, Leaf344, Leaf361, Leaf399, Leaf456, Leaf465, Leaf466,
@@ -96,45 +95,36 @@ for habitat = {'Leaf', 'Root', 'Soil'}
     %    char(habitat), [char(habitat), '_models_genes_translated']))
     
     if ~exist('merged_models', 'var')
-         merged_models = models;
+        merged_models = models;
     end
     merged_models = reshape(merged_models, numel(merged_models), 1);
     current_ids = cellfun(@(x)strtok(x.id, '_'), merged_models, 'un', 0);
     model_ids = [model_ids; current_ids];
     disp(habitat)
     
-     for i=1:numel(merged_models)
-         
-         c = c + 1;
-         
-         rxns_draft = strtok(merged_models{i}.rxns, '_');
-         mets_draft = strtok(merged_models{i}.mets, '[');
-         ec_draft = regexp(merged_models{i}.EC, '\|', 'split');
-         ec_draft = [ec_draft{:}];
-         
-         I_rxn = intersect(rxns_draft, rxns_ref);
-         I_met = intersect(mets_draft, mets_ref);
-         I_ec = intersect(ec_draft, ec_ref);
-         
-         % true positives
-         TP(c) = numel(I_rxn) + ...
-             numel(I_met) + ...
-             numel(I_ec);
-         % false negatives
-         FN(c) = numel(setdiff(rxns_ref, rxns_draft)) + ...
-             numel(setdiff(mets_ref, mets_draft)) + ...
-             numel(setdiff(ec_ref, ec_draft));
-         % false positives
-         FP(c) = numel(setdiff(rxns_draft, rxns_ref)) + ...
-             numel(setdiff(mets_draft, mets_ref)) + ...
-             numel(setdiff(ec_draft, ec_ref));
-         
-         p_rxn(c) = numel(I_rxn) / (numel(rxns_ref)*adj_rxn);
-         p_met(c) = numel(I_met) / (numel(mets_ref)*adj_met);
-         p_ec(c) = numel(I_ec) / (numel(ec_ref)*adj_rxn);
-         
-     end
-     
+    for i=1:numel(merged_models)
+        
+        c = c + 1;
+        
+        mets_draft = strtok(merged_models{i}.mets, '[');
+        ec_draft = regexp(merged_models{i}.EC, '\|', 'split');
+        ec_draft = [ec_draft{:}];
+        
+        I_met = intersect(mets_draft, mets_ref);
+        I_ec = intersect(ec_draft, ec_ref);
+        
+        % true positives
+        TP(c) = numel(I_met) + numel(I_ec);
+        % false negatives
+        FN(c) = numel(setdiff(mets_ref, mets_draft)) + numel(setdiff(ec_ref, ec_draft));
+        % false positives
+        FP(c) = numel(setdiff(mets_draft, mets_ref)) + numel(setdiff(ec_draft, ec_ref));
+        
+        p_ec(c) = numel(I_ec) / (numel(ec_ref)*adj_ec);
+        
+    end
+    
+    %{
      % Map gene IDs:
      
      % same species
@@ -158,21 +148,14 @@ for habitat = {'Leaf', 'Root', 'Soil'}
              merged_models{ismember(current_ids, genus_ids{j})}.genes)) / ...
              numel(model.genes); clear model
      end
-   clear merged_models 
+    %}
+    clear merged_models
 end
 
 clear current_ids
 
 idx_species = ismember(model_ids, species_ids);
 idx_genus = ismember(model_ids, genus_ids);
-
-p_genus_rxn = p_rxn(idx_genus);
-p_genus_met = p_met(idx_genus);
-p_genus_ec = p_ec(idx_genus);
-
-p_species_rxn = p_rxn(idx_species);
-p_species_met = p_met(idx_species);
-p_species_ec = p_ec(idx_species);
 
 % Quality measures
 precision = TP ./ (TP + FP);

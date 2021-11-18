@@ -14,11 +14,12 @@ ecTranslationTable = readtable('data/tables/corrected-EC-numbers.csv',...
 reference = readCbModel(fullfile(modelDir, 'Bacillus-megaterium-WSH-200-iMZ1055.xml'));
 reference.description = 'B-megaterium-ref';
 
-% Reactions
-rxns_ref = {};
-
 % Metabolites
-mets_ref = {};
+mets_ref = table2cell(readtable(fullfile(modelDir,'kegg_met_ids.csv')));
+mets_ref = translateIDs(mets_ref, 'met', [], 'KEGG', 'MNXref', false);
+
+% proportion of metabolites that can be compared
+adj_met = numel(unique(mets_ref)) / numel(unique(strtok(reference.mets, '[')));
 
 % EC numbers
 ec_ref = regexp(reference.rxnECNumbers, '/', 'split');
@@ -28,10 +29,7 @@ ec_ref = regexp(ec_ref, '|', 'split');
 ec_ref = [ec_ref{:}];
 ec_ref = ec_ref(~cellfun('isempty', ec_ref));
 
-% translate EC number to MNXref reactions
-rxns_ref = translateIDs(ec_ref, 'rxn', [], 'EC', 'MNXref', false);
-
-adj_rxns = 1 - sum(findExcRxns(reference)) / numel(reference.rxns);
+adj_ec = numel(ec_ref) / numel(reference.rxnECNumbers);
 
 % corresponding draft models:
 % same species: Leaf75, Soil531
@@ -64,9 +62,9 @@ c = 0;
 for habitat = {'Leaf', 'Root', 'Soil'}
     
     % consensus
-     spec = '';
-     load(fullfile('data/models/consensus', [char(habitat),...
-         '_consensus_models.mat']))
+    spec = '';
+    load(fullfile('data/models/consensus', [char(habitat),...
+        '_consensus_models.mat']))
     % % KBase draft
     % spec = 'KBase_';
     % load(fullfile('data/models/kbase', char(habitat),...
@@ -85,7 +83,7 @@ for habitat = {'Leaf', 'Root', 'Soil'}
     %     char(habitat), [char(habitat), '_models_genes_translated']))
     
     if ~exist('merged_models', 'var')
-	    merged_models = models;
+        merged_models = models;
     end
     
     merged_models = reshape(merged_models, numel(merged_models), 1);
@@ -93,30 +91,28 @@ for habitat = {'Leaf', 'Root', 'Soil'}
     model_ids = [model_ids; current_ids];
     
     disp(habitat)
-
+    
     for i=1:numel(merged_models)
         
         c = c + 1;
         
-        rxns_draft = strtok(merged_models{i}.rxns, '_');
+        mets_draft = strtok(merged_models{i}.mets, '[');
         ec_draft = regexp(merged_models{i}.EC, '\|', 'split');
         ec_draft = [ec_draft{:}];
         
-        I_rxn = intersect(rxns_draft, rxns_ref);
+        I_met = intersect(mets_draft, mets_ref);
         I_ec = intersect(ec_draft, ec_ref);
         
         % true positives
-        TP(c) = numel(I_rxn) + numel(I_ec);
+        TP(c) = numel(I_ec) + numel(I_met);
         % false negatives
-        FN(c) = numel(setdiff(rxns_ref, rxns_draft)) + numel(setdiff(ec_ref, ec_draft));
+        FN(c) = numel(setdiff(ec_ref, ec_draft)) + numel(setdiff(mets_ref, mets_draft));
         % false positives
-        FP(c) = numel(setdiff(rxns_draft, rxns_ref)) + numel(setdiff(ec_draft, ec_ref));
+        FP(c) = numel(setdiff(ec_draft, ec_ref)) + numel(setdiff(mets_draft, mets_ref));
         
-        p_rxn(c) = numel(I_rxn) / ( numel(rxns_ref) * adj_rxns );
-        p_ec(c) = numel(I_ec) / ( numel(ec_ref) * adj_rxns );
-        
+        p_ec(c) = numel(I_ec) / ( numel(ec_ref) * adj_ec );
     end
-           
+    %{
     % Map gene IDs:
     % same species
     for j = find(contains(species_ids, habitat))
@@ -139,7 +135,8 @@ for habitat = {'Leaf', 'Root', 'Soil'}
             merged_models{ismember(current_ids, genus_ids{j})}.genes)) / ...
             numel(model.genes); clear model
     end
-clear merged_models 
+    %}
+    clear merged_models
 end
 
 clear current_ids svd_mt
