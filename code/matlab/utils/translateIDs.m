@@ -114,7 +114,11 @@ else
         fullfile(dbDir, 'tmp.csv'),' ',...
         num2str(targetID), ' ',...
         dbFile];
-    [s, output] = unix(command);
+    if ispc
+        [s, output] = dos(['sh ' command]);
+    else
+        [s, output] = unix(command);
+    end
     
     if s
         error('The mapping did not work, most likely the translation file does not exist or is in wrong format')
