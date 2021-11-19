@@ -206,9 +206,6 @@ end; clear tmp_met_idx
 % exchange reactions
 if ~isempty(excMets) && isfield(weights, 'uptake')
     
-    % empty matrix
-    S_ex = sparse(size(dbModel_irr.S,1), numel(excMets));
-    
     % in case that the exchanged metabolites contain compartments
     % identifiers, change all to 'e'
     excMets = strtok(excMets, '[');
@@ -219,19 +216,21 @@ if ~isempty(excMets) && isfield(weights, 'uptake')
         'UniformOutput', false);
     
     excMets = excMets(~cellfun('isempty', idx_exc));
+    idx_exc = idx_exc(~cellfun('isempty', idx_exc));
+    
+    % empty matrix
+    S_ex = zeros(size(dbModel_irr.S,1), numel(excMets));
     
     for i=1:numel(excMets)
         S_ex(idx_exc{i}, i) = 1;
     end
-    
+    S_ex = sparse(S_ex);
     
 elseif ~isempty(excMets) && ~isfield(weights, 'uptake')
     warning('No weight for ''uptake'' found in the provided weights')
 else
     S_ex = [];
 end
-
-
 
 % add model and reversible candidates to the database
 n_rxns_db = size(dbModel_irr.S,2);
@@ -277,6 +276,7 @@ rxns_sink = max(rev_cand_idx)+1:max(rev_cand_idx) + size(S_sink,2);
 rxns_ex = size(dbModel_irr.S,2)-size(S_ex, 2)+1:size(dbModel_irr.S,2);
 
 clear S_add S_rev_cand S_sink n_rxns_db idx_translation tmp_mets transported tmp_met_idx
+%     S_ex excMets idx_exc
 
 tmp_toc = toc;
 if verbose
@@ -296,7 +296,7 @@ biomass = strcmp(dbModel_irr.rxns, biomass_id);
 dbModel_irr.S(:, logical(exchange_db)) = 0;
 
 % define sequence similarity weights
-t = 10E-6;
+t = 1e-6;
 if isfield(dbModel_irr, 'scores')
     seq_evidence = dbModel_irr.scores < t;
 else
@@ -347,7 +347,7 @@ lp.csense = repmat('E',1,size(beq));
 %}
 
 % Start binary search
-precision = 10E-6;
+precision = 1e-6;
 if verbose
     fprintf('\nStarting the binary search for the gap filling LP...\n')
 end
@@ -467,6 +467,14 @@ if ~isempty(reaction_sets)
     nz(rxns_model) = 1;
     consistModel.lb = dbModel_irr.lb(nz);
     consistModel.ub = dbModel_irr.ub(nz);
+    % set flux values of exchange reactions from the gap-filling problem as
+    % constraints in the consistent model
+    exc_idx_db = nz & ~cellfun(@isempty,regexp(dbModel_irr.rxns,'^EX_'));
+    exc_idx_db(rxns_model) = 0;
+    consistModel.ub(...
+        ismember(consistModel.rxns,addedRxns) & ...
+        ~cellfun(@isempty,regexp(consistModel.rxns,'^EX_'))) = ...
+        S(exc_idx_db);
     
     % reaction names
     consistModel.rxnNames = cellfun(@(x)model_irr.rxnNames(strcmp(x, rxns_model_irr)),...
