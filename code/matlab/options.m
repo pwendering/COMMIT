@@ -65,7 +65,7 @@ tmp_spec = '_all';
 sub_dir = regexprep(tmp_spec, '^_', '');
 
 % output directory for the gap-filled models
-outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir, 'lb_bio_1e-3');
+outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir, 'lb_bio_1e-3_GF_UB');
 
 
 %~~~~~~~~~~~~~ Gap-filling resources ~~~~~~~~~~~~~%
