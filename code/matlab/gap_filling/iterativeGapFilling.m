@@ -235,7 +235,7 @@ for i = gf_order
     
     % conditional FastGapFilling
     [~, ~, gfModel, addedRxns] = ...
-        condFastGapFilling(model, DB, EX, weights, epsilon, include_sink, false);
+        condFastGapFilling(model, DB, EX, weights, epsilon, include_sink, true);
     clear model
     
     v = cplexlp(-gfModel.c, [], [], gfModel.S, gfModel.b, gfModel.lb, gfModel.ub);
