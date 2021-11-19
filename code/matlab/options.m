@@ -79,7 +79,7 @@ seq_sim_workspace = 'data/gap-filling/sequence-similarity/sequence_similarity.ma
 
 %~~~~~~~~~~~~~ Reaction-type-specific weights ~~~~~~~~~~~~~%
 
-% reactions with sequence evidence (E >= 10E-6) 
+% reactions with sequence evidence (E >= 1E-6) 
 weights.sequence = 25;
 % transport reactions
 weights.transport = 100;
