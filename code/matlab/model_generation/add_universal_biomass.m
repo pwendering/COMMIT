@@ -14,6 +14,7 @@ biomass_name = 'universal_Biomass_reaction';
 habitats = {'Soil', 'Leaf', 'Root'};
 
 %% KBase models
+disp('KBase')
 modelDir = 'data/models/kbase';
 for i=1:numel(habitats)
     workspace = fullfile(modelDir, habitats{i}, strcat(habitats{i}, '_models_metFormulas.mat'));
@@ -52,6 +53,7 @@ for i=1:numel(habitats)
 end
         
 %% RAVEN models
+disp('RAVEN 2.0')
 modelDir = 'data/models/raven/HMMer10E-50';
 for i=1:numel(habitats)
     workspace = fullfile(modelDir, strcat(habitats{i}, '_models_COBRA_GPR.mat'));
@@ -94,6 +96,7 @@ for i=1:numel(habitats)
 end
 
 %% CarveMe
+disp('CarveMe')
 modelDir = 'data/models/carveme';
 for i=1:numel(habitats)
     workspace = fullfile(modelDir, habitats{i}, strcat(habitats{i}, '_models_metFormulas.mat'));
@@ -137,6 +140,7 @@ for i=1:numel(habitats)
 end
 
 %% AuReMe
+disp('AuReMe')
 modelDir = 'data/models/aureme';
 for i=1:numel(habitats)
     workspace = fullfile(modelDir, habitats{i}, strcat(habitats{i}, '_models_metFormulas.mat'));
@@ -178,6 +182,7 @@ for i=1:numel(habitats)
 end
 
 %% Merged models with CarveMe models
+disp('Consensus')
 modelDir =  'data/models/consensus';
 for i=1:numel(habitats)
     workspace = fullfile(modelDir, strcat(habitats{i}, '_consensus_models.mat'));
@@ -221,6 +226,7 @@ end
 %% Merged models without CarveMe models
 
 modelDir = 'data/models/consensus/';
+disp('Consensus - CarveMe')
 for i=1:numel(habitats)
     workspace = fullfile(modelDir, strcat(habitats{i}, '_consensus_models_noCarveMe.mat'));
     load(workspace)
