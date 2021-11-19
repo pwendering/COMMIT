@@ -12,7 +12,7 @@ ncpu = 20;
 habitat = 'Soil';
 
 % experiments to be analyzed
-experiments = {'Schlaeppi'};
+experiments = {'Bulgarelli'};
 
 % path to COMMIT top directory
 topDir = '~/COMMIT';
