@@ -1,0 +1,2427 @@
+run_iterative_gap_filling;diary off
+----------------------------------------------------------------------
+                       Iterative gap filling                          
+----------------------------------------------------------------------
+Loading required data...
+Starting parallel pool (parpool) using the 'local' profile ...
+Connected to the parallel pool (number of workers: 20).
+----------------------------------------------------------------------
+Soil models for OTU composition in Schlaeppi dataset
+
+Reading sequence similarity file...
+----------------------------------------------------------------------
+START
+----------------------------------------------------------------------
+Testing 100 random successions for 24 models
+
+Iteration #6
+Time:	8.10 min
+Total number of added reactions:		80
+Total number of exchanged metabolites:		1698
+Sum of optimal biomass fluxes:			471.61
+
+Iteration #5
+Time:	8.18 min
+Total number of added reactions:		93
+Total number of exchanged metabolites:		1679
+Sum of optimal biomass fluxes:			595.64
+
+Iteration #17
+Time:	8.16 min
+Total number of added reactions:		82
+Total number of exchanged metabolites:		1680
+Sum of optimal biomass fluxes:			438.12
+
+Iteration #7
+Time:	8.19 min
+Total number of added reactions:		99
+Total number of exchanged metabolites:		1721
+Sum of optimal biomass fluxes:			238.60
+
+Iteration #19
+Time:	8.20 min
+Total number of added reactions:		102
+Total number of exchanged metabolites:		1717
+Sum of optimal biomass fluxes:			409.42
+
+Iteration #1
+Time:	8.24 min
+Total number of added reactions:		82
+Total number of exchanged metabolites:		1681
+Sum of optimal biomass fluxes:			327.94
+
+Iteration #9
+Time:	8.26 min
+Total number of added reactions:		81
+Total number of exchanged metabolites:		1678
+Sum of optimal biomass fluxes:			398.92
+
+Iteration #11
+Time:	8.26 min
+Total number of added reactions:		82
+Total number of exchanged metabolites:		1724
+Sum of optimal biomass fluxes:			374.12
+
+Iteration #3
+Time:	8.27 min
+Total number of added reactions:		91
+Total number of exchanged metabolites:		1690
+Sum of optimal biomass fluxes:			422.26
+
+Iteration #8
+Time:	8.28 min
+Total number of added reactions:		113
+Total number of exchanged metabolites:		1707
+Sum of optimal biomass fluxes:			294.90
+
+Iteration #16
+Time:	8.31 min
+Total number of added reactions:		81
+Total number of exchanged metabolites:		1686
+Sum of optimal biomass fluxes:			345.47
+
+Iteration #2
+Time:	8.34 min
+Total number of added reactions:		85
+Total number of exchanged metabolites:		1679
+Sum of optimal biomass fluxes:			430.35
+
+Iteration #4
+Time:	8.34 min
+Total number of added reactions:		83
+Total number of exchanged metabolites:		1694
+Sum of optimal biomass fluxes:			545.97
+
+Iteration #18
+Time:	8.34 min
+Total number of added reactions:		87
+Total number of exchanged metabolites:		1684
+Sum of optimal biomass fluxes:			380.35
+
+Iteration #12
+Time:	8.39 min
+Total number of added reactions:		84
+Total number of exchanged metabolites:		1686
+Sum of optimal biomass fluxes:			403.03
+
+Iteration #14
+Time:	8.39 min
+Total number of added reactions:		94
+Total number of exchanged metabolites:		1676
+Sum of optimal biomass fluxes:			320.95
+
+Iteration #20
+Time:	8.40 min
+Total number of added reactions:		88
+Total number of exchanged metabolites:		1707
+Sum of optimal biomass fluxes:			255.90
+
+Iteration #10
+Time:	8.43 min
+Total number of added reactions:		86
+Total number of exchanged metabolites:		1703
+Sum of optimal biomass fluxes:			309.34
+
+Iteration #13
+Time:	8.49 min
+Total number of added reactions:		92
+Total number of exchanged metabolites:		1670
+Sum of optimal biomass fluxes:			318.68
+
+Iteration #15
+Time:	8.52 min
+Total number of added reactions:		87
+Total number of exchanged metabolites:		1674
+Sum of optimal biomass fluxes:			451.90
+
+Iteration #54
+Time:	8.30 min
+Total number of added reactions:		92
+Total number of exchanged metabolites:		1699
+Sum of optimal biomass fluxes:			514.84
+
+Iteration #32
+Time:	8.41 min
+Total number of added reactions:		85
+Total number of exchanged metabolites:		1701
+Sum of optimal biomass fluxes:			452.37
+
+Iteration #30
+Time:	8.34 min
+Total number of added reactions:		97
+Total number of exchanged metabolites:		1689
+Sum of optimal biomass fluxes:			252.50
+
+Iteration #34
+Time:	8.33 min
+Total number of added reactions:		101
+Total number of exchanged metabolites:		1703
+Sum of optimal biomass fluxes:			515.50
+
+Iteration #58
+Time:	8.36 min
+Total number of added reactions:		108
+Total number of exchanged metabolites:		1670
+Sum of optimal biomass fluxes:			791.79
+
+Iteration #26
+Time:	8.31 min
+Total number of added reactions:		88
+Total number of exchanged metabolites:		1693
+Sum of optimal biomass fluxes:			796.81
+
+Iteration #22
+Time:	8.40 min
+Total number of added reactions:		86
+Total number of exchanged metabolites:		1702
+Sum of optimal biomass fluxes:			429.95
+
+Iteration #38
+Time:	8.41 min
+Total number of added reactions:		99
+Total number of exchanged metabolites:		1697
+Sum of optimal biomass fluxes:			348.67
+
+Iteration #36
+Time:	8.48 min
+Total number of added reactions:		93
+Total number of exchanged metabolites:		1690
+Sum of optimal biomass fluxes:			602.48
+
+Iteration #48
+Time:	8.38 min
+Total number of added reactions:		85
+Total number of exchanged metabolites:		1695
+Sum of optimal biomass fluxes:			381.64
+
+Iteration #42
+Time:	8.58 min
+Total number of added reactions:		90
+Total number of exchanged metabolites:		1677
+Sum of optimal biomass fluxes:			822.87
+
+Iteration #52
+Time:	8.53 min
+Total number of added reactions:		98
+Total number of exchanged metabolites:		1715
+Sum of optimal biomass fluxes:			189.74
+
+Iteration #60
+Time:	8.49 min
+Total number of added reactions:		84
+Total number of exchanged metabolites:		1724
+Sum of optimal biomass fluxes:			316.57
+
+Iteration #40
+Time:	8.50 min
+Total number of added reactions:		87
+Total number of exchanged metabolites:		1676
+Sum of optimal biomass fluxes:			370.97
+
+Iteration #44
+Time:	8.52 min
+Total number of added reactions:		94
+Total number of exchanged metabolites:		1669
+Sum of optimal biomass fluxes:			710.84
+
+Iteration #56
+Time:	8.58 min
+Total number of added reactions:		105
+Total number of exchanged metabolites:		1696
+Sum of optimal biomass fluxes:			632.21
+
+Iteration #24
+Time:	8.60 min
+Total number of added reactions:		84
+Total number of exchanged metabolites:		1705
+Sum of optimal biomass fluxes:			397.07
+
+Iteration #28
+Time:	8.64 min
+Total number of added reactions:		84
+Total number of exchanged metabolites:		1709
+Sum of optimal biomass fluxes:			356.29
+
+Iteration #50
+Time:	8.52 min
+Total number of added reactions:		121
+Total number of exchanged metabolites:		1709
+Sum of optimal biomass fluxes:			644.79
+
+Iteration #46
+Time:	8.59 min
+Total number of added reactions:		102
+Total number of exchanged metabolites:		1677
+Sum of optimal biomass fluxes:			607.66
+
+Iteration #57
+Time:	8.22 min
+Total number of added reactions:		81
+Total number of exchanged metabolites:		1690
+Sum of optimal biomass fluxes:			348.84
+
+Iteration #33
+Time:	8.33 min
+Total number of added reactions:		75
+Total number of exchanged metabolites:		1700
+Sum of optimal biomass fluxes:			239.19
+
+Iteration #31
+Time:	8.48 min
+Total number of added reactions:		98
+Total number of exchanged metabolites:		1677
+Sum of optimal biomass fluxes:			554.93
+
+Iteration #29
+Time:	8.55 min
+Total number of added reactions:		98
+Total number of exchanged metabolites:		1696
+Sum of optimal biomass fluxes:			583.76
+
+Iteration #53
+Time:	8.60 min
+Total number of added reactions:		93
+Total number of exchanged metabolites:		1662
+Sum of optimal biomass fluxes:			708.68
+
+Iteration #25
+Time:	8.58 min
+Total number of added reactions:		112
+Total number of exchanged metabolites:		1673
+Sum of optimal biomass fluxes:			402.62
+
+Iteration #21
+Time:	8.56 min
+Total number of added reactions:		95
+Total number of exchanged metabolites:		1707
+Sum of optimal biomass fluxes:			311.03
+
+Iteration #35
+Time:	8.44 min
+Total number of added reactions:		105
+Total number of exchanged metabolites:		1697
+Sum of optimal biomass fluxes:			558.58
+
+Iteration #37
+Time:	8.56 min
+Total number of added reactions:		112
+Total number of exchanged metabolites:		1709
+Sum of optimal biomass fluxes:			573.76
+
+Iteration #23
+Time:	8.52 min
+Total number of added reactions:		80
+Total number of exchanged metabolites:		1679
+Sum of optimal biomass fluxes:			594.21
+
+Iteration #47
+Time:	8.70 min
+Total number of added reactions:		101
+Total number of exchanged metabolites:		1697
+Sum of optimal biomass fluxes:			412.64
+
+Iteration #51
+Time:	8.67 min
+Total number of added reactions:		91
+Total number of exchanged metabolites:		1713
+Sum of optimal biomass fluxes:			356.29
+
+Iteration #59
+Time:	8.61 min
+Total number of added reactions:		87
+Total number of exchanged metabolites:		1685
+Sum of optimal biomass fluxes:			441.35
+
+Iteration #41
+Time:	8.69 min
+Total number of added reactions:		79
+Total number of exchanged metabolites:		1682
+Sum of optimal biomass fluxes:			409.07
+
+Iteration #39
+Time:	8.64 min
+Total number of added reactions:		88
+Total number of exchanged metabolites:		1706
+Sum of optimal biomass fluxes:			394.89
+
+Iteration #55
+Time:	8.65 min
+Total number of added reactions:		80
+Total number of exchanged metabolites:		1679
+Sum of optimal biomass fluxes:			362.15
+
+Iteration #27
+Time:	8.61 min
+Total number of added reactions:		83
+Total number of exchanged metabolites:		1703
+Sum of optimal biomass fluxes:			358.77
+
+Iteration #43
+Time:	8.68 min
+Total number of added reactions:		95
+Total number of exchanged metabolites:		1682
+Sum of optimal biomass fluxes:			588.65
+
+Iteration #49
+Time:	8.66 min
+Total number of added reactions:		105
+Total number of exchanged metabolites:		1669
+Sum of optimal biomass fluxes:			599.58
+
+Iteration #45
+Time:	8.71 min
+Total number of added reactions:		90
+Total number of exchanged metabolites:		1687
+Sum of optimal biomass fluxes:			463.31
+
+Iteration #65
+Time:	8.43 min
+Total number of added reactions:		87
+Total number of exchanged metabolites:		1695
+Sum of optimal biomass fluxes:			415.24
+
+Iteration #61
+Time:	8.41 min
+Total number of added reactions:		92
+Total number of exchanged metabolites:		1671
+Sum of optimal biomass fluxes:			381.64
+
+Iteration #62
+Time:	8.35 min
+Total number of added reactions:		83
+Total number of exchanged metabolites:		1679
+Sum of optimal biomass fluxes:			531.49
+
+Iteration #64
+Time:	8.60 min
+Total number of added reactions:		111
+Total number of exchanged metabolites:		1687
+Sum of optimal biomass fluxes:			294.76
+
+Iteration #63
+Time:	8.41 min
+Total number of added reactions:		92
+Total number of exchanged metabolites:		1689
+Sum of optimal biomass fluxes:			522.56
+
+Iteration #70
+Time:	8.42 min
+Total number of added reactions:		87
+Total number of exchanged metabolites:		1676
+Sum of optimal biomass fluxes:			424.39
+
+Iteration #66
+Time:	8.55 min
+Total number of added reactions:		89
+Total number of exchanged metabolites:		1685
+Sum of optimal biomass fluxes:			333.42
+
+Iteration #69
+Time:	8.60 min
+Total number of added reactions:		105
+Total number of exchanged metabolites:		1688
+Sum of optimal biomass fluxes:			662.36
+
+Iteration #68
+Time:	8.65 min
+Total number of added reactions:		102
+Total number of exchanged metabolites:		1691
+Sum of optimal biomass fluxes:			624.09
+
+Iteration #75
+Time:	8.51 min
+Total number of added reactions:		90
+Total number of exchanged metabolites:		1695
+Sum of optimal biomass fluxes:			434.24
+
+Iteration #77
+Time:	8.62 min
+Total number of added reactions:		87
+Total number of exchanged metabolites:		1698
+Sum of optimal biomass fluxes:			424.39
+
+Iteration #67
+Time:	8.62 min
+Total number of added reactions:		85
+Total number of exchanged metabolites:		1684
+Sum of optimal biomass fluxes:			396.26
+
+Iteration #71
+Time:	8.65 min
+Total number of added reactions:		84
+Total number of exchanged metabolites:		1709
+Sum of optimal biomass fluxes:			374.12
+
+Iteration #74
+Time:	8.58 min
+Total number of added reactions:		79
+Total number of exchanged metabolites:		1712
+Sum of optimal biomass fluxes:			232.89
+
+Iteration #80
+Time:	8.50 min
+Total number of added reactions:		85
+Total number of exchanged metabolites:		1669
+Sum of optimal biomass fluxes:			361.65
+
+Iteration #72
+Time:	8.74 min
+Total number of added reactions:		89
+Total number of exchanged metabolites:		1696
+Sum of optimal biomass fluxes:			392.70
+
+Iteration #76
+Time:	8.79 min
+Total number of added reactions:		122
+Total number of exchanged metabolites:		1686
+Sum of optimal biomass fluxes:			627.32
+
+Iteration #73
+Time:	8.72 min
+Total number of added reactions:		93
+Total number of exchanged metabolites:		1679
+Sum of optimal biomass fluxes:			684.85
+
+Iteration #78
+Time:	8.80 min
+Total number of added reactions:		91
+Total number of exchanged metabolites:		1693
+Sum of optimal biomass fluxes:			544.23
+
+Iteration #79
+Time:	8.67 min
+Total number of added reactions:		98
+Total number of exchanged metabolites:		1678
+Sum of optimal biomass fluxes:			457.42
+
+Iteration #85
+Time:	8.40 min
+Total number of added reactions:		84
+Total number of exchanged metabolites:		1719
+Sum of optimal biomass fluxes:			324.09
+
+Iteration #81
+Time:	8.60 min
+Total number of added reactions:		81
+Total number of exchanged metabolites:		1681
+Sum of optimal biomass fluxes:			453.43
+
+Iteration #83
+Time:	8.59 min
+Total number of added reactions:		110
+Total number of exchanged metabolites:		1672
+Sum of optimal biomass fluxes:			557.30
+
+Iteration #84
+Time:	8.58 min
+Total number of added reactions:		81
+Total number of exchanged metabolites:		1684
+Sum of optimal biomass fluxes:			357.66
+
+Iteration #82
+Time:	8.60 min
+Total number of added reactions:		124
+Total number of exchanged metabolites:		1670
+Sum of optimal biomass fluxes:			487.01
+
+Iteration #88
+Time:	8.44 min
+Total number of added reactions:		96
+Total number of exchanged metabolites:		1673
+Sum of optimal biomass fluxes:			631.80
+
+Iteration #87
+Time:	8.51 min
+Total number of added reactions:		81
+Total number of exchanged metabolites:		1720
+Sum of optimal biomass fluxes:			348.73
+
+Iteration #86
+Time:	8.63 min
+Total number of added reactions:		84
+Total number of exchanged metabolites:		1694
+Sum of optimal biomass fluxes:			434.45
+
+Iteration #89
+Time:	8.50 min
+Total number of added reactions:		96
+Total number of exchanged metabolites:		1690
+Sum of optimal biomass fluxes:			821.31
+
+Iteration #91
+Time:	8.48 min
+Total number of added reactions:		84
+Total number of exchanged metabolites:		1694
+Sum of optimal biomass fluxes:			299.25
+
+Iteration #98
+Time:	8.66 min
+Total number of added reactions:		89
+Total number of exchanged metabolites:		1692
+Sum of optimal biomass fluxes:			407.26
+
+Iteration #92
+Time:	8.67 min
+Total number of added reactions:		90
+Total number of exchanged metabolites:		1707
+Sum of optimal biomass fluxes:			320.17
+
+Iteration #99
+Time:	8.64 min
+Total number of added reactions:		89
+Total number of exchanged metabolites:		1709
+Sum of optimal biomass fluxes:			351.33
+
+Iteration #93
+Time:	8.73 min
+Total number of added reactions:		88
+Total number of exchanged metabolites:		1703
+Sum of optimal biomass fluxes:			237.96
+
+Iteration #94
+Time:	8.76 min
+Total number of added reactions:		127
+Total number of exchanged metabolites:		1681
+Sum of optimal biomass fluxes:			1074.05
+
+Iteration #96
+Time:	8.67 min
+Total number of added reactions:		85
+Total number of exchanged metabolites:		1689
+Sum of optimal biomass fluxes:			441.01
+
+Iteration #90
+Time:	8.77 min
+Total number of added reactions:		79
+Total number of exchanged metabolites:		1686
+Sum of optimal biomass fluxes:			345.47
+
+Iteration #97
+Time:	8.86 min
+Total number of added reactions:		109
+Total number of exchanged metabolites:		1671
+Sum of optimal biomass fluxes:			302.85
+
+Iteration #95
+Time:	8.78 min
+Total number of added reactions:		92
+Total number of exchanged metabolites:		1695
+Sum of optimal biomass fluxes:			368.37
+
+Iteration #100
+Time:	8.69 min
+Total number of added reactions:		93
+Total number of exchanged metabolites:		1690
+Sum of optimal biomass fluxes:			817.33
+
+----------------------------------------------------------------------
+Iterative Gap filling using the optimal succession
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 1 reaction(s) in total have been added
+	> 1 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (11s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 6 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 1 transport reaction(s) have been added
+		> 1 transport reaction(s) include a metabolite with high permeability
+	> 1 exchange reaction(s) have been added
+	> 1 of them are allowed uptake reaction(s)
+	> 4 metabolic reaction(s)
+	> 2 reaction(s) have been made reversible
+	> 2 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (9s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 1 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 1 exchange reaction(s) have been added
+	> 1 of them are allowed uptake reaction(s)
+	> 2 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 4 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 4 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 4 exchange reaction(s) have been added
+	> 4 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (11s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (11s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 2 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (9s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 4 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 4 exchange reaction(s) have been added
+	> 4 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 4 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (9s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 4 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 8 reaction(s) in total have been added
+	> 2 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 5 exchange reaction(s) have been added
+	> 5 of them are allowed uptake reaction(s)
+	> 3 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (3s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (11s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 2 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (3s)
+
+
+	> 5 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 5 exchange reaction(s) have been added
+	> 5 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (3s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 17s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (9s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (9s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 2 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+
+Time:	1h 50.89min
+
+Translated 114.08%
+
+----------------------------------------------------------------------
+Soil models for OTU composition in Bulgarelli dataset
+
+Reading sequence similarity file...
+----------------------------------------------------------------------
+START
+----------------------------------------------------------------------
+Testing 100 random successions for 20 models
+
+Iteration #6
+Time:	7.12 min
+Total number of added reactions:		91
+Total number of exchanged metabolites:		1398
+Sum of optimal biomass fluxes:			372.88
+
+Iteration #19
+Time:	7.20 min
+Total number of added reactions:		71
+Total number of exchanged metabolites:		1402
+Sum of optimal biomass fluxes:			431.33
+
+Iteration #3
+Time:	7.21 min
+Total number of added reactions:		70
+Total number of exchanged metabolites:		1401
+Sum of optimal biomass fluxes:			423.71
+
+Iteration #5
+Time:	7.24 min
+Total number of added reactions:		89
+Total number of exchanged metabolites:		1405
+Sum of optimal biomass fluxes:			806.31
+
+Iteration #8
+Time:	7.25 min
+Total number of added reactions:		86
+Total number of exchanged metabolites:		1367
+Sum of optimal biomass fluxes:			313.19
+
+Iteration #9
+Time:	7.26 min
+Total number of added reactions:		71
+Total number of exchanged metabolites:		1413
+Sum of optimal biomass fluxes:			240.99
+
+Iteration #1
+Time:	7.28 min
+Total number of added reactions:		64
+Total number of exchanged metabolites:		1405
+Sum of optimal biomass fluxes:			327.99
+
+Iteration #17
+Time:	7.27 min
+Total number of added reactions:		79
+Total number of exchanged metabolites:		1384
+Sum of optimal biomass fluxes:			792.95
+
+Iteration #12
+Time:	7.29 min
+Total number of added reactions:		68
+Total number of exchanged metabolites:		1369
+Sum of optimal biomass fluxes:			467.27
+
+Iteration #7
+Time:	7.33 min
+Total number of added reactions:		102
+Total number of exchanged metabolites:		1377
+Sum of optimal biomass fluxes:			750.93
+
+Iteration #18
+Time:	7.34 min
+Total number of added reactions:		80
+Total number of exchanged metabolites:		1399
+Sum of optimal biomass fluxes:			362.20
+
+Iteration #16
+Time:	7.37 min
+Total number of added reactions:		72
+Total number of exchanged metabolites:		1393
+Sum of optimal biomass fluxes:			390.68
+
+Iteration #4
+Time:	7.39 min
+Total number of added reactions:		72
+Total number of exchanged metabolites:		1378
+Sum of optimal biomass fluxes:			435.99
+
+Iteration #13
+Time:	7.39 min
+Total number of added reactions:		67
+Total number of exchanged metabolites:		1397
+Sum of optimal biomass fluxes:			327.56
+
+Iteration #14
+Time:	7.45 min
+Total number of added reactions:		101
+Total number of exchanged metabolites:		1391
+Sum of optimal biomass fluxes:			416.37
+
+Iteration #20
+Time:	7.45 min
+Total number of added reactions:		68
+Total number of exchanged metabolites:		1418
+Sum of optimal biomass fluxes:			240.99
+
+Iteration #11
+Time:	7.46 min
+Total number of added reactions:		68
+Total number of exchanged metabolites:		1403
+Sum of optimal biomass fluxes:			254.50
+
+Iteration #15
+Time:	7.50 min
+Total number of added reactions:		74
+Total number of exchanged metabolites:		1393
+Sum of optimal biomass fluxes:			571.38
+
+Iteration #2
+Time:	7.53 min
+Total number of added reactions:		71
+Total number of exchanged metabolites:		1395
+Sum of optimal biomass fluxes:			176.07
+
+Iteration #10
+Time:	7.53 min
+Total number of added reactions:		87
+Total number of exchanged metabolites:		1409
+Sum of optimal biomass fluxes:			468.52
+
+Iteration #32
+Time:	7.20 min
+Total number of added reactions:		106
+Total number of exchanged metabolites:		1388
+Sum of optimal biomass fluxes:			782.83
+
+Iteration #38
+Time:	7.06 min
+Total number of added reactions:		72
+Total number of exchanged metabolites:		1365
+Sum of optimal biomass fluxes:			422.53
+
+Iteration #58
+Time:	7.18 min
+Total number of added reactions:		73
+Total number of exchanged metabolites:		1392
+Sum of optimal biomass fluxes:			650.35
+
+Iteration #30
+Time:	7.16 min
+Total number of added reactions:		78
+Total number of exchanged metabolites:		1372
+Sum of optimal biomass fluxes:			816.06
+
+Iteration #36
+Time:	7.17 min
+Total number of added reactions:		75
+Total number of exchanged metabolites:		1387
+Sum of optimal biomass fluxes:			545.65
+
+Iteration #22
+Time:	7.24 min
+Total number of added reactions:		78
+Total number of exchanged metabolites:		1392
+Sum of optimal biomass fluxes:			737.43
+
+Iteration #28
+Time:	7.13 min
+Total number of added reactions:		72
+Total number of exchanged metabolites:		1408
+Sum of optimal biomass fluxes:			215.29
+
+Iteration #54
+Time:	7.26 min
+Total number of added reactions:		97
+Total number of exchanged metabolites:		1377
+Sum of optimal biomass fluxes:			597.09
+
+Iteration #26
+Time:	7.42 min
+Total number of added reactions:		112
+Total number of exchanged metabolites:		1384
+Sum of optimal biomass fluxes:			703.58
+
+Iteration #34
+Time:	7.29 min
+Total number of added reactions:		86
+Total number of exchanged metabolites:		1387
+Sum of optimal biomass fluxes:			662.73
+
+Iteration #44
+Time:	7.40 min
+Total number of added reactions:		75
+Total number of exchanged metabolites:		1423
+Sum of optimal biomass fluxes:			347.53
+
+Iteration #52
+Time:	7.34 min
+Total number of added reactions:		90
+Total number of exchanged metabolites:		1402
+Sum of optimal biomass fluxes:			561.10
+
+Iteration #56
+Time:	7.36 min
+Total number of added reactions:		75
+Total number of exchanged metabolites:		1410
+Sum of optimal biomass fluxes:			477.23
+
+Iteration #46
+Time:	7.38 min
+Total number of added reactions:		76
+Total number of exchanged metabolites:		1401
+Sum of optimal biomass fluxes:			599.67
+
+Iteration #48
+Time:	7.37 min
+Total number of added reactions:		74
+Total number of exchanged metabolites:		1412
+Sum of optimal biomass fluxes:			391.11
+
+Iteration #50
+Time:	7.32 min
+Total number of added reactions:		81
+Total number of exchanged metabolites:		1352
+Sum of optimal biomass fluxes:			831.76
+
+Iteration #60
+Time:	7.40 min
+Total number of added reactions:		78
+Total number of exchanged metabolites:		1397
+Sum of optimal biomass fluxes:			722.68
+
+Iteration #42
+Time:	7.42 min
+Total number of added reactions:		72
+Total number of exchanged metabolites:		1412
+Sum of optimal biomass fluxes:			179.12
+
+Iteration #24
+Time:	7.44 min
+Total number of added reactions:		81
+Total number of exchanged metabolites:		1394
+Sum of optimal biomass fluxes:			546.29
+
+Iteration #40
+Time:	7.45 min
+Total number of added reactions:		80
+Total number of exchanged metabolites:		1392
+Sum of optimal biomass fluxes:			779.39
+
+Iteration #29
+Time:	7.68 min
+Total number of added reactions:		76
+Total number of exchanged metabolites:		1388
+Sum of optimal biomass fluxes:			410.34
+
+Iteration #37
+Time:	7.78 min
+Total number of added reactions:		73
+Total number of exchanged metabolites:		1404
+Sum of optimal biomass fluxes:			424.06
+
+Iteration #31
+Time:	7.82 min
+Total number of added reactions:		88
+Total number of exchanged metabolites:		1380
+Sum of optimal biomass fluxes:			435.52
+
+Iteration #21
+Time:	7.68 min
+Total number of added reactions:		82
+Total number of exchanged metabolites:		1397
+Sum of optimal biomass fluxes:			819.52
+
+Iteration #35
+Time:	7.81 min
+Total number of added reactions:		83
+Total number of exchanged metabolites:		1371
+Sum of optimal biomass fluxes:			752.68
+
+Iteration #57
+Time:	7.92 min
+Total number of added reactions:		86
+Total number of exchanged metabolites:		1400
+Sum of optimal biomass fluxes:			220.62
+
+Iteration #27
+Time:	7.80 min
+Total number of added reactions:		75
+Total number of exchanged metabolites:		1385
+Sum of optimal biomass fluxes:			514.91
+
+Iteration #33
+Time:	7.68 min
+Total number of added reactions:		67
+Total number of exchanged metabolites:		1393
+Sum of optimal biomass fluxes:			479.20
+
+Iteration #53
+Time:	7.79 min
+Total number of added reactions:		78
+Total number of exchanged metabolites:		1414
+Sum of optimal biomass fluxes:			476.47
+
+Iteration #43
+Time:	7.73 min
+Total number of added reactions:		70
+Total number of exchanged metabolites:		1388
+Sum of optimal biomass fluxes:			308.54
+
+Iteration #25
+Time:	7.89 min
+Total number of added reactions:		73
+Total number of exchanged metabolites:		1406
+Sum of optimal biomass fluxes:			289.45
+
+Iteration #47
+Time:	7.72 min
+Total number of added reactions:		87
+Total number of exchanged metabolites:		1370
+Sum of optimal biomass fluxes:			571.28
+
+Iteration #55
+Time:	7.87 min
+Total number of added reactions:		98
+Total number of exchanged metabolites:		1383
+Sum of optimal biomass fluxes:			401.37
+
+Iteration #51
+Time:	7.87 min
+Total number of added reactions:		70
+Total number of exchanged metabolites:		1392
+Sum of optimal biomass fluxes:			385.08
+
+Iteration #49
+Time:	7.79 min
+Total number of added reactions:		85
+Total number of exchanged metabolites:		1394
+Sum of optimal biomass fluxes:			282.84
+
+Iteration #45
+Time:	7.85 min
+Total number of added reactions:		91
+Total number of exchanged metabolites:		1376
+Sum of optimal biomass fluxes:			692.76
+
+Iteration #41
+Time:	7.76 min
+Total number of added reactions:		77
+Total number of exchanged metabolites:		1397
+Sum of optimal biomass fluxes:			453.43
+
+Iteration #59
+Time:	7.83 min
+Total number of added reactions:		82
+Total number of exchanged metabolites:		1400
+Sum of optimal biomass fluxes:			621.85
+
+Iteration #39
+Time:	7.91 min
+Total number of added reactions:		88
+Total number of exchanged metabolites:		1422
+Sum of optimal biomass fluxes:			257.46
+
+Iteration #23
+Time:	7.96 min
+Total number of added reactions:		85
+Total number of exchanged metabolites:		1411
+Sum of optimal biomass fluxes:			595.63
+
+Iteration #66
+Time:	7.72 min
+Total number of added reactions:		86
+Total number of exchanged metabolites:		1389
+Sum of optimal biomass fluxes:			700.39
+
+Iteration #64
+Time:	7.84 min
+Total number of added reactions:		75
+Total number of exchanged metabolites:		1381
+Sum of optimal biomass fluxes:			622.30
+
+Iteration #68
+Time:	7.72 min
+Total number of added reactions:		89
+Total number of exchanged metabolites:		1414
+Sum of optimal biomass fluxes:			439.41
+
+Iteration #73
+Time:	7.61 min
+Total number of added reactions:		91
+Total number of exchanged metabolites:		1378
+Sum of optimal biomass fluxes:			486.36
+
+Iteration #70
+Time:	7.64 min
+Total number of added reactions:		71
+Total number of exchanged metabolites:		1379
+Sum of optimal biomass fluxes:			245.64
+
+Iteration #61
+Time:	7.81 min
+Total number of added reactions:		80
+Total number of exchanged metabolites:		1392
+Sum of optimal biomass fluxes:			506.19
+
+Iteration #65
+Time:	7.80 min
+Total number of added reactions:		76
+Total number of exchanged metabolites:		1408
+Sum of optimal biomass fluxes:			308.93
+
+Iteration #62
+Time:	7.74 min
+Total number of added reactions:		71
+Total number of exchanged metabolites:		1416
+Sum of optimal biomass fluxes:			350.26
+
+Iteration #67
+Time:	7.82 min
+Total number of added reactions:		72
+Total number of exchanged metabolites:		1402
+Sum of optimal biomass fluxes:			428.60
+
+Iteration #69
+Time:	7.75 min
+Total number of added reactions:		98
+Total number of exchanged metabolites:		1394
+Sum of optimal biomass fluxes:			611.13
+
+Iteration #76
+Time:	7.70 min
+Total number of added reactions:		77
+Total number of exchanged metabolites:		1370
+Sum of optimal biomass fluxes:			322.41
+
+Iteration #71
+Time:	7.74 min
+Total number of added reactions:		74
+Total number of exchanged metabolites:		1416
+Sum of optimal biomass fluxes:			179.12
+
+Iteration #78
+Time:	7.72 min
+Total number of added reactions:		72
+Total number of exchanged metabolites:		1395
+Sum of optimal biomass fluxes:			338.23
+
+Iteration #63
+Time:	7.86 min
+Total number of added reactions:		67
+Total number of exchanged metabolites:		1412
+Sum of optimal biomass fluxes:			240.99
+
+Iteration #74
+Time:	7.80 min
+Total number of added reactions:		72
+Total number of exchanged metabolites:		1400
+Sum of optimal biomass fluxes:			372.88
+
+Iteration #72
+Time:	7.84 min
+Total number of added reactions:		98
+Total number of exchanged metabolites:		1388
+Sum of optimal biomass fluxes:			384.75
+
+Iteration #77
+Time:	7.80 min
+Total number of added reactions:		72
+Total number of exchanged metabolites:		1403
+Sum of optimal biomass fluxes:			646.51
+
+Iteration #75
+Time:	7.83 min
+Total number of added reactions:		95
+Total number of exchanged metabolites:		1381
+Sum of optimal biomass fluxes:			651.10
+
+Iteration #80
+Time:	7.71 min
+Total number of added reactions:		79
+Total number of exchanged metabolites:		1395
+Sum of optimal biomass fluxes:			384.75
+
+Iteration #79
+Time:	7.77 min
+Total number of added reactions:		100
+Total number of exchanged metabolites:		1414
+Sum of optimal biomass fluxes:			670.75
+
+Iteration #82
+Time:	7.75 min
+Total number of added reactions:		86
+Total number of exchanged metabolites:		1383
+Sum of optimal biomass fluxes:			418.71
+
+Iteration #88
+Time:	7.71 min
+Total number of added reactions:		104
+Total number of exchanged metabolites:		1388
+Sum of optimal biomass fluxes:			656.95
+
+Iteration #83
+Time:	7.70 min
+Total number of added reactions:		73
+Total number of exchanged metabolites:		1402
+Sum of optimal biomass fluxes:			215.29
+
+Iteration #84
+Time:	7.82 min
+Total number of added reactions:		86
+Total number of exchanged metabolites:		1381
+Sum of optimal biomass fluxes:			243.62
+
+Iteration #87
+Time:	7.80 min
+Total number of added reactions:		73
+Total number of exchanged metabolites:		1394
+Sum of optimal biomass fluxes:			416.57
+
+Iteration #86
+Time:	7.74 min
+Total number of added reactions:		80
+Total number of exchanged metabolites:		1368
+Sum of optimal biomass fluxes:			606.31
+
+Iteration #81
+Time:	7.88 min
+Total number of added reactions:		91
+Total number of exchanged metabolites:		1419
+Sum of optimal biomass fluxes:			272.22
+
+Iteration #85
+Time:	7.88 min
+Total number of added reactions:		91
+Total number of exchanged metabolites:		1380
+Sum of optimal biomass fluxes:			905.93
+
+Iteration #90
+Time:	7.72 min
+Total number of added reactions:		84
+Total number of exchanged metabolites:		1396
+Sum of optimal biomass fluxes:			744.88
+
+Iteration #92
+Time:	7.70 min
+Total number of added reactions:		69
+Total number of exchanged metabolites:		1404
+Sum of optimal biomass fluxes:			391.11
+
+Iteration #95
+Time:	7.67 min
+Total number of added reactions:		80
+Total number of exchanged metabolites:		1405
+Sum of optimal biomass fluxes:			570.74
+
+Iteration #93
+Time:	7.71 min
+Total number of added reactions:		79
+Total number of exchanged metabolites:		1388
+Sum of optimal biomass fluxes:			339.77
+
+Iteration #91
+Time:	7.72 min
+Total number of added reactions:		85
+Total number of exchanged metabolites:		1425
+Sum of optimal biomass fluxes:			434.27
+
+Iteration #96
+Time:	7.70 min
+Total number of added reactions:		94
+Total number of exchanged metabolites:		1405
+Sum of optimal biomass fluxes:			588.54
+
+Iteration #89
+Time:	7.99 min
+Total number of added reactions:		110
+Total number of exchanged metabolites:		1397
+Sum of optimal biomass fluxes:			573.42
+
+Iteration #94
+Time:	7.74 min
+Total number of added reactions:		72
+Total number of exchanged metabolites:		1404
+Sum of optimal biomass fluxes:			569.60
+
+Iteration #98
+Time:	7.64 min
+Total number of added reactions:		67
+Total number of exchanged metabolites:		1414
+Sum of optimal biomass fluxes:			468.26
+
+Iteration #97
+Time:	7.76 min
+Total number of added reactions:		96
+Total number of exchanged metabolites:		1417
+Sum of optimal biomass fluxes:			543.54
+
+Iteration #100
+Time:	7.63 min
+Total number of added reactions:		70
+Total number of exchanged metabolites:		1410
+Sum of optimal biomass fluxes:			384.75
+
+Iteration #99
+Time:	7.61 min
+Total number of added reactions:		70
+Total number of exchanged metabolites:		1375
+Sum of optimal biomass fluxes:			427.21
+
+----------------------------------------------------------------------
+Iterative Gap filling using the optimal succession
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (11s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 0 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (13s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (3s)
+
+
+	> 6 reaction(s) in total have been added
+	> 1 of the added reactions have sequence support
+	> 1 transport reaction(s) have been added
+		> 1 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 5 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 3 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 18s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 6 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 1 transport reaction(s) have been added
+		> 1 transport reaction(s) include a metabolite with high permeability
+	> 1 exchange reaction(s) have been added
+	> 1 of them are allowed uptake reaction(s)
+	> 4 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 2 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (11s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (3s)
+
+
+	> 4 reaction(s) in total have been added
+	> 1 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 2 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 4 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 4 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 4 exchange reaction(s) have been added
+	> 4 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (3s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (13s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 4 reaction(s) in total have been added
+	> 1 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 17s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (11s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 4 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 1 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (3s)
+
+
+	> 3 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 17s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 1 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 5 reaction(s) in total have been added
+	> 1 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 4 exchange reaction(s) have been added
+	> 4 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (11s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 1 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 3 reaction(s) in total have been added
+	> 1 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (11s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 4 reaction(s) in total have been added
+	> 1 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 3 exchange reaction(s) have been added
+	> 3 of them are allowed uptake reaction(s)
+	> 1 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 4 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 4 exchange reaction(s) have been added
+	> 4 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (10s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 2 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (11s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (2s)
+
+
+	> 2 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 0 metabolic reaction(s)
+	> 0 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+
+Preparing the universal database...
+
+	> finished adding reactions (2s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (3s)
+
+
+	> 4 reaction(s) in total have been added
+	> 0 of the added reactions have sequence support
+	> 0 transport reaction(s) have been added
+		> 0 transport reaction(s) include a metabolite with high permeability
+	> 2 exchange reaction(s) have been added
+	> 2 of them are allowed uptake reaction(s)
+	> 2 metabolic reaction(s)
+	> 2 reaction(s) have been made reversible
+	> 0 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+
+Time:	1h 45.04min
+
+Translated 114.90%
+
