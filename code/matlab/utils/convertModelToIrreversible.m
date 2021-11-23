@@ -9,7 +9,7 @@ function model_irrev = convertModelToIrreversible(model)
 
 
 % get indices of all reversible reactions (both lb and ub != 0)
-rev = intersect(find(model.lb), find(model.ub));
+rev = find(model.lb<0&model.ub>0);
 
 % generate a new matrix containing the new unidirectional reactions
 irrev_matrix = -model.S(:, rev);
