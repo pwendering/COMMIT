@@ -125,12 +125,16 @@ else
     end
     
     % Process the terminal output
-    trList = strsplit(output(1:end-1));
+    trList = strsplit(output(1:end-1),'\n');
+    trList(ismember(trList,'UNKNOWN')) = {''};
 end
 
 if verbose
     fprintf('\nTranslated %3.2f%%\n\n', 100*sum(~cellfun('isempty', trList))/numel(idList));
 end
+% assign original IDs if unmatched
+trList(cellfun('isempty', trList)) = idList(cellfun('isempty', trList));
+
 trList = reshape(strtrim(trList), numel(trList), 1);
 trList = regexprep(trList, ';', '|');
 
