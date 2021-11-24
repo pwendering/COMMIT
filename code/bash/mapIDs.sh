@@ -15,7 +15,14 @@ while read line; do
 	# Escape special characters before using grep 
 	query=$(echo $line | sed -e 's/+/\\+/g' -e 's/-/\\-/g')
 	# Before and after the pattern are either white space or '\|'
-	echo $(grep -E "(^|\||[[:space:]])+$query([[:space:]]|\|)+" $3 | cut -f$col_val)
+	match=$(grep -E "(^|\||[[:space:]])+$query([[:space:]]|\|)+" $3 | cut -f$col_val)
+  if [[ -z $match ]]
+  then
+    echo $query
+  else
+    echo $match
+  fi
+    
 done < $1 	
 	
 
