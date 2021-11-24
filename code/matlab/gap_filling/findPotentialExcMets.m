@@ -39,7 +39,7 @@ end
 transported = unique([strcat(unique(transported), '[c]'); mets_permeable]);
 tmp_met_idx = cellfun(@(x)find(strcmp(model.mets,x)),...
     transported, 'UniformOutput', false);
-tmp_met_idx = [tmp_met_idx{:}]';
+tmp_met_idx = cell2mat(tmp_met_idx);
 tmp_mets = model.mets(tmp_met_idx);
 
 %% Find the optimal biomass value
@@ -87,12 +87,26 @@ lp.csense = repmat('E',1,size(lp.A,1));
 solution = solveCobraLP(lp);
 solution = solution.full;
 %}
-
-solution = cplexlp(f, [], [], Aeq, beq, lb, ub);
+[solution,~,exitflag] = cplexlp(f, [], [], Aeq, beq, lb, ub);
+if exitflag~=1
+    solution = zeros(size(f));
+end
 
 %% Find transportable metabolites
 % active sink reaction above epsilon
 active_sink = solution(size(model.S,2)+1:end)>=epsilon;
+
+% exclude sink if uptake reaction for metabolite is active
+excIdx = findExchangeReactions(model);
+for i=1:numel(tmp_mets)
+    ext_id = strrep(tmp_mets(i),'[c]','[e]');
+    if ismember(ext_id,model.mets)
+        met_upt_rxn = excIdx & model.S(findMetIDs(model,ext_id),:) > 0;
+        if sum(met_upt_rxn>0) && any(solution(met_upt_rxn)~=0)
+            active_sink(i) = 0;
+        end
+    end
+end
 
 transportable = tmp_mets(active_sink);
 
