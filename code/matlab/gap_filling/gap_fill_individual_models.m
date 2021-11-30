@@ -72,7 +72,7 @@ for i=1:n
     v = cplexlp(-model.c, [], [], model.S, model.b, model.lb, model.ub);
     opt = v(model.c==1);
     
-    if opt>=10E-6
+    if opt>=1e-6
         disp('Model already functional')
     end; clear v opt
     
