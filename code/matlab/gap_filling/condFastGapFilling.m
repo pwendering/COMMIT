@@ -352,7 +352,8 @@ if verbose
     fprintf('\nStarting the binary search for the gap filling LP...\n')
 end
 % run CPLEX single-threaded
-options = cplexoptimset('threads',1);
+opt = cplexoptimset;
+opt.threads = 1;
 while abs(alpha - beta) > 1
     % Weighting factor for biomass reaction
     delta = floor(mean([alpha, beta]));
@@ -361,7 +362,7 @@ while abs(alpha - beta) > 1
        f(biomass) = -delta;
 %     lp.c(biomass) = delta;
     % Solve the LP
-       solution = cplexlp(f, [], [], dbModel_irr.S, beq, lb, ub,options);
+       solution = cplexlp(f, [], [], dbModel_irr.S, beq, lb, ub, opt);
 %     % for COBRA LP version
 %     solution = solveCobraLP(lp);
 %     solution = solution.full;
