@@ -1,0 +1,938 @@
+gap_fill_individual_models;diary off
+----------------------------------------------------------------------
+START
+----------------------------------------------------------------------
+Loading required data...
+-----------------------------------
+Starting gap filling of 32 models
+
+######	Soil522
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 41 reaction(s) in total have been added
+	> 13 of the added reactions have sequence support
+	> 2 transport reaction(s) have been added
+		> 2 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 39 metabolic reaction(s)
+	> 4 reaction(s) have been made reversible
+	> 20 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+---------------
+######	Soil531
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (1s)
+
+
+	> 41 reaction(s) in total have been added
+	> 14 of the added reactions have sequence support
+	> 2 transport reaction(s) have been added
+		> 2 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 39 metabolic reaction(s)
+	> 6 reaction(s) have been made reversible
+	> 15 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+---------------
+######	Soil535
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 66 reaction(s) in total have been added
+	> 25 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 62 metabolic reaction(s)
+	> 4 reaction(s) have been made reversible
+	> 31 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+---------------
+######	Soil538
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 48 reaction(s) in total have been added
+	> 15 of the added reactions have sequence support
+	> 3 transport reaction(s) have been added
+		> 3 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 45 metabolic reaction(s)
+	> 7 reaction(s) have been made reversible
+	> 17 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+---------------
+######	Soil724D2
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 46 reaction(s) in total have been added
+	> 18 of the added reactions have sequence support
+	> 2 transport reaction(s) have been added
+		> 2 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 44 metabolic reaction(s)
+	> 2 reaction(s) have been made reversible
+	> 26 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+---------------
+######	Soil728
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 63 reaction(s) in total have been added
+	> 30 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 59 metabolic reaction(s)
+	> 5 reaction(s) have been made reversible
+	> 25 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+---------------
+######	Soil729
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (13s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 63 reaction(s) in total have been added
+	> 24 of the added reactions have sequence support
+	> 3 transport reaction(s) have been added
+		> 3 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 60 metabolic reaction(s)
+	> 3 reaction(s) have been made reversible
+	> 36 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+---------------
+######	Soil736
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 53 reaction(s) in total have been added
+	> 17 of the added reactions have sequence support
+	> 3 transport reaction(s) have been added
+		> 3 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 50 metabolic reaction(s)
+	> 5 reaction(s) have been made reversible
+	> 22 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+---------------
+######	Soil745
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (1s)
+
+
+	> 38 reaction(s) in total have been added
+	> 11 of the added reactions have sequence support
+	> 2 transport reaction(s) have been added
+		> 2 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 36 metabolic reaction(s)
+	> 7 reaction(s) have been made reversible
+	> 15 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+---------------
+######	Soil748
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (13s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 55 reaction(s) in total have been added
+	> 24 of the added reactions have sequence support
+	> 1 transport reaction(s) have been added
+		> 1 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 54 metabolic reaction(s)
+	> 3 reaction(s) have been made reversible
+	> 31 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+---------------
+######	Soil750
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (13s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 54 reaction(s) in total have been added
+	> 18 of the added reactions have sequence support
+	> 2 transport reaction(s) have been added
+		> 2 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 52 metabolic reaction(s)
+	> 7 reaction(s) have been made reversible
+	> 28 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+---------------
+######	Soil756
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (13s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 77 reaction(s) in total have been added
+	> 29 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 73 metabolic reaction(s)
+	> 10 reaction(s) have been made reversible
+	> 35 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+---------------
+######	Soil761
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 56 reaction(s) in total have been added
+	> 19 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 52 metabolic reaction(s)
+	> 4 reaction(s) have been made reversible
+	> 24 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+---------------
+######	Soil762
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (13s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 56 reaction(s) in total have been added
+	> 18 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 52 metabolic reaction(s)
+	> 7 reaction(s) have been made reversible
+	> 23 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+---------------
+######	Soil763
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 55 reaction(s) in total have been added
+	> 19 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 51 metabolic reaction(s)
+	> 4 reaction(s) have been made reversible
+	> 26 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 13s
+---------------
+######	Soil764
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (13s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 58 reaction(s) in total have been added
+	> 20 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 54 metabolic reaction(s)
+	> 6 reaction(s) have been made reversible
+	> 24 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+---------------
+######	Soil766
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 42 reaction(s) in total have been added
+	> 11 of the added reactions have sequence support
+	> 2 transport reaction(s) have been added
+		> 2 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 40 metabolic reaction(s)
+	> 4 reaction(s) have been made reversible
+	> 20 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+---------------
+######	Soil768D1
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (1s)
+
+
+	> 37 reaction(s) in total have been added
+	> 11 of the added reactions have sequence support
+	> 1 transport reaction(s) have been added
+		> 1 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 36 metabolic reaction(s)
+	> 7 reaction(s) have been made reversible
+	> 15 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+---------------
+######	Soil772
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (13s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 66 reaction(s) in total have been added
+	> 28 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 62 metabolic reaction(s)
+	> 5 reaction(s) have been made reversible
+	> 33 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+---------------
+######	Soil773
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (12s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 66 reaction(s) in total have been added
+	> 28 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 62 metabolic reaction(s)
+	> 6 reaction(s) have been made reversible
+	> 33 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 14s
+---------------
+######	Soil774
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (15s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 47 reaction(s) in total have been added
+	> 20 of the added reactions have sequence support
+	> 2 transport reaction(s) have been added
+		> 2 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 45 metabolic reaction(s)
+	> 3 reaction(s) have been made reversible
+	> 22 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+---------------
+######	Soil777
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (16s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 45 reaction(s) in total have been added
+	> 19 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 41 metabolic reaction(s)
+	> 4 reaction(s) have been made reversible
+	> 18 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 18s
+---------------
+######	Soil782
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 57 reaction(s) in total have been added
+	> 21 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 53 metabolic reaction(s)
+	> 3 reaction(s) have been made reversible
+	> 27 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+---------------
+######	Soil787
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (16s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 46 reaction(s) in total have been added
+	> 16 of the added reactions have sequence support
+	> 2 transport reaction(s) have been added
+		> 2 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 44 metabolic reaction(s)
+	> 5 reaction(s) have been made reversible
+	> 21 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 18s
+---------------
+######	Soil796
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 68 reaction(s) in total have been added
+	> 22 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 64 metabolic reaction(s)
+	> 11 reaction(s) have been made reversible
+	> 25 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+---------------
+######	Soil797
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (15s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 71 reaction(s) in total have been added
+	> 27 of the added reactions have sequence support
+	> 3 transport reaction(s) have been added
+		> 3 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 68 metabolic reaction(s)
+	> 9 reaction(s) have been made reversible
+	> 30 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+---------------
+######	Soil802
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 58 reaction(s) in total have been added
+	> 24 of the added reactions have sequence support
+	> 3 transport reaction(s) have been added
+		> 3 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 55 metabolic reaction(s)
+	> 6 reaction(s) have been made reversible
+	> 25 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+---------------
+######	Soil803
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (16s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 53 reaction(s) in total have been added
+	> 20 of the added reactions have sequence support
+	> 3 transport reaction(s) have been added
+		> 3 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 50 metabolic reaction(s)
+	> 6 reaction(s) have been made reversible
+	> 20 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 18s
+---------------
+######	Soil805
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (16s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 45 reaction(s) in total have been added
+	> 19 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 41 metabolic reaction(s)
+	> 4 reaction(s) have been made reversible
+	> 18 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 17s
+---------------
+######	Soil809
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 69 reaction(s) in total have been added
+	> 28 of the added reactions have sequence support
+	> 4 transport reaction(s) have been added
+		> 4 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 65 metabolic reaction(s)
+	> 1 reaction(s) have been made reversible
+	> 34 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 15s
+---------------
+######	Soil810
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (14s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 56 reaction(s) in total have been added
+	> 23 of the added reactions have sequence support
+	> 3 transport reaction(s) have been added
+		> 3 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 53 metabolic reaction(s)
+	> 5 reaction(s) have been made reversible
+	> 21 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+---------------
+######	Soil811
+
+Preparing the universal database...
+
+	> finished adding reactions (1s)
+
+Starting the binary search for the gap filling LP...
+
+	> finished binary search (15s)
+
+Gap filling successful, adding reactions to model...
+
+	> finished adding reactions to the model (0s)
+
+
+	> 56 reaction(s) in total have been added
+	> 26 of the added reactions have sequence support
+	> 3 transport reaction(s) have been added
+		> 3 transport reaction(s) include a metabolite with high permeability
+	> 0 exchange reaction(s) have been added
+	> 0 of them are allowed uptake reaction(s)
+	> 53 metabolic reaction(s)
+	> 5 reaction(s) have been made reversible
+	> 21 metabolite(s) have been added to the model.
+
+	Flux through biomass reaction:	 2.81
+
+Total time: 16s
+---------------
+-----------------------------------
+Finished, time: 19.22 min.
