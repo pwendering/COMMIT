@@ -143,7 +143,7 @@ topDir = "COMMIT"
 originalPar = par();
 
 if (writeToFile) {
-  png(filename = paste0(topDir, "/figures/compare_iterations/Figure_3_gap_filling_iterations_1.png"), width = 20, height = 25, units = "cm",
+  png(filename = paste0(topDir, "/figures/compare_iterations/Figure_3_gap_filling_iterations.png"), width = 20, height = 25, units = "cm",
       res = 600)
 }
 par(mfrow=c(3,2),xpd =T)
