@@ -60,7 +60,9 @@ for E = experiments
             %% find optimal biomass flux values
             opt = zeros(n,1);
             for i=1:n
-                v = optimizeCbModel(GF{i});
+                % FBA with minimization of fluxes and loop law
+                % constraints
+                v = optimizeCbModel(GF{i},'max','one',0);
                 opt(i) = v.f;
             end
             
@@ -78,7 +80,9 @@ for E = experiments
                         ub = GF{j}.ub(idx);
                         GF{j}.lb(idx) = 0;
                         GF{j}.ub(idx) = 0;
-                        v = optimizeCbModel(GF{j});
+                        % FBA with minimization of fluxes and loop law
+                        % constraints
+                        v = optimizeCbModel(GF{j},'max','one',0);
                         bio_uptake(j,i) = v.f;
                         GF{j}.lb(idx) = lb;
                         GF{j}.ub(idx) = ub;
@@ -103,7 +107,9 @@ for E = experiments
                         ub = GF{j}.ub(idx);
                         GF{j}.lb(idx) = 0;
                         GF{j}.ub(idx) = 0;
-                        v = optimizeCbModel(GF{j});
+                        % FBA with minimization of fluxes and loop law
+                        % constraints
+                        v = optimizeCbModel(GF{j},'max','one',0);
                         bio_sink(j,i) = v.f;
                         GF{j}.lb(idx) = lb;
                         GF{j}.ub(idx) = ub;
