@@ -23,7 +23,7 @@ function translatedModel = translateModel(model, source, target, translationDB, 
 
 translatedModel = model;
 if nargin < 4
-    error('No translation table given')
+    translationDB = [];
 elseif nargin < 5
     complete = 0;
     verbose = 1;
