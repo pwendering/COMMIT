@@ -50,7 +50,7 @@ biomass = logical(model.c);
 
 % Metabolite identifiers also contain compartment information '[x]'
 mets = strtok(model.mets, '[');
-met_comps = regexp(model.mets, '\[.\]', 'match');
+met_comps = regexp(model.mets, '\[\w\d?\]', 'match');
 met_comps = vertcat(met_comps{:});
 
 if complete
