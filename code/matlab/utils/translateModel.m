@@ -41,8 +41,11 @@ elseif ~ismember(complete, [0 1 true false])
 end
 
 % Extract the reaction ids, suffixes and compartment ids
-rxn_comps = regexp(model.rxns, '_', 'split');
-rxn_comps = cellfun(@(x)x{end}, rxn_comps, 'UniformOutput', false);
+rxn_comps = repmat({''},size(model.rxns));
+rxn_comps_match = regexp(model.rxns, '_\w\d?$', 'match');
+rxn_comps(~cellfun(@isempty,rxn_comps_match)) = ...
+    [rxn_comps_match{~cellfun(@isempty,rxn_comps_match)}];
+clear rxn_comps_match
 rxns = regexprep(model.rxns, '_\w\d?$', '');
 % get the ids of biomass reaction ans boundary reactions
 ex_rxns = findExcRxns(model);
