@@ -486,10 +486,11 @@ if ~isempty(reaction_sets)
     consistModel.rxnNames(idx_new_rxns) = {''};
     
     % reaction notes
-    consistModel.rxnNotes = cellfun(@(x)model_irr.rxnNotes(strcmp(x, rxns_model_irr)),...
-        consistModel.rxns, 'UniformOutput', false);
-    consistModel.rxnNotes(idx_new_rxns) = {'gf'};
-    
+    if isfield(model_irr, 'rxnNotes')
+        consistModel.rxnNotes = cellfun(@(x)model_irr.rxnNotes(strcmp(x, rxns_model_irr)),...
+            consistModel.rxns, 'UniformOutput', false);
+        consistModel.rxnNotes(idx_new_rxns) = {'gf'};
+    end
     % objective ('c')
     consistModel.c = zeros(size(consistModel.S, 2), 1);
     consistModel.c(strcmp(consistModel.rxns, biomass_id)) = 1;
