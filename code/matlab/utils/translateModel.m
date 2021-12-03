@@ -22,8 +22,9 @@ function translatedModel = translateModel(model, source, target, translationDB, 
 %           cellstr unmappedMets:       unmapped metabolite source ids
 
 translatedModel = model;
-if nargin < 4
-    translationDB = [];
+if nargin < 4 || isempty(translationDB)
+    translationDB.rxnTab = [];
+    translationDB.metTab = [];
 elseif nargin < 5
     complete = 0;
     verbose = 1;
@@ -42,7 +43,7 @@ end
 % Extract the reaction ids, suffixes and compartment ids
 rxn_comps = regexp(model.rxns, '_', 'split');
 rxn_comps = cellfun(@(x)x{end}, rxn_comps, 'UniformOutput', false);
-rxns = regexprep(model.rxns, '_.$', '');
+rxns = regexprep(model.rxns, '_\w\d?$', '');
 % get the ids of biomass reaction ans boundary reactions
 ex_rxns = findExcRxns(model);
 biomass = logical(model.c);
