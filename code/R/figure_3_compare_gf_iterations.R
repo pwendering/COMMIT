@@ -96,8 +96,8 @@ plot_gf_distribution <- function (wd, habitat, study, outFileBase, add_legend,
     title(ylab = "Frequency", cex.lab = cex_axis)
   }
   if (add_legend){
-    legend(x = -1, y = 95, legend = c("number of added reactions", "sum of biomass reaction fluxes", "number of exchanged metabolites"),
-           col = alpha(col, 0.5), lwd = 6, bty = "n", cex = 1.5, bg = NA)
+    legend(x = -1.25, y = 98, legend = c("number of added reactions", "sum of biomass reaction fluxes", "number of secreted metabolites"),
+           col = alpha(col, 0.5), lwd = 6, bty = "n", cex = 1.5, bg = NA,xpd = T)
   }
   
   if (writeToFile) dev.off()
