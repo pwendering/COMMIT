@@ -64,22 +64,22 @@ for habitat = {'Leaf', 'Root', 'Soil'}
     % consensus
     spec = '';
     load(fullfile('data/models/consensus', [char(habitat),...
-        '_consensus_models.mat']))
-    % % KBase draft
+       '_consensus_models.mat']))
+    % KBase draft
     % spec = 'KBase_';
     % load(fullfile('data/models/kbase', char(habitat),...
     %    [char(habitat), '_models_genes_translated.mat']))
-    % % RAVEN 2.0 draft
+    % RAVEN 2.0 draft
     % spec = 'RAVEN_';
     % load(fullfile('data/models/raven/HMMer10E-50/',...
     %    [char(habitat), '_models_no_medium_no_biomass']))
-    % % CarveMe draft
+    % CarveMe draft
     % spec = 'CarveMe_';
     % load(fullfile('data/models/carveme',...
     %     char(habitat), [char(habitat), '_models_no_medium_no_biomass']))
-    % % AuReMe draft
+    % AuReMe draft
     % spec = 'AuReMe_';
-    % load(fullfile('/data/models/aureme',...
+    % load(fullfile('data/models/aureme',...
     %     char(habitat), [char(habitat), '_models_genes_translated']))
     
     if ~exist('merged_models', 'var')
