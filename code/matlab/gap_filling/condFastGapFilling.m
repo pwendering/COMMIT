@@ -566,24 +566,24 @@ if ~isempty(reaction_sets)
     consistModel.csense(idx_new_mets) = 'E';
     
     % metabolite charge
-%     if isfield(model_irr, 'metCharges')
-%         consistModel.metCharges = nan(numel(consistModel.mets), 1);
-%         consistModel.metCharges = cell2mat(cellfun(@(x)model_irr.metCharges(strcmp(x, model_irr.mets)),...
-%             consistModel.mets, 'UniformOutput', false));
-%         idx_tmp = cell2mat(cellfun(@(x)find(ismember(consistModel.mets, x)),...
-%             model_irr.mets, 'UniformOutput', false));
-%         consistModel.metCharges(idx_tmp) = model_irr.metCharges;
-%         clear idx_tmp
-%     end
+    if isfield(model_irr, 'metCharges')
+        consistModel.metCharges = nan(numel(consistModel.mets), 1);
+        consistModel.metCharges = cell2mat(cellfun(@(x)model_irr.metCharges(strcmp(x, model_irr.mets)),...
+            consistModel.mets, 'UniformOutput', false));
+        idx_tmp = cell2mat(cellfun(@(x)find(ismember(consistModel.mets, x)),...
+            model_irr.mets, 'UniformOutput', false));
+        consistModel.metCharges(idx_tmp) = model_irr.metCharges(ismember(model_irr.mets,consistModel.mets));
+        clear idx_tmp
+    end
     
     % metabolite formulae
-%    if isfield(model_irr, 'metFormulas')
-%        consistModel.metFormulas = repmat({''}, numel(model_irr.mets), 1);
-%        idx_tmp = cell2mat(cellfun(@(x)find(ismember(consistModel.mets, x)),...
-%            model_irr.mets, 'UniformOutput', false));
-%        consistModel.metFormulas(idx_tmp) = model_irr.metFormulas;
-%        clear idx_tmp
-%    end
+   if isfield(model_irr, 'metFormulas')
+       consistModel.metFormulas = repmat({''}, numel(model_irr.mets), 1);
+       idx_tmp = cell2mat(cellfun(@(x)find(ismember(consistModel.mets, x)),...
+           model_irr.mets, 'UniformOutput', false));
+       consistModel.metFormulas(idx_tmp) = model_irr.metFormulas(ismember(model_irr.mets,consistModel.mets));
+       clear idx_tmp
+   end
     
     if isfield(consistModel, 'grRules')
         consistModel = rmfield(consistModel, 'grRules');
