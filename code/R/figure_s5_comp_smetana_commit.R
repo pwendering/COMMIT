@@ -26,7 +26,7 @@ pheatmap(mat = recov_mat,
          legend = T,
          legend_breaks = c(0,1,2,3),
          legend_labels = c("none", "COMMIT", "SMETANA", "both"),
-         fontsize = 18
+         fontsize = 16
 )
 
 setHook("grid.newpage", NULL, "replace")
