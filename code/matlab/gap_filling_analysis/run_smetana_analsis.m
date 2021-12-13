@@ -11,7 +11,7 @@ changeCobraSolver('ibm_cplex','all',0);
 % model workspace
 habitat = 'Soil';
 spec = 'all';
-experiment = 'Bulgarelli';
+experiment = 'Schlaeppi';
 modelFile = fullfile('data/gap-filling/iterative/',...
     habitat, spec, experiment);
 load(modelFile, 'GF', 'EX');
@@ -38,11 +38,11 @@ writetable(cell2table(...
 
 %% Prepare models
 fprintf('\nWriting %d models to .SBML files\n',n)
-for i=1:n
+for i=17:n
     fprintf('Processing model #%d...',i)
     % reduce to minimum
     tmpModel = rmfield(GF{i}, {'subSystems', 'EC',...
-        'grRules', 'rxnNotes', 'rxnNames'});
+        'grRules', 'rxnNotes', 'rxnNames', 'metFormulas'});
     for j=1:numel(tmpModel.metNames)
         tmpModel.metNames(j) = cellstr(tmpModel.metNames{j});
     end
