@@ -12,7 +12,7 @@ ncpu = 20;
 habitat = 'Soil';
 
 % experiments to be analyzed
-experiments = {'Bulgarelli'};
+experiments = {'Schlaeppi','Bulgarelli'};
 
 % path to COMMIT top directory
 topDir = '~/COMMIT';
@@ -65,7 +65,7 @@ tmp_spec = '_all';
 sub_dir = regexprep(tmp_spec, '^_', '');
 
 % output directory for the gap-filled models
-outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir, 'lb_bio_1e-3_GF_UB');
+outDir = fullfile('data/gap-filling/iterative', habitat, sub_dir);
 
 
 %~~~~~~~~~~~~~ Gap-filling resources ~~~~~~~~~~~~~%
@@ -79,7 +79,7 @@ seq_sim_workspace = 'data/gap-filling/sequence-similarity/sequence_similarity.ma
 
 %~~~~~~~~~~~~~ Reaction-type-specific weights ~~~~~~~~~~~~~%
 
-% reactions with sequence evidence (E >= 1E-6) 
+% reactions with sequence evidence (E <= 1E-6) 
 weights.sequence = 25;
 % transport reactions
 weights.transport = 100;
