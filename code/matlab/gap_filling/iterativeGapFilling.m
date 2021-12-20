@@ -109,8 +109,13 @@ end
 t_init = clock;
 % numer of models to be gap filled
 n = numel(models);
-% default solution (optimal succession for gap filling)
+% create random successions
 solutions = zeros(iterations, n);
+for i=1:iterations
+    while sum(all(solutions==solutions(i,:),2))>1 || sum(solutions(i,:))==0
+        solutions(i,:) = randperm(n);
+    end
+end
 % array to save the number of added reactions per sequence
 gf = zeros(iterations,n);
 % array to save the number of exchanged metabolites
@@ -138,10 +143,7 @@ parfor i=1:iterations
     restoreEnvironment(environment,0);
     
     t_1 = clock;
-    
-    % create random successsion and add it to candidate set
-    solutions(i,:) = randperm(n);
-    
+      
     [gf(i,:), exc(i,:), bio(i,:), dep(i)] = gapFillSuccession(models,...
         solutions(i,:), DB, medium, auxo_media, seq_sim,...
         weights, epsilon, include_sink, false);
