@@ -13,7 +13,9 @@ spec = ""
 # scaling factor to plot precision
 scale_factor_prec = 4;
 # Bacillus megaterium
-Bm <- read.table(paste0(topDir, spec, "B_megaterium.txt"),header = T,row.names = 1)
+Bm <- read.table(paste0(topDir, spec, "B_megaterium.txt"),header = T)
+rownames(Bm) <- Bm[,1]
+Bm <- Bm[,-1]
 Bm_genus <- as.logical(Bm$genus)
 Bm_species <- as.logical(Bm$species)
 Bm$sensitivity <- Bm$sensitivity*Bm$relation
@@ -21,7 +23,9 @@ Bm$precision <- scale_factor_prec*Bm$precision*Bm$relation
 Bm = Bm[,which(colnames(Bm)==c("precision", "sensitivity"))]
 
 # Methylobacterium extorquens
-Me <- read.table(paste0(topDir, spec, "M_extorquens.txt"), header = T,row.names = 1)
+Me <- read.table(paste0(topDir, spec, "M_extorquens.txt"), header = T)
+rownames(Me) <- Me[,1]
+Me <- Me[,-1]
 Me_genus <- as.logical(Me$genus)
 Me_species <- as.logical(Me$species)
 Me$sensitivity <- Me$sensitivity*Me$relation
@@ -40,6 +44,8 @@ my_title = "Similarity of consensus models to reference models"
 yaxis_label_1 = "Sensitivity x sequence similarity"
 yaxis_label_2 = "Precision x sequence similarity"
 cex = 2.3
+my_xaxis_labels = c("B. megaterium", "B. megaterium",
+                    "M. extorquens", "M. extorquens")
 col_genus = "black"
 col_species = "red"
 cbp1 <- c("#999999", "#E69F00", "#56B4E9", "#009E73",
@@ -52,6 +58,7 @@ data = cbind(Bm,Me)
 violin_plot(data,
             col = c("#999999", "#E69F00", "#999999", "#E69F00"),
             main = "",
+            x_axis_labels = my_xaxis_labels,
             at = seq(1,4),
             axes = F,
             ylim = c(0,1.1))
