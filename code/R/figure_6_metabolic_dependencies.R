@@ -5,9 +5,10 @@ library(wesanderson)
 translateIDs2Name <- function(fname, topDir) {
   return(
     system(
-    command = paste0("echo \"", topDir, "code/bash/mapIDs.sh ",
+    command = paste0(topDir, "code/bash/mapIDs.sh ",
                     fname,
-                    " 7 ", topDir, "data/tables/MNXref/", "MNXref-met-translation-table.csv\" | bash"),
+                    " 7 ", topDir, "data/tables/MNXref/",
+                    "MNXref-met-translation-table.csv"),
     intern = T
     )
   )
@@ -32,7 +33,7 @@ mybreaks <- c(seq(from = 0,to = 1, length.out =  palettelength))
 fileBaseName <- paste(topDir, "figures/exchanged_metabolites/reduction_biomass/", habitat, "_",
                      experiment, "_", modelType, "_biomass_", sep = "")
 translationDir <- paste0(topDir, "data/tables/MNXref")
-tmpFile <- paste(translationDir, "tmp", sep = "")
+tmpFile <- paste(translationDir, "tmp", sep = "/")
 
 # ~~~~~~~~~~~ medium ~~~~~~~~~~~ #
 medium <- translateIDs2Name(fname = paste0("<(cut -f 1 ", topDir, "data/media/minimal-medium.csv)"), topDir = topDir)
@@ -180,6 +181,7 @@ p_length_metclass <- max(c(length(unique(annotation_c_import[,1])),
 palette_col <- c("deeppink4", "darkgreen", "indianred", "darkseagreen4", "darkslateblue", "cornflowerblue", "firebrick")
 ann_colors$BRITE <- c(palette_col[1:length(brite_classes)-1], "white")
 names(ann_colors$BRITE) <- c(brite_classes)
+ann_colors$BRITE = ann_colors$BRITE[which(names(ann_colors$BRITE)%in%annotation_c_import$BRITE)]
 
 # Import
 font_size <- 8
