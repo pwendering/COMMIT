@@ -1,5 +1,7 @@
 # Generation of consensus metabolic reconstructions and community-dependent gap-filling using COMMIT for communites sampled from _Arabidopsis thaliana_.
 
+[![DOI](https://zenodo.org/badge/363932874.svg)](https://zenodo.org/badge/latestdoi/363932874)
+
 ## Description
 This repository contains all files used for community-dependent gap-filling and subsequent analysis
 of consensus genome-scale metabolic reconstructions for two soil communities (Bulgarelli et al. 2012, Schlaeppi et al. 2014).
