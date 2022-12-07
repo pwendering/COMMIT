@@ -41,7 +41,7 @@ koTable = cell2table([ENTRY, DBLINKS], 'VariableNames', {'ENTRY', 'RXNS'});
 for i=1:size(koTable, 1)
     if ~isempty(koTable.RXNS{i})
         rxns = strsplit(koTable.RXNS{i}, '|');
-        rxns = cellfun(@(x)translateIDs(x, 'rxn', translationDB.rxnTab, 'KEGG', 'MNXref', false),...
+        rxns = cellfun(@(x)translateIDs(x, 'rxn', [], 'KEGG', 'MNXref', false),...
             rxns, 'UniformOutput', false);
         rxns = cellfun(@char, rxns, 'UniformOutput', false);
         rxns = strjoin(rxns, '|');
