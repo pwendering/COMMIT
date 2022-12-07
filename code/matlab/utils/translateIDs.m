@@ -1,12 +1,14 @@
-function trList = translateIDs(idList, type, dbTable, source, target, verbose)
-%% trList = translateIDs(idList, type, dbTable, source, target, verbose)
+function trList = translateIDs(idList, id_type, dbTable, source, target, verbose)
+%% trList = translateIDs(idList, id_type, dbTable, source, target, verbose)
 % Translate metabolite IDs from one namespace to another (ModelSEED, KEGG,
-% MetaCyc, BiGG).
+% MetaCyc, BiGG, Rhea, EC, ChEBI).
 % Input:
-%       cell idList:               array containing the ids to be translated
-%       char type:                  either 'rxn' or 'met'
-%       table dbTable:              table that contains the translation
-%                                   of identifiers for the given type
+%       cellstr idList:             array containing the ids to be translated
+%       char id_type:               either 'rxn' or 'met'
+%       table dbTable:              (optional) table that contains the 
+%                                   translation of identifiers for the given 
+%                                   type (if empty attempts to load table
+%                                   from 'COMMIT/data/tables/MNXref')
 %       char source:                source namespace ('ModelSEED',
 %                                   'KEGG', 'MetaCyc', 'BiGG', 'MNXref',
 %                                   (for rxns: 'Rhea', 'EC')
@@ -21,7 +23,14 @@ if nargin < 6 || ~islogical(verbose)
     verbose = true;
 end
 
-dbDir = 'data/tables/MNXref';
+if isempty(dbTable)
+    dbDir = 'data/tables/MNXref';
+    if isequal(id_type, 'met')
+        dbTable = readtable(fullfile(dbDir, 'MNXref-met-translation-table.csv'));
+    else
+        dbTable = readtable(fullfile(dbDir, 'MNXref-rxn-translation-table.csv'));
+    end
+end
 
 if ~iscellstr(idList)
     if ischar(idList)
@@ -32,8 +41,8 @@ if ~iscellstr(idList)
         error('The input idList is either not given or not of type cellstr')
     end
 end
-    
-if ~ischar(source) || ~ischar(target) || any(~ismember(type, ['rxn' 'met']))
+
+if ~ischar(source) || ~ischar(target) || any(~ismember(id_type, ['rxn' 'met']))
     error('The source and/or target namespace or type definition is incorrect')
 end
 
@@ -44,7 +53,7 @@ metSources = {'MNXref', 'KEGG', 'BiGG', 'MetaCyc', 'ModelSEED', 'ChEBI', 'NAMES'
 %% Find matched using the MNXref database
 
 % get the respective column that contains the desired names spaces
-if type == 'met'
+if isequal(id_type, 'met')
     sourceID = find(contains(metSources, source));
     targetID = find(contains(metSources, target));
 else
@@ -56,86 +65,35 @@ if isempty(sourceID) || isempty(targetID)
     error('The requested namespace is not available')
 end
 
-if ~isempty(dbTable) && numel(idList) <= 300
-    trList = repmat({''}, numel(idList), 1);
-    % Filter source  and target IDs by empty keys and keys that are definitely not
-    % contained in the given list
-    sourceIDs = dbTable.(source);
-    targetIDs = dbTable.(target);
-    sourceIDs = sourceIDs(contains(dbTable.(source), idList));
-    targetIDs = targetIDs(contains(dbTable.(source), idList));
-    clear dbTable;
-    
-    % ID at the beginning of the line followed by other IDs
-    idList_suffix = strcat('^', idList, '\|');
-    idx = cellfun(@(x)regexp(sourceIDs, x), idList_suffix, 'UniformOutput', false);
-    for i=1:numel(idx)
-        idx{i} = find(~cellfun('isempty', idx{i}));
-    end
-    clear idList_suffix
-    
-    % ID at the end of the line, preceded by other IDs
-    empty = cellfun('isempty', idx);
-    idList_prefix = strcat('\|', idList(empty), '$');
-    idx_prefix = cellfun(@(x)regexp(sourceIDs, x), idList_prefix, 'UniformOutput', false);
-    for i=1:numel(idx_prefix)
-        idx_prefix{i} = find(~cellfun('isempty', idx_prefix{i}));
-    end
-    idx(empty) = idx_prefix; clear idx_prefix idList_prefix
-    
-    % ID in the middle of other IDs
-    empty = cellfun('isempty', idx);
-    idList_center = strcat('\|', idList(empty), '\|');
-    idx_center = cellfun(@(x)regexp(sourceIDs, x), idList_center, 'UniformOutput', false);
-    for i=1:numel(idx_center)
-        idx_center{i} = find(~cellfun('isempty', idx_center{i}));
-    end
-    idx(empty) = idx_center; clear idx_center idList_center
-    
-    % field only contains the ID
-    empty = cellfun('isempty', idx);
-    idx(empty) = cellfun(@(x)find(strcmp(x, sourceIDs)), idList(empty), 'UniformOutput', false);
-    
-    for i=1:numel(idList)
-        if ~isempty(idx{i}) && numel(idx{i}) == 1
-            trList(i) = targetIDs(idx{i});
-        else
-            trList(i) = idList(i);
-        end
-    end
-else
-    dbFile = [dbDir, '/MNXref-',type,'-translation-table.csv'];
-    
-    % Write the list to file so the IDs can be translated by a bash function
-    writetable(table(idList), fullfile(dbDir, 'tmp.csv'), 'WriteVariableNames', false)
-    
-    % system call
-    command = ['code/bash/mapIDs.sh', ' ',...
-        fullfile(dbDir, 'tmp.csv'),' ',...
-        num2str(targetID), ' ',...
-        dbFile];
-    if ispc
-        [s, output] = dos(['sh ' command]);
-    else
-        [s, output] = unix(command);
-    end
-    
-    if s
-        error('The mapping did not work, most likely the translation file does not exist or is in wrong format')
-    end
-    
-    % Process the terminal output
-    trList = strsplit(output(1:end-1),'\n');
-    trList(ismember(trList,'UNKNOWN')) = {''};
-end
+% initialize translated IDs list
+trList = repmat({''}, numel(idList), 1);
+
+% Filter source  and target IDs by empty keys and keys that are definitely not
+% contained in the given list
+sourceIDs = dbTable.(source);
+targetIDs = dbTable.(target);
+sourceIDs = sourceIDs(contains(dbTable.(source), idList));
+targetIDs = targetIDs(contains(dbTable.(source), idList));
+clear dbTable;
+
+% pad source IDs and queries with '|'
+sourceIDs = strcat('|', sourceIDs);
+sourceIDs = strcat(sourceIDs, '|');
+idList = strcat(idList, '|');
+idList = strcat('|', idList);
+
+% match IDs
+match_idx = cellfun(@(x)find(contains(sourceIDs, x)), idList, 'UniformOutput', false);
+empty_idx = cellfun('isempty', match_idx);
+trList(~empty_idx) = targetIDs([match_idx{:}]);
 
 if verbose
-    fprintf('\nTranslated %3.2f%%\n\n', 100*sum(~cellfun('isempty', trList))/numel(idList));
+    fprintf('\nTranslated %3.2f%%\n\n', 100*sum(~empty_idx)/numel(idList));
 end
-% assign original IDs if unmatched
-trList(cellfun('isempty', trList)) = idList(cellfun('isempty', trList));
 
+% make it a column vector
 trList = reshape(strtrim(trList), numel(trList), 1);
-trList = regexprep(trList, ';', '|');
+
+trList = strrep(trList, ';', '|');
 
 end
