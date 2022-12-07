@@ -34,7 +34,7 @@ if (contains(formula, 'rxn') || ~any(regexp(formula, '[mnq]', 'once'))) && conta
     elseif any(regexp(formula, 'cpd[0-9]{5}'))
         pattern = 'cpd[0-9]{5}';
     else
-        pattern = 'MNXM[0-9]*';
+        pattern = 'MNXM[0-9]*|WATER';
     end
     
     

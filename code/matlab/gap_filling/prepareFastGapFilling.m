@@ -37,7 +37,7 @@ elseif any(cell2mat(regexp(DB, 'cpd[0-9]{5}', 'once')))
     mets = columnVector(regexp(DB, 'cpd[0-9]{5}', 'match'));
 elseif any(cell2mat(regexp(DB, 'MNXM[0-9]*', 'once')))
     fprintf('\nRecognized MNXRef namespace.\n')
-    mets = columnVector(regexp(DB, 'MNXM[0-9]*', 'match'));
+    mets = columnVector(regexp(DB, 'MNXM[0-9]*|WATER', 'match'));
 else
     error('No namespace recognized.')
 end
@@ -130,7 +130,7 @@ for dbLine = DB'
 % while ischar(dbLine)%for i=1:numel(dbRxns)/loop_max %numel(compartments)
     i = i + 1;
     if mod(i,1000)==0
-        fprintf('\nProcessed %d out of %d reactions\n', i, numel(dbRxns))
+        fprintf('\nProcessed %d out of %d reactions', i, numel(dbRxns))
     end
     % parse the current line
     [s, p, d] = parseFormula(char(dbLine));
@@ -173,8 +173,8 @@ for dbLine = DB'
         % get database indices of all metabolites involved in the reaction 
         % (as many a compartments, respectively)
         if ~isempty(s.id) && ~isempty(p.id)
-%             s.id = strcat(s.id, '[', compartments(loop_max), ']');
-%             p.id = strcat(p.id, '[', compartments(loop_max), ']');
+            s.id = strcat(s.id, '[', compartments(loop_max), ']');
+            p.id = strcat(p.id, '[', compartments(loop_max), ']');
         % Boundary reactions:
         elseif isempty(s.id)
             p.id = strcat(p.id, '[e]');
@@ -206,20 +206,25 @@ for dbLine = DB'
             % in case there are multiple compartments for metabolic
             % reactions, they will be inserted here:
             for j=1:ncomps
+                if isequal(compartments{j}, 'e')
+                   continue
+                end
+                
                 % Create column for reaction and insert it into S
                 col_idx = i + (j-1)*numel(dbRxns)/ncomps;
-                row_idx_p = j:ncomps:(ncomps*numel(p.id));
-                row_idx_s = j:ncomps:(ncomps*numel(s.id));
+                
                 new_col = zeros(numel(dbMets), 1);
                 if ~isempty(idx_p)
-                    if isempty(idx_s)
-                        new_col(idx_p) = p.coeff';
-                    else
-                        new_col(idx_p(row_idx_p)) = p.coeff';
-                    end
+                    row_idx_p = idx_p + (j-1)*numel(dbMets)/ncomps;
+                    new_col(row_idx_p) = p.coeff';
+                else
+                    disp('why empty?')
                 end
                 if ~isempty(idx_s)
-                    new_col(idx_s(row_idx_s)) = new_col(idx_s(row_idx_s)) - s.coeff';
+                    row_idx_s = idx_s + (j-1)*numel(dbMets)/ncomps;
+                    new_col(row_idx_s) = - s.coeff';  
+                else
+                    disp('why empty?')
                 end
                 
                 dbModel.S(:, col_idx) = new_col;
