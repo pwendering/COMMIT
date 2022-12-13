@@ -142,7 +142,7 @@ model = orderfields(model, field_order);
 
 if translate
     model = translateModel(model, 'BiGG', 'MNXref', translationDB);
-    
+    clear translationDB
     % reactions from rxnNotes
     for i=1:numel(model.rxns)
         if ~contains(model.rxns{i}, 'MNXR')
@@ -176,7 +176,10 @@ end
 model = removeDuplicateMets(model);
 
 % unify duplicate reaction IDs
-model = removeDuplicateRxns(model);
+tmp = load(fullfile('data', 'gap-filling', 'database',...
+    'Universal-model-MNXref-balanced.mat'));
+dbModel = tmp.dbModel_MNXref_balanced;
+model = removeDuplicateRxns(model, dbModel);
 
 changed_model = model;
 end
