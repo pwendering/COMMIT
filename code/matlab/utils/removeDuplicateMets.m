@@ -12,7 +12,7 @@ function changed_model = removeDuplicateMets(model)
 
 % indices of duplicate metabolites
 to_delete = model.mets(setdiff(1:numel(model.mets), ia));
-remove = {};
+remove = {''};
 
 for i=1:numel(to_delete)
     % indices of the repeated occurrences of the same metabolite
@@ -28,8 +28,6 @@ for i=1:numel(to_delete)
     end
 end
 
-for i=1:numel(remove)
-    changed_model = removeMetabolites(model, remove, 0);
-end
+changed_model = removeMetabolites(model, remove, 0);
 
 end
