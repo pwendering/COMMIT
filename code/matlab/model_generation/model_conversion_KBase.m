@@ -3,12 +3,14 @@ options; clear
 %% KBase
 % Tables
 tablesDir = 'data/tables';
+ModelSEEDRxnEC = fullfile(tablesDir, 'ModelSEED_RXN_EC.csv');
 ecTransFile = fullfile(tablesDir, 'corrected-EC-numbers.csv');
 metTransFile = fullfile(tablesDir, 'MNXref', 'MNXref-met-translation-table.csv');
 rxnTransFile = fullfile(tablesDir, 'MNXref', 'MNXref-rxn-translation-table.csv');
 formulaeFile = fullfile(tablesDir, 'MNXref', 'MNXref_MET_FORMULAE.csv');
 
 formulaTab = readtable(formulaeFile, 'ReadVariableNames', true, 'Delimiter', '\t');
+ecRxnTable = readtable(ModelSEEDRxnEC, 'ReadVariableNames', false);
 ecTranslationTable = readtable(ecTransFile, 'ReadVariableNames', false);
 metTransTab = readtable(metTransFile, 'ReadVariableNames', true);
 rxnTransTab = readtable(rxnTransFile, 'ReadVariableNames', true);
@@ -56,8 +58,7 @@ for i=1:numel(habitats)
     parfor j=1:n
         %fprintf('\mModel %d/%d:\n', num2str(j), num2str(n))
         % Retrieve ec numbers from ModelSEED reaction database
-        ec = translateIDs(strtok(models{j}.rxns, '['), 'rxn', [],...
-            'ModelSEED', 'EC');
+        ec = ecNumbersFromModelSEED(models{j}.rxns, ecRxnTable);
         % Correct the EC numbers as they could be outdated
         models{j}.EC =  correctEC(ec, ecTranslationTable);
     end
