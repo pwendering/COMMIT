@@ -14,7 +14,7 @@ if [[ "$#" < 2 ]]; then
         exit 1
 fi
 
-# collect all genbank files in an array
+# collect all multi-fasta amino acid sequence files in an array
 input=($(ls $1|grep "\.faa"))
 
 # create the output directory of it does not exist yet
