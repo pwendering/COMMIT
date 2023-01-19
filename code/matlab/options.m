@@ -15,16 +15,22 @@ habitat = 'Soil';
 experiments = {'Schlaeppi','Bulgarelli'};
 
 % path to COMMIT top directory
-topDir = '~/COMMIT';
+topDir = 'C:\Users\wende\MobaXterm\home\COMMIT';
 
 % medium file
 mediumFile = 'data/media/minimal-medium.mat';
 
 % directory for auxotrophy media (files must be of form 'model id'.tsv)
+% optional: Remove the following line or set mediaDir='' if you do not want
+% to use auxotrophic media to fill gaps in the first model of each
+% iteration. The minimal medium given above will be used instead.
 mediaDir = fullfile('data/media', habitat, 'auxo-media');
 
 % top directory for OTU abundance (subdirectories must be habitat >
 % experiment > otutab.txt
+% optional: remove the following line or set otuDir='' if you do not want
+% to use OTU abundances to select at subset of models found the experiment
+% and just use all models
 otuDir = 'data/otu-abundances/';
 
 % threshold for the biomass reaction

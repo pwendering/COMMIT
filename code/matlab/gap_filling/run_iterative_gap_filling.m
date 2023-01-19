@@ -7,7 +7,7 @@ disp('Loading required data...')
 options
 
 % medium
-load(mediumFile)
+load(mediumFile, 'medium')
 
 % Universal database
 load(dbFile)
@@ -34,27 +34,38 @@ for i=1:numel(experiments)
         merged_models = models; clear models
     end
     
-    % get the list of complementary media
-    auxo_media = dir(fullfile(mediaDir, '*.tsv'));
-    auxo_media = fullfile({auxo_media.folder}, {auxo_media.name})';
-    
     % load OTU abundances to take the subset found in the current study
-    otu_file = fullfile(otuDir, habitat, experiments{i}, 'otutab.txt');
-    tab_merged = readAbundancesFromFile(otu_file);
-    
-    model_ids = cellfun(@(x)strtok(x.id, '_'), merged_models,...
-        'UniformOutput', false);
-    merged_models = merged_models(ismember(model_ids, tab_merged.Properties.RowNames));
-    clear tab_merged
+    if exist('otuDir', 'var') && ~isempty(otuDir) && exist('otuDir', 'dir')
+        otu_file = fullfile(otuDir, habitat, experiments{i}, 'otutab.txt');
+        tab_merged = readAbundancesFromFile(otu_file);
+        
+        model_ids = cellfun(@(x)strtok(x.id, '_'), merged_models,...
+            'UniformOutput', false);
+        merged_models = merged_models(ismember(model_ids, tab_merged.Properties.RowNames));
+        clear tab_merged
+    elseif exist('otuDir', 'var') && ~isempty(otuDir) && ~exist('otuDir', 'dir')
+        error('Given path to OTU abundance directory does not exist: %s', otuDir)
+    end
     
     % create cell arrays for individual auxotrophic media
-    auxo_media = auxo_media(contains(auxo_media, strcat(model_ids, '.tsv')));
-    for j=1:numel(auxo_media)
-        tmp_tab = importdata(auxo_media{j});
-        tmp_tab = tmp_tab.textdata(2:end,1);
-        auxo_media{j} = strcat(translateIDs(tmp_tab, 'met', [], 'ModelSEED',...
-            'MNXref', false), '[e]');
+    % get the list of complementary media
+    if exist('mediaDir', 'var') && ~isempty(mediaDir) && exist('mediaDir', 'dir')
+        auxo_media = dir(fullfile(mediaDir, '*.tsv'));
+        auxo_media = fullfile({auxo_media.folder}, {auxo_media.name})';
+        auxo_media = auxo_media(contains(auxo_media, strcat(model_ids, '.tsv')));
+        
+        for j=1:numel(auxo_media)
+            tmp_tab = importdata(auxo_media{j});
+            tmp_tab = tmp_tab.textdata(2:end,1);
+            auxo_media{j} = strcat(translateIDs(tmp_tab, 'met', [], 'ModelSEED',...
+                'MNXref', false), '[e]');
+        end
+    elseif exist('mediaDir', 'var') && ~isempty(mediaDir) && ~exist('mediaDir', 'dir')
+        error('Given path to auxotrophic media directory does not exist: %s', mediaDir)
+    else
+        auxo_media = repelem({medium}, numel(merged_models), 1);
     end
+    
     % write single .mat files for every model in a subdirectory
     tmpModelDir = fullfile(modelDir, 'tmp_models', [experiments{i}, tmp_spec]);
     [s, fileList] = createModelDir(merged_models, tmpModelDir);
