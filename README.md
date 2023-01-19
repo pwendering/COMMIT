@@ -105,7 +105,7 @@ To generate consensus models from multiple reconstruction approaches use the scr
 code/model_generation/merge_metabolic_models.m
 ```
 
-Adjust the variables to specify the location of reconstructions from single appraoches (see point Preparation, above):
+Adjust the variables to specify the location of reconstructions from single approaches (see point Preparation, above):
 
 `habitats`: habitats where samples were obtained
 
@@ -114,9 +114,26 @@ Adjust the variables to specify the location of reconstructions from single appr
 The consensus models will be saved under `data/models/consensus`.
 
 
+### (optional) Reconcile gene IDs
+Some reconstruction approaches use their own annotation pipeline, starting from the genome sequence (e.g. KBase), while others require a multi-fasta file (i.e. structural annotation). As the structural annotation can differ and different pipelines assign different gene IDs, the resulting reconstructions from different approaches can contain different gene IDs. For this publication, I mapped gene IDs using BLAST to be able to compare the gene sets that are included in the reconstructions obtained from the different approaches.
+1. Create a BLAST database for reference gene identifiers
+	- use your own structural annotation or a structural annotation obtained from one of the reconstruction approaches as a reference
+	- use the script `code/bash/batch-makeblastdb.sh` to generate BLAST databases for each amino acid multi-fasta file
+	- use `code/bash/batch-makeblastdb-nucl.sh` if you have nucleic acid sequences
+2. If not already available, create multi-fasta files from .gff files
+	- e.g. in KBase, you can export .gff files and use them together with your genome sequence to create a multi-fasta file
+	- use the script `code/bash/convert-gff-to-fasta.sh`
+	- this script required [bedtools](https://bedtools.readthedocs.io/en/latest/) to be installed
+3. Run blastp or blastx to find corresponding genes or proteins
+	- The scripts `code/bash/batch-blastp.sh` and `code/bash/batch-blastx.sh` loop after all multi-fasta files in a directory and perform BLAST searches for all proteins/genes in a fasta file
+	- only one hit per protein is returned to obtain a one-to-one mapping
+	- this is not ideal because sequences might be split or lumped between structural annotations
+4. The Matlab function `code/matlab/translateGeneIDs.m` can then be used to map gene IDs in the reconstructions, such that GPR rules can be combined and compared
+
 ## Workflow for the publication results
-- the script _COMMIT/code/matlab/commit.m_ contains the workflow for the publication
-- the script _COMMIT/code/matlab/gap_filling/run_iterative_gap_filling.m_ performs the conditional gap filling procedure of COMMIT
-- the script _COMMIT/code/matlab/gap_filling/gap_fill_individual_models.m_ performs gap-filling on the individual reconstructions without considering the community composition
+- the script `COMMIT/code/matlab/commit.m` contains the workflow for the publication
+- the script `COMMIT/code/matlab/gap_filling/run_iterative_gap_filling.m` performs the conditional gap filling procedure of COMMIT
+- the script `COMMIT/code/matlab/gap_filling/gap_fill_individual_models.m` performs gap-filling on the individual reconstructions without considering the community composition
 
 ## Reference
+Wendering P, Nikoloski Z (2022) COMMIT: Consideration of metabolite leakage and community composition improves microbial community reconstructions. PLOS Computational Biology 18(3): e1009906. [https://doi.org/10.1371/journal.pcbi.1009906](https://doi.org/10.1371/journal.pcbi.1009906)
