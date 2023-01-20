@@ -35,7 +35,7 @@ for i=1:numel(experiments)
     end
     
     % load OTU abundances to take the subset found in the current study
-    if exist('otuDir', 'var') && ~isempty(otuDir) && exist('otuDir', 'dir')
+    if exist('otuDir', 'var') && ~isempty(otuDir) && exist(otuDir, 'dir')
         otu_file = fullfile(otuDir, habitat, experiments{i}, 'otutab.txt');
         tab_merged = readAbundancesFromFile(otu_file);
         
@@ -43,13 +43,13 @@ for i=1:numel(experiments)
             'UniformOutput', false);
         merged_models = merged_models(ismember(model_ids, tab_merged.Properties.RowNames));
         clear tab_merged
-    elseif exist('otuDir', 'var') && ~isempty(otuDir) && ~exist('otuDir', 'dir')
+    elseif exist('otuDir', 'var') && ~isempty(otuDir) && ~exist(otuDir, 'dir')
         error('Given path to OTU abundance directory does not exist: %s', otuDir)
     end
     
     % create cell arrays for individual auxotrophic media
     % get the list of complementary media
-    if exist('mediaDir', 'var') && ~isempty(mediaDir) && exist('mediaDir', 'dir')
+    if exist('mediaDir', 'var') && ~isempty(mediaDir) && exist(mediaDir, 'dir')
         auxo_media = dir(fullfile(mediaDir, '*.tsv'));
         auxo_media = fullfile({auxo_media.folder}, {auxo_media.name})';
         auxo_media = auxo_media(contains(auxo_media, strcat(model_ids, '.tsv')));
@@ -60,7 +60,7 @@ for i=1:numel(experiments)
             auxo_media{j} = strcat(translateIDs(tmp_tab, 'met', [], 'ModelSEED',...
                 'MNXref', false), '[e]');
         end
-    elseif exist('mediaDir', 'var') && ~isempty(mediaDir) && ~exist('mediaDir', 'dir')
+    elseif exist('mediaDir', 'var') && ~isempty(mediaDir) && ~exist(mediaDir, 'dir')
         error('Given path to auxotrophic media directory does not exist: %s', mediaDir)
     else
         auxo_media = repelem({medium}, numel(merged_models), 1);
