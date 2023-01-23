@@ -71,6 +71,12 @@ biomass_idx = find(logical(model.c));
 biomass_sink_id = {'sink_BIOMASS[c]'};
 biomass_sink_idx = find(strcmp(model.rxns, biomass_sink_id));
 
+% find overlap of dead-end metabolites with database metabolites
+% if some dead ends are not contained in the database,
+% this could be the reason why no solution was found
+de_mets = model_irr.mets(detectDeadEnds(model_irr));
+sd_de_db = setdiff(de_mets, dbModel_irr.mets);
+
 % Get the ids of all irreversible reactions, they can be assigned different
 % weights to because they can be reversed (indices will be the same as in
 % the original model because reverse reactions are just appended)
@@ -606,9 +612,11 @@ if ~isempty(reaction_sets)
         fprintf('\n\tFlux through biomass reaction:\t %.2f\n', flux_biomass)
     end
 else
-    warning('Gap filling did not result in a feasible solution')
+    warning('Gap filling did not result in a feasible solution, returning an empty model')
+    warning('%d model dead-end metabolites are not contained in the gap-filling database.\n',...
+        numel(sd_de_db))
     consistModel = struct;
-    addedRxns = {};
+    addedRxns = {};    
 end
 if verbose
     fprintf('\nTotal time: %.0fs\n', toc);
