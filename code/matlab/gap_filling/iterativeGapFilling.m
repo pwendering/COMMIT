@@ -225,7 +225,7 @@ for i = gf_order
     model = removeRxns(model, model.rxns(contains(model.rxns, 'EX_')));
     
     % add the medium as exchange reactions
-    model = addExchangeRxn(model, M);
+    model = addExchangeRxn(model, unique(M));
     
     if ~isempty(seq_sim)
         % add respective sequence similarity values and genes
