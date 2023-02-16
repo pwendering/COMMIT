@@ -27,6 +27,5 @@ options
 %% minimal medium
 medium = readtable('data/media/minimal-medium.csv',...
     'ReadVariableNames', false);
-medium = translateIDs(medium.Var1, 'met', [], 'ModelSEED', 'MNXref');
-medium = strcat(medium, '[e]');
+medium = strcat(medium.Var1, '[e]');
 save('data/media/minimal-medium.mat', 'medium')
