@@ -1,32 +1,35 @@
-MNXM2	H2O
+WATER	H2O
+MNXM13	CO2
+MNXM735438	O2
 MNXM11	diphosphate
-MNXM95120	iron
-MNXM41	D-glucose
+MNXM726711	Fe(2+)
+MNXM735623	D-glucose
 MNXM2255	Mn(2+)
-MNXM149	Zn(2+)
-MNXM632	Cu(2+)
+MNXM729215	Zn(2+)
+MNXM731166	Cu(2+)
 MNXM128	Ca(2+)
-MNXM89	sulfur
-MNXM43	chloride
+MNXM58	sulfate
+MNXM735978	chloride
 MNXM304	biotin
-MNXM531993	Molybdenum
+MNXM737842	Mo2+
 MNXM90960	Co(2+)
 MNXM95	K(+)
-MNXM3673	Ni(2+)
+MNXM731950	Ni(2+)
 MNXM653	Mg(2+)
 MNXM27	Na(+)
-MNXM4505	Cd(2+)
-MNXM19009	Pb
-MNXM161163	sodium
-MNXM160440	potassium
-MNXM160414	dipotassium
-MNXM161213	sodium
+MNXM733186	Cd(2+)
+MNXM19009	Pb2+
+MNXM161163	sodium hydrogencarbonate
+MNXM160440	potassium sulfate
+MNXM160414	dipotassium hydrogen phosphate
+MNXM161213	sodium sulfate
 MNXM43229	Ba(2+)
 MNXM82680	Sr(2+)
-MNXM88705	vanadium(5+)
-MNXM90852	Methylcobalamin
-MNXM157678	magnesium
-MNXM161119	sodium
-MNXM152150	aluminium(3+)
-MNXM160410	potassium
-MNXM153069	calcium
+MNXM148557	vanadium(5+)
+MNXM727391	methylcob(III)alamin
+MNXM157678	magnesium sulfate
+MNXM161119	sodium chloride
+MNXM729497	aluminium(3+)
+MNXM160410	potassium chloride
+MNXM153069	calcium chloride dihydrate
+
