@@ -33,6 +33,14 @@ M = mergeModelsClass(model, database);
 if verbose; fprintf('done. (%.2fs)\n', toc); end
 n_rxns = M.getRxnNum(model);
 
+% find biomass reaction index
+% * by objective vector
+% * by matching keyword 'biomass'
+BIOMASS = union(find(M.model.c),...
+    find(contains(M.model.rxns, 'biomass', 'IgnoreCase', true)));
+fprintf('Detected the following biomass (-related) reaction(s): %s\n',...
+    strjoin(M.model.rxns(BIOMASS), ', '))
+
 % remove eventually pre-existing number inidices from reactions
 M.model = M.removeRxnIndices;
 
@@ -42,7 +50,7 @@ end
 
 %% Start search
 for  i=1:n_rxns
-    
+
     % create reaction 1
     R1 = Reaction(...
         M.getProperty(i, 'rxns'),...
@@ -60,6 +68,9 @@ for  i=1:n_rxns
         identical = M.findIdentical(i);
         % exclude reactions that should be removed
         identical = M.filterArray(identical, M.remove);
+        % exclude biomass reaction (ATPase / NGAM reaction matches with
+        % high identity)
+        identical = M.filterArray(identical, BIOMASS);
         % exclude all preceding reactions
         identical = M.filterArray(identical, [1:i]);
         identical = find(identical);
@@ -73,6 +84,9 @@ for  i=1:n_rxns
         identical_lower = M.filterArray(identical_lower, M.remove);
         % exclude exchange reactions
         identical_lower = M.filterArray(identical_lower, M.findExcReactions);
+        % exclude biomass reaction (ATPase / NGAM reaction matches with
+        % high identity)
+        identical_lower = M.filterArray(identical_lower, BIOMASS);
         % exclude preceding reactions
         identical_lower = M.filterArray(identical_lower, 1:i);
         identical_lower = find(identical_lower);
