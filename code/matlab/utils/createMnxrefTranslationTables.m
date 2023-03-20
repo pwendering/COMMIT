@@ -49,12 +49,18 @@ mnx_met_names = chem_prop_table.(2);
 mnx_met_formulas = chem_prop_table.(4);
 
 if ~ismember('BIOMASS', mnx_met_ids)
-    mnx_met_ids = [mnx_met_ids; {'BIOMASS'}];
-    mnx_met_names = [mnx_met_names; {'BIOMASS'}];
-    mnx_met_formulas = [mnx_met_formulas; {''}];
+    mnx_met_ids = [{'BIOMASS'}; mnx_met_ids];
+    mnx_met_names = [{'BIOMASS'}; mnx_met_names];
+    mnx_met_formulas = [{''}; mnx_met_formulas];
 end
 
-clear chem_prop_table
+% sort arrays by ID to make sure that the order of there reference IDs
+% matches with the order of matched IDs
+[mnx_met_ids, id_order] = sort(mnx_met_ids);
+mnx_met_names = mnx_met_names(id_order);
+mnx_met_formulas = mnx_met_formulas(id_order);
+
+clear chem_prop_table id_order
 
 % read chem_xref.tsv file
 % Columns (copied from MetaNetX):
@@ -67,11 +73,11 @@ chem_xref_table = readtable(fullfile(mnxref_dir, 'chem_xref.tsv'),...
 
 % remove rows that are not needed
 keep_idx = ...
-    startsWith(chem_xref_table.(1), 'kegg.compound') | ...
-    startsWith(chem_xref_table.(1), 'bigg.metabolite') | ...
-    startsWith(chem_xref_table.(1), 'metacyc.compound') | ...
-    startsWith(chem_xref_table.(1), 'seed.compound') | ...
-    startsWith(chem_xref_table.(1), 'CHEBI');
+    startsWith(chem_xref_table.(1), 'kegg.compound:') | ...
+    startsWith(chem_xref_table.(1), 'bigg.metabolite:') | ...
+    startsWith(chem_xref_table.(1), 'metacyc.compound:') | ...
+    startsWith(chem_xref_table.(1), 'seed.compound:') | ...
+    startsWith(chem_xref_table.(1), 'CHEBI:');
 chem_xref_table = chem_xref_table(keep_idx, :);
 
 % KEGG
@@ -138,13 +144,20 @@ reac_prop_table = readtable(fullfile(mnxref_dir, 'reac_prop.tsv'),...
     'FileType', 'text', 'CommentStyle', '#', 'ReadVariableNames', false,...
     'Delimiter', '\t');
 
+reac_prop_table = reac_prop_table(~ismember(reac_prop_table.(1), 'EMPTY'),:);
+
 % obtain all MNXref reaction IDs and EC numbers
 disp('MNXref ==> EC')
 mnx_rxn_ids = reac_prop_table.(1);
 mnx_rxn_ec = reac_prop_table.(4);
 mnx_rxn_ec = strrep(mnx_rxn_ec, ';', '|');
 
-clear reac_prop_table
+% sort arrays by ID to make sure that the order of there reference IDs
+% matches with the order of matched IDs
+[mnx_rxn_ids, id_order] = sort(mnx_rxn_ids);
+mnx_rxn_ec = mnx_rxn_ec(id_order);
+
+clear reac_prop_table id_order
 
 % read reac_xref.tsv file
 % Columns (copied from MetaNetX):
@@ -157,13 +170,14 @@ reac_xref_table = readtable(fullfile(mnxref_dir, 'reac_xref.tsv'),...
 
 % remove rows that are not needed
 keep_idx = ...
-    startsWith(reac_xref_table.(1), 'kegg.reaction') | ...
-    startsWith(reac_xref_table.(1), 'bigg.reaction') | ...
-    startsWith(reac_xref_table.(1), 'metacyc.reaction') | ...
-    startsWith(reac_xref_table.(1), 'seed.reaction') | ...
-    startsWith(reac_xref_table.(1), 'rhea');
+    startsWith(reac_xref_table.(1), 'kegg.reaction:') | ...
+    startsWith(reac_xref_table.(1), 'bigg.reaction:') | ...
+    startsWith(reac_xref_table.(1), 'metacyc.reaction:') | ...
+    startsWith(reac_xref_table.(1), 'seed.reaction:') | ...
+    startsWith(reac_xref_table.(1), 'rhea:');
 reac_xref_table = reac_xref_table(keep_idx, :);
 
+reac_xref_table = reac_xref_table(~ismember(reac_xref_table.(2), 'EMPTY'), :);
 
 % KEGG
 disp('MNXref ==> KEGG')
@@ -205,6 +219,13 @@ mnx_translation_table = cell2table([mnx_rxn_ids mnx_rxn_kegg mnx_rxn_bigg ...
 writetable(mnx_translation_table, fullfile(mnxref_dir, 'MNXref-rxn-translation-table.csv'),...
     'Delimiter', '\t');
 
+%% Test translation
+fprintf('Testing translation tables...\n')
+passed = testMnxrefTranslationTables(mnxref_dir);
+if passed
+    fprintf('-- all tests were passed\n')
+end
+
     function [mnxref, xref] = getXrefForDB(xref_table, db_keyword)
     %% [mnxref, xref] = getXrefForDB(xref_table, db_keyword)
     % Obtain a translation from MNXref identifiers to references in another
@@ -222,7 +243,7 @@ writetable(mnx_translation_table, fullfile(mnxref_dir, 'MNXref-rxn-translation-t
     xref_raw = erase(xref_table.(1)(db_idx), [db_keyword ':']);
     clear xref_table
     
-    % now take the unique list of MNXref IDs and combine all
+    % now take the unique, sorted list of MNXref IDs and combine all
     % cross-reference entries
     mnxref = unique(mnxref_raw);
     xref = cellfun(@(x)cellstr(strjoin(xref_raw(ismember(mnxref_raw, x)), '|')),...

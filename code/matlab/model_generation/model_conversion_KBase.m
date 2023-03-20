@@ -5,18 +5,12 @@ options; clear
 tablesDir = 'data/tables';
 ModelSEEDRxnEC = fullfile(tablesDir, 'ModelSEED_RXN_EC.csv');
 ecTransFile = fullfile(tablesDir, 'corrected-EC-numbers.csv');
-metTransFile = fullfile(tablesDir, 'MNXref', 'MNXref-met-translation-table.csv');
-rxnTransFile = fullfile(tablesDir, 'MNXref', 'MNXref-rxn-translation-table.csv');
 formulaeFile = fullfile(tablesDir, 'MNXref', 'MNXref_MET_FORMULAE.csv');
 
 formulaTab = readtable(formulaeFile, 'ReadVariableNames', true, 'Delimiter', '\t');
 ecRxnTable = readtable(ModelSEEDRxnEC, 'ReadVariableNames', false);
 ecTranslationTable = readtable(ecTransFile, 'ReadVariableNames', false);
-metTransTab = readtable(metTransFile, 'ReadVariableNames', true);
-rxnTransTab = readtable(rxnTransFile, 'ReadVariableNames', true);
-translationDB.metTab = metTransTab;
-translationDB.rxnTab = rxnTransTab;
-
+translationDB = loadTranslationDB;
 
 fprintf('################# Converting KBase draft models #################\n')
 habitats = {'Leaf', 'Root', 'Soil'};
