@@ -6,18 +6,13 @@ tablesDir = 'data/tables';
 ecTransFile = fullfile(tablesDir, 'corrected-EC-numbers.csv');
 coFactorFile = fullfile(tablesDir, 'cofactors_from_KEGG.csv');
 taxonomyFile = fullfile(tablesDir, 'taxonomy-units.csv');
-metTransFile = fullfile(tablesDir, 'MNXref', 'MNXref-met-translation-table.csv');
-rxnTransFile = fullfile(tablesDir, 'MNXref', 'MNXref-rxn-translation-table.csv');
 formulaeFile = fullfile(tablesDir, 'MNXref', 'MNXref_MET_FORMULAE.csv');
 
 formulaTab = readtable(formulaeFile, 'ReadVariableNames', true, 'Delimiter', '\t');
 ecTranslationTable = readtable(ecTransFile, 'ReadVariableNames', false);
 coFactorsTab = readtable(coFactorFile, 'Delimiter', '\t', 'ReadVariableNames', false);
 taxonomyTab = readtable(taxonomyFile, 'ReadVariableNames', false);
-metTransTab = readtable(metTransFile, 'ReadVariableNames', true);
-rxnTransTab = readtable(rxnTransFile, 'ReadVariableNames', true);
-translationDB.metTab = metTransTab;
-translationDB.rxnTab = rxnTransTab;
+translationDB = loadTranslationDB;
 
 fprintf('################# Converting CarveMe draft models #################\n')
 habitats = {'Root', 'Soil', 'Leaf'};

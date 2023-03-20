@@ -75,7 +75,7 @@ else
     % add prefixes compartment identifiers to the reaction ids (except for the
     % biomass reaction and boundary reactions)
     idx_nm = cellfun('isempty', new_rxns);
-    new_rxns = strcat(new_rxns, '_', rxn_comps);
+    new_rxns = strcat(new_rxns, rxn_comps);
     
     % replace the non-translated ids with the original ids
     

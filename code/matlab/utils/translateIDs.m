@@ -26,9 +26,11 @@ end
 if isempty(dbTable)
     dbDir = 'data/tables/MNXref';
     if isequal(id_type, 'met')
-        dbTable = readtable(fullfile(dbDir, 'MNXref-met-translation-table.csv'));
+        dbTable = readtable(fullfile(dbDir, 'MNXref-met-translation-table.csv'),...
+            'Format', '%s\t%s\t%s\t%s\t%s\t%s\t%s');
     else
-        dbTable = readtable(fullfile(dbDir, 'MNXref-rxn-translation-table.csv'));
+        dbTable = readtable(fullfile(dbDir, 'MNXref-rxn-translation-table.csv'),...
+            'Format', '%s\t%s\t%s\t%s\t%s\t%s\t%s');
     end
 end
 
