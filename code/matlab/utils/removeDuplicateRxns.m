@@ -11,7 +11,7 @@ function changed_model = removeDuplicateRxns(model, database, verbose)
 % Output:
 %           struct changed_model:   updated model
 
-warning('off','all')
+% warning('off','all')
 
 %% Check user input
 if nargin == 0
@@ -50,7 +50,7 @@ end
 
 %% Start search
 for  i=1:n_rxns
-
+    
     % create reaction 1
     R1 = Reaction(...
         M.getProperty(i, 'rxns'),...
@@ -117,7 +117,8 @@ for  i=1:n_rxns
         
         % print ID and equation to file
         M = M.changeRxnID(R1.index, strcat(R1.id, '_R1'));
-        fprintf(fid1, '%s\t%s\n', char(strcat(R1.id, '_R1')), char(printRxnFormula(M.model, strcat(R1.id, '_R1'), 0)));
+        fprintf(fid1, '%s\t%s\n',char(strcat(R1.id, '_R1')),...
+            char(printRxnFormula(M.model, strcat(R1.id, '_R1'), 0)));
         M = M.changeRxnID(R1.index, R1.id);
         
         %% Start comparison
@@ -135,7 +136,8 @@ for  i=1:n_rxns
             
             % print ID and equation to file
             M = M.changeRxnID(R2.index, strcat(R2.id, '_R2'));
-            fprintf(fid1, '%s\t%s\n', char(strcat(R2.id, '_R2')), char(printRxnFormula(M.model, strcat(R2.id, '_R2'), 0)));
+            fprintf(fid1, '%s\t%s\n', char(strcat(R2.id, '_R2')),...
+                char(printRxnFormula(M.model, strcat(R2.id, '_R2'), 0)));
             M = M.changeRxnID(R2.index, R2.id);
             
             RP = ReactionPair(R1, R2, M.getSimilarity(i,j));
@@ -163,21 +165,22 @@ for  i=1:n_rxns
             opposite_dir = 0;
             
             if ~RP.identity_lower && numel(RP.getMetDiff) <= 2
-                if RP.compareMets
-                    % all metabolites are shared
+                if numel(RP.getMetDiff) == 1 && contains(RP.getMetDiff, 'MNXM1[')
+                    % one metabolite is different: H+
                     RP = RP.setSimilarity(M.t_identity_lower);
-                elseif numel(RP.getMetDiff) == 2
+                else
                     % one metabolite is different but not H+ AND the
                     % reactions have equal identifiers if in MNXref namespace
                     % (one per reaction)
                     blackList = RP.getMetDiff;
                     [tmp_identity, opposite_dir] = M.compareRxns(RP, blackList);
                     RP = RP.setSimilarity(tmp_identity);
-                elseif contains(RP.getMetDiff, 'MNXM1[')
-                    % one metabolite is different in this is H+
-                    RP = RP.setSimilarity(M.t_identity_lower);
                 end
                 
+            elseif numel(RP.getMetDiff) > 3
+                % if there are more than three metabolites different between
+                % the reactions, set similarity to zero
+                RP = RP.setSimilarity(0);
             end
             
             if RP.identity_lower
@@ -250,7 +253,7 @@ for  i=1:n_rxns
             end
             
             % check if any decision has been made
-            if ~any(ismember([i j], M.remove)) && (RP.identity_lower || RP.identity)
+            if ~any(ismember([i j], M.remove)) && (RP.identity_lower || RP.identity || round(RP.similarity,4) == -1)
                 % either identical or no decision has been made yet
                 
                 if RP.decideByReversibility
@@ -303,7 +306,7 @@ for  i=1:n_rxns
             else
                 fprintf(fid1, 'No decision\n');
             end
-                
+            
             if ismember(i, M.remove)
                 % break the for loop here because later this reaction
                 % will be compared to the succeeding duplicates
@@ -314,7 +317,7 @@ for  i=1:n_rxns
         fprintf(fid1, '\n');
     end
 end
-
+fclose(fid1);
 % change the idenitfier of the duplicate reactions to they can be
 % discriminated from the reactions with identical IDs (The for loop allows
 % to delete multiple reactions with the same ID, otherwise only the first
@@ -323,14 +326,14 @@ remove = M.remove;
 model.rxns(remove) = strcat(model.rxns(remove), '_delete');
 remove_ids = model.rxns(contains(model.rxns, '_delete'));
 
-% 'EC' is not dealt with in removeRxns function 
+% 'EC' is not dealt with in removeRxns function
 if isfield(model, 'EC')
     model.EC(remove) = [];
 end
 
 for i=1:numel(remove_ids)
     model = removeRxns(model, remove_ids(i));
-%     model.rules(remove(i)) = [];
+    %     model.rules(remove(i)) = [];
 end
 
 if verbose
