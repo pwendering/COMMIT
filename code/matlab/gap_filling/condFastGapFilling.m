@@ -506,10 +506,10 @@ if ~isempty(reaction_sets)
     consistModel.subSystems(idx_new_rxns) = {''};
     
     % E.C. numbers
-    if isfield(model_irr, 'EC')
-        consistModel.EC = cellfun(@(x)model_irr.EC(strcmp(x, rxns_model_irr)),...
-            consistModel.rxns, 'UniformOutput', false);
-        consistModel.EC(idx_new_rxns) = {''};
+    if isfield(model_irr, 'rxnECNumbers')
+        consistModel.rxnECNumbers = cellfun(@(x)model_irr.rxnECNumbers(...
+            strcmp(x, rxns_model_irr)), consistModel.rxns, 'UniformOutput', false);
+        consistModel.rxnECNumbers(idx_new_rxns) = {''};
     end
     
     % add new genes and according rules to the model
