@@ -53,7 +53,7 @@ if ~exist('verbose', 'var')
 end
 
 tic
-%% Prepare the datbase matrix
+%% Prepare the database matrix
 % convert to database model to irreversible
 dbModel_irr = convertModelToIrreversible(dbModel);
 % genes field
@@ -64,6 +64,17 @@ end
 clear dbModel
 
 % convert the input model to irreversible
+% first check if there are unidirectional reactions that run into the
+% backward direction: A + B <- C + B
+% To avoid legative lower bounds in the gap-filling problem, the
+% stoichiometry will be reversed (functionality remains unchanged).
+for i = 1:numel(model.rxns)
+    if model.lb(i) < 0 && model.ub(i) == 0
+        model.S(:,i) = -model.S(:,i);
+        model.ub(i) = -model.lb(i);
+        model.lb(i) = 0;
+    end
+end
 model_irr = convertModelToIrreversible(model);
 rxns_model_irr = model_irr.rxns;
 biomass_id = model.rxns(logical(model.c));
@@ -206,7 +217,8 @@ if include_sink
 else
     S_sink = [];
     tmp_mets = {};
-end; clear tmp_met_idx
+end
+clear tmp_met_idx
 
 % create a matrix of exchange reactions for the provided list of allowed
 % exchange reactions
@@ -294,9 +306,6 @@ end
 
 %% Run the FastGapFilling LP with binary search
 
-% define b vector for steady state
-beq = zeros(size(dbModel_irr.S, 1), 1);
-
 % index of the biomass reaction
 biomass = strcmp(dbModel_irr.rxns, biomass_id);
 
@@ -338,42 +347,31 @@ solutions = {};
 alpha = 0;
 beta = 2*m;
 
-% lower and upper bounds
-lb = dbModel_irr.lb;
-ub = dbModel_irr.ub;
-ub(biomass) = 2.81;
-
-%{
-% rewrite as COBRA LP
+% create COBRA LP
 lp.A = dbModel_irr.S;
-lp.b = beq;
-lp.lb = lb;
-lp.ub = ub;
+lp.b = zeros(size(dbModel_irr.S, 1), 1);
+lp.lb = dbModel_irr.lb;
+lp.ub = dbModel_irr.ub;
+lp.ub(biomass) = 2.81;
 lp.c = -f;
 lp.osense = -1;
-lp.csense = repmat('E',1,size(beq));
-%}
+lp.csense = repmat('E', size(lp.b));
 
 % Start binary search
 precision = 1e-6;
 if verbose
     fprintf('\nStarting the binary search for the gap filling LP...\n')
 end
-% run CPLEX single-threaded
-opt = cplexoptimset;
-opt.threads = 1;
+
 while abs(alpha - beta) > 1
     % Weighting factor for biomass reaction
     delta = floor(mean([alpha, beta]));
     
     % re-define the objective for the biomass
-       f(biomass) = -delta;
-%     lp.c(biomass) = delta;
+    lp.c(biomass) = delta;
+    
     % Solve the LP
-       solution = cplexlp(f, [], [], dbModel_irr.S, beq, lb, ub, opt);
-%     % for COBRA LP version
-%     solution = solveCobraLP(lp);
-%     solution = solution.full;
+    solution = solveCobraLP(lp).full;
     
     if solution(biomass) >= epsilon
         % consider the reactions that have not been in the model before
@@ -383,7 +381,6 @@ while abs(alpha - beta) > 1
         nz(rxns_model) = 0;
         % reaction that would be added by this solution
         reaction_sets{end+1} = dbModel_irr.rxns(nz);
-        
         
         if numel(reaction_sets)==1 || numel(reaction_sets{end}) <= numel(reaction_sets{end-1})
             beta = delta;

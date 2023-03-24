@@ -44,9 +44,7 @@ tmp_mets = model.mets(tmp_met_idx);
 
 %% Find the optimal biomass value
 model = convertModelToIrreversible(model);
-% solution = optimizeCbModel(model);
-% solution = solution.x;
-solution = cplexlp(-model.c, [], [], model.S, model.b, model.lb, model.ub);
+solution = optimizeCbModel(model).x;
 opt = solution(logical(model.c));
 
 %% Sink reactions
@@ -75,7 +73,6 @@ lb = [model.lb; zeros(size(S_sink,2),1)];
 lb(find(model.c)) = alpha*opt;
 ub = [model.ub; repmat(1000, size(S_sink,2),1)];
 
-%{
 % solve the LP
 lp.A = Aeq;
 lp.b = beq;
@@ -83,12 +80,11 @@ lp.lb = lb;
 lp.ub = ub;
 lp.c = -f;
 lp.osense = -1;
-lp.csense = repmat('E',1,size(lp.A,1));
-solution = solveCobraLP(lp);
-solution = solution.full;
-%}
-[solution,~,exitflag] = cplexlp(f, [], [], Aeq, beq, lb, ub);
-if exitflag~=1
+lp.csense = repmat('E', 1, size(lp.A,1));
+lp_sol = solveCobraLP(lp);
+solution = lp_sol.full;
+
+if lp_sol.stat ~= 1
     solution = zeros(size(f));
 end
 
