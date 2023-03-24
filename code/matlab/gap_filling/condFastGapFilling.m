@@ -501,9 +501,11 @@ if ~isempty(reaction_sets)
     consistModel.c(strcmp(consistModel.rxns, biomass_id)) = 1;
     
     % subsystems
-    consistModel.subSystems = cellfun(@(x)model_irr.subSystems(strcmp(x, rxns_model_irr)),...
-        consistModel.rxns, 'UniformOutput', false);
-    consistModel.subSystems(idx_new_rxns) = {''};
+    if isfield(model_irr, 'subSystems')
+        consistModel.subSystems = cellfun(@(x)model_irr.subSystems(strcmp(x, rxns_model_irr)),...
+            consistModel.rxns, 'UniformOutput', false);
+        consistModel.subSystems(idx_new_rxns) = {''};
+    end
     
     % E.C. numbers
     if isfield(model_irr, 'rxnECNumbers')
