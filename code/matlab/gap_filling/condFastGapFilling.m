@@ -490,10 +490,11 @@ if ~isempty(reaction_sets)
     
     % reaction notes
     if ~isfield(model_irr, 'rxnNotes')
-        consistModel.rxnNotes = repelem({''}, size(consistModel.rxns), 1);
+        consistModel.rxnNotes = repmat({''}, size(consistModel.rxns));
+    else
+        consistModel.rxnNotes = cellfun(@(x)model_irr.rxnNotes(strcmp(x, rxns_model_irr)),...
+            consistModel.rxns, 'UniformOutput', false);
     end
-    consistModel.rxnNotes = cellfun(@(x)model_irr.rxnNotes(strcmp(x, rxns_model_irr)),...
-        consistModel.rxns, 'UniformOutput', false);
     consistModel.rxnNotes(idx_new_rxns) = {'gf'};
 
     % objective ('c')
