@@ -598,7 +598,7 @@ if ~isempty(reaction_sets)
     
     % metabolite formulae
    if isfield(model_irr, 'metFormulas')
-       consistModel.metFormulas = repmat({''}, numel(model_irr.mets), 1);
+       consistModel.metFormulas = repmat({''}, numel(consistModel.mets), 1);
        idx_tmp = cell2mat(cellfun(@(x)find(ismember(consistModel.mets, x)),...
            model_irr.mets, 'UniformOutput', false));
        consistModel.metFormulas(idx_tmp) = model_irr.metFormulas(ismember(model_irr.mets,consistModel.mets));
