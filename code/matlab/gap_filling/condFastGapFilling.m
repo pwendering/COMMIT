@@ -507,9 +507,21 @@ if ~isempty(reaction_sets)
     
     % E.C. numbers
     if isfield(model_irr, 'rxnECNumbers')
+        % COBRA
         consistModel.rxnECNumbers = cellfun(@(x)model_irr.rxnECNumbers(...
             strcmp(x, rxns_model_irr)), consistModel.rxns, 'UniformOutput', false);
         consistModel.rxnECNumbers(idx_new_rxns) = {''};
+    elseif isfield(model_irr, 'EC')
+        % created during previous COMMIT version, kept to allow usage of
+        % old version
+        consistModel.EC = cellfun(@(x)model_irr.EC(...
+            strcmp(x, rxns_model_irr)), consistModel.rxns, 'UniformOutput', false);
+        consistModel.EC(idx_new_rxns) = {''};
+    elseif isfield(model_irr, 'eccodes')
+        % RAVEN
+        consistModel.eccodes = cellfun(@(x)model_irr.eccodes(...
+            strcmp(x, rxns_model_irr)), consistModel.rxns, 'UniformOutput', false);
+        consistModel.eccodes(idx_new_rxns) = {''};
     end
     
     % add new genes and according rules to the model
