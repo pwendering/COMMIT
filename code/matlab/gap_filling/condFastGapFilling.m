@@ -501,32 +501,7 @@ if ~isempty(reaction_sets)
     consistModel.c = zeros(size(consistModel.S, 2), 1);
     consistModel.c(strcmp(consistModel.rxns, biomass_id)) = 1;
     
-    % subsystems
-    if isfield(model_irr, 'subSystems')
-        consistModel.subSystems = cellfun(@(x)model_irr.subSystems(strcmp(x, rxns_model_irr)),...
-            consistModel.rxns, 'UniformOutput', false);
-        consistModel.subSystems(idx_new_rxns) = {''};
-    end
-    
-    % E.C. numbers
-    if isfield(model_irr, 'rxnECNumbers')
-        % COBRA
-        consistModel.rxnECNumbers = cellfun(@(x)model_irr.rxnECNumbers(...
-            strcmp(x, rxns_model_irr)), consistModel.rxns, 'UniformOutput', false);
-        consistModel.rxnECNumbers(idx_new_rxns) = {''};
-    elseif isfield(model_irr, 'EC')
-        % created during previous COMMIT version, kept to allow usage of
-        % old version
-        consistModel.EC = cellfun(@(x)model_irr.EC(...
-            strcmp(x, rxns_model_irr)), consistModel.rxns, 'UniformOutput', false);
-        consistModel.EC(idx_new_rxns) = {''};
-    elseif isfield(model_irr, 'eccodes')
-        % RAVEN
-        consistModel.eccodes = cellfun(@(x)model_irr.eccodes(...
-            strcmp(x, rxns_model_irr)), consistModel.rxns, 'UniformOutput', false);
-        consistModel.eccodes(idx_new_rxns) = {''};
-    end
-    
+        
     % add new genes and according rules to the model
     if isfield(dbModel_irr, 'genes')
         nz(rxns_model) = 0;
@@ -585,29 +560,49 @@ if ~isempty(reaction_sets)
         consistModel.mets, 'UniformOutput', false));
     consistModel.csense(idx_new_mets) = 'E';
     
-    % metabolite charge
-    if isfield(model_irr, 'metCharges')
-        consistModel.metCharges = nan(numel(consistModel.mets), 1);
-        consistModel.metCharges = cell2mat(cellfun(@(x)model_irr.metCharges(strcmp(x, model_irr.mets)),...
-            consistModel.mets, 'UniformOutput', false));
-        idx_tmp = cell2mat(cellfun(@(x)find(ismember(consistModel.mets, x)),...
-            model_irr.mets, 'UniformOutput', false));
-        consistModel.metCharges(idx_tmp) = model_irr.metCharges(ismember(model_irr.mets,consistModel.mets));
-        clear idx_tmp
+    % finally update all related metabolite and reactions fields that were
+    % not updated above
+    fnames = fieldnames(model_irr);
+    for i = 1:numel(fnames)
+        if size(model_irr.(fnames{i}), 2) == 1 && ...
+                ~ismember(fnames{i}, {'rxns', 'mets', 'lb', 'ub', 'c',...
+                'csense', 'b', 'rules', 'genes', 'rxnNotes', 'rxnNames'})
+            if size(model_irr.(fnames{i}),1) == size(model_irr.S,1)
+                field_dim = size(consistModel.S,1);
+                idx_tmp_1 = cell2mat(cellfun(@(x)find(ismember(consistModel.mets, x)),...
+                    model_irr.mets, 'UniformOutput', false));
+                idx_tmp_2 = ismember(model_irr.mets,consistModel.mets);
+            elseif size(model_irr.(fnames{i}),1) == size(model_irr.S,2)
+                field_dim = size(consistModel.S,2);
+                idx_tmp_1 = cell2mat(cellfun(@(x)find(ismember(consistModel.rxns, x)),...
+                    model_irr.rxns, 'UniformOutput', false));
+                idx_tmp_2 = ismember(model_irr.rxns,consistModel.rxns);
+            else
+                continue
+            end
+            
+            if iscellstr(consistModel.(fnames{i}))
+                consistModel.(fnames{i}) = repmat({''}, field_dim, 1);
+            elseif isnumeric(consistModel.(fnames{i}))
+                consistModel.(fnames{i}) = zeros(field_dim, 1);
+            elseif iscell(consistModel.(fnames{i}))
+                consistModel.(fnames{i}) = repmat({{''}}, field_dim, 1);
+            elseif islogical(consistModel.(fnames{i}))
+                consistModel.(fnames{i}) = false(field_dim, 1);
+            else
+                % if type is not cell, cellstr, logical, or numeric, do
+                % not update the field
+                continue
+            end
+            
+            idx_tmp_1 = unique(idx_tmp_1, 'stable');
+            consistModel.(fnames{i})(idx_tmp_1) = model_irr.(fnames{i})(idx_tmp_2);
+        end
     end
-    
-    % metabolite formulae
-   if isfield(model_irr, 'metFormulas')
-       consistModel.metFormulas = repmat({''}, numel(consistModel.mets), 1);
-       idx_tmp = cell2mat(cellfun(@(x)find(ismember(consistModel.mets, x)),...
-           model_irr.mets, 'UniformOutput', false));
-       consistModel.metFormulas(idx_tmp) = model_irr.metFormulas(ismember(model_irr.mets,consistModel.mets));
-       clear idx_tmp
-   end
-    
-    if isfield(consistModel, 'grRules')
+  
+        if isfield(consistModel, 'grRules')
         consistModel = rmfield(consistModel, 'grRules');
-    end
+        end
     
     if verbose
         fprintf('\n\t> finished adding reactions to the model (%.0fs)\n\n', toc-tmp_toc)
